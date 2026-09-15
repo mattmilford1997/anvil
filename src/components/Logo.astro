@@ -1,0 +1,15 @@
+---
+interface Props { inverse?: boolean; size?: number }
+const { inverse = false, size = 26 } = Astro.props;
+const color = inverse ? '#ffffff' : '#0f2e2a';
+---
+<span class="logo" style={`--h:${size}px; color:${color}`}>
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <path d="M4 9h24v5H18v10h-4V14H4z" fill={color}/>
+    <path d="M9 22h14v4H9z" fill="#c4552d"/>
+  </svg>
+  <span class="logo-word">Anvil</span>
+</span>
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 9px; font-weight: 700; font-size: calc(var(--h) * 0.85); letter-spacing: -0.03em; line-height: 1; }
+</style>

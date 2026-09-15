@@ -1,0 +1,59 @@
+# Netlify config for the Anvil marketing site.
+# In the Netlify UI, set "Base directory" to `anvil` if this folder lives inside
+# the foundrypc-website repo. If the folder is moved to its own repo, leave base blank.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Long cache for hashed assets, short for HTML.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Tracked /go/ links (attribution by article/CTA). Add one per CTA placement.
+# Keep the query string so Close/GA can read the source.
+[[redirects]]
+  from = "/go/:slug"
+  to = "/contact?src=:slug"
+  status = 302
+  force = true
+
+# Friendly aliases
+[[redirects]]
+  from = "/docs"
+  to = "https://docs.getanvil.com"
+  status = 302
+
+[[redirects]]
+  from = "/trust"
+  to = "https://trust.getanvil.com"
+  status = 302
+
+[[redirects]]
+  from = "/login"
+  to = "https://app.homefront.health"
+  status = 302
+
+[[redirects]]
+  from = "/blog"
+  to = "/resources"
+  status = 301
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/resources/:splat"
+  status = 301

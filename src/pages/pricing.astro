@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import BuildVsPartnerCalc from '../components/BuildVsPartnerCalc.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { tiers, pricingNotes } from '../data/pricing';
+import { pricingFaqs } from '../data/faqs';
+import { breadcrumbJsonLd, fmtMoney, absolute } from '../lib/seo';
+const offerLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Anvil insurance infrastructure platform',
+  description: 'Insurance billing, credentialing, contracting, eligibility, and RCM for care companies. Rent a 50-state PC, then own your contracts.',
+  brand: { '@type': 'Brand', name: 'Anvil' },
+  offers: tiers.map((t) => ({
+    '@type': 'Offer', name: t.name, url: absolute('/pricing'), priceCurrency: 'USD', price: t.oneTime,
+    description: `${t.platformFeePct}% of collections during rental${t.monthly ? ` plus ${fmtMoney(t.monthly)}/mo` : ''}. ${t.tagline}`,
+  })),
+};
+---
+<BaseLayout title="Pricing" description="Published pricing. A platform fee on collections during rental, plus fixed one-time and monthly fees for your own PC and physician owner. Model it with the calculator." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing' }]), offerLd]}>
+  <Hero compact eyebrow="Pricing" title="Published. Because you should be able to model this without a sales call." sub="A platform fee on collections while you bill under our PC. Fixed, published fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own." primary={{ label: 'Get started', href: '/contact?src=pricing' }} secondary={{ label: 'Open the calculator', href: '#calculator' }} />
+  <Section tight>
+    <div class="tiers">
+      {tiers.map((t) => (
+        <div class:list={['tier card reveal', { featured: t.featured }]}>
+          {t.featured && <span class="tag tag-accent">Most common</span>}
+          <h3>{t.name}</h3>
+          <p class="muted">{t.tagline}</p>
+          <div class="price">
+            <div><strong>{t.platformFeePct}%</strong><span>of collections during rental</span></div>
+            {t.monthly > 0 && <div><strong>{fmtMoney(t.monthly)}</strong><span>per month, PC and physician owner</span></div>}
+            <div><strong>{fmtMoney(t.oneTime)}</strong><span>one-time program fee</span></div>
+          </div>
+          <ul class="check-list">{t.includes.map((i) => <li>{i}</li>)}</ul>
+          <p class="small muted">Best for: {t.bestFor}</p>
+          <a href={`/contact?src=pricing-${t.key}`} class:list={['btn', t.featured ? 'btn-accent' : 'btn-primary']}>{t.cta}</a>
+        </div>
+      ))}
+    </div>
+    <ul class="notes">
+      {pricingNotes.map((n) => <li>{n}</li>)}
+    </ul>
+  </Section>
+  <Section eyebrow="Model it" title="Build vs partner, on your numbers" tight>
+    <BuildVsPartnerCalc />
+  </Section>
+  <Section tight><Faq items={pricingFaqs} /></Section>
+  <CtaBand title="Pick a tier. Or send us your numbers and we will." body="Most companies start on Build so the PC forms while they launch." primary={{ label: 'Get started', href: '/contact?src=pricing' }} secondary={{ label: 'See rates by state', href: '/rates' }} />
+</BaseLayout>
+<style>
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .tier { display: flex; flex-direction: column; gap: 12px; }
+  .tier.featured { border-color: var(--accent); box-shadow: var(--shadow); }
+  .tier h3 { font-size: 26px; margin: 0; }
+  .tier > p.muted { margin: 0; }
+  .price { display: grid; gap: 10px; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .price div { display: flex; align-items: baseline; gap: 10px; }
+  .price strong { font-size: 24px; color: var(--ink); letter-spacing: -0.02em; min-width: 92px; }
+  .price span { font-size: 13.5px; color: var(--muted); }
+  .tier .check-list { flex: 1; }
+  .notes { margin: 24px 0 0; padding-left: 1.2em; color: var(--muted); font-size: 14px; max-width: 900px; }
+  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+</style>

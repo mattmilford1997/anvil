@@ -1,0 +1,42 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import Tiles from '../../components/Tiles.astro';
+import Timeline from '../../components/Timeline.astro';
+const faqs = [
+  { q: 'We are cash-pay today. Where do we start?', a: 'Pick the 3 to 5 states with the most covered lives among your patients and clinicians. We roster-add those clinicians under our contracts, turn on eligibility at booking, and keep cash-pay as the fallback path. Your own PC forms in the same states at the same time.' },
+  { q: 'Will adding insurance hurt our booking conversion?', a: 'It hurts when the insurance step asks for a card upload and a wait. It helps when a soft check at booking tells the patient they are covered and what the copay is. The commonly cited lift is 2 to 5x on the insurance path.' },
+  { q: 'Do we need to hire anyone?', a: 'No. Contracting, credentialing, eligibility, coding, and denials are all delivered. You keep one ops owner as the point of contact.' },
+  { q: 'What will our Series B diligence see?', a: 'Insured revenue billed under an entity you control, payer contracts in your name, and a vendor you could replace without relaunching. That is the point of doing both tracks.' },
+];
+---
+<SubpageLayout
+  metaTitle="Insurance for virtual care companies"
+  title="Cash-pay to in-network, in every state, without hiring a billing department."
+  description="For venture-backed virtual care companies going multi-state insurance for the first time. Launch on a rented 50-state PC in weeks. Own your contracts by year one."
+  eyebrow="Solutions / Virtual care"
+  sub="Your board is asking about TAM. CAC is rising. Competitors take insurance. You need to be in-network nationally without building the five teams that requires, and you need to own the result."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/virtual-care' }, { name: 'Virtual care', path: '/solutions/virtual-care' }]}
+  faqs={faqs}
+  ctaTitle="Launch in your top states this quarter."
+  ctaBody="Tell us your states, clinicians, and codes. We map the first 90 days and the migration after it."
+  ctaPrimary={{ label: 'Get started', href: '/contact?src=virtual-care' }}
+>
+  <Section eyebrow="Why now" title="Three signals that it is time">
+    <Tiles items={[
+      { icon: 'chart', title: 'Cash-pay TAM has a ceiling', body: 'Most of the market pays with a card they already have: their insurance card. Every month you stay cash-only, you buy the same patients at a higher CAC.' },
+      { icon: 'clock', title: 'Insurance takes quarters unless it takes weeks', body: 'New contracts take quarters. Roster-adds to contracts that exist take weeks. The difference is whether you launch this quarter or next year.' },
+      { icon: 'key', title: 'Diligence will ask who owns the contracts', body: 'Investors know what network rental means. The right answer is that you launched on rental and own the contracts now.' },
+    ]} />
+  </Section>
+  <Section eyebrow="The plan" title="Week 1 to month 12" tight>
+    <Timeline />
+  </Section>
+  <Section eyebrow="Read next" title="For founders doing this for the first time" tight>
+    <div class="grid grid-3">
+      <div class="card"><h3><a href="/resources/when-to-accept-insurance-virtual-care">When to accept insurance</a></h3><p class="muted">Seven signals and a scoring table.</p></div>
+      <div class="card"><h3><a href="/resources/cash-pay-to-in-network-two-phase-plan">The two-phase plan</a></h3><p class="muted">Add insurance without cratering conversion.</p></div>
+      <div class="card"><h3><a href="/resources/five-workstreams-of-insurance-operations">The five workstreams</a></h3><p class="muted">Which ones you should never build.</p></div>
+    </div>
+  </Section>
+</SubpageLayout>

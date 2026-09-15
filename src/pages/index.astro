@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import LogoStrip from '../components/LogoStrip.astro';
+import Section from '../components/Section.astro';
+import Tiles from '../components/Tiles.astro';
+import StatBand from '../components/StatBand.astro';
+import Timeline from '../components/Timeline.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import RateLookup from '../components/RateLookup.astro';
+import Testimonials from '../components/Testimonials.astro';
+import OperatorsBand from '../components/OperatorsBand.astro';
+import ResourcesTeaser from '../components/ResourcesTeaser.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { homeFaqs } from '../data/faqs';
+import { testimonials } from '../data/testimonials';
+import { isProd } from '../lib/seo';
+const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
+---
+<BaseLayout title="Anvil | Bill insurance in every state. Own the contracts." description="Launch in-network nationally in weeks on our credentialed 50-state PC. We build and contract your own entity in parallel, so you own the payer contracts by year one." path="/">
+  <Hero
+    eyebrow="Insurance infrastructure for care companies"
+    title="Bill insurance in every state in <em>weeks</em>. Own the contracts by year one."
+    sub="Launch on our credentialed 50-state PC now. We build, credential, and contract your own entity while you grow, so the payer relationships end up on your balance sheet, not ours."
+    primary={{ label: 'Get started', href: '/contact' }}
+    secondary={{ label: 'See rates by state', href: '/rates' }}
+    mock
+  />
+  <div class="container"><LogoStrip /></div>
+
+  <Section>
+    <Tiles items={[
+      { icon: 'bolt', title: 'Live in weeks', body: 'Roster-add your clinicians to contracts that already exist. No new contract negotiation stands between you and your first insured visit.' },
+      { icon: 'key', title: 'Own the asset', body: 'Your PC, your contracts, your rates. We do the contracting work for your entity. You keep the result when you raise, sell, or switch vendors.' },
+      { icon: 'eye', title: 'See the rate first', body: 'Look up what payers actually pay for your codes by state before you sign anything. During rental, the contracted rate and our fee are separate lines.' },
+    ]} />
+  </Section>
+
+  <StatBand />
+
+  <Section eyebrow="How it works" title="Two tracks from day one. One of them ends with you owning the contracts." intro="Most vendors stop at the first track. We run both, because a care company that never owns its payer relationships is renting its revenue.">
+    <Timeline />
+    <div style="margin-top:32px"><a href="/own-your-contracts" class="btn btn-primary">How the migration works</a></div>
+  </Section>
+
+  <Section eyebrow="Compare" title="What you get, and what you keep" tight>
+    <ComparisonTable />
+  </Section>
+
+  <Section eyebrow="Rate transparency" title="What do payers pay for your codes?" intro="The single most useful number in this decision, and the one nobody publishes. Pick a state and a code. No form.">
+    <RateLookup compact />
+  </Section>
+
+  {showTestimonials && (
+    <Section eyebrow="Customers" title="What operators say" tight>
+      <Testimonials />
+    </Section>
+  )}
+
+  <Section>
+    <OperatorsBand />
+  </Section>
+
+  <Section eyebrow="Resources" title="Model it, don't vibe it." tight>
+    <ResourcesTeaser />
+    <div style="margin-top:24px"><a href="/resources" class="btn btn-ghost">All resources</a></div>
+  </Section>
+
+  <Section tight>
+    <Faq items={homeFaqs} />
+  </Section>
+
+  <CtaBand />
+</BaseLayout>

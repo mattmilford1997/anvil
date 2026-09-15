@@ -1,0 +1,29 @@
+---
+import { portfolio, portfolioAggregate } from '../data/portfolio';
+---
+<div class="ops reveal">
+  <div class="ops-copy">
+    <div class="eyebrow">Built by operators</div>
+    <h2>The playbook on this site is the playbook we run.</h2>
+    <p>Our team operates {portfolioAggregate.companies} insurance-billing care companies across {portfolioAggregate.statesLabel} and {portfolioAggregate.specialtiesLabel}. Virtual, hybrid, in-home, in-person. Commercial, Medicaid, Medicare Advantage. We are the largest customer of our own platform.</p>
+    <a href="/company" class="btn btn-ghost">Meet the team</a>
+  </div>
+  <div class="ops-logos">
+    <div class="ops-label">Operated by our team</div>
+    <ul>
+      {portfolio.map((c) => (
+        <li><strong>{c.name}</strong><span>{c.specialty} · {c.model}</span></li>
+      ))}
+    </ul>
+  </div>
+</div>
+<style>
+  .ops { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .ops-copy p { color: var(--muted); font-size: 18px; }
+  .ops-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .ops-logos ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ops-logos li { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; }
+  .ops-logos strong { font-size: 16px; color: var(--ink); letter-spacing: -0.01em; }
+  .ops-logos span { font-size: 12.5px; color: var(--muted); }
+  @media (max-width: 860px) { .ops { grid-template-columns: 1fr; } }
+</style>

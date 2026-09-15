@@ -1,0 +1,31 @@
+---
+import { coverageStats, asOf } from '../data/stats';
+import { isProd } from '../lib/seo';
+const stats = coverageStats.filter((s) => s.verified || !isProd);
+const anyUnverified = stats.some((s) => !s.verified);
+---
+{stats.length > 0 && (
+  <section class="band">
+    <div class="container">
+      <div class="stats">
+        {stats.map((s) => (
+          <div class="stat reveal">
+            <div class="val">{s.value}</div>
+            <div class="lbl">{s.label}</div>
+            {s.note && <div class="note">{s.note}</div>}
+          </div>
+        ))}
+      </div>
+      <p class="asof">Updated {asOf}. {anyUnverified && !isProd && <strong style="color:#e8a081">DEV ONLY: unverified placeholder stats are hidden in production.</strong>}</p>
+    </div>
+  </section>
+)}
+<style>
+  .band { background: var(--ink); color: #fff; padding: 48px 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .val { font-size: clamp(36px, 5vw, 52px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
+  .lbl { font-size: 15px; color: #d5e0dc; }
+  .note { font-size: 13px; color: #8fa39e; margin-top: 4px; }
+  .asof { margin: 24px 0 0; font-size: 12.5px; color: #8fa39e; }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+</style>

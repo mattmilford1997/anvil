@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import { SITE } from '../../../site.config.mjs';
+---
+<BaseLayout title="Privacy policy" description="How Anvil handles information collected on this website. No protected health information is collected here." noindex>
+  <Section tight>
+    <div class="prose">
+      <div class="eyebrow">Legal</div>
+      <h1>Privacy policy</h1>
+      <p class="muted">Effective TODO(launch). Reviewed by counsel before publication.</p>
+      <h2>What this site collects</h2>
+      <p>This website collects business contact information you submit through forms (name, work email, company, role, and what you tell us about your company), plus analytics data about how the site is used (pages viewed, referring site, approximate location, device type). We use analytics cookies only after you accept them in the cookie notice.</p>
+      <h2>What this site does not collect</h2>
+      <p>This website does not collect protected health information. Do not enter patient information in any form here. Anvil's platform handles PHI under a Business Associate Agreement with customers, on separate systems with separate controls.</p>
+      <h2>How we use it</h2>
+      <p>To respond to your request, to send content you asked for, to improve the site, and, if you asked, to send the newsletter. You can unsubscribe from any email in one click.</p>
+      <h2>Who we share it with</h2>
+      <p>Service providers that run our forms, CRM, email, and analytics under contracts that limit their use of your data. We do not sell personal information.</p>
+      <h2>Your choices</h2>
+      <p>Decline analytics cookies in the notice. Ask us to delete your contact record at <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</p>
+      <h2>Contact</h2>
+      <p>{SITE.legalName}. <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</p>
+    </div>
+  </Section>
+</BaseLayout>

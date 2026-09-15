@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import TimelineSlider from '../components/TimelineSlider.astro';
+import GatedDownload from '../components/GatedDownload.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { ownFaqs } from '../data/faqs';
+import { breadcrumbJsonLd } from '../lib/seo';
+const months = [
+  ['Month 1', 'Your PC is formed in launch states. Physician owner matched. Clinicians roster-added under Anvil\'s contracts. You are billing.'],
+  ['Months 1-4', 'Credentialing files built under your entity. Contract applications filed in your PC\'s name with your top payers.'],
+  ['Months 4-8', 'First commercial contracts effective. New visits with those payers route to your PC. Claims in flight are unaffected.'],
+  ['Months 8-12', 'Medicaid MCO and remaining commercial contracts land. Majority of volume on your own contracts. Platform fee steps down.'],
+  ['Months 12-18', 'Steady state. Anvil runs RCM and renewals on contracts you own. Rental PC stays available for new states and closed panels.'],
+];
+---
+<BaseLayout title="Own your contracts" description="Network rental means renting your revenue. Anvil launches you on a rented PC and migrates you to contracts your own entity holds, over 6 to 18 months, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
+  <Hero compact eyebrow="Own your contracts" title="If your vendor owns your payer contracts, you don't have insurance revenue. You have a lease." sub="This is the page to forward to your board. It explains what network rental is, why it is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
+
+  <Section eyebrow="The problem" title="Network rental is renting your revenue">
+    <div class="grid grid-3">
+      <div class="card"><h3>You never hold the contract</h3><p class="muted">The payer contracts, rates, and relationships sit in the vendor's entity. If you leave, you start from zero. Your entire insured revenue runs through a company you do not control.</p></div>
+      <div class="card"><h3>You never see the rate</h3><p class="muted">You are paid a lease fee, not the contracted rate. You cannot negotiate with a payer. You cannot see the ladder. You cannot tell whether the fee is fair.</p></div>
+      <div class="card"><h3>One vendor, one point of failure</h3><p class="muted">A payer terminating the vendor's group contract terminates every customer's coverage with that payer at once. That is concentration risk your investors will ask about.</p></div>
+    </div>
+    <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination.</p>
+  </Section>
+
+  <Section eyebrow="The migration" title="How volume moves from our PC to yours" intro="Both tracks start on day one. Nothing about the migration gates your launch or interrupts billing.">
+    <div class="steps">
+      {months.map(([when, what]) => (
+        <div class="step reveal"><div class="when">{when}</div><p>{what}</p></div>
+      ))}
+    </div>
+    <div style="margin-top:32px"><TimelineSlider /></div>
+  </Section>
+
+  <Section eyebrow="What you end up with" title="An asset, not a dependency" tight>
+    <ul class="check-list two-col">
+      <li>Your own professional corporation in every state you operate</li>
+      <li>A licensed physician owner under a friendly-PC structure</li>
+      <li>Executed MSO and PC agreements, structured for each state's CPOM rules</li>
+      <li>Payer contracts in your entity's name, with the rate history</li>
+      <li>Credentialing files for every clinician, portable</li>
+      <li>Reporting by payer, state, clinician, and code, under your entity</li>
+    </ul>
+  </Section>
+
+  <Section eyebrow="Diligence" title="What investors ask, and what the answer should be">
+    <div class="grid grid-2">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>On rental forever</th><th>After migration</th></tr></thead>
+          <tbody>
+            <tr><td>Does insured revenue run through an entity you control?</td><td class="muted">No</td><td>Yes</td></tr>
+            <tr><td>Are payer contracts assignable in a sale?</td><td class="muted">There are none to assign</td><td>Yes, they are the company's</td></tr>
+            <tr><td>Can a single vendor terminate network access?</td><td class="muted">Yes</td><td>No</td></tr>
+            <tr><td>Do you know your contracted rates?</td><td class="muted">No, lease fee only</td><td>Yes, by payer and code</td></tr>
+            <tr><td>What is the switching cost?</td><td class="muted">A relaunch</td><td>A vendor change</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <GatedDownload name="diligence-checklist" title="Payer contract diligence checklist" body="The twelve questions we would ask any care company about its insurance revenue, with the answer that passes. Built for Series A and B diligence." cta="Send me the checklist" />
+    </div>
+  </Section>
+
+  <Section eyebrow="Cost" title="Renting forever vs owning by year one" tight>
+    <p class="lede">Rental fees do not step down. Ownership fees do. Run both on your numbers in the <a href="/pricing#calculator">calculator</a>, or read the <a href="/resources/renting-a-pc-vs-owning-one">full comparison</a>.</p>
+  </Section>
+
+  <Section tight><Faq items={ownFaqs} /></Section>
+  <CtaBand title="Rent for speed. Own for the asset. Start both today." body="Tell us your states and clinicians. We will map the migration month by month." primary={{ label: 'Get started', href: '/contact?src=own' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
+</BaseLayout>
+<style>
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+  .step .when { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .step p { margin: 0; font-size: 14.5px; color: var(--muted); }
+  .two-col { columns: 2; column-gap: 32px; max-width: 900px; }
+  .two-col li { break-inside: avoid; }
+  @media (max-width: 960px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .steps, .two-col { grid-template-columns: 1fr; columns: 1; } }
+</style>

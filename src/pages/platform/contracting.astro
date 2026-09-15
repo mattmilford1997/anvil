@@ -1,0 +1,43 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import CoverageMap from '../../components/CoverageMap.astro';
+import RateLookup from '../../components/RateLookup.astro';
+const faqs = [
+  { q: 'Do we negotiate with payers ourselves?', a: 'No, unless you want to. Anvil runs contracting for your entity: applications, rate proposals, redlines, and renewals. You approve the terms and you see every rate.' },
+  { q: 'How long do contracts for a new entity take?', a: 'Commercial contracts for a new PC commonly land in 4 to 8 months. Medicaid managed care varies by state and can be faster or slower. Your clinicians bill under our PC the whole time, so this never gates revenue.' },
+  { q: 'Can we see the rate ladder?', a: 'Yes. Before you sign, the rate lookup shows published ranges by state and code. During contracting you see the proposed and executed rates for your entity. Under rental you see the contracted rate and the platform fee separately.' },
+  { q: 'What if a payer panel is closed?', a: 'We tell you before you plan around it. Closed panels are common in behavioral health. We work the exception path and, where it is closed for good, route that payer\'s volume through our PC until it opens.' },
+  { q: 'Who holds the contracts after migration?', a: 'Your PC. Anvil manages them under your management services agreement. If you ever switch vendors, the contracts do not move.' },
+];
+---
+<SubpageLayout
+  metaTitle="Payer contracting and rate transparency"
+  title="Contracts in your name. Rates you can see."
+  description="Anvil contracts your own entity with commercial, Medicaid, and Medicare Advantage payers while you bill under ours. Published rate ranges by state and code."
+  eyebrow="Platform / Contracting"
+  sub="You should never bill under a contract whose rate you cannot see. We show the range before you sign, the executed rate after, and our fee as a separate line the whole way."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Contracting', path: '/platform/contracting' }]}
+  faqs={faqs}
+  ctaTitle="Get a contracting plan for your codes and states."
+  ctaBody="Tell us what you bill and where. We come back with payer order, expected timelines, and the rate ranges to plan on."
+>
+  <Section>
+    <FeatureRow eyebrow="How we contract" title="Rollout order by covered lives, not by whoever answers first" bullets={[
+      'Top 3 to 5 payers per state cover most commercial lives. We start there.',
+      'Medicaid MCO panels worked state by state, with the closed-panel exception path.',
+      'Rate proposals built from the published ranges for your codes.',
+      'Renewals calendared from day one. The first renewal is where the rate moves.',
+      'Every executed rate in your reporting, by payer, by code, by state.',
+    ]}>
+      <p>Contracting is a sequence, not a batch. We order it so revenue lands earliest where you have clinicians and lives.</p>
+    </FeatureRow>
+  </Section>
+  <Section eyebrow="Coverage" title="Where you can bill on our PC today, and where we can contract yours" tight>
+    <CoverageMap />
+  </Section>
+  <Section tight>
+    <RateLookup compact id="rl-contracting" />
+  </Section>
+</SubpageLayout>

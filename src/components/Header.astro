@@ -1,0 +1,102 @@
+---
+import Logo from './Logo.astro';
+import { mainNav } from '../data/nav';
+import { SITE } from '../../site.config.mjs';
+const current = Astro.url.pathname;
+---
+<header class="hdr">
+  <div class="container hdr-in">
+    <a href="/" class="brand" aria-label="Anvil home"><Logo /></a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        {mainNav.map((g) => g.items ? (
+          <li class="has-menu">
+            <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">{g.label}<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="menu">
+              {g.items.map((it) => (
+                <a href={it.href} class:list={['menu-item', { active: current === it.href }]}>
+                  <span class="menu-label">{it.label}</span>
+                  {it.desc && <span class="menu-desc">{it.desc}</span>}
+                </a>
+              ))}
+            </div>
+          </li>
+        ) : (
+          <li><a href={g.href} class:list={['nav-link', { active: current === g.href }]} target={g.href?.startsWith('http') ? '_blank' : undefined} rel={g.href?.startsWith('http') ? 'noopener' : undefined}>{g.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="hdr-cta">
+      <a href={SITE.loginUrl} class="nav-link login">Log in</a>
+      <a href="/contact" class="btn btn-primary">Get started</a>
+    </div>
+    <button type="button" class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-nav" class="mobile" hidden>
+    <div class="container">
+      {mainNav.map((g) => g.items ? (
+        <details>
+          <summary>{g.label}</summary>
+          {g.items.map((it) => <a href={it.href}>{it.label}</a>)}
+        </details>
+      ) : (
+        <a href={g.href} class="m-link">{g.label}</a>
+      ))}
+      <div class="m-cta">
+        <a href={SITE.loginUrl} class="btn btn-ghost">Log in</a>
+        <a href="/contact" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+  .hdr { position: sticky; top: 0; z-index: 50; background: rgba(247,244,238,0.86); backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--border); }
+  .hdr-in { display: flex; align-items: center; gap: 24px; height: 68px; }
+  .brand { text-decoration: none; }
+  .nav { flex: 1; display: flex; justify-content: center; }
+  .nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; align-items: center; }
+  .nav-link, .nav-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; border-radius: 8px; font: inherit; font-size: 14.5px; font-weight: 500; color: var(--text); background: none; border: 0; cursor: pointer; text-decoration: none; }
+  .nav-link:hover, .nav-btn:hover, .nav-link.active { color: var(--ink); background: var(--surface-2); }
+  .has-menu { position: relative; }
+  .menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 300px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 8px; display: none; }
+  .has-menu:hover .menu, .has-menu:focus-within .menu, .has-menu.open .menu { display: block; }
+  .menu-item { display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: var(--text); }
+  .menu-item:hover, .menu-item.active { background: var(--surface-2); }
+  .menu-label { display: block; font-weight: 600; font-size: 14.5px; color: var(--ink); }
+  .menu-desc { display: block; font-size: 13px; color: var(--muted); }
+  .hdr-cta { display: flex; align-items: center; gap: 8px; }
+  .login { font-weight: 500; }
+  .burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; padding: 8px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+  .mobile { border-top: 1px solid var(--border); background: var(--bg); padding: 12px 0 20px; }
+  .mobile details { border-bottom: 1px solid var(--border); }
+  .mobile summary { padding: 12px 0; font-weight: 600; cursor: pointer; }
+  .mobile details a, .m-link { display: block; padding: 10px 0 10px 12px; text-decoration: none; color: var(--text); }
+  .m-link { padding-left: 0; font-weight: 600; border-bottom: 1px solid var(--border); }
+  .m-cta { display: flex; gap: 10px; margin-top: 16px; }
+  @media (max-width: 1080px) { .nav, .hdr-cta { display: none; } .burger { display: flex; } }
+</style>
+<script>
+  const burger = document.querySelector('.burger') as HTMLButtonElement | null;
+  const mobile = document.getElementById('mobile-nav');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    if (mobile) mobile.hidden = open;
+  });
+  // Keyboard/touch toggle for dropdowns.
+  document.querySelectorAll('.nav-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const li = btn.parentElement!;
+      const open = li.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.has-menu.open').forEach((li) => {
+      if (!li.contains(e.target as Node)) { li.classList.remove('open'); li.querySelector('.nav-btn')?.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+</script>

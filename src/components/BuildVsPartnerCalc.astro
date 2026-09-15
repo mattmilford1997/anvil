@@ -1,0 +1,86 @@
+---
+import { tiers } from '../data/pricing';
+const build = tiers.find((t) => t.key === 'build')!;
+---
+<div class="calc card" id="calculator" data-fee-pct={build.platformFeePct} data-monthly={build.monthly} data-onetime={build.oneTime}>
+  <div class="calc-head">
+    <div class="eyebrow">Build vs partner calculator</div>
+    <h3>What does insurance ops cost if you build it, and if you don't?</h3>
+    <p class="muted">Commonly cited: in-house insurance operations run 20-25% of insured revenue at steady state. Adjust it. The model updates as you type.</p>
+  </div>
+  <div class="calc-grid">
+    <form class="calc-in" onsubmit="return false">
+      <div class="field"><label for="c-rev">Annual insured revenue target</label><input id="c-rev" name="rev" type="number" min="0" step="100000" value="5000000" inputmode="numeric" /></div>
+      <div class="field"><label for="c-states">States</label><input id="c-states" name="states" type="number" min="1" max="51" value="8" inputmode="numeric" /></div>
+      <div class="field"><label for="c-clin">Clinicians</label><input id="c-clin" name="clin" type="number" min="1" value="40" inputmode="numeric" /></div>
+      <div class="field"><label for="c-pct">In-house cost as % of revenue <output for="c-pct" id="c-pct-out">22%</output></label><input id="c-pct" name="pct" type="range" min="12" max="35" value="22" /></div>
+    </form>
+    <div class="calc-out">
+      <div class="res"><span>In-house cost per year</span><strong data-out="inhouse">$0</strong></div>
+      <div class="res"><span>Estimated in-house headcount</span><strong data-out="heads">0</strong><em data-out="roles"></em></div>
+      <div class="res"><span>Months to national coverage, in-house</span><strong data-out="months">12-24</strong></div>
+      <div class="res us"><span>Anvil, Build tier, year one</span><strong data-out="anvil">$0</strong><em data-out="anvilnote"></em></div>
+      <div class="res delta"><span>Difference, year one</span><strong data-out="delta">$0</strong></div>
+    </div>
+  </div>
+  <form class="calc-export" name="calculator-export" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success?src=calculator">
+    <input type="hidden" name="form-name" value="calculator-export" />
+    <p class="hp"><label>Leave empty <input name="bot-field" /></label></p>
+    <input type="hidden" name="inputs" data-export="inputs" />
+    <input type="hidden" name="outputs" data-export="outputs" />
+    <label for="c-email" class="sr-only">Work email</label>
+    <input id="c-email" type="email" name="email" placeholder="Work email to get the model as a PDF" required />
+    <button type="submit" class="btn btn-primary">Email me the model</button>
+  </form>
+</div>
+<style>
+  .calc { padding: 32px; }
+  .calc-head h3 { margin-bottom: 6px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; margin-top: 16px; }
+  .calc-out { display: grid; gap: 10px; align-content: start; }
+  .res { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; padding: 12px 16px; border-radius: 10px; background: var(--surface-2); }
+  .res span { font-size: 14px; color: var(--muted); }
+  .res strong { font-size: 22px; color: var(--ink); letter-spacing: -0.02em; }
+  .res em { grid-column: 1 / -1; font-style: normal; font-size: 13px; color: var(--muted); }
+  .res.us { background: var(--ink); } .res.us span, .res.us em { color: #b7c7c2; } .res.us strong { color: #fff; }
+  .res.delta strong { color: var(--accent); }
+  .calc-export { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .calc-export input[type=email] { flex: 1 1 260px; font: inherit; font-size: 15px; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 999px; }
+  #c-pct { accent-color: var(--accent); }
+  @media (max-width: 760px) { .calc-grid { grid-template-columns: 1fr; } }
+</style>
+<script>
+  const money = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const calc = document.getElementById('calculator');
+  if (calc) {
+    const feePct = Number(calc.dataset.feePct), monthly = Number(calc.dataset.monthly), oneTime = Number(calc.dataset.onetime);
+    const q = (s: string) => calc.querySelector<HTMLInputElement>(s)!;
+    const out = (k: string) => calc.querySelector<HTMLElement>(`[data-out=${k}]`)!;
+    const run = () => {
+      const rev = Number(q('#c-rev').value) || 0, states = Number(q('#c-states').value) || 1, clin = Number(q('#c-clin').value) || 1, pct = Number(q('#c-pct').value);
+      q('#c-pct-out').value = pct + '%';
+      const inhouse = rev * pct / 100;
+      const roles: [string, number][] = [
+        ['contracting lead', 1],
+        ['credentialing specialists', Math.max(1, Math.ceil(clin / 40))],
+        ['billers / AR', Math.max(1, Math.ceil(rev / 1_500_000))],
+        ['compliance', states >= 3 ? 1 : 0],
+        ['integration engineer', 1],
+      ];
+      const heads = roles.reduce((a, [, n]) => a + n, 0);
+      const anvil = rev * feePct / 100 + monthly * 12 + oneTime;
+      out('inhouse').textContent = money(inhouse);
+      out('heads').textContent = String(heads);
+      out('roles').textContent = roles.filter(([, n]) => n).map(([r, n]) => `${n} ${r}`).join(', ');
+      out('months').textContent = states >= 10 ? '18-24' : states >= 4 ? '12-18' : '9-14';
+      out('anvil').textContent = money(anvil);
+      out('anvilnote').textContent = `${feePct}% of collections + ${money(monthly)}/mo PC and physician owner + ${money(oneTime)} one-time. Steps down as volume moves to your contracts.`;
+      const d = inhouse - anvil;
+      out('delta').textContent = (d >= 0 ? '' : '-') + money(Math.abs(d)) + (d >= 0 ? ' less with Anvil' : ' more with Anvil');
+      calc.querySelector<HTMLInputElement>('[data-export=inputs]')!.value = JSON.stringify({ rev, states, clin, pct });
+      calc.querySelector<HTMLInputElement>('[data-export=outputs]')!.value = JSON.stringify({ inhouse, heads, anvil });
+    };
+    calc.querySelectorAll('input').forEach((i) => i.addEventListener('input', run));
+    run();
+  }
+</script>

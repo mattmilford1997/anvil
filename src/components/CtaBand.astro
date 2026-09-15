@@ -1,0 +1,22 @@
+---
+interface Props { title?: string; body?: string; primary?: { label: string; href: string }; secondary?: { label: string; href: string } }
+const { title = 'See what payers pay in your states, then talk to us.', body = 'No form to look up rates. One form to get a contracting plan for your codes and states.', primary = { label: 'Get started', href: '/contact' }, secondary = { label: 'See rates by state', href: '/rates' } } = Astro.props;
+---
+<section class="cta">
+  <div class="container cta-in reveal">
+    <div>
+      <h2>{title}</h2>
+      <p>{body}</p>
+    </div>
+    <div class="btn-group">
+      <a href={primary.href} class="btn btn-accent btn-lg">{primary.label}</a>
+      {secondary && <a href={secondary.href} class="btn btn-inverse btn-lg">{secondary.label}</a>}
+    </div>
+  </div>
+</section>
+<style>
+  .cta { background: var(--ink); color: #fff; padding: clamp(56px, 7vw, 88px) 0; }
+  .cta-in { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .cta h2 { color: #fff; max-width: 20ch; margin-bottom: 8px; }
+  .cta p { color: #b7c7c2; margin: 0; max-width: 48ch; }
+</style>

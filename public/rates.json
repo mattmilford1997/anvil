@@ -1,0 +1,5 @@
+{
+  "_readme": "Export from Parite. Each row: state (2-letter), code (CPT), payer (optional), low, high (USD per unit). Rows here are read by the rate lookup widget at build-free runtime. TODO(launch): populate from Parite. Do not publish illustrative numbers.",
+  "updated": "2026-09-15",
+  "rates": []
+}

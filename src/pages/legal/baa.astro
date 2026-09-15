@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import GatedDownload from '../../components/GatedDownload.astro';
+---
+<BaseLayout title="Business Associate Agreement" description="Anvil signs a Business Associate Agreement with every customer as part of onboarding. Request a copy here.">
+  <Section tight>
+    <div class="grid grid-2" style="align-items:start">
+      <div class="prose">
+        <div class="eyebrow">Compliance</div>
+        <h1>Business Associate Agreement</h1>
+        <p>Anvil handles protected health information on behalf of customers as a business associate under HIPAA. We sign a BAA with every customer as part of onboarding, before any PHI is exchanged.</p>
+        <p>Request a copy of our standard BAA for review by your counsel. If you require your own paper, send it with your request.</p>
+        <p class="small muted">This marketing website collects no PHI. See the <a href="/legal/privacy">privacy policy</a>.</p>
+      </div>
+      <GatedDownload name="baa-request" title="Request our standard BAA" body="We will send the current version within one business day." cta="Request the BAA" />
+    </div>
+  </Section>
+</BaseLayout>

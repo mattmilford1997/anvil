@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { isProd, breadcrumbJsonLd } from '../../lib/seo';
+export async function getStaticPaths() {
+  const cases = await getCollection('customers', ({ data }) => !isProd || !data.draft);
+  return cases.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<BaseLayout title={`${d.company}: ${d.headline}`} description={d.headline} type="article" noindex={d.draft} jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }, { name: d.company, path: `/customers/${entry.id}` }])]}>
+  <section class="cs-hero">
+    <div class="container">
+      <div class="badge-row"><span class="tag">{d.specialty}</span><span class="tag">{d.careModel}</span>{d.states.length > 0 && <span class="tag">{d.states.join(', ')}</span>}{d.firstParty && <span class="tag tag-accent">Operated by our team</span>}{d.draft && <span class="tag tag-accent">Draft, not yet published</span>}</div>
+      <div class="eyebrow" style="margin-top:20px">{d.company}</div>
+      <h1>{d.headline}</h1>
+      {d.metrics.length > 0 && <div class="metrics">{d.metrics.map((m) => <div><strong>{m.value}</strong><span>{m.label}</span></div>)}</div>}
+    </div>
+  </section>
+  <Section tight>
+    <div class="cs-grid">
+      <div class="prose"><Content /></div>
+      <aside>
+        {d.quote && <blockquote class="card q">“{d.quote}”<footer><strong>{d.quoteAuthor}</strong><span>{d.quoteTitle}</span></footer></blockquote>}
+        <div class="card"><h3 style="font-size:16px">At a glance</h3><ul class="glance"><li><span>Care model</span><strong>{d.careModel}</strong></li><li><span>Specialty</span><strong>{d.specialty}</strong></li>{d.payerMix.length > 0 && <li><span>Payers</span><strong>{d.payerMix.join(', ')}</strong></li>}{d.states.length > 0 && <li><span>States</span><strong>{d.states.join(', ')}</strong></li>}</ul></div>
+      </aside>
+    </div>
+  </Section>
+  <CtaBand title="Want the same plan for your company?" body="Tell us your states and clinicians. We map it month by month." primary={{ label: 'Get started', href: `/contact?src=cs-${entry.id}` }} />
+</BaseLayout>
+<style>
+  .cs-hero { padding: clamp(40px, 6vw, 72px) 0 32px; }
+  .cs-hero h1 { max-width: 20ch; font-size: clamp(32px, 5vw, 52px); }
+  .metrics { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 20px; }
+  .metrics div { display: grid; gap: 2px; }
+  .metrics strong { font-size: 32px; color: var(--ink); letter-spacing: -0.02em; }
+  .metrics span { font-size: 14px; color: var(--muted); }
+  .cs-grid { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+  aside { display: grid; gap: 16px; position: sticky; top: 90px; }
+  .q { margin: 0; font-size: 16px; color: var(--ink); }
+  .q footer { display: grid; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .glance { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+  .glance li { display: grid; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .glance li:last-child { border-bottom: 0; }
+  .glance span { color: var(--muted); font-size: 12.5px; }
+  @media (max-width: 860px) { .cs-grid { grid-template-columns: 1fr; } aside { position: static; } }
+</style>

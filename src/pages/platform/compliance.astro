@@ -1,0 +1,69 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import { SITE } from '../../../site.config.mjs';
+const faqs = [
+  { q: 'Is the rental structure legal?', a: 'It is structured to align with the personal services and management contracts safe harbor under the federal Anti-Kickback Statute: written agreements, terms of at least a year, compensation set in advance at fair market value, and not tied to the volume or value of referrals. Independent counsel reviews every structure. Anvil does not claim an OIG advisory opinion.' },
+  { q: 'What about state corporate practice of medicine rules?', a: 'Federal fraud-and-abuse analysis does not address state CPOM. Each state has its own rules on who may own a professional entity and what a management company may control. We structure your own PC state by state through Foundry PC, which has done this across the country.' },
+  { q: 'Who owns our PC?', a: 'A licensed physician placed through Foundry PC, under agreements that give your MSO the management rights and economics that state permits. That is the friendly-PC structure that most multi-state care companies use.' },
+  { q: 'Is Anvil SOC 2 certified?', a: 'Not yet. SOC 2 Type II is in progress. The trust center will publish the report and sub-processor list on completion. HIPAA program, encryption, access controls, and audit logging are in place today.' },
+  { q: 'Will you sign a BAA?', a: 'Yes, as part of onboarding. Request one on the BAA page.' },
+  { q: 'Does this website collect PHI?', a: 'No. The marketing site collects business contact information only. Never enter patient information in a form here.' },
+];
+---
+<SubpageLayout
+  metaTitle="Compliance and structure"
+  title="Structured for the federal rules and the state ones."
+  description="Anvil's rental phase aligns with the AKS personal services safe harbor. Your own PC is structured for each state's corporate practice of medicine rules. HIPAA in place, SOC 2 in progress."
+  eyebrow="Platform / Compliance"
+  sub="Two layers of law apply to this business: federal fraud and abuse, and state corporate practice of medicine. Most vendors talk about the first. We structure for both."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Compliance', path: '/platform/compliance' }]}
+  faqs={faqs}
+  ctaTitle="Bring your counsel. We will bring ours."
+  ctaBody="We share the structure memo summary and the agreement templates during diligence."
+  ctaPrimary={{ label: 'Get started', href: '/contact' }}
+  ctaSecondary={{ label: 'Trust center', href: SITE.trustUrl }}
+>
+  <Section eyebrow="The structure" title="How the two phases are papered">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Rental phase</h3>
+        <ul class="check-list">
+          <li>Your entity leases clinicians to Anvil's PC at a fixed, fair-market-value rate</li>
+          <li>Your MSO provides administrative services to Anvil's PC for a fixed fee</li>
+          <li>Fees set in advance, not tied to volume or value of referrals</li>
+          <li>Written agreements with terms of at least one year</li>
+          <li>Anvil's PC bills, collects, and pays under those agreements</li>
+        </ul>
+        <p class="small muted">Structured to align with the personal services and management contracts safe harbor, 42 CFR 1001.952(d). Counsel reviews every engagement. This is a description, not legal advice.</p>
+      </div>
+      <div class="card">
+        <h3>Ownership phase</h3>
+        <ul class="check-list">
+          <li>Your own PC formed in each state, with the entity type that state requires</li>
+          <li>Licensed physician owner placed through Foundry PC</li>
+          <li>Management services agreement between your MSO and your PC</li>
+          <li>Control and economics allocated as each state's CPOM rules allow</li>
+          <li>Payer contracts, credentialing files, and rates held by your PC</li>
+        </ul>
+        <p class="small muted">State CPOM structuring is separate from, and in addition to, the federal analysis. See the <a href="https://foundry-pc.com/cpom/" rel="noopener">50-state CPOM guide</a>.</p>
+      </div>
+    </div>
+  </Section>
+  <Section eyebrow="Security and privacy" title="What is in place, and what is dated" tight>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Control</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>HIPAA privacy and security program, BAA available</td><td>In place</td></tr>
+          <tr><td>Encryption in transit (TLS 1.2+) and at rest</td><td>In place</td></tr>
+          <tr><td>Role-based access, MFA, audit logging</td><td>In place</td></tr>
+          <tr><td>Annual risk assessment and workforce training</td><td>In place</td></tr>
+          <tr><td>SOC 2 Type II</td><td>In progress. Target: <strong>TODO(launch): date</strong></td></tr>
+          <tr><td>Public trust center and sub-processor list</td><td>On SOC 2 completion</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:12px">Compliance page language reviewed by counsel before publication. TODO(launch): counsel sign-off.</p>
+  </Section>
+</SubpageLayout>

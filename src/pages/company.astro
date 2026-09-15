@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Tiles from '../components/Tiles.astro';
+import OperatorsBand from '../components/OperatorsBand.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { team } from '../data/team';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+<BaseLayout title="Company" description="Anvil is built by Arche Studios, the operators behind Foundry PC and Homefront and eleven insurance-billing care companies. We built this because we solved it eleven times." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
+  <Hero compact eyebrow="Company" title="We got tired of solving insurance eleven times." sub="Anvil is the platform we wished existed each time we launched a care company. Rent a network to start. Own the contracts to finish. Built by the team that runs Foundry PC, Homefront, and the companies that use them." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+  <Section eyebrow="Mission" tight>
+    <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
+  </Section>
+  <Section eyebrow="Why we built this" title="Operators first, vendors second">
+    <div class="grid grid-2">
+      <div><p>Arche Studios launches and operates care companies: virtual behavioral health, in-home ABA, interventional psychiatry, school-based speech therapy, and more. Every one of them needed the same five things: payer contracts, credentialing, eligibility, claims, and denials. Every time, the choice was to build a team or rent a network that kept the contracts.</p><p>We built Foundry PC to form professional corporations and place physician owners. We built Homefront to credential and bill. Anvil puts them behind one platform with a rented 50-state PC in front, so a new company launches in weeks and ends year one owning its contracts.</p><p>We are the largest customer of our own platform. When something breaks, it breaks in our P&L first.</p></div>
+      <Tiles cols={2} items={[
+        { title: 'Numbers before adjectives', body: 'If we cannot put a number on it, we do not put it on the site.' },
+        { title: 'Own the asset', body: 'A care company should hold its own payer relationships. We structure everything toward that.' },
+        { title: 'Show the rate', body: 'Nobody should bill under a contract whose rate they cannot see.' },
+        { title: 'Done every week', body: 'Most of insurance ops is not clever. It is done every week or not at all.' },
+        { title: 'Counsel in the room', body: 'Two layers of law apply. We structure for both and we say what we do not claim.' },
+      ]} />
+    </div>
+  </Section>
+  <Section eyebrow="Team" title="People" tight>
+    <div class="grid grid-3">
+      {team.map((p) => (
+        <div class="card person"><div class="avatar" aria-hidden="true">{p.name.split(' ').map((n) => n[0]).join('')}</div><h3>{p.name}</h3><div class="muted small">{p.title}</div><p class="muted" style="font-size:15px;margin-top:10px">{p.bio}</p>{p.linkedin && <a href={p.linkedin} rel="noopener" target="_blank" class="small">LinkedIn</a>}</div>
+      ))}
+      <div class="card person muted"><h3 style="font-size:18px">Heads of payer ops, credentialing, engineering, and legal</h3><p class="small">TODO(launch): add names, titles, and photos.</p></div>
+    </div>
+  </Section>
+  <Section tight><OperatorsBand /></Section>
+  <Section eyebrow="Built on" title="Three companies, one platform" tight>
+    <div class="grid grid-3">
+      <div class="card"><h3>Foundry PC</h3><p class="muted">Forms the professional corporation, matches the physician owner, and structures for each state's corporate practice of medicine rules. <a href="https://foundry-pc.com" rel="noopener">foundry-pc.com</a></p></div>
+      <div class="card"><h3>Homefront</h3><p class="muted">Credentialing automation and revenue cycle. Roster-adds, full enrollment, coding, claims, denials, AR.</p></div>
+      <div class="card"><h3>Parite</h3><p class="muted">Reimbursement data by state, payer, and code. The source for the rate lookup and for rate proposals in your name.</p></div>
+    </div>
+  </Section>
+  <CtaBand title="Talk to an operator, not a rep." body="Every first conversation is with someone who has launched an insurance-billing care company." primary={{ label: 'Get started', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+</BaseLayout>
+<style>
+  .person h3 { font-size: 20px; margin: 12px 0 2px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 700; }
+</style>

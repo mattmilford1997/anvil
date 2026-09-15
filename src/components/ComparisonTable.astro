@@ -1,0 +1,58 @@
+---
+const cols = ['Anvil', 'Network rental vendors', 'Point solutions', 'Build in-house'];
+const rows: [string, string[]][] = [
+  ['Time to national in-network', ['Weeks', 'Weeks', '3-6 months', '12-24 months']],
+  ['You own the payer contracts', ['Yes, by design', 'No', 'Yes', 'Yes']],
+  ['Rate visibility', ['Full', 'Lease fee only', 'Full', 'Full']],
+  ['Medicaid + commercial + MA', ['Yes', 'Mostly commercial and MA', 'Varies', 'Yes']],
+  ['Virtual + hybrid + in-person', ['Yes', 'Virtual only', 'Varies', 'Yes']],
+  ['Claims risk during launch', ['Carried by Anvil', 'Carried by vendor', 'Yours', 'Yours']],
+  ['API, eligibility at booking', ['Yes', 'Yes', 'Partial', 'Build it']],
+  ['Published pricing', ['Yes', 'No', 'Sometimes', 'n/a']],
+];
+const good = (v: string) => /^(yes|full|weeks|carried by anvil)/i.test(v);
+const bad = (v: string) => /^(no$|lease|yours|build it|12-24|virtual only)/i.test(v);
+---
+<div class="cmp-wrap reveal">
+  <table class="cmp">
+    <thead><tr><th></th>{cols.map((c, i) => <th class:list={{ us: i === 0 }}>{c}</th>)}</tr></thead>
+    <tbody>
+      {rows.map(([label, vals]) => (
+        <tr>
+          <th scope="row">{label}</th>
+          {vals.map((v, i) => <td class:list={{ us: i === 0, good: good(v), bad: bad(v) }} data-label={cols[i]}>{v}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<div class="cmp-cards">
+  {rows.map(([label, vals]) => (
+    <div class="card">
+      <h3>{label}</h3>
+      <ul>{vals.map((v, i) => <li><span>{cols[i]}</span><strong class:list={{ good: good(v), bad: bad(v) }}>{v}</strong></li>)}</ul>
+    </div>
+  ))}
+</div>
+<style>
+  .cmp-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .cmp { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .cmp th, .cmp td { padding: 14px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+  .cmp thead th { background: var(--surface-2); font-weight: 600; }
+  .cmp tbody th { font-weight: 500; color: var(--text); }
+  .cmp .us { background: #f2f7f5; font-weight: 600; color: var(--ink); }
+  .cmp thead .us { background: var(--ink); color: #fff; }
+  td.good::before { content: '✓ '; color: var(--accent); font-weight: 700; }
+  td.bad { color: var(--muted); }
+  .cmp-cards { display: none; }
+  @media (max-width: 760px) {
+    .cmp-wrap { display: none; }
+    .cmp-cards { display: grid; gap: 12px; }
+    .cmp-cards h3 { font-size: 16px; margin-bottom: 10px; }
+    .cmp-cards ul { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+    .cmp-cards li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .cmp-cards li:first-child strong { color: var(--ink); }
+    .cmp-cards li:last-child { border-bottom: 0; }
+    .cmp-cards .bad { color: var(--muted); font-weight: 500; }
+  }
+</style>

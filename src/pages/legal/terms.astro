@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import { SITE } from '../../../site.config.mjs';
+---
+<BaseLayout title="Terms of use" description="Terms of use for the Anvil website." noindex>
+  <Section tight>
+    <div class="prose">
+      <div class="eyebrow">Legal</div>
+      <h1>Website terms of use</h1>
+      <p class="muted">Effective TODO(launch). Reviewed by counsel before publication. Platform services are governed by a separate services agreement.</p>
+      <h2>Use of this site</h2>
+      <p>This website is provided by {SITE.legalName} for information about Anvil's services. You may use it for lawful purposes. Content is ours or licensed to us; do not reproduce it without permission.</p>
+      <h2>Not legal, tax, or medical advice</h2>
+      <p>Descriptions of legal structures, regulatory frameworks, and reimbursement on this site are general information, not legal advice. Anvil is not a law firm. Reimbursement ranges are published ranges, not guarantees of payment.</p>
+      <h2>No warranty</h2>
+      <p>The site is provided as is. We do our best to keep it accurate and current and make no warranty that it is.</p>
+      <h2>Limitation of liability</h2>
+      <p>To the extent permitted by law, we are not liable for damages arising from use of this website.</p>
+      <h2>Contact</h2>
+      <p><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+    </div>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import ProductMock from './ProductMock.astro';
+interface Props { eyebrow?: string; title: string; sub: string; primary?: { label: string; href: string }; secondary?: { label: string; href: string }; mock?: boolean; compact?: boolean }
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, mock = false, compact = false } = Astro.props;
+---
+<section class:list={['hero', { compact, 'has-mock': mock }]}>
+  <canvas class="dots" aria-hidden="true"></canvas>
+  <div class="container hero-in">
+    <div class="hero-copy">
+      {eyebrow && <div class="eyebrow">{eyebrow}</div>}
+      <h1 set:html={title} />
+      <p class="lede">{sub}</p>
+      <div class="btn-group">
+        <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
+        {secondary && <a href={secondary.href} class="btn btn-ghost btn-lg">{secondary.label}</a>}
+      </div>
+      <slot name="below" />
+    </div>
+    {mock && <div class="hero-mock"><ProductMock /></div>}
+  </div>
+</section>
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 96px); }
+  .hero.compact { padding: clamp(48px, 7vw, 88px) 0 clamp(32px, 5vw, 56px); }
+  .dots { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; }
+  .hero-in { position: relative; display: grid; gap: 48px; align-items: center; }
+  .hero-in > * { min-width: 0; }
+  .has-mock .hero-in { grid-template-columns: 1.05fr 0.95fr; }
+  .hero h1 { max-width: 16ch; }
+  .hero :global(h1 em) { font-style: normal; color: var(--accent); }
+  .hero :global(h1 s) { text-decoration-color: var(--accent); text-decoration-thickness: 3px; color: var(--muted); }
+  .lede { margin-bottom: 28px; }
+  @media (max-width: 960px) { .has-mock .hero-in { grid-template-columns: 1fr; } .hero-mock { max-width: 560px; } }
+</style>
+<script>
+  // Low-contrast animated dot field. Skipped when reduced motion is set.
+  const c = document.querySelector<HTMLCanvasElement>('.hero .dots');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (c) {
+    const ctx = c.getContext('2d')!;
+    let w = 0, h = 0, t = 0, raf = 0;
+    const spacing = 28, size = 1.6;
+    const resize = () => { const r = c.getBoundingClientRect(); w = c.width = Math.floor(r.width); h = c.height = Math.floor(r.height); draw(); };
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (let y = spacing / 2; y < h; y += spacing) {
+        for (let x = spacing / 2; x < w; x += spacing) {
+          const d = Math.hypot(x - w * 0.7, y - h * 0.4);
+          const wave = reduce ? 0 : Math.sin(d / 60 - t) * 0.5 + 0.5;
+          const a = 0.12 + wave * 0.28;
+          ctx.fillStyle = `rgba(15,46,42,${a.toFixed(3)})`;
+          ctx.beginPath(); ctx.arc(x, y, size + wave * 0.6, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+    };
+    const loop = () => { t += 0.02; draw(); raf = requestAnimationFrame(loop); };
+    resize(); window.addEventListener('resize', resize);
+    if (!reduce) { raf = requestAnimationFrame(loop); document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(loop); }); }
+  }
+</script>

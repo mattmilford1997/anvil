@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro';
+import { footerNav } from '../data/nav';
+import { SITE } from '../../site.config.mjs';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr-top">
+      <div class="ftr-brand">
+        <Logo inverse />
+        <p class="ftr-tag">Insurance infrastructure for care companies. Launch on our 50-state PC. Own the contracts by year one.</p>
+        <div class="badges">
+          <span class="badge">HIPAA</span>
+          <span class="badge">SOC 2 Type II in progress</span>
+          <span class="badge">No PHI collected on this site</span>
+        </div>
+      </div>
+      {footerNav.map((col) => (
+        <div class="ftr-col">
+          <h4>{col.title}</h4>
+          <ul>
+            {col.items.map((it) => <li><a href={it.href} target={it.external ? '_blank' : undefined} rel={it.external ? 'noopener' : undefined}>{it.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="ftr-bottom">
+      <span>© {year} {SITE.legalName}. Anvil is built on Foundry PC and Homefront, operated by Arche Studios.</span>
+      <span class="ftr-links">
+        <a href="/legal/privacy">Privacy</a>
+        <a href="/legal/terms">Terms</a>
+        <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </span>
+    </div>
+    <p class="ftr-disclaimer">Anvil is not a law firm and does not provide legal advice. Structures described on this site are implemented with independent counsel. Reimbursement figures shown are published ranges, not guarantees.</p>
+  </div>
+</footer>
+<style>
+  .ftr { background: var(--ink); color: #c9d6d2; padding: 64px 0 28px; margin-top: 0; }
+  .ftr-top { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 32px; }
+  .ftr-tag { margin: 16px 0; max-width: 34ch; font-size: 15px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge { font-size: 12px; font-weight: 600; letter-spacing: 0.03em; padding: 5px 10px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; color: #e6efec; }
+  .ftr h4 { color: #fff; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; }
+  .ftr ul { list-style: none; padding: 0; margin: 0; }
+  .ftr li { margin-bottom: 8px; }
+  .ftr a { color: #c9d6d2; text-decoration: none; font-size: 15px; }
+  .ftr a:hover { color: #fff; }
+  .ftr-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 13.5px; }
+  .ftr-links { display: flex; gap: 16px; }
+  .ftr-disclaimer { font-size: 12.5px; color: #8fa39e; margin-top: 16px; max-width: 90ch; }
+  @media (max-width: 900px) { .ftr-top { grid-template-columns: 1fr 1fr; } .ftr-brand { grid-column: 1 / -1; } }
+</style>

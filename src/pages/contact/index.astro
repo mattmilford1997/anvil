@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { SITE } from '../../../site.config.mjs';
+---
+<BaseLayout title="Get started" description="Tell us your states, clinicians, and codes. We come back with a launch plan, a contracting plan for your entity, and the numbers to model it.">
+  <Section tight>
+    <div class="ct">
+      <div class="ct-copy">
+        <div class="eyebrow">Get started</div>
+        <h1>Tell us what you bill and where.</h1>
+        <p class="lede">We reply within one business day with a launch plan for the rented PC, a contracting plan for your own entity, and the rate ranges to model on.</p>
+        <ul class="check-list">
+          <li>First conversation is with an operator, not a rep</li>
+          <li>Pricing is published, so we can quote on the call</li>
+          <li>No patient information, please. This site collects none.</li>
+        </ul>
+        <p class="small muted">Prefer email? <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+      </div>
+      <ContactForm />
+    </div>
+  </Section>
+</BaseLayout>
+<style>
+  .ct { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; padding-top: 24px; }
+  .ct h1 { font-size: clamp(32px, 4.5vw, 48px); }
+  @media (max-width: 900px) { .ct { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,66 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import { SITE } from '../../../site.config.mjs';
+const faqs = [
+  { q: 'What is a soft eligibility check?', a: 'A check run from name, date of birth, and payer (or a member ID if you have it) that returns coverage status, plan, and an estimated copay without asking the patient to upload a card or wait. It is the right check at booking. A hard check with full benefits detail runs before the visit.' },
+  { q: 'How long does integration take?', a: 'Most teams ship the hosted widget in a day and the API in under a week. The sandbox returns the same payloads as production, including outage and not-found cases.' },
+  { q: 'What happens when a payer\'s eligibility system is down?', a: 'The API returns a distinct outage status rather than a false negative, so your booking flow can let the patient continue and re-check later. We monitor payer availability and surface it in the dashboard.' },
+  { q: 'Can we show the patient their copay before they book?', a: 'Yes. The response includes an estimate based on the plan\'s benefit for the service type. Show it as an estimate; the final amount depends on deductible status at the date of service.' },
+  { q: 'Does this work while we are on the rented PC?', a: 'Yes. Eligibility is entity-independent. The same integration keeps working as volume moves to your own PC.' },
+];
+const sample = `POST /v1/eligibility/soft-check
+{
+  "patient": { "first_name": "Ana", "last_name": "Rivera", "dob": "1988-04-02" },
+  "payer": "aetna",
+  "state": "TX",
+  "service_type": "psychotherapy"
+}
+
+200 OK
+{
+  "status": "covered",
+  "plan": "Aetna Choice POS II",
+  "network": "in_network",
+  "estimated_copay": 25,
+  "deductible_remaining": 0,
+  "checked_at": "2026-10-05T14:02:11Z"
+}`;
+---
+<SubpageLayout
+  metaTitle="Real-time eligibility at booking"
+  title="Eligibility at booking. One API, no card upload, no three-day wait."
+  description="Soft eligibility checks at booking with copay estimates, outage detection, sandbox, and SDKs. Turn the insurance step into a conversion step."
+  eyebrow="Platform / Eligibility"
+  sub="The insurance step is where cash-pay funnels die. Check coverage the moment a patient picks a payer, show the copay, and let them book. Commonly cited lift when eligibility runs at booking: 2 to 5x."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Eligibility', path: '/platform/eligibility' }]}
+  faqs={faqs}
+  ctaTitle="Read the docs, then run a check in the sandbox."
+  ctaBody="Keys are issued in week one. Your engineers do not need to wait for enrollment."
+  ctaPrimary={{ label: 'API docs', href: SITE.docsUrl }}
+  ctaSecondary={{ label: 'Get started', href: '/contact' }}
+>
+  <Section>
+    <FeatureRow eyebrow="Developer-first" title="Designed to sit inside your booking flow" bullets={[
+      'Soft check from name, DOB, and payer. Member ID optional.',
+      'Estimated copay and deductible status in the response.',
+      'Distinct outage status so a payer outage never reads as "not covered".',
+      'Hosted widget for no-code, REST API and TypeScript and Python clients for everything else.',
+      'Webhooks for re-verification before the visit.',
+    ]} cta={{ label: 'Open the docs', href: SITE.docsUrl }}>
+      <p>Your engineers get sandbox keys in week one. The sandbox returns production-shaped payloads, including the ugly cases.</p>
+      <pre slot="art" class="code"><code>{sample}</code></pre>
+    </FeatureRow>
+  </Section>
+  <Section eyebrow="Measure it" title="What to track once eligibility is live" tight>
+    <div class="grid grid-3">
+      <div class="card"><h3>Insurance-step conversion</h3><p class="muted">Share of patients who choose insurance and complete booking, by payer and by state. This is the number that moves.</p></div>
+      <div class="card"><h3>Not-found rate</h3><p class="muted">Checks that return no match. High rates point to a form problem, not a coverage problem.</p></div>
+      <div class="card"><h3>Copay accuracy</h3><p class="muted">Estimated vs collected at date of service. Keeps the front-end promise honest.</p></div>
+    </div>
+  </Section>
+</SubpageLayout>
+<style>
+  .code { margin: 0; width: 100%; background: var(--ink); color: #e6efec; padding: 18px; border-radius: 12px; font-size: 12.5px; line-height: 1.5; overflow-x: auto; font-family: var(--mono); }
+</style>

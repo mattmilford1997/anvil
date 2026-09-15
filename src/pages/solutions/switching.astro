@@ -1,0 +1,37 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import TimelineSlider from '../../components/TimelineSlider.astro';
+const faqs = [
+  { q: 'Will there be a revenue gap?', a: 'No. You keep billing through your current vendor until each of your own contracts is effective. Only then does that payer\'s new volume move. If your current agreement allows, we can also run new states on our PC during the switch.' },
+  { q: 'How long does it take?', a: 'Your own PC forms in weeks. Commercial contracts commonly land in 4 to 8 months. Medicaid varies by state. Most switches complete inside 12 months without a single payer going dark.' },
+  { q: 'What do we need from our current vendor?', a: 'Your clinicians\' credentialing documents and any executed agreement terms about notice and non-solicitation. We review those before you give notice.' },
+  { q: 'Can our engineers keep the same eligibility integration?', a: 'You will move to our API, which is designed to be a small change. Sandbox keys come first so the swap is tested before any volume moves.' },
+  { q: 'What if a payer panel is closed for a new entity?', a: 'That payer\'s volume runs through our rented PC until the panel opens. You are never stuck on your old vendor for one payer.' },
+];
+const steps = [
+  ['Before notice', 'Review your agreement. Collect credentialing files. Form your PC and place the physician owner. File contract applications in your name.'],
+  ['Contracts land', 'As each payer contract in your PC becomes effective, new visits with that payer route to you. Old vendor keeps billing the rest.'],
+  ['Give notice', 'When the majority of volume is on your contracts, give notice. Remaining payers run through Anvil\'s rented PC or your own as they land.'],
+  ['Done', 'All volume on entities you control. Anvil runs RCM, renewals, and new-state expansion.'],
+];
+---
+<SubpageLayout
+  metaTitle="Switching from a network rental vendor"
+  title="Leave the rental. Keep the revenue."
+  description="Move from a network rental vendor to contracts your own entity holds, with no revenue gap. Form your PC, land your contracts, then give notice."
+  eyebrow="Solutions / Switching"
+  sub="You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. The move is to keep billing where you are while your own contracts come live, then switch payer by payer."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/switching' }, { name: 'Switching', path: '/solutions/switching' }]}
+  faqs={faqs}
+  ctaTitle="Send us your current agreement. We will map the exit."
+  ctaBody="Notice terms, non-solicits, and which payers move first. Reviewed before you say anything to your vendor."
+  ctaPrimary={{ label: 'Get started', href: '/contact?src=switching' }}
+>
+  <Section eyebrow="The switch" title="No revenue gap, by construction">
+    <div class="grid grid-4">
+      {steps.map(([t, b]) => <div class="card"><h3 style="font-size:18px">{t}</h3><p class="muted" style="font-size:15px">{b}</p></div>)}
+    </div>
+    <div style="margin-top:32px"><TimelineSlider /></div>
+  </Section>
+</SubpageLayout>

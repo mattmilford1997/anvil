@@ -1,0 +1,106 @@
+---
+/**
+ * Rate lookup. Data source is Parite. Two modes:
+ *  1) If SITE.pariteEmbed is set (script or iframe URL), render the Parite embed.
+ *  2) Otherwise read /rates.json (public/rates.json), a small export from Parite, and render ranges locally.
+ * No form gate. Rates are published ranges, not guarantees.
+ */
+import { stateNames } from '../data/coverage';
+interface Props { compact?: boolean; id?: string }
+const { compact = false, id = 'rate-lookup' } = Astro.props;
+const services = [
+  { code: '90837', label: '90837 Psychotherapy, 60 min' },
+  { code: '90834', label: '90834 Psychotherapy, 45 min' },
+  { code: '90791', label: '90791 Psychiatric diagnostic evaluation' },
+  { code: '99214', label: '99214 Established patient visit, moderate' },
+  { code: '99213', label: '99213 Established patient visit, low' },
+  { code: '96158', label: '96158 Health behavior intervention, 30 min' },
+  { code: '97153', label: '97153 ABA adaptive behavior treatment, 15 min' },
+  { code: '99484', label: '99484 Behavioral health integration' },
+];
+---
+<div class:list={['rl card', { compact }]} id={id} data-rates-src="/rates.json">
+  <div class="rl-head">
+    <div>
+      <div class="eyebrow">Rate lookup</div>
+      <h3>{compact ? 'What do payers pay for your codes?' : 'Published reimbursement ranges by state and code'}</h3>
+      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. Use them to model, then ask us for a contracting plan.</p>}
+    </div>
+  </div>
+  <form class="rl-form" onsubmit="return false">
+    <div class="field">
+      <label for={`${id}-state`}>State</label>
+      <select id={`${id}-state`} name="state">
+        <option value="">Choose a state</option>
+        {Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1])).map(([k, v]) => <option value={k}>{v}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for={`${id}-code`}>Service or CPT code</label>
+      <select id={`${id}-code`} name="code">
+        <option value="">Choose a service</option>
+        {services.map((s) => <option value={s.code}>{s.label}</option>)}
+      </select>
+    </div>
+    {!compact && (
+      <div class="field">
+        <label for={`${id}-payer`}>Payer (optional)</label>
+        <select id={`${id}-payer`} name="payer"><option value="">All payers</option></select>
+      </div>
+    )}
+  </form>
+  <div class="rl-out" aria-live="polite">
+    <p class="muted">Pick a state and a code to see the range.</p>
+  </div>
+  <div class="rl-foot">
+    {compact ? <a href="/rates" class="btn btn-ghost">See full data</a> : <a href="/contact?src=rates" class="btn btn-primary">Get a contracting plan for your codes</a>}
+    <span class="small muted">Source: Parite. No form required.</span>
+  </div>
+</div>
+<style>
+  .rl { padding: 28px; }
+  .rl-head h3 { margin-bottom: 6px; }
+  .rl-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 16px; margin-top: 12px; }
+  .rl-out { min-height: 64px; background: var(--surface-2); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
+  .rl-out p { margin: 0; }
+  .rl-out .range { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .rl-out .range strong { font-size: 28px; color: var(--ink); letter-spacing: -0.02em; }
+  .rl-out table { margin-top: 12px; font-size: 14px; }
+  .rl-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+</style>
+<script>
+  type Row = { state: string; code: string; payer?: string; low: number; high: number; median?: number; source?: string };
+  const money = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  document.querySelectorAll<HTMLElement>('.rl').forEach(async (rl) => {
+    const out = rl.querySelector<HTMLElement>('.rl-out')!;
+    const form = rl.querySelector<HTMLFormElement>('.rl-form')!;
+    const stateSel = form.querySelector<HTMLSelectElement>('[name=state]')!;
+    const codeSel = form.querySelector<HTMLSelectElement>('[name=code]')!;
+    const payerSel = form.querySelector<HTMLSelectElement>('[name=payer]');
+    let rows: Row[] = [];
+    try { const r = await fetch(rl.dataset.ratesSrc!); if (r.ok) rows = (await r.json()).rates || []; } catch {}
+    const render = () => {
+      const st = stateSel.value, code = codeSel.value, payer = payerSel?.value || '';
+      if (!st || !code) { out.innerHTML = '<p class="muted">Pick a state and a code to see the range.</p>'; return; }
+      const hits = rows.filter((r) => r.state === st && r.code === code && (!payer || r.payer === payer));
+      if (!hits.length) {
+        out.innerHTML = `<p><strong>No published range yet for ${code} in ${st}.</strong> <span class="muted">We publish ranges as payers come live. Ask us for this state and code and we will send what we have.</span></p>`;
+        return;
+      }
+      const low = Math.min(...hits.map((h) => h.low)), high = Math.max(...hits.map((h) => h.high));
+      let html = `<div class="range"><strong>${money(low)} to ${money(high)}</strong><span class="muted">per unit, ${hits.length} payer${hits.length > 1 ? 's' : ''} in ${st}</span></div>`;
+      if (payerSel && hits.length > 1) {
+        html += '<table><thead><tr><th>Payer</th><th>Low</th><th>High</th></tr></thead><tbody>' + hits.map((h) => `<tr><td>${h.payer || 'Blended'}</td><td>${money(h.low)}</td><td>${money(h.high)}</td></tr>`).join('') + '</tbody></table>';
+      }
+      out.innerHTML = html;
+    };
+    const fillPayers = () => {
+      if (!payerSel) return;
+      const payers = [...new Set(rows.filter((r) => r.state === stateSel.value).map((r) => r.payer).filter(Boolean))].sort();
+      payerSel.innerHTML = '<option value="">All payers</option>' + payers.map((p) => `<option value="${p}">${p}</option>`).join('');
+    };
+    stateSel.addEventListener('change', () => { fillPayers(); render(); });
+    codeSel.addEventListener('change', render);
+    payerSel?.addEventListener('change', render);
+  });
+</script>

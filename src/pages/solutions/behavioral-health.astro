@@ -1,0 +1,51 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import Tiles from '../../components/Tiles.astro';
+import CoverageMap from '../../components/CoverageMap.astro';
+import { getCollection } from 'astro:content';
+import { isProd } from '../../lib/seo';
+const cases = (await getCollection('customers', ({ data }) => (!isProd || !data.draft) && /behavioral|psych|therapy|ABA/i.test(data.specialty))).slice(0, 2);
+const faqs = [
+  { q: 'Do you handle Medicaid managed care?', a: 'Yes. Medicaid is the majority of behavioral health volume in many states and it runs through managed care organizations with their own panels and enrollment. Our own companies bill Medicaid MCOs in multiple states.' },
+  { q: 'What about ABA authorizations?', a: 'Authorization is an intake workflow, not a billing afterthought. We run it as part of the flow: assessment codes, treatment plan submission, units authorized, and re-authorization calendared before it lapses.' },
+  { q: 'Can associate-level clinicians bill under supervision?', a: 'It depends on the state and the payer. We map which license types can bill what, under whom, in each state you operate, and we chart to it.' },
+  { q: 'Do you support IOP and PHP?', a: 'Yes, including per-diem and bundled billing, facility versus professional components, and the authorization cadence those programs require.' },
+  { q: 'Collaborative care codes?', a: 'Yes. 99492 to 99494 and 99484 for integrated behavioral health programs, including the time tracking the codes require.' },
+];
+---
+<SubpageLayout
+  metaTitle="Insurance for behavioral health groups"
+  title="Behavioral health billing, by people who bill behavioral health."
+  description="For psychiatry, therapy, ABA, and IOP groups going from one state to many. Medicaid MCO panels, ABA authorizations, supervision billing, collaborative care codes. First-party case studies."
+  eyebrow="Solutions / Behavioral health"
+  sub="You won a payer contract in one state and cannot replicate it fast enough in the next three. Generalist billing vendors do not go deep on MCO panels, supervision rules, or ABA authorizations. We run those programs ourselves."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/behavioral-health' }, { name: 'Behavioral health', path: '/solutions/behavioral-health' }]}
+  faqs={faqs}
+  ctaTitle="Send us your payer list and your license mix."
+  ctaBody="We will tell you which panels are open, which payers are a roster-add, and how supervision billing works in each state."
+  ctaPrimary={{ label: 'Get started', href: '/contact?src=behavioral-health' }}
+>
+  <Section eyebrow="Where generalists break" title="The behavioral health specifics we build for">
+    <Tiles items={[
+      { icon: 'map', title: 'Medicaid MCO panels', body: 'State by state, plan by plan, often closed. We work the exception path and route around closed panels through the rented PC until they open.' },
+      { icon: 'file', title: 'ABA authorizations', body: 'Assessment, treatment plan, units, re-auth. Run as intake, tracked to the day, so sessions are never delivered unauthorized.' },
+      { icon: 'users', title: 'Supervision billing', body: 'Which license can bill what under whom, per state and payer. Charted to the rule, not to the hope.' },
+      { icon: 'chart', title: 'IOP and PHP', body: 'Per-diem and bundled billing, facility and professional components, authorization cadence.' },
+      { icon: 'api', title: 'Collaborative care', body: '99492 to 99494 and 99484, with the time tracking the codes require.' },
+      { icon: 'bolt', title: 'Eligibility that understands carve-outs', body: 'Behavioral health benefits are often carved out to a different administrator. The check has to know that.' },
+    ]} />
+  </Section>
+  <Section eyebrow="Medicaid" title="Where Medicaid is live on our PC today" tight>
+    <CoverageMap id="coverage-bh" title="Medicaid and commercial coverage by state" />
+  </Section>
+  {cases.length > 0 && (
+    <Section eyebrow="First-party proof" title="Programs we run ourselves" tight>
+      <div class="grid grid-2">
+        {cases.map((c) => (
+          <div class="card"><span class="tag">{c.data.specialty}</span><h3 style="margin-top:10px"><a href={`/customers/${c.id}`}>{c.data.company}</a></h3><p class="muted">{c.data.headline}</p></div>
+        ))}
+      </div>
+    </Section>
+  )}
+</SubpageLayout>

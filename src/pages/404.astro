@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+---
+<BaseLayout title="Page not found" description="That page does not exist." noindex>
+  <Section>
+    <div class="eyebrow">404</div>
+    <h1>That page is not on the roster.</h1>
+    <p class="lede">Try one of these.</p>
+    <div class="btn-group"><a href="/" class="btn btn-primary">Home</a><a href="/platform" class="btn btn-ghost">Platform</a><a href="/pricing" class="btn btn-ghost">Pricing</a><a href="/resources" class="btn btn-ghost">Resources</a></div>
+  </Section>
+</BaseLayout>

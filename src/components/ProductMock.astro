@@ -1,0 +1,71 @@
+---
+// Illustrative enrollment tracker UI with a "Rented PC / Your PC" toggle. Pure HTML/CSS, no images.
+const rows = [
+  { name: 'A. Rivera, LCSW', state: 'TX', payer: 'Blue Cross', rented: 'Live', own: 'Contract effective 03/01' },
+  { name: 'J. Okafor, PMHNP', state: 'FL', payer: 'Aetna', rented: 'Live', own: 'Roster pending' },
+  { name: 'M. Chen, PhD', state: 'CA', payer: 'Medicaid MCO', rented: 'Live', own: 'Application filed' },
+  { name: 'S. Patel, LPC', state: 'NY', payer: 'UnitedHealthcare', rented: 'Roster add, day 9', own: 'Not started' },
+  { name: 'D. Nguyen, MD', state: 'IL', payer: 'Cigna', rented: 'Live', own: 'Contract effective 02/15' },
+];
+---
+<div class="mock" aria-label="Illustration of the Anvil enrollment tracker">
+  <div class="mock-bar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="mock-title">Enrollment tracker</span>
+  </div>
+  <div class="mock-head">
+    <div>
+      <div class="mock-kpi"><strong>48</strong><span>clinicians live</span></div>
+    </div>
+    <div class="toggle" role="group" aria-label="Billing entity">
+      <button type="button" class="on" data-view="rented">Rented PC</button>
+      <button type="button" data-view="own">Your PC</button>
+    </div>
+  </div>
+  <div class="mock-table-wrap"><table class="mock-table">
+    <thead><tr><th>Clinician</th><th>State</th><th>Payer</th><th>Status</th></tr></thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <td>{r.name}</td><td>{r.state}</td><td>{r.payer}</td>
+          <td><span class="pill" data-rented={r.rented} data-own={r.own}>{r.rented}</span></td>
+        </tr>
+      ))}
+    </tbody>
+  </table></div>
+  <div class="mock-foot"><span class="bar"><span style="width:62%"></span></span><span class="mock-foot-label">62% of volume on your contracts</span></div>
+</div>
+<style>
+  .mock-table-wrap { overflow-x: auto; }
+  .mock { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; font-size: 13px; }
+  .mock-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+  .mock-title { margin-left: 8px; font-weight: 600; color: var(--muted); font-size: 12px; }
+  .mock-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 8px; }
+  .mock-kpi strong { font-size: 24px; color: var(--ink); margin-right: 6px; letter-spacing: -0.02em; }
+  .mock-kpi span { color: var(--muted); }
+  .toggle { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; }
+  .toggle button { font: inherit; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .toggle button.on { background: var(--ink); color: #fff; }
+  .mock-table { width: 100%; border-collapse: collapse; }
+  .mock-table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 8px 16px; border-bottom: 1px solid var(--border); background: none; }
+  .mock-table td { padding: 9px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; background: #e3f1ea; color: var(--ok); font-weight: 600; font-size: 12px; }
+  .pill.warn { background: var(--accent-soft); color: var(--accent); }
+  .pill.off { background: var(--surface-2); color: var(--muted); }
+  .mock-foot { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+  .bar { flex: 1; height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .mock-foot-label { color: var(--muted); font-size: 12px; white-space: nowrap; }
+</style>
+<script>
+  const style = (s: string) => /live|effective/i.test(s) ? '' : /pending|filed|day/i.test(s) ? 'warn' : 'off';
+  document.querySelectorAll<HTMLElement>('.mock').forEach((m) => {
+    const pills = m.querySelectorAll<HTMLElement>('.pill');
+    const apply = (v: 'rented' | 'own') => pills.forEach((p) => { const s = p.dataset[v]!; p.textContent = s; p.className = 'pill ' + style(s); });
+    apply('rented');
+    m.querySelectorAll<HTMLButtonElement>('.toggle button').forEach((b) => b.addEventListener('click', () => {
+      m.querySelectorAll('.toggle button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); apply(b.dataset.view as 'rented' | 'own');
+    }));
+  });
+</script>

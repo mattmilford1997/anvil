@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Tiles from '../components/Tiles.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+<BaseLayout title="For health plans" description="A quality-governed, multi-specialty network of care companies under fee-for-service. Behavioral health, rural, and specialty network adequacy." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
+  <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." sub="One contract, one credentialed group, many care companies with charting standards and quality governance we operate ourselves. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
+  <Section>
+    <Tiles items={[
+      { icon: 'users', title: 'One group, many programs', body: 'Psychiatry, therapy, ABA, IOP, interventional, in-home, school-based. Contract once, cover the gaps that show up in your adequacy reports.' },
+      { icon: 'shield', title: 'Quality you can audit', body: 'Charting standards, supervision rules, and utilization reporting that we run at our own companies and enforce across the network.' },
+      { icon: 'chart', title: 'FFS, not PEPM', body: 'Pay for delivered visits at contracted rates. Reporting by program, by state, by outcome measure.' },
+    ]} />
+  </Section>
+  <CtaBand title="Tell us where adequacy is short." body="States, specialties, and the plan products. We will tell you what we can stand up and how fast." primary={{ label: 'Contact network development', href: '/contact?src=health-plans' }} secondary={undefined} />
+</BaseLayout>

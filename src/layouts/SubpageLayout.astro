@@ -1,0 +1,22 @@
+---
+/** Shared layout for /platform/* and /solutions/* pages: hero, feature bullets, optional slots, FAQ, CTA. */
+import BaseLayout from './BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
+interface Props {
+  title: string; metaTitle: string; description: string; eyebrow: string; sub: string;
+  crumbs: { name: string; path: string }[];
+  faqs?: { q: string; a: string }[];
+  ctaTitle?: string; ctaBody?: string; ctaPrimary?: { label: string; href: string }; ctaSecondary?: { label: string; href: string };
+}
+const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary } = Astro.props;
+---
+<BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs)]}>
+  <Hero compact eyebrow={eyebrow} title={title} sub={sub} secondary={{ label: 'See pricing', href: '/pricing' }} />
+  <slot />
+  {faqs.length > 0 && <Section tight><Faq items={faqs} /></Section>}
+  <CtaBand title={ctaTitle} body={ctaBody} primary={ctaPrimary} secondary={ctaSecondary} />
+</BaseLayout>

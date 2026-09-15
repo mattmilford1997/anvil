@@ -1,0 +1,23 @@
+---
+interface Props { eyebrow?: string; title: string; bullets?: string[]; flip?: boolean; cta?: { label: string; href: string } }
+const { eyebrow, title, bullets = [], flip = false, cta } = Astro.props;
+---
+<div class:list={['fr reveal', { flip }]}>
+  <div class="fr-copy">
+    {eyebrow && <div class="eyebrow">{eyebrow}</div>}
+    <h3>{title}</h3>
+    <slot />
+    {bullets.length > 0 && <ul class="check-list">{bullets.map((b) => <li>{b}</li>)}</ul>}
+    {cta && <a href={cta.href} class="btn btn-ghost">{cta.label}</a>}
+  </div>
+  <div class="fr-art"><slot name="art" /></div>
+</div>
+<style>
+  .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .fr.flip .fr-art { order: -1; }
+  .fr h3 { font-size: clamp(24px, 3vw, 32px); }
+  .fr-copy :global(p) { color: var(--muted); }
+  .fr-art { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; min-height: 240px; display: flex; align-items: center; justify-content: center; }
+  .fr-art:empty { display: none; }
+  @media (max-width: 800px) { .fr { grid-template-columns: 1fr; gap: 20px; } .fr.flip .fr-art { order: 0; } }
+</style>

@@ -1,0 +1,32 @@
+---
+import SubpageLayout from '../../layouts/SubpageLayout.astro';
+import Section from '../../components/Section.astro';
+import Tiles from '../../components/Tiles.astro';
+const faqs = [
+  { q: 'Telehealth-only vendors turned us down. Why can you take us?', a: 'Because our own companies are in-person, in-home, and school-based. Place of service, facility components, travel, and site-specific enrollment are part of how we already bill.' },
+  { q: 'Does the rented PC work for in-person care?', a: 'Yes, where the state and payer allow the structure and the site is enrolled. Some in-person programs need site-level enrollment under your own PC sooner, and we sequence that first.' },
+  { q: 'Interventional psychiatry?', a: 'Yes. TMS, ketamine and esketamine, and the authorization and documentation those require. Novamind is one of ours.' },
+  { q: 'School-based programs?', a: 'Yes. Medicaid school-based billing and the district agreements around it. Stoa is one of ours.' },
+];
+---
+<SubpageLayout
+  metaTitle="Insurance for hybrid and in-person care"
+  title="Hybrid, in-home, and in-person. The models telehealth vendors cannot bill."
+  description="For interventional psychiatry, in-home care, ABA, and school-based programs. Place of service, site enrollment, facility components. We run these models ourselves."
+  eyebrow="Solutions / Hybrid and in-person"
+  sub="Network rental models were built for virtual fee-for-service. If you deliver care in a clinic, a home, or a school, you have been told no. We run those models in our own portfolio."
+  crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/hybrid-care' }, { name: 'Hybrid and in-person', path: '/solutions/hybrid-care' }]}
+  faqs={faqs}
+  ctaTitle="Describe your care model. We will tell you how it bills."
+  ctaBody="Sites, states, license mix, and codes. We come back with the enrollment sequence and what runs on rental versus your own PC first."
+  ctaPrimary={{ label: 'Get started', href: '/contact?src=hybrid' }}
+>
+  <Section eyebrow="What changes off-screen" title="The parts of billing that only exist in person">
+    <Tiles items={[
+      { icon: 'map', title: 'Place of service and site enrollment', body: 'Each site is enrolled with each payer. Sequence matters. We enroll sites under your own PC when rental cannot cover them.' },
+      { icon: 'file', title: 'Facility and professional components', body: 'IOP, PHP, interventional procedures. Two claims, two fee schedules, one visit.' },
+      { icon: 'users', title: 'In-home and school-based', body: 'Travel, place of service 12 and 03, district agreements, Medicaid school-based programs.' },
+      { icon: 'shield', title: 'Authorizations', body: 'TMS, esketamine, ABA, and the re-authorization calendar that keeps a program from stalling.' },
+    ]} cols={4} />
+  </Section>
+</SubpageLayout>

@@ -1,0 +1,24 @@
+---
+import { fmtDate } from '../lib/seo';
+import { authors } from '../data/team';
+interface Props { post: any; featured?: boolean }
+const { post, featured = false } = Astro.props;
+const d = post.data;
+const author = authors[d.author];
+---
+<article class:list={['ac card reveal', { featured }]}>
+  <div class="ac-meta"><span class="tag">{d.category}</span><span class="muted small">{fmtDate(d.publishDate)}</span></div>
+  <h3><a href={`/resources/${post.id}`}>{d.title}</a></h3>
+  <p class="muted">{d.excerpt}</p>
+  <div class="ac-foot small muted">{author?.name}{d.pillar && <span> · {d.pillar}</span>}</div>
+</article>
+<style>
+  .ac { display: flex; flex-direction: column; gap: 10px; }
+  .ac h3 { font-size: 20px; margin: 0; line-height: 1.25; }
+  .ac.featured h3 { font-size: clamp(24px, 3vw, 32px); }
+  .ac h3 a { text-decoration: none; color: var(--ink); }
+  .ac h3 a:hover { color: var(--accent); }
+  .ac p { flex: 1; font-size: 15.5px; }
+  .ac-meta { display: flex; justify-content: space-between; align-items: center; }
+  .ac-foot { text-transform: capitalize; }
+</style>

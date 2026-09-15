@@ -1,0 +1,62 @@
+---
+import { tiers } from '../data/pricing';
+const launchPct = tiers.find((t) => t.key === 'build')!.platformFeePct;
+const ownPct = 3; // TODO(launch): platform fee on volume billed under the customer's own contracts (RCM + rate management)
+---
+<div class="ts card" id="timeline" data-launch={launchPct} data-own={ownPct}>
+  <div class="eyebrow">Ownership timeline</div>
+  <h3>Drag through the first 18 months</h3>
+  <p class="muted">A typical migration. Volume moves to your PC as each payer contract in your name becomes effective. The platform fee steps down with it.</p>
+  <div class="ts-slider">
+    <label for="ts-m" class="sr-only">Month</label>
+    <input id="ts-m" type="range" min="1" max="18" value="1" />
+    <div class="ts-ticks"><span>Month 1</span><span>6</span><span>12</span><span>18</span></div>
+  </div>
+  <div class="ts-out">
+    <div class="res"><span>Month</span><strong data-out="m">1</strong></div>
+    <div class="res"><span>Volume on your PC</span><strong data-out="own">0%</strong></div>
+    <div class="res"><span>Volume on Anvil's PC</span><strong data-out="rent">100%</strong></div>
+    <div class="res us"><span>Blended platform fee</span><strong data-out="fee">{launchPct}%</strong></div>
+  </div>
+  <div class="ts-bar"><span class="rent" data-bar="rent"></span><span class="own" data-bar="own"></span></div>
+  <p class="ts-stage" data-out="stage"></p>
+</div>
+<style>
+  .ts { padding: 32px; }
+  .ts h3 { margin-bottom: 6px; }
+  .ts-slider { margin: 16px 0; }
+  #ts-m { width: 100%; accent-color: var(--accent); }
+  .ts-ticks { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .ts-out { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .res { padding: 12px 14px; border-radius: 10px; background: var(--surface-2); display: grid; gap: 2px; }
+  .res span { font-size: 13px; color: var(--muted); }
+  .res strong { font-size: 22px; color: var(--ink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .res.us { background: var(--ink); } .res.us span { color: #b7c7c2; } .res.us strong { color: #fff; }
+  .ts-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--surface-2); margin: 16px 0 10px; }
+  .ts-bar .rent { background: var(--ink-3); width: 100%; transition: width 0.2s; }
+  .ts-bar .own { background: var(--accent); width: 0; transition: width 0.2s; }
+  .ts-stage { margin: 0; font-size: 15px; color: var(--ink); min-height: 24px; }
+  @media (max-width: 640px) { .ts-out { grid-template-columns: 1fr 1fr; } }
+</style>
+<script>
+  const ts = document.getElementById('timeline');
+  if (ts) {
+    const launch = Number(ts.dataset.launch), ownFee = Number(ts.dataset.own);
+    const r = ts.querySelector<HTMLInputElement>('#ts-m')!;
+    const out = (k: string) => ts.querySelector<HTMLElement>(`[data-out=${k}]`)!;
+    const bar = (k: string) => ts.querySelector<HTMLElement>(`[data-bar=${k}]`)!;
+    // Logistic ramp: ~0 through month 3, ~50% at month 8, ~85% at month 12, ~95% at month 18.
+    const share = (m: number) => m < 4 ? 0 : Math.min(0.96, 1 / (1 + Math.exp(-(m - 8) * 0.55)));
+    const stages = (m: number) => m <= 1 ? 'Your PC is formed. Clinicians enroll under Anvil\'s contracts.' : m <= 3 ? 'Credentialing files built under your entity. Contract applications filed in your name.' : m <= 6 ? 'First commercial contracts effective in your PC. New visits with those payers route to you.' : m <= 9 ? 'Majority of commercial volume moving. Medicaid MCO contracts in process.' : m <= 12 ? 'Most volume on your own contracts. Platform fee has stepped down.' : 'Steady state. Anvil runs RCM and renewals on contracts you own.';
+    const run = () => {
+      const m = Number(r.value), s = share(m);
+      out('m').textContent = String(m);
+      out('own').textContent = Math.round(s * 100) + '%';
+      out('rent').textContent = Math.round((1 - s) * 100) + '%';
+      out('fee').textContent = ((1 - s) * launch + s * ownFee).toFixed(1) + '%';
+      bar('rent').style.width = (1 - s) * 100 + '%'; bar('own').style.width = s * 100 + '%';
+      out('stage').textContent = stages(m);
+    };
+    r.addEventListener('input', run); run();
+  }
+</script>

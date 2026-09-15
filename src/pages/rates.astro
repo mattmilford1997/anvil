@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import RateLookup from '../components/RateLookup.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
+const faqs = [
+  { q: 'Where do these numbers come from?', a: 'From Parite, which aggregates contracted and published reimbursement data by state, payer, and code. Anvil shows ranges, not individual contract terms.' },
+  { q: 'Are these the rates I will be paid?', a: 'No. They are published ranges for planning. Your contracted rate depends on the payer, the entity, the specialty, and the negotiation. Under rental you see the actual contracted rate on every statement.' },
+  { q: 'Why is a code missing for my state?', a: 'We publish a range only when there is enough data behind it. Ask us for the state and code and we will send what we have.' },
+  { q: 'How do you use this in contracting?', a: 'As the floor for rate proposals in your entity\'s name, and as the benchmark when we tell you a payer\'s offer is low.' },
+];
+---
+<BaseLayout title="Reimbursement rates by state and code" description="Published reimbursement ranges by state, payer, and CPT code for the codes care companies bill most. No form. Data from Parite." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
+  <Hero compact eyebrow="Rates" title="What payers actually pay, by state and code." sub="You cannot negotiate a rate you cannot see. Look up the range for your codes before you sign with anyone, including us." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
+  <Section tight>
+    <RateLookup />
+  </Section>
+  <Section eyebrow="Methodology" title="How to read the ranges" tight>
+    <div class="grid grid-2">
+      <div class="card"><h3>What a range is</h3><p class="muted">The low and high of contracted and published allowed amounts for the code in that state, across the payers we have data for. Per unit, before patient responsibility. Not a guarantee.</p></div>
+      <div class="card"><h3>How we use it for you</h3><p class="muted">As the floor in rate proposals for your entity and the benchmark for renewals. When a payer offers below the range, we say so and we push. When it is above, we take it.</p></div>
+    </div>
+  </Section>
+  <Section tight><Faq items={faqs} /></Section>
+  <CtaBand title="Know the rate. Then get the contract." body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../../lib/seo';
+
+const workstreams = [
+  { name: 'Payer contracting', hire: 'Contracting lead with payer relationships in each state, plus counsel for contract review.', anvil: 'Rent: you bill under our existing contracts. Own: we contract your entity with commercial, Medicaid, and MA payers, and you see the rate ladder.', href: '/platform/contracting' },
+  { name: 'Credentialing and enrollment', hire: 'One credentialing specialist per 30-40 clinicians, a CAQH process, and someone chasing payer portals every week.', anvil: 'Roster-adds under our PC in weeks. Full credentialing files under your entity, largely automated, tracked in one place.', href: '/platform/credentialing' },
+  { name: 'Real-time eligibility', hire: 'A clearinghouse contract, an engineer to integrate 270/271, and ops to handle the payer outages.', anvil: 'One API and a hosted widget. Soft check at booking, copay estimate, outage detection built in.', href: '/platform/eligibility' },
+  { name: 'Coding and claims', hire: 'Certified coders, a billing team, a clearinghouse, and charting standards that survive an audit.', anvil: 'Coding review, claim submission, and charting standards we run at our own companies. Clean-claim rate reported monthly.', href: '/platform/rcm' },
+  { name: 'Denials and AR', hire: 'AR specialists working aging reports, appeals writers, and a way to see which payer is the problem.', anvil: 'Denial management and appeals, AR by payer and by clinician, with the claims risk on us during rental.', href: '/platform/rcm' },
+];
+---
+<BaseLayout title="How Anvil works: rent, then own" description="Five workstreams of insurance operations delivered as one platform. Bill under our 50-state PC now, migrate to your own contracts as they come live." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }])]}>
+  <Hero compact eyebrow="Platform" title="Rent the network. Own the contracts. Run both on one platform." sub="Insurance operations is five jobs. We run all five for you, first under our entity so you can launch, then under yours so you keep the asset." secondary={{ label: 'See pricing', href: '/pricing' }} />
+
+  <Section eyebrow="The five workstreams" title="What you would have to hire, and what Anvil does instead">
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Workstream</th><th>Build it yourself</th><th>With Anvil</th></tr></thead>
+        <tbody>
+          {workstreams.map((w) => (
+            <tr><th scope="row"><a href={w.href}>{w.name}</a></th><td class="muted">{w.hire}</td><td>{w.anvil}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  <Section eyebrow="Rent, then own" title="Two entities. Volume moves from ours to yours." intro="This is the diagram to send your co-founder.">
+    <div class="diagram reveal" aria-label="Diagram: your MSO works with Anvil's PC during rental and with your own PC after migration">
+      <div class="node mso"><span class="nl">Your company (MSO)</span><span class="nd">Brand, product, clinicians, growth</span></div>
+      <div class="arrows">
+        <div class="arrow a1"><span>Rental phase: clinicians leased at FMV, admin services for a fixed fee</span></div>
+        <div class="arrow a2"><span>Ownership phase: management services agreement</span></div>
+      </div>
+      <div class="pcs">
+        <div class="node pc"><span class="nl">Anvil PC</span><span class="nd">50-state, credentialed, contracted. Bills on day 30.</span><span class="vol" data-v="rent"></span></div>
+        <div class="node pc own"><span class="nl">Your PC</span><span class="nd">Formed week 1. Physician owner placed. Contracts in your name by month 6.</span><span class="vol" data-v="own"></span></div>
+      </div>
+      <div class="payers">Payers: commercial, Medicaid MCOs, Medicare Advantage</div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Integrations" title="Fits the stack you already have" tight>
+    <div class="grid grid-3">
+      <div class="card"><h3>EHRs and scheduling</h3><p class="muted">Eligibility at booking works with your own booking flow through the API or the hosted widget. Charting standards are documented per EHR. Ask about yours.</p></div>
+      <div class="card"><h3>Clearinghouses and payments</h3><p class="muted">Claims go through our clearinghouse under either entity. Patient responsibility can be collected through your existing payment processor, Stripe included.</p></div>
+      <div class="card"><h3>Reporting</h3><p class="muted">Collections by entity, payer, state, and clinician. Contracted rate and platform fee as separate lines. Exports and a reporting API.</p></div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Security" title="Built for a regulated business" tight>
+    <div class="grid grid-2">
+      <div class="card"><h3>What is in place</h3><ul class="check-list"><li>HIPAA program, BAA available on request</li><li>Encryption in transit and at rest, role-based access, audit logging</li><li>No PHI collected on this marketing site</li></ul></div>
+      <div class="card"><h3>What is in progress</h3><ul class="check-list"><li>SOC 2 Type II, with a public trust center on completion</li><li>Published sub-processor list</li></ul><p class="small muted">Dated roadmap on the <a href="/platform/compliance">compliance page</a>.</p></div>
+    </div>
+  </Section>
+
+  <CtaBand title="See the five workstreams on your own numbers." body="Run the calculator, then talk to us about the tier that fits." primary={{ label: 'Open the calculator', href: '/pricing#calculator' }} secondary={{ label: 'Get started', href: '/contact' }} />
+</BaseLayout>
+<style>
+  .diagram { display: grid; gap: 16px; max-width: 860px; }
+  .node { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; display: grid; gap: 4px; position: relative; }
+  .node.mso { border-color: var(--ink); }
+  .node.own { border-color: var(--accent); }
+  .nl { font-weight: 700; color: var(--ink); font-size: 18px; }
+  .nd { color: var(--muted); font-size: 14px; }
+  .arrows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .arrow { position: relative; padding: 10px 14px 10px 28px; font-size: 13px; color: var(--muted); }
+  .arrow::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; border-left: 2px dashed var(--border); }
+  .a2::before { border-color: var(--accent); }
+  .pcs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .vol { display: block; height: 8px; border-radius: 999px; background: var(--surface-2); margin-top: 10px; overflow: hidden; }
+  .vol::after { content: ''; display: block; height: 100%; width: 70%; background: var(--ink-3); }
+  .own .vol::after { width: 30%; background: var(--accent); }
+  .payers { text-align: center; font-size: 14px; color: var(--muted); padding: 12px; border: 1px dashed var(--border); border-radius: 10px; }
+  @media (max-width: 640px) { .arrows, .pcs { grid-template-columns: 1fr; } }
+</style>

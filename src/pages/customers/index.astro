@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { isProd, breadcrumbJsonLd } from '../../lib/seo';
+import { testimonials } from '../../data/testimonials';
+const cases = (await getCollection('customers', ({ data }) => !isProd || !data.draft)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
+---
+<BaseLayout title="Customers" description="Case studies from care companies on Anvil, starting with the ones our own team operates. Real numbers, real timelines." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
+  <Hero compact eyebrow="Customers" title="Case studies with numbers in them." sub="We start with the care companies our own team runs, because we can publish the real timelines. External customers are added as they go live and sign off." />
+  <Section tight>
+    {cases.length === 0 && <p class="lede">Case studies are being finalized. <a href="/contact">Ask us</a> for a reference in your specialty.</p>}
+    <div class="grid grid-2">
+      {cases.map((c) => (
+        <a href={`/customers/${c.id}`} class="card cs reveal">
+          <div class="badge-row"><span class="tag">{c.data.specialty}</span><span class="tag">{c.data.careModel}</span>{c.data.firstParty && <span class="tag tag-accent">Operated by our team</span>}{c.data.draft && <span class="tag tag-accent">Draft</span>}</div>
+          <h3>{c.data.company}</h3>
+          <p class="muted">{c.data.headline}</p>
+          {c.data.metrics.length > 0 && <div class="metrics">{c.data.metrics.map((m) => <div><strong>{m.value}</strong><span>{m.label}</span></div>)}</div>}
+        </a>
+      ))}
+    </div>
+  </Section>
+  {showTestimonials && <Section eyebrow="In their words" title="What operators say" tight><Testimonials /></Section>}
+  <CtaBand title="Want a reference in your specialty?" body="We will connect you with an operator who has done this." primary={{ label: 'Ask for a reference', href: '/contact?src=customers' }} />
+</BaseLayout>
+<style>
+  .cs { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; }
+  .cs h3 { margin: 6px 0 0; }
+  .cs:hover h3 { color: var(--accent); }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+  .metrics div { display: grid; gap: 2px; }
+  .metrics strong { font-size: 20px; color: var(--ink); letter-spacing: -0.02em; }
+  .metrics span { font-size: 12.5px; color: var(--muted); }
+</style>

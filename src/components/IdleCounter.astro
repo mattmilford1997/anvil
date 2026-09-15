@@ -1,0 +1,46 @@
+<div class="idle card" id="idle-cost">
+  <div class="eyebrow">Idle clinician cost counter</div>
+  <h3>What a credentialed clinician who cannot bill costs you</h3>
+  <p class="muted">A clinician you are paying who is waiting on enrollment costs you their revenue every day. Set the two inputs. The counter runs from the moment you loaded this page.</p>
+  <form class="idle-in" onsubmit="return false">
+    <div class="field"><label for="i-n">Clinicians waiting on enrollment</label><input id="i-n" type="number" min="1" value="6" inputmode="numeric" /></div>
+    <div class="field"><label for="i-rev">Average monthly revenue per clinician</label><input id="i-rev" type="number" min="0" step="500" value="14000" inputmode="numeric" /></div>
+  </form>
+  <div class="idle-out">
+    <div class="res"><span>Per month</span><strong data-out="month">$0</strong></div>
+    <div class="res"><span>Per day</span><strong data-out="day">$0</strong></div>
+    <div class="res live"><span>Since you opened this page</span><strong data-out="live">$0.00</strong></div>
+  </div>
+  <p class="small muted">Roster-adds under an existing contract are measured in weeks. New enrollment is commonly cited at 90 to 120 days per payer. The difference is the number above, times the days you save.</p>
+</div>
+<style>
+  .idle { padding: 32px; }
+  .idle h3 { margin-bottom: 6px; }
+  .idle-in { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; margin-top: 12px; }
+  .idle-out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 8px 0 16px; }
+  .res { padding: 14px 16px; border-radius: 10px; background: var(--surface-2); display: grid; gap: 4px; }
+  .res span { font-size: 13px; color: var(--muted); }
+  .res strong { font-size: 24px; color: var(--ink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .res.live { background: var(--ink); } .res.live span { color: #b7c7c2; } .res.live strong { color: #fff; }
+  @media (max-width: 640px) { .idle-in, .idle-out { grid-template-columns: 1fr; } }
+</style>
+<script>
+  const el = document.getElementById('idle-cost');
+  if (el) {
+    const n = el.querySelector<HTMLInputElement>('#i-n')!, rev = el.querySelector<HTMLInputElement>('#i-rev')!;
+    const out = (k: string) => el.querySelector<HTMLElement>(`[data-out=${k}]`)!;
+    const money = (v: number, d = 0) => v.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: d, maximumFractionDigits: d });
+    const start = Date.now();
+    let perSec = 0;
+    const run = () => {
+      const month = (Number(n.value) || 0) * (Number(rev.value) || 0);
+      const day = month * 12 / 365;
+      perSec = day / 86400;
+      out('month').textContent = money(month); out('day').textContent = money(day);
+    };
+    const tick = () => { out('live').textContent = money(perSec * (Date.now() - start) / 1000, 2); };
+    n.addEventListener('input', run); rev.addEventListener('input', run); run();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setInterval(tick, reduce ? 1000 : 100);
+  }
+</script>

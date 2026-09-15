@@ -1,0 +1,22 @@
+---
+import { testimonials } from '../data/testimonials';
+import { isProd } from '../lib/seo';
+const items = testimonials.filter((t) => t.approved || !isProd);
+---
+{items.length > 0 && (
+  <div class="grid grid-3">
+    {items.map((t) => (
+      <figure class="card quote reveal">
+        <div class="badge-row"><span class="tag">{t.specialty}</span>{!t.approved && <span class="tag tag-accent">Draft, dev only</span>}</div>
+        <blockquote>“{t.quote}”</blockquote>
+        <figcaption><strong>{t.name}</strong><span>{t.title}</span></figcaption>
+      </figure>
+    ))}
+  </div>
+)}
+<style>
+  .quote { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+  blockquote { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink); flex: 1; }
+  figcaption { display: flex; flex-direction: column; font-size: 14px; color: var(--muted); }
+  figcaption strong { color: var(--text); }
+</style>

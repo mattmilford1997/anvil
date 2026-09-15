@@ -1,0 +1,21 @@
+---
+interface Props { name: string; title: string; body: string; cta?: string }
+const { name, title, body, cta = 'Send me the PDF' } = Astro.props;
+---
+<div class="gd card">
+  <div class="eyebrow">Download</div>
+  <h3>{title}</h3>
+  <p class="muted">{body}</p>
+  <form name={name} method="POST" data-netlify="true" netlify-honeypot="bot-field" action={`/contact/success?src=${name}`} class="gd-form">
+    <input type="hidden" name="form-name" value={name} />
+    <p class="hp"><label>Leave empty <input name="bot-field" /></label></p>
+    <label for={`${name}-email`} class="sr-only">Work email</label>
+    <input id={`${name}-email`} type="email" name="email" placeholder="Work email" required />
+    <button type="submit" class="btn btn-primary">{cta}</button>
+  </form>
+</div>
+<style>
+  .gd h3 { margin-bottom: 4px; }
+  .gd-form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .gd-form input[type=email] { flex: 1 1 220px; font: inherit; font-size: 15px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 999px; }
+</style>

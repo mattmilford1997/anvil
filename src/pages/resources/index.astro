@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { isProd, breadcrumbJsonLd } from '../../lib/seo';
+const posts = (await getCollection('resources', ({ data }) => !isProd || !data.draft)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
+---
+<BaseLayout title="Resources: insurance ops for care companies" description="Long-form guides on accepting insurance, credentialing, payer contracting, eligibility, and owning your contracts. Written by operators who run insurance-billing care companies." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
+  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Model it, don't vibe it.</h1><p class="lede">Frameworks, cost tables, and the numbers behind insurance operations for care companies. Every article ends with a tool, not a pitch.</p></div></section>
+  <Section tight>
+    <div class="filters" role="tablist" aria-label="Filter by type">
+      {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}
+    </div>
+    <div class="res-grid">
+      <div class="res-main">
+        {featured && <div data-cat={featured.data.category}><ArticleCard post={featured} featured /></div>}
+        <div class="grid grid-2" style="margin-top:20px">
+          {rest.map((p) => <div data-cat={p.data.category}><ArticleCard post={p} /></div>)}
+        </div>
+        <p class="muted empty" hidden>No posts in this category yet.</p>
+      </div>
+      <aside class="res-side">
+        <NewsletterForm />
+        <div class="card"><h3 style="font-size:18px">Tools</h3><ul class="tools"><li><a href="/rates">Rate lookup by state and code</a></li><li><a href="/pricing#calculator">Build vs partner calculator</a></li><li><a href="/platform/credentialing#idle-cost">Idle clinician cost counter</a></li><li><a href="/own-your-contracts#timeline">Ownership timeline</a></li><li><a href="/platform/contracting#coverage">Coverage map</a></li></ul></div>
+      </aside>
+    </div>
+  </Section>
+  <CtaBand />
+</BaseLayout>
+<style>
+  .res-hero { padding: clamp(40px, 6vw, 72px) 0 8px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .chip { font: inherit; font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; }
+  .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .res-grid { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start; }
+  .res-side { display: grid; gap: 16px; position: sticky; top: 90px; }
+  .tools { list-style: none; padding: 0; margin: 0; }
+  .tools li { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .tools li:last-child { border-bottom: 0; }
+  @media (max-width: 900px) { .res-grid { grid-template-columns: 1fr; } .res-side { position: static; } }
+</style>
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const items = document.querySelectorAll<HTMLElement>('.res-main [data-cat]');
+  const empty = document.querySelector<HTMLElement>('.empty');
+  chips.forEach((c) => c.addEventListener('click', () => {
+    chips.forEach((x) => { x.classList.remove('on'); x.setAttribute('aria-selected', 'false'); }); c.classList.add('on'); c.setAttribute('aria-selected', 'true');
+    let n = 0; items.forEach((it) => { const show = c.dataset.cat === 'All' || it.dataset.cat === c.dataset.cat; it.hidden = !show; if (show) n++; });
+    if (empty) empty.hidden = n > 0;
+  }));
+</script>

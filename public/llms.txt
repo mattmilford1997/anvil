@@ -1,0 +1,52 @@
+# Anvil
+
+> Anvil is insurance infrastructure for care companies. Launch in-network in every state in weeks on a credentialed 50-state professional corporation (PC), while Anvil forms, credentials, and contracts your own PC in parallel, so you own the payer contracts, rates, and relationships by year one. Built by Arche Studios, the operators behind Foundry PC and Homefront and eleven insurance-billing care companies.
+
+Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth in behavioral health (psychiatry, therapy, ABA, IOP/PHP, collaborative care) and Medicaid managed care as well as commercial and Medicare Advantage. Pricing is published. Reimbursement ranges by state and code are published without a form.
+
+## Core pages
+
+- [Home](https://www.getanvil.com/): the rent-then-own model in one scroll
+- [How it works](https://www.getanvil.com/platform): five workstreams, two entities, one platform
+- [Own your contracts](https://www.getanvil.com/own-your-contracts): why network rental is renting your revenue, and the month-by-month migration
+- [Rates](https://www.getanvil.com/rates): published reimbursement ranges by state, payer, and CPT code
+- [Pricing](https://www.getanvil.com/pricing): Launch, Build, Scale tiers and a build-vs-partner calculator
+
+## Platform
+
+- [Eligibility at booking](https://www.getanvil.com/platform/eligibility)
+- [Credentialing and enrollment](https://www.getanvil.com/platform/credentialing)
+- [Payer contracting](https://www.getanvil.com/platform/contracting)
+- [Coding, claims, denials, AR](https://www.getanvil.com/platform/rcm)
+- [Compliance and structure](https://www.getanvil.com/platform/compliance)
+
+## Solutions
+
+- [Virtual care](https://www.getanvil.com/solutions/virtual-care)
+- [Behavioral health](https://www.getanvil.com/solutions/behavioral-health)
+- [Hybrid and in-person](https://www.getanvil.com/solutions/hybrid-care)
+- [Switching from a network rental vendor](https://www.getanvil.com/solutions/switching)
+- [Health plans](https://www.getanvil.com/health-plans)
+
+## Resources
+
+- [Resources hub](https://www.getanvil.com/resources)
+- [When should a virtual care company start accepting insurance?](https://www.getanvil.com/resources/when-to-accept-insurance-virtual-care)
+- [The five workstreams of insurance operations](https://www.getanvil.com/resources/five-workstreams-of-insurance-operations)
+- [Cash-pay to in-network: the two-phase plan](https://www.getanvil.com/resources/cash-pay-to-in-network-two-phase-plan)
+- [What "in-network nationally" actually means](https://www.getanvil.com/resources/what-in-network-nationally-actually-means)
+- [What an idle credentialed clinician costs you per day](https://www.getanvil.com/resources/cost-of-an-idle-credentialed-clinician)
+- [Renting a PC vs owning one](https://www.getanvil.com/resources/renting-a-pc-vs-owning-one)
+
+## Company
+
+- [Company](https://www.getanvil.com/company)
+- [Customers](https://www.getanvil.com/customers)
+- [Contact](https://www.getanvil.com/contact)
+
+## Key facts
+
+- Time to in-network nationally: weeks (roster-add under existing contracts), vs 3-6 months for point solutions and 12-24 months in-house.
+- Ownership: customer's own PC formed from week one; volume migrates over 6-18 months; contracts end up in the customer's entity.
+- Pricing: platform fee on collections during rental; PC formation $15,000 one-time; physician owner $3,000 per month (via Foundry PC).
+- Compliance: rental phase structured to align with the AKS personal services and management contracts safe harbor; state CPOM structuring for the customer's own PC. No OIG advisory opinion is claimed. HIPAA in place; SOC 2 Type II in progress.

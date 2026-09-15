@@ -1,0 +1,81 @@
+---
+import { stateNames } from '../data/coverage';
+const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]));
+---
+<form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form">
+  <input type="hidden" name="form-name" value="anvil-leads" />
+  <p class="hp"><label>Leave this empty <input name="bot-field" /></label></p>
+  <!-- Attribution, filled client-side from sessionStorage -->
+  <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" />
+  <input type="hidden" name="referrer" /><input type="hidden" name="landing" /><input type="hidden" name="go_slug" />
+
+  <div class="field-row">
+    <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required autocomplete="name" /></div>
+    <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email" /></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" required autocomplete="organization" /></div>
+    <div class="field"><label for="f-site">Website</label><input id="f-site" name="website" type="url" placeholder="https://" /></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="f-role">Your role</label>
+      <select id="f-role" name="role" required>
+        <option value="">Choose</option><option>CEO / Founder</option><option>COO / Operations</option><option>CFO / Finance</option><option>Engineering / Product</option><option>Clinical leadership</option><option>Other</option>
+      </select></div>
+    <div class="field"><label for="f-model">Care model</label>
+      <select id="f-model" name="care_model" required>
+        <option value="">Choose</option><option>Virtual</option><option>Hybrid</option><option>In-person</option><option>In-home</option><option>School-based</option>
+      </select></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="f-billing">Current billing</label>
+      <select id="f-billing" name="current_billing" required>
+        <option value="">Choose</option><option>Cash-pay only</option><option>Some insurance, one or a few states</option><option>In-network nationally through a vendor</option><option>In-network nationally, in-house</option>
+      </select></div>
+    <div class="field"><label for="f-clin">Clinicians</label>
+      <select id="f-clin" name="clinicians" required>
+        <option value="">Choose</option><option>1-10</option><option>11-25</option><option>26-50</option><option>51-100</option><option>100+</option>
+      </select></div>
+  </div>
+  <div class="field">
+    <label for="f-states">States of interest</label>
+    <select id="f-states" name="states" multiple size="6">
+      {states.map(([k, v]) => <option value={k}>{v}</option>)}
+    </select>
+    <span class="hint">Hold Cmd or Ctrl to pick several. Leave blank for all 50.</span>
+  </div>
+  <fieldset class="field">
+    <legend>What do you need?</legend>
+    <div class="radios">
+      <label><input type="radio" name="need" value="Rent now" required /> Bill in-network now on your PC</label>
+      <label><input type="radio" name="need" value="Build my own" /> Build my own PC and contracts</label>
+      <label><input type="radio" name="need" value="Both" /> Both, rent now and own later</label>
+      <label><input type="radio" name="need" value="Switching from a vendor" /> Switching from a network rental vendor</label>
+    </div>
+  </fieldset>
+  <div class="field"><label for="f-msg">Anything else</label><textarea id="f-msg" name="message" rows="4" placeholder="Codes you bill, payers you care about, timeline."></textarea></div>
+  <p class="small muted">Please do not include patient information. This form is for business inquiries only.</p>
+  <button type="submit" class="btn btn-primary btn-lg">Send</button>
+</form>
+<style>
+  .cf { padding: 32px; }
+  fieldset { border: 0; padding: 0; margin: 0 0 16px; }
+  legend { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .radios { display: grid; gap: 8px; }
+  .radios label { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 400; }
+  .radios input { accent-color: var(--accent); }
+</style>
+<script>
+  const f = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (f) {
+    try {
+      const a = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
+      const set = (n: string, v?: string) => { const i = f.querySelector<HTMLInputElement>(`[name=${n}]`); if (i && v) i.value = v; };
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landing'].forEach((k) => set(k, a[k]));
+      set('go_slug', a.src || new URLSearchParams(location.search).get('src') || undefined);
+    } catch {}
+    // Light client-side rate limit: one submit per 10s.
+    let last = 0;
+    f.addEventListener('submit', (e) => { const now = Date.now(); if (now - last < 10000) e.preventDefault(); last = now; });
+  }
+</script>
