@@ -1,0 +1,21 @@
+# Publishes scheduled posts on time. The site is static, so a post dated in the future only
+# appears after a rebuild. This workflow triggers a Netlify build every Tuesday at 13:00 UTC
+# (9am ET before Nov 1, 8am ET after), the blog publish day, plus on demand.
+#
+# Setup (once): Netlify > Site configuration > Build & deploy > Build hooks > Add build hook,
+# then GitHub > Settings > Secrets and variables > Actions > New secret NETLIFY_BUILD_HOOK = the hook URL.
+name: Scheduled publish
+on:
+  schedule:
+    - cron: '0 13 * * 2'
+  workflow_dispatch:
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "::warning::NETLIFY_BUILD_HOOK secret is not set; nothing triggered."; exit 0; fi
+          curl -fsS -X POST -d '{}' "$HOOK" && echo "Build triggered."

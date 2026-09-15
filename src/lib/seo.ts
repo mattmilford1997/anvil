@@ -1,6 +1,8 @@
 import { SITE } from '../../site.config.mjs';
 
 export const isProd = import.meta.env.PROD;
+/** True when gates are bypassed (dev server or ANVIL_PREVIEW=1). Used to show hold banners. */
+export const showHeld = !isProd || process.env.ANVIL_PREVIEW === '1';
 
 export function absolute(path: string) {
   return new URL(path, SITE.url).toString();

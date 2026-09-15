@@ -5,18 +5,21 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 import GatedDownload from '../../components/GatedDownload.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { getCollection, render } from 'astro:content';
-import { isProd, breadcrumbJsonLd, fmtDate, absolute } from '../../lib/seo';
+import { render } from 'astro:content';
+import { showHeld, breadcrumbJsonLd, fmtDate, absolute } from '../../lib/seo';
+import { getPosts, holdReason } from '../../lib/content';
+import { SITE } from '../../../site.config.mjs';
 import { authors } from '../../data/team';
 export async function getStaticPaths() {
-  const posts = await getCollection('resources', ({ data }) => !isProd || !data.draft);
+  const posts = await getPosts();
   return posts.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
 }
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content, headings } = await render(entry);
 const author = authors[d.author];
-const all = await getCollection('resources', ({ data }) => !isProd || !data.draft);
+const all = await getPosts();
+const hold = holdReason(entry);
 const related = d.related.map((s) => all.find((p) => p.id === s)).filter(Boolean).slice(0, 3);
 const fallback = all.filter((p) => p.id !== entry.id && !related.includes(p)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()).slice(0, 3 - related.length);
 const rel = [...related, ...fallback];
@@ -28,7 +31,17 @@ const tools: Record<string, { label: string; href: string; blurb: string }> = {
   'idle-counter': { label: 'Run the idle clinician counter', href: '/platform/credentialing#idle-cost', blurb: 'What a credentialed clinician who cannot bill costs you per day.' },
   timeline: { label: 'Drag the ownership timeline', href: '/own-your-contracts#timeline', blurb: 'Volume on your PC and the platform fee, month by month.' },
   eligibility: { label: 'See eligibility at booking', href: '/platform/eligibility', blurb: 'Soft checks, copay estimates, outage handling, and a sandbox.' },
+  docs: { label: 'Read the API docs', href: SITE.docsUrl, blurb: 'Soft check and hard check endpoints, webhooks, sandbox, and the outage status your booking flow should handle.' },
+  all: { label: 'See rates, then model it', href: '/rates', blurb: 'Rate lookup, calculator, idle clinician counter, ownership timeline, and coverage map. Every tool on the site, no form.' },
 };
+const downloads: Record<string, { name: string; title: string; body: string }> = {
+  'readiness-checklist': { name: 'readiness-checklist', title: 'Insurance readiness checklist', body: 'The seven signals as a one-page scorecard, with the thresholds. PDF.' },
+  'benchmark-download': { name: 'credentialing-benchmark', title: 'Credentialing timeline benchmark by payer', body: 'Per-payer processing days, bounce rates, and end-to-end timelines, with the controllable-days breakdown. PDF.' },
+  'diligence-checklist': { name: 'diligence-checklist', title: 'Payer contract diligence checklist', body: 'The questions investors ask about insured revenue, with the answers that pass. Built for Series A and B diligence. PDF.' },
+  'map-download': { name: 'cpom-map-2027', title: 'State CPOM and telehealth billing map 2027', body: 'Every state on one page: CPOM strictness, fee-splitting treatment, telehealth billing rules. PDF.' },
+  'audit-checklist': { name: 'audit-checklist', title: 'Audit readiness checklist', body: 'The three flags, the five rationalizations, and the charting standard that survives them. PDF.' },
+};
+const download = downloads[d.tool];
 const tool = tools[d.tool];
 const articleLd = {
   '@context': 'https://schema.org', '@type': 'Article', headline: d.title, description: d.excerpt,
@@ -37,13 +50,13 @@ const articleLd = {
   mainEntityOfPage: absolute(`/resources/${entry.id}`), image: absolute(d.ogImage ?? '/og-default.png'),
 };
 ---
-<BaseLayout title={d.title} description={d.excerpt} type="article" noindex={d.draft} ogImage={d.ogImage} jsonLd={[articleLd, breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: d.title, path: `/resources/${entry.id}` }])]}>
+<BaseLayout title={d.title} description={d.excerpt} type="article" noindex={!!hold} ogImage={d.ogImage} jsonLd={[articleLd, breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: d.title, path: `/resources/${entry.id}` }])]}>
   <article>
     <header class="art-head">
       <div class="container">
-        <div class="badge-row"><span class="tag">{d.category}</span>{d.pillar && <span class="tag">{d.pillar}</span>}{d.draft && <span class="tag tag-accent">Draft</span>}</div>
+        <div class="badge-row"><span class="tag">{d.category}</span>{d.pillar && <span class="tag">{d.pillar}</span>}{hold && <span class="tag tag-accent">Held: {hold}</span>}</div>
         <h1>{d.title}</h1>
-        <p class="lede">{d.excerpt}</p>
+        <p class="lede">{d.lede ?? d.excerpt}</p>
         <div class="byline">
           <div class="avatar" aria-hidden="true">{author?.name?.split(' ').map((n) => n[0]).join('')}</div>
           <div><strong>{author?.name}</strong><span class="muted">{author?.title}</span></div>
@@ -53,10 +66,13 @@ const articleLd = {
     </header>
     <div class="container art-grid">
       <div class="art-main">
+        {showHeld && hold && (
+          <div class="hold card"><strong>Not published in production ({hold}).</strong>{d.dataNotes.length > 0 && <> Category 2 figures to replace with actuals before clearing: <em>{d.dataNotes.join(' · ')}</em>. Then set <code>dataReview: cleared</code> in the frontmatter.</>}</div>
+        )}
         {d.summary.length > 0 && <div class="summary card"><div class="eyebrow">Executive summary</div><ul>{d.summary.map((s) => <li>{s}</li>)}</ul></div>}
         <div class="prose"><Content /></div>
         {tool && <div class="tool-cta card-dark card"><div class="eyebrow">The tool for this article</div><h3>{tool.label}</h3><p>{tool.blurb}</p><a href={tool.href} class="btn btn-accent">{tool.label}</a></div>}
-        {d.tool === 'readiness-checklist' && <GatedDownload name="readiness-checklist" title="Insurance readiness checklist" body="The seven signals as a one-page scorecard, with the thresholds. PDF." />}
+        {download && <div style="margin-top:24px"><GatedDownload name={download.name} title={download.title} body={download.body} /></div>}
         {d.faq.length > 0 && <div style="margin-top:40px"><Faq items={d.faq} title="Frequently asked" /></div>}
       </div>
       <aside class="art-side">
@@ -76,6 +92,8 @@ const articleLd = {
   .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
   .dates { margin-left: auto; }
   .art-grid { display: grid; grid-template-columns: minmax(0, 720px) 280px; gap: 48px; justify-content: space-between; align-items: start; padding-bottom: 40px; }
+  .hold { margin-bottom: 20px; background: var(--accent-soft); border-color: var(--accent); font-size: 14px; }
+  .hold code { font-family: var(--mono); font-size: 13px; }
   .summary { margin-bottom: 32px; background: var(--surface-2); border-color: transparent; }
   .summary ul { margin: 0; padding-left: 1.2em; }
   .summary li { margin-bottom: 6px; }

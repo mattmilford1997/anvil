@@ -7,6 +7,13 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Deploy previews and branch deploys render scheduled and held posts so they can be reviewed before their date.
+[context.deploy-preview.environment]
+  ANVIL_PREVIEW = "1"
+
+[context.branch-deploy.environment]
+  ANVIL_PREVIEW = "1"
+
 # Long cache for hashed assets, short for HTML.
 [[headers]]
   for = "/_astro/*"

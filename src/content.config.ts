@@ -7,7 +7,8 @@ const resources = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: z.object({
     title: z.string(),
-    excerpt: z.string().max(200),
+    excerpt: z.string().max(160), // meta description
+    lede: z.string().optional(),   // longer intro shown under the title
     summary: z.array(z.string()).default([]),
     author: z.string().default('matt-milford'),
     publishDate: z.coerce.date(),
@@ -17,13 +18,19 @@ const resources = defineCollection({
     pillar: z.enum(['speed', 'ownership', 'transparency', 'risk', 'depth', 'developer']).optional(),
     keyword: z.string().optional(),
     tool: z
-      .enum(['calculator', 'rate-lookup', 'coverage-map', 'idle-counter', 'timeline', 'readiness-checklist', 'eligibility', 'none'])
+      .enum(['calculator', 'rate-lookup', 'coverage-map', 'idle-counter', 'timeline', 'readiness-checklist', 'eligibility', 'benchmark-download', 'diligence-checklist', 'docs', 'map-download', 'audit-checklist', 'all', 'none'])
       .default('none'),
     faq,
     related: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    // Publishing gates. A post ships to production only when draft is false, dataReview is 'cleared',
+    // and publishDate is not in the future at build time. See src/lib/content.ts.
+    dataReview: z.enum(['cleared', 'pending']).default('cleared'),
+    dataNotes: z.array(z.string()).default([]),
+    sourceFile: z.string().optional(),
+    calendarWeek: z.number().optional(),
   }),
 });
 

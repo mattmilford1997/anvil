@@ -1,13 +1,16 @@
 ---
 import { fmtDate } from '../lib/seo';
 import { authors } from '../data/team';
+import { holdReason } from '../lib/content';
+import { showHeld } from '../lib/seo';
 interface Props { post: any; featured?: boolean }
 const { post, featured = false } = Astro.props;
 const d = post.data;
 const author = authors[d.author];
+const hold = showHeld ? holdReason(post) : null;
 ---
 <article class:list={['ac card reveal', { featured }]}>
-  <div class="ac-meta"><span class="tag">{d.category}</span><span class="muted small">{fmtDate(d.publishDate)}</span></div>
+  <div class="ac-meta"><span><span class="tag">{d.category}</span>{hold && <span class="tag tag-accent" style="margin-left:6px">{hold}</span>}</span><span class="muted small">{fmtDate(d.publishDate)}</span></div>
   <h3><a href={`/resources/${post.id}`}>{d.title}</a></h3>
   <p class="muted">{d.excerpt}</p>
   <div class="ac-foot small muted">{author?.name}{d.pillar && <span> · {d.pillar}</span>}</div>
