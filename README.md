@@ -15,18 +15,10 @@ Node 22. No database, no server. Forms use Netlify Forms.
 
 ## Deploy to Netlify
 
-**Option A. This folder inside the foundrypc-website repo.**
-1. Netlify > Add new site > Import from GitHub > `mattmilford1997/foundrypc-website`.
-2. Set **Base directory** to `anvil`. Build command and publish dir are read from `anvil/netlify.toml` (`npm run build`, `dist`).
+1. Netlify > Add new site > Import from GitHub > this repository.
+2. Build command `npm run build`, publish directory `dist` (both are read from `netlify.toml`, leave Base directory blank).
 3. Set environment variable `SITE_URL` to the production domain (for example `https://www.getanvil.com`) so canonicals and the sitemap are right. Deploy previews can leave it unset.
 4. Add the custom domain, enable HTTPS.
-
-**Option B. Its own repository (recommended once the name is final).**
-```bash
-# from the repo root
-git subtree split --prefix=anvil -b anvil-site
-# push that branch to a new empty GitHub repo, then import it in Netlify with no base directory
-```
 
 ## Forms to Close
 

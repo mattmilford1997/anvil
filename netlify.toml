@@ -1,6 +1,4 @@
-# Netlify config for the Anvil marketing site.
-# In the Netlify UI, set "Base directory" to `anvil` if this folder lives inside
-# the foundrypc-website repo. If the folder is moved to its own repo, leave base blank.
+# Netlify config for the Anvil marketing site. Site lives at the repo root; leave Base directory blank.
 
 [build]
   command = "npm run build"
