@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import LogoStrip from '../components/LogoStrip.astro';
 import Section from '../components/Section.astro';
 import Tiles from '../components/Tiles.astro';
 import StatBand from '../components/StatBand.astro';
@@ -27,8 +26,6 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
     secondary={{ label: 'See rates by state', href: '/rates' }}
     mock
   />
-  <div class="container"><LogoStrip /></div>
-
   <Section>
     <Tiles items={[
       { icon: 'bolt', title: 'Live in weeks', body: 'Roster-add your clinicians to contracts that already exist. No new contract negotiation stands between you and your first insured visit.' },

@@ -43,7 +43,6 @@ const customers = defineCollection({
     careModel: z.enum(['Virtual', 'Hybrid', 'In-person', 'In-home', 'School-based']),
     states: z.array(z.string()).default([]),
     payerMix: z.array(z.string()).default([]),
-    firstParty: z.boolean().default(false), // operated by the Anvil / Arche team
     metrics: z.array(z.object({ value: z.string(), label: z.string() })).max(3).default([]),
     quote: z.string().optional(),
     quoteAuthor: z.string().optional(),

@@ -33,7 +33,7 @@ Netlify Forms collects submissions for `anvil-leads` (contact), `newsletter`, `c
 | Nav and footer links | `src/data/nav.ts` |
 | Coverage stats band (honesty-gated) | `src/data/stats.ts` |
 | Testimonials (honesty-gated) | `src/data/testimonials.ts` |
-| Portfolio companies, team, authors | `src/data/portfolio.ts`, `src/data/team.ts` |
+| Team and authors | `src/data/team.ts` |
 | Pricing tiers and notes | `src/data/pricing.ts` |
 | FAQ copy for home, ownership, pricing | `src/data/faqs.ts` |
 | Coverage map data (per state) | `src/data/coverage.ts` |

@@ -10,14 +10,14 @@ import { testimonials } from '../../data/testimonials';
 const cases = (await getCollection('customers', ({ data }) => !isProd || !data.draft)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
 ---
-<BaseLayout title="Customers" description="Case studies from care companies on Anvil, starting with the ones our own team operates. Real numbers, real timelines." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
-  <Hero compact eyebrow="Customers" title="Case studies with numbers in them." sub="We start with the care companies our own team runs, because we can publish the real timelines. External customers are added as they go live and sign off." />
+<BaseLayout title="Customers" description="Case studies from care companies on Anvil, published as customers go live and sign off. Real numbers, real timelines." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
+  <Hero compact eyebrow="Customers" title="Case studies with numbers in them." sub="Case studies are published as customers go live and sign off on the numbers. Until then, ask us for a reference in your specialty." />
   <Section tight>
     {cases.length === 0 && <p class="lede">Case studies are being finalized. <a href="/contact">Ask us</a> for a reference in your specialty.</p>}
     <div class="grid grid-2">
       {cases.map((c) => (
         <a href={`/customers/${c.id}`} class="card cs reveal">
-          <div class="badge-row"><span class="tag">{c.data.specialty}</span><span class="tag">{c.data.careModel}</span>{c.data.firstParty && <span class="tag tag-accent">Operated by our team</span>}{c.data.draft && <span class="tag tag-accent">Draft</span>}</div>
+          <div class="badge-row"><span class="tag">{c.data.specialty}</span><span class="tag">{c.data.careModel}</span>{c.data.draft && <span class="tag tag-accent">Draft</span>}</div>
           <h3>{c.data.company}</h3>
           <p class="muted">{c.data.headline}</p>
           {c.data.metrics.length > 0 && <div class="metrics">{c.data.metrics.map((m) => <div><strong>{m.value}</strong><span>{m.label}</span></div>)}</div>}

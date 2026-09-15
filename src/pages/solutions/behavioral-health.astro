@@ -3,11 +3,8 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
-import { getCollection } from 'astro:content';
-import { isProd } from '../../lib/seo';
-const cases = (await getCollection('customers', ({ data }) => (!isProd || !data.draft) && /behavioral|psych|therapy|ABA/i.test(data.specialty))).slice(0, 2);
 const faqs = [
-  { q: 'Do you handle Medicaid managed care?', a: 'Yes. Medicaid is the majority of behavioral health volume in many states and it runs through managed care organizations with their own panels and enrollment. Our own companies bill Medicaid MCOs in multiple states.' },
+  { q: 'Do you handle Medicaid managed care?', a: 'Yes. Medicaid is the majority of behavioral health volume in many states and it runs through managed care organizations with their own panels and enrollment. We work Medicaid MCO enrollment and contracting state by state, and Medicaid depth is the reason behavioral health groups come to us.' },
   { q: 'What about ABA authorizations?', a: 'Authorization is an intake workflow, not a billing afterthought. We run it as part of the flow: assessment codes, treatment plan submission, units authorized, and re-authorization calendared before it lapses.' },
   { q: 'Can associate-level clinicians bill under supervision?', a: 'It depends on the state and the payer. We map which license types can bill what, under whom, in each state you operate, and we chart to it.' },
   { q: 'Do you support IOP and PHP?', a: 'Yes, including per-diem and bundled billing, facility versus professional components, and the authorization cadence those programs require.' },
@@ -16,10 +13,10 @@ const faqs = [
 ---
 <SubpageLayout
   metaTitle="Insurance for behavioral health groups"
-  title="Behavioral health billing, by people who bill behavioral health."
+  title="Behavioral health billing, built for the way behavioral health actually bills."
   description="For psychiatry, therapy, ABA, and IOP groups going from one state to many. Medicaid MCO panels, ABA authorizations, supervision billing, collaborative care codes. First-party case studies."
   eyebrow="Solutions / Behavioral health"
-  sub="You won a payer contract in one state and cannot replicate it fast enough in the next three. Generalist billing vendors do not go deep on MCO panels, supervision rules, or ABA authorizations. We run those programs ourselves."
+  sub="You won a payer contract in one state and cannot replicate it fast enough in the next three. Generalist billing vendors do not go deep on MCO panels, supervision rules, or ABA authorizations. We do."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/behavioral-health' }, { name: 'Behavioral health', path: '/solutions/behavioral-health' }]}
   faqs={faqs}
   ctaTitle="Send us your payer list and your license mix."
@@ -39,13 +36,4 @@ const faqs = [
   <Section eyebrow="Medicaid" title="Where Medicaid is live on our PC today" tight>
     <CoverageMap id="coverage-bh" title="Medicaid and commercial coverage by state" />
   </Section>
-  {cases.length > 0 && (
-    <Section eyebrow="First-party proof" title="Programs we run ourselves" tight>
-      <div class="grid grid-2">
-        {cases.map((c) => (
-          <div class="card"><span class="tag">{c.data.specialty}</span><h3 style="margin-top:10px"><a href={`/customers/${c.id}`}>{c.data.company}</a></h3><p class="muted">{c.data.headline}</p></div>
-        ))}
-      </div>
-    </Section>
-  )}
 </SubpageLayout>

@@ -39,7 +39,6 @@ export const footerNav: { title: string; items: NavLink[] }[] = [
       { label: 'Own your contracts', href: '/own-your-contracts' },
       { label: 'Rates by state', href: '/rates' },
       { label: 'Pricing', href: '/pricing' },
-      { label: 'Customers', href: '/customers' },
       { label: 'Blog and guides', href: '/resources' },
       { label: 'API docs', href: SITE.docsUrl, external: true },
     ],

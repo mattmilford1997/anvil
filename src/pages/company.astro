@@ -3,19 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Tiles from '../components/Tiles.astro';
-import OperatorsBand from '../components/OperatorsBand.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { team } from '../data/team';
 import { breadcrumbJsonLd } from '../lib/seo';
 ---
-<BaseLayout title="Company" description="Anvil is built by Arche Studios, the operators behind Foundry PC and Homefront and eleven insurance-billing care companies. We built this because we solved it eleven times." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
-  <Hero compact eyebrow="Company" title="We got tired of solving insurance eleven times." sub="Anvil is the platform we wished existed each time we launched a care company. Rent a network to start. Own the contracts to finish. Built by the team that runs Foundry PC, Homefront, and the companies that use them." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+<BaseLayout title="Company" description="Anvil is built by Arche Studios, the team behind Foundry PC and Homefront. Insurance infrastructure for care companies, built by people who have run them." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
+  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is the platform we wished existed each time we launched a care company. Rent a network to start. Own the contracts to finish. Built by the team behind Foundry PC and Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
   <Section eyebrow="Mission" tight>
     <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
   </Section>
   <Section eyebrow="Why we built this" title="Operators first, vendors second">
     <div class="grid grid-2">
-      <div><p>Arche Studios launches and operates care companies: virtual behavioral health, in-home ABA, interventional psychiatry, school-based speech therapy, and more. Every one of them needed the same five things: payer contracts, credentialing, eligibility, claims, and denials. Every time, the choice was to build a team or rent a network that kept the contracts.</p><p>We built Foundry PC to form professional corporations and place physician owners. We built Homefront to credential and bill. Anvil puts them behind one platform with a rented 50-state PC in front, so a new company launches in weeks and ends year one owning its contracts.</p><p>We are the largest customer of our own platform. When something breaks, it breaks in our P&L first.</p></div>
+      <div><p>The people behind Anvil have launched and run care companies across virtual, hybrid, in-home, and in-person models. Every one needed the same five things: payer contracts, credentialing, eligibility, claims, and denials. Every time, the choice was to build a team or rent a network that kept the contracts.</p><p>We built Foundry PC to form professional corporations and place physician owners. We built Homefront to credential and bill. Anvil puts them behind one platform with a rented 50-state PC in front, so a new company launches in weeks and ends year one owning its contracts.</p><p>We built Anvil to be the third option: launch on a rented network, own the contracts by year one, and never rebuild the same five teams again.</p></div>
       <Tiles cols={2} items={[
         { title: 'Numbers before adjectives', body: 'If we cannot put a number on it, we do not put it on the site.' },
         { title: 'Own the asset', body: 'A care company should hold its own payer relationships. We structure everything toward that.' },
@@ -33,7 +32,6 @@ import { breadcrumbJsonLd } from '../lib/seo';
       <div class="card person muted"><h3 style="font-size:18px">Heads of payer ops, credentialing, engineering, and legal</h3><p class="small">TODO(launch): add names, titles, and photos.</p></div>
     </div>
   </Section>
-  <Section tight><OperatorsBand /></Section>
   <Section eyebrow="Built on" title="Three companies, one platform" tight>
     <div class="grid grid-3">
       <div class="card"><h3>Foundry PC</h3><p class="muted">Forms the professional corporation, matches the physician owner, and structures for each state's corporate practice of medicine rules. <a href="https://foundry-pc.com" rel="noopener">foundry-pc.com</a></p></div>

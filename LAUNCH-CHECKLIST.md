@@ -9,16 +9,14 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 - [ ] Pricing numbers: platform fee % per tier, one-time program fees, own-contract fee (`pricing.ts`, `TimelineSlider.astro`). Foundry numbers ($15,000 formation, $3,000/mo physician owner, $360/state) are already real.
 - [ ] Login destination (`SITE.loginUrl`), docs host (`SITE.docsUrl`), trust center (`SITE.trustUrl`).
 - [ ] Counsel sign-off on `/platform/compliance`, `/legal/privacy`, `/legal/terms`, and the footer disclaimer.
-- [ ] Which three Arche companies are the launch case studies (drafts exist for Third Space, Clearview, Luna).
 
 ## Data to fill
 - [ ] `src/data/stats.ts`: real states live, payers live, clinicians credentialed, median days to first paid claim. Set `verified: true`.
 - [ ] `src/data/coverage.ts`: real per-state rented / contracting / Medicaid status.
 - [ ] `public/rates.json`: Parite export, or swap in the Parite embed.
 - [ ] `src/data/testimonials.ts`: three signed-off quotes (CEO, engineer, CFO or investor). Set `approved: true`.
-- [ ] `src/data/portfolio.ts`: confirm each company line; real state and specialty counts.
 - [ ] `src/data/team.ts`: titles, photos, additional team members.
-- [ ] `src/content/customers/*.md`: fill bracketed metrics, set `draft: false` after sign-off.
+- [ ] `src/content/customers/`: add external case studies as customers sign off (no first-party or portfolio companies are named on the site).
 - [ ] `src/pages/careers.astro`: real open roles or ATS link.
 - [ ] `src/pages/platform/compliance.astro`: SOC 2 target date.
 

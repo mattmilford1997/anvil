@@ -15,7 +15,7 @@ const { Content } = await render(entry);
 <BaseLayout title={`${d.company}: ${d.headline}`} description={d.headline} type="article" noindex={d.draft} jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }, { name: d.company, path: `/customers/${entry.id}` }])]}>
   <section class="cs-hero">
     <div class="container">
-      <div class="badge-row"><span class="tag">{d.specialty}</span><span class="tag">{d.careModel}</span>{d.states.length > 0 && <span class="tag">{d.states.join(', ')}</span>}{d.firstParty && <span class="tag tag-accent">Operated by our team</span>}{d.draft && <span class="tag tag-accent">Draft, not yet published</span>}</div>
+      <div class="badge-row"><span class="tag">{d.specialty}</span><span class="tag">{d.careModel}</span>{d.states.length > 0 && <span class="tag">{d.states.join(', ')}</span>}{d.draft && <span class="tag tag-accent">Draft, not yet published</span>}</div>
       <div class="eyebrow" style="margin-top:20px">{d.company}</div>
       <h1>{d.headline}</h1>
       {d.metrics.length > 0 && <div class="metrics">{d.metrics.map((m) => <div><strong>{m.value}</strong><span>{m.label}</span></div>)}</div>}

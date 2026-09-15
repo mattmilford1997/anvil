@@ -1,6 +1,6 @@
 # Anvil
 
-> Anvil is insurance infrastructure for care companies. Launch in-network in every state in weeks on a credentialed 50-state professional corporation (PC), while Anvil forms, credentials, and contracts your own PC in parallel, so you own the payer contracts, rates, and relationships by year one. Built by Arche Studios, the operators behind Foundry PC and Homefront and eleven insurance-billing care companies.
+> Anvil is insurance infrastructure for care companies. Launch in-network in every state in weeks on a credentialed 50-state professional corporation (PC), while Anvil forms, credentials, and contracts your own PC in parallel, so you own the payer contracts, rates, and relationships by year one. Built by Arche Studios, the team behind Foundry PC and Homefront.
 
 Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth in behavioral health (psychiatry, therapy, ABA, IOP/PHP, collaborative care) and Medicaid managed care as well as commercial and Medicare Advantage. Pricing is published. Reimbursement ranges by state and code are published without a form.
 
@@ -61,7 +61,6 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 ## Company
 
 - [Company](https://www.getanvil.com/company)
-- [Customers](https://www.getanvil.com/customers)
 - [Contact](https://www.getanvil.com/contact)
 
 ## Key facts
