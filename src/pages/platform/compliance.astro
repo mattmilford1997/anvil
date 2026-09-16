@@ -12,11 +12,11 @@ const faqs = [
 ];
 ---
 <SubpageLayout
-  metaTitle="Compliance and structure"
+  metaTitle="CPOM and AKS compliance for telehealth billing"
   title="Structured for the federal rules and the state ones."
-  description="Anvil's rental phase aligns with the AKS personal services safe harbor. Your own PC is structured for each state's corporate practice of medicine rules. HIPAA in place, SOC 2 in progress."
+  description="Corporate practice of medicine for telehealth. AKS safe harbor MSO, CPOM by state, HIPAA in place, SOC 2 in progress."
   eyebrow="Platform / Compliance"
-  sub="Two layers of law apply to this business: federal fraud and abuse, and state corporate practice of medicine. Most vendors talk about the first. We structure for both."
+  sub="Corporate practice of medicine and AKS both apply to telehealth billing. We structure the rental MSO for the federal safe harbor and your PC for each state's CPOM rules."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Compliance', path: '/platform/compliance' }]}
   faqs={faqs}
   ctaTitle="Bring your counsel. We will bring ours."
@@ -24,7 +24,7 @@ const faqs = [
   ctaPrimary={{ label: 'Get started', href: '/contact' }}
   ctaSecondary={{ label: 'Trust center', href: SITE.trustUrl }}
 >
-  <Section eyebrow="The structure" title="How the two phases are papered">
+  <Section eyebrow="The structure" title="CPOM, AKS, and the MSO-PC structure" intro="The rental phase is an MSO arrangement with Anvil's PC. The ownership phase is your MSO and your own PC, papered for state corporate practice of medicine. That is how telehealth billing stays inside the rules as volume moves.">
     <div class="grid grid-2">
       <div class="card">
         <h3>Rental phase</h3>
@@ -65,5 +65,8 @@ const faqs = [
       </table>
     </div>
     <p class="small muted" style="margin-top:12px">Compliance page language reviewed by counsel before publication. TODO(launch): counsel sign-off.</p>
+  </Section>
+  <Section eyebrow="Related" title="Owning the PC is the CPOM answer in practice" tight>
+    <p class="lede">See <a href="/own-your-contracts">own your contracts</a> for how volume moves to an entity you control. If you are leaving a network rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table.</p>
   </Section>
 </SubpageLayout>
