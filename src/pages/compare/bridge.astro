@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../../lib/seo';
+
+const faqs = [
+  {
+    q: 'Who owns the payer contracts on Anvil vs on Bridge?',
+    a: 'On Anvil, you launch on our contracted PC and we migrate volume to contracts in your entity\'s name. Bridge is a network rental vendor: the vendor holds the contracts. If you never hold them, they are not an asset you can take with you.',
+  },
+  {
+    q: 'Is Bridge a rental PC, and does Anvil use my own entity?',
+    a: 'Bridge rents you access to a professional corporation the vendor controls. Anvil uses a rental PC to launch, then forms your own PC, places a physician owner, and bills under your entity as each of your contracts becomes effective.',
+  },
+  {
+    q: 'How does Anvil handle behavioral health compared with a generalist rental vendor?',
+    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. We do not list Bridge\'s specialty mix here. See their site, then ask us to walk your license mix.',
+  },
+  {
+    q: 'How do I switch from Bridge, or any network rental vendor, without a revenue gap?',
+    a: 'Keep billing where you are. Form your PC, file contract applications in your name, and move volume payer by payer as each contract is effective. Give notice after the majority of volume is on your contracts. Remaining payers can run through Anvil\'s rented PC. Start on the switching page.',
+  },
+  {
+    q: 'What does Anvil cost next to Bridge?',
+    a: 'Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. We do not publish Bridge\'s prices. Model Anvil on the pricing page, then ask us to compare on your numbers.',
+  },
+  {
+    q: 'How do CPOM and AKS show up in this comparison?',
+    a: 'Anvil\'s rental phase is structured to align with the AKS personal services safe harbor. Your own PC is structured for each state\'s corporate practice of medicine rules, with an MSO-PC management agreement. That is the ownership path network rental does not take. Counsel reviews every Anvil structure. We do not describe Bridge\'s legal structure here.',
+  },
+];
+
+const rows: [string, string[]][] = [
+  ['Payer contract ownership', ['Migrates to your entity', 'Vendor holds the contracts']],
+  ['Entity you bill under', ['Anvil PC, then your own PC', 'A rented professional corporation']],
+  ['Network model', ['Rent, then own', 'Network rental']],
+  ['MSO-PC and CPOM', ['AKS-aligned rental. Your PC structured for state CPOM.', 'Not described here. Ask them.']],
+  ['Behavioral health', ['Medicaid MCO, ABA, psychiatry, IOP, collaborative care', 'Not listed here. See their site.']],
+  ['Switching path', ['Land your contracts, then give notice', 'Review your current agreement']],
+  ['Pricing', ['Published. See pricing.', 'Not listed here']],
+  ['Rate visibility', ['Contracted rate and fee as separate lines', 'Lease fee, typical of network rental']],
+  ['If you leave', ['Contracts stay with your PC after migration', 'Leaving without contracts is a relaunch']],
+];
+---
+<BaseLayout
+  title="Bridge alternative: compare Anvil vs Bridge"
+  description="Compare Bridge and Anvil. Bridge is network rental. Anvil is a Bridge alternative that migrates payer contracts into your name."
+  jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Anvil vs Bridge', path: '/compare/bridge' }])]}
+>
+  <Hero
+    compact
+    eyebrow="Compare / Bridge"
+    title="A Bridge alternative that ends with contracts in your name."
+    sub="Compare Bridge and Anvil on who owns the payer contracts, which entity you bill under, and how you leave network rental. This is a fact table from Anvil's public model, not a teardown of unpublished Bridge features or prices."
+    primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
+    secondary={{ label: 'How switching works', href: '/solutions/switching' }}
+  />
+
+  <Section eyebrow="The difference" title="Bridge rents the network. Anvil migrates you off it." intro="Bridge is a network rental vendor. Anvil starts there so you can launch, then moves volume to payer contracts your own entity holds. Rent, then own.">
+    <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />
+    <p class="small muted" style="margin-top:16px">Anvil cells are from published site copy. Bridge cells describe the network rental model Bridge operates. They are not a quote from Bridge, and they are not a claim about unpublished Bridge features, fees, or customer counts. Where we do not have a public number, we say so.</p>
+  </Section>
+
+  <Section eyebrow="What the rows mean" title="Ownership, entity, behavioral health, and the switch">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>You own the payer contracts</h3>
+        <p class="muted">On Anvil, contracting for your entity runs in parallel with launch. As each contract is effective, new visits with that payer route to you. On a rental model, the vendor keeps the contracts, rates, and relationships. Read the full migration on <a href="/own-your-contracts">own your contracts</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Rental PC vs your own entity</h3>
+        <p class="muted">A rented PC is the fastest way to bill. It is the wrong place to stay. Anvil forms your professional corporation, places a physician owner, and papers the MSO-PC relationship for each state's CPOM rules. See <a href="/platform/compliance">CPOM and AKS compliance</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Behavioral health depth</h3>
+        <p class="muted">Anvil is built for psychiatry, therapy, ABA, and IOP groups going from one state to many. Medicaid MCO panels, ABA authorizations, supervision billing, and collaborative care codes are the work. We do not inventory Bridge's specialty coverage here. Start with <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.</p>
+      </div>
+      <div class="card">
+        <h3>The switching path</h3>
+        <p class="muted">Do not give notice first. Collect credentialing files, form your PC, and file in your name. Move volume as contracts land. Anvil's rented PC can cover new states and closed panels during the switch. The playbook is on <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Related" title="Read next" tight>
+    <ul class="check-list">
+      <li><a href="/solutions/switching">Switching from a network rental vendor</a></li>
+      <li><a href="/own-your-contracts">Own your contracts vs network rental</a></li>
+      <li><a href="/platform/compliance">CPOM and AKS compliance for telehealth billing</a></li>
+      <li><a href="/pricing">Published Anvil pricing</a></li>
+      <li><a href="/contact">Get a switching plan</a></li>
+    </ul>
+  </Section>
+
+  <Section tight><Faq items={faqs} /></Section>
+  <CtaBand
+    title="Send us your current agreement. We will map the exit."
+    body="Notice terms, which payers move first, and what you own when you are done. No invented Bridge quotes. Your numbers, our published model."
+    primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
+    secondary={{ label: 'See pricing', href: '/pricing' }}
+  />
+</BaseLayout>

@@ -1,17 +1,25 @@
 ---
-const cols = ['Anvil', 'Network rental vendors', 'Point solutions', 'Build in-house'];
-const rows: [string, string[]][] = [
-  ['Time to national in-network', ['Weeks', 'Weeks', '3-6 months', '12-24 months']],
-  ['You own the payer contracts', ['Yes, by design', 'No', 'Yes', 'Yes']],
-  ['Rate visibility', ['Full', 'Lease fee only', 'Full', 'Full']],
-  ['Medicaid + commercial + MA', ['Yes', 'Mostly commercial and MA', 'Varies', 'Yes']],
-  ['Virtual + hybrid + in-person', ['Yes', 'Virtual only', 'Varies', 'Yes']],
-  ['Claims risk during launch', ['Carried by Anvil', 'Carried by vendor', 'Yours', 'Yours']],
-  ['API, eligibility at booking', ['Yes', 'Yes', 'Partial', 'Build it']],
-  ['Published pricing', ['Yes', 'No', 'Sometimes', 'n/a']],
-];
-const good = (v: string) => /^(yes|full|weeks|carried by anvil)/i.test(v);
-const bad = (v: string) => /^(no$|lease|yours|build it|12-24|virtual only)/i.test(v);
+interface Props {
+  cols?: string[];
+  rows?: [string, string[]][];
+  highlight?: boolean;
+}
+const {
+  cols = ['Anvil', 'Network rental vendors', 'Point solutions', 'Build in-house'],
+  rows = [
+    ['Time to national in-network', ['Weeks', 'Weeks', '3-6 months', '12-24 months']],
+    ['You own the payer contracts', ['Yes, by design', 'No', 'Yes', 'Yes']],
+    ['Rate visibility', ['Full', 'Lease fee only', 'Full', 'Full']],
+    ['Medicaid + commercial + MA', ['Yes', 'Mostly commercial and MA', 'Varies', 'Yes']],
+    ['Virtual + hybrid + in-person', ['Yes', 'Virtual only', 'Varies', 'Yes']],
+    ['Claims risk during launch', ['Carried by Anvil', 'Carried by vendor', 'Yours', 'Yours']],
+    ['API, eligibility at booking', ['Yes', 'Yes', 'Partial', 'Build it']],
+    ['Published pricing', ['Yes', 'No', 'Sometimes', 'n/a']],
+  ],
+  highlight = true,
+} = Astro.props;
+const good = (v: string) => highlight && /^(yes|full|weeks|carried by anvil)/i.test(v);
+const bad = (v: string) => highlight && /^(no$|lease|yours|build it|12-24|virtual only)/i.test(v);
 ---
 <div class="cmp-wrap reveal">
   <table class="cmp">
