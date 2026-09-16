@@ -20,8 +20,8 @@ const offerLd = {
   })),
 };
 ---
-<BaseLayout title="Pricing" description="Published pricing. A platform fee on collections during rental, plus fixed one-time and monthly fees for your own PC and physician owner. Model it with the calculator." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing' }]), offerLd]}>
-  <Hero compact eyebrow="Pricing" title="Published. Because you should be able to model this without a sales call." sub="A platform fee on collections while you bill under our PC. Fixed, published fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own." primary={{ label: 'Get started', href: '/contact?src=pricing' }} secondary={{ label: 'Open the calculator', href: '#calculator' }} />
+<BaseLayout title="Anvil pricing: platform fee and PC costs, published" description="Telehealth billing platform pricing, published. Platform fee and rental PC fee, plus fixed payer contracting cost for your own PC." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing' }]), offerLd]}>
+  <Hero compact eyebrow="Pricing" title="Published. Because you should be able to model this without a sales call." sub="Telehealth billing platform pricing is published, so you can model this without a sales call. A platform fee on collections while you bill under our PC, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves." primary={{ label: 'Get started', href: '/contact?src=pricing' }} secondary={{ label: 'Open the calculator', href: '#calculator' }} />
   <Section tight>
     <div class="tiers">
       {tiers.map((t) => (
