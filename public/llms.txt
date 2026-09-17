@@ -9,7 +9,7 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 - [Home](https://www.anvilcontracts.com/): the rent-then-own model in one scroll
 - [How it works](https://www.anvilcontracts.com/platform): five workstreams, two entities, one platform
 - [Own your contracts](https://www.anvilcontracts.com/own-your-contracts): why network rental is renting your revenue, and the month-by-month migration
-- [Rates](https://www.anvilcontracts.com/rates): reimbursement rates by state and CPT code; lookup now, per-state pages when Parite data is loaded
+- [Rates](https://www.anvilcontracts.com/rates): reimbursement rates by state and CPT code; lookup plus per-state pages (e.g. [90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837)) from Parite
 - [Pricing](https://www.anvilcontracts.com/pricing): Launch, Build, Scale tiers and a build-vs-partner calculator
 
 ## Platform

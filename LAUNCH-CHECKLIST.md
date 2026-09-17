@@ -13,7 +13,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 ## Data to fill
 - [ ] `src/data/stats.ts`: real states live, payers live, clinicians credentialed, median days to first paid claim. Set `verified: true`.
 - [ ] `src/data/coverage.ts`: real per-state rented / contracting / Medicaid status.
-- [ ] `public/rates.json`: Parite export, or swap in the Parite embed.
+- [x] `public/rates.json`: Parite export 2026-09-17, 389 real rows (medicare, medicaid-ffs, uhc). Codes without rows are omitted.
 - [ ] `src/data/testimonials.ts`: three signed-off quotes (CEO, engineer, CFO or investor). Set `approved: true`.
 - [ ] `src/data/team.ts`: titles, photos, additional team members.
 - [ ] `src/content/customers/`: add external case studies as customers sign off (no first-party or portfolio companies are named on the site).

@@ -1,30 +1,26 @@
 ---
 /**
- * Rate lookup. Data source is Parite. Two modes:
- *  1) If SITE.pariteEmbed is set (script or iframe URL), render the Parite embed.
- *  2) Otherwise read /rates.json (public/rates.json), a small export from Parite, and render ranges locally.
- * No form gate. Rates are published ranges, not guarantees.
+ * Rate lookup. Data source is Parite via /rates.json.
+ * Dropdowns only include CPT codes that have at least one real row.
+ * Missing codes (99214, 99213, 96158, 99484 in the Sep 2026 export) are omitted, not padded.
  */
-import { stateNames } from '../data/coverage';
+import { servicesInData, payerLabels, rateStateNames } from '../lib/rates';
 interface Props { compact?: boolean; id?: string }
 const { compact = false, id = 'rate-lookup' } = Astro.props;
-const services = [
-  { code: '90837', label: '90837 Psychotherapy, 60 min' },
-  { code: '90834', label: '90834 Psychotherapy, 45 min' },
-  { code: '90791', label: '90791 Psychiatric diagnostic evaluation' },
-  { code: '99214', label: '99214 Established patient visit, moderate' },
-  { code: '99213', label: '99213 Established patient visit, low' },
-  { code: '96158', label: '96158 Health behavior intervention, 30 min' },
-  { code: '97153', label: '97153 ABA adaptive behavior treatment, 15 min' },
-  { code: '99484', label: '99484 Behavioral health integration' },
-];
+const services = servicesInData();
+const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(b[1]));
 ---
-<div class:list={['rl card', { compact }]} id={id} data-rates-src="/rates.json">
+<div
+  class:list={['rl card', { compact }]}
+  id={id}
+  data-rates-src="/rates.json"
+  data-payer-labels={JSON.stringify(payerLabels)}
+>
   <div class="rl-head">
     <div>
       <div class="eyebrow">Rate lookup</div>
       <h3>{compact ? 'What do payers pay for your codes?' : 'Published reimbursement rates by state and CPT code'}</h3>
-      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. Use them to model, then ask us for a contracting plan.</p>}
+      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. Only CPT codes with at least one Parite row are listed.</p>}
     </div>
   </div>
   <form class="rl-form" onsubmit="return false">
@@ -32,7 +28,7 @@ const services = [
       <label for={`${id}-state`}>State</label>
       <select id={`${id}-state`} name="state">
         <option value="">Choose a state</option>
-        {Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1])).map(([k, v]) => <option value={k}>{v}</option>)}
+        {states.map(([k, v]) => <option value={k}>{v}</option>)}
       </select>
     </div>
     <div class="field">
@@ -41,6 +37,7 @@ const services = [
         <option value="">Choose a service</option>
         {services.map((s) => <option value={s.code}>{s.label}</option>)}
       </select>
+      {!compact && <span class="hint">Not in this export: 99214, 99213, 96158, 99484. We do not list a code until Parite has a row.</span>}
     </div>
     {!compact && (
       <div class="field">
@@ -67,40 +64,64 @@ const services = [
   .rl-out .range strong { font-size: 28px; color: var(--ink); letter-spacing: -0.02em; }
   .rl-out table { margin-top: 12px; font-size: 14px; }
   .rl-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hint { font-size: 13px; color: var(--muted); }
 </style>
 <script>
   type Row = { state: string; code: string; payer?: string; low: number; high: number; median?: number; source?: string };
-  const money = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const money = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const payerName = (p: string | undefined, labels: Record<string, string>) => (p && labels[p]) || p || 'Blended';
   document.querySelectorAll<HTMLElement>('.rl').forEach(async (rl) => {
     const out = rl.querySelector<HTMLElement>('.rl-out')!;
     const form = rl.querySelector<HTMLFormElement>('.rl-form')!;
     const stateSel = form.querySelector<HTMLSelectElement>('[name=state]')!;
     const codeSel = form.querySelector<HTMLSelectElement>('[name=code]')!;
     const payerSel = form.querySelector<HTMLSelectElement>('[name=payer]');
+    const labels = JSON.parse(rl.dataset.payerLabels || '{}') as Record<string, string>;
+    const codeOptions = [...codeSel.querySelectorAll('option')].filter((o) => o.value).map((o) => ({ value: o.value, label: o.textContent || o.value }));
     let rows: Row[] = [];
     try { const r = await fetch(rl.dataset.ratesSrc!); if (r.ok) rows = (await r.json()).rates || []; } catch {}
+    const codesForState = (st: string) => {
+      const have = new Set(rows.filter((r) => !st || r.state === st).map((r) => r.code));
+      return codeOptions.filter((c) => have.has(c.value));
+    };
+    const fillCodes = () => {
+      if (!rows.length) return;
+      const st = stateSel.value;
+      const keep = codesForState(st);
+      const prev = codeSel.value;
+      codeSel.innerHTML = '<option value="">Choose a service</option>' + keep.map((c) => `<option value="${c.value}">${c.label}</option>`).join('');
+      if (keep.some((c) => c.value === prev)) codeSel.value = prev;
+    };
+    const fillPayers = () => {
+      if (!payerSel) return;
+      const st = stateSel.value, code = codeSel.value;
+      const payers = [...new Set(rows.filter((r) => (!st || r.state === st) && (!code || r.code === code)).map((r) => r.payer).filter(Boolean))] as string[];
+      const prev = payerSel.value;
+      payerSel.innerHTML = '<option value="">All payers</option>' + payers.sort().map((p) => `<option value="${p}">${payerName(p, labels)}</option>`).join('');
+      if (payers.includes(prev)) payerSel.value = prev;
+    };
     const render = () => {
       const st = stateSel.value, code = codeSel.value, payer = payerSel?.value || '';
       if (!st || !code) { out.innerHTML = '<p class="muted">Pick a state and a code to see the range.</p>'; return; }
       const hits = rows.filter((r) => r.state === st && r.code === code && (!payer || r.payer === payer));
       if (!hits.length) {
-        out.innerHTML = `<p><strong>No published range yet for ${code} in ${st}.</strong> <span class="muted">We publish ranges as payers come live. Ask us for this state and code and we will send what we have.</span></p>`;
+        out.innerHTML = `<p><strong>No published range for ${code} in ${st}.</strong> <span class="muted">This export only includes codes with at least one Parite row. 99214, 99213, 96158, and 99484 are omitted until data exists. Ask us for this state and code and we will send what we have.</span></p>`;
         return;
       }
       const low = Math.min(...hits.map((h) => h.low)), high = Math.max(...hits.map((h) => h.high));
-      let html = `<div class="range"><strong>${money(low)} to ${money(high)}</strong><span class="muted">per unit, ${hits.length} payer${hits.length > 1 ? 's' : ''} in ${st}</span></div>`;
-      if (payerSel && hits.length > 1) {
-        html += '<table><thead><tr><th>Payer</th><th>Low</th><th>High</th></tr></thead><tbody>' + hits.map((h) => `<tr><td>${h.payer || 'Blended'}</td><td>${money(h.low)}</td><td>${money(h.high)}</td></tr>`).join('') + '</tbody></table>';
-      }
+      const rangeText = low === high ? money(low) : `${money(low)} to ${money(high)}`;
+      const href = `/rates/${st.toLowerCase()}/${code}`;
+      let html = `<div class="range"><strong>${rangeText}</strong><span class="muted">per unit, ${hits.length} payer${hits.length > 1 ? 's' : ''} in ${st}</span></div>`;
+      html += '<table><thead><tr><th>Payer</th><th>Low</th><th>High</th><th>Median</th><th>Source</th></tr></thead><tbody>' +
+        hits.map((h) => `<tr><td>${payerName(h.payer, labels)}</td><td>${money(h.low)}</td><td>${money(h.high)}</td><td>${h.median != null ? money(h.median) : '—'}</td><td>${h.source || 'Parite'}</td></tr>`).join('') +
+        '</tbody></table>';
+      html += `<p class="small" style="margin-top:12px"><a href="${href}">${code} reimbursement rate in ${st} by payer (2026)</a></p>`;
       out.innerHTML = html;
     };
-    const fillPayers = () => {
-      if (!payerSel) return;
-      const payers = [...new Set(rows.filter((r) => r.state === stateSel.value).map((r) => r.payer).filter(Boolean))].sort();
-      payerSel.innerHTML = '<option value="">All payers</option>' + payers.map((p) => `<option value="${p}">${p}</option>`).join('');
-    };
-    stateSel.addEventListener('change', () => { fillPayers(); render(); });
-    codeSel.addEventListener('change', render);
+    stateSel.addEventListener('change', () => { fillCodes(); fillPayers(); render(); });
+    codeSel.addEventListener('change', () => { fillPayers(); render(); });
     payerSel?.addEventListener('change', render);
+    fillCodes();
+    fillPayers();
   });
 </script>
