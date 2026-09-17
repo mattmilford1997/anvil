@@ -2,8 +2,7 @@
  * Parite reimbursement ranges. Only rows in public/rates.json are published.
  * Do not invent codes or pad missing payers.
  */
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import raw from '../../public/rates.json';
 import { stateNames as baseStateNames } from '../data/coverage';
 
 export type RateRow = {
@@ -24,8 +23,7 @@ export type RatesFile = {
   rates: RateRow[];
 };
 
-const filePath = fileURLToPath(new URL('../../public/rates.json', import.meta.url));
-export const ratesFile = JSON.parse(readFileSync(filePath, 'utf8')) as RatesFile;
+export const ratesFile = raw as RatesFile;
 export const rateRows: RateRow[] = ratesFile.rates ?? [];
 
 export const extraStateNames: Record<string, string> = {

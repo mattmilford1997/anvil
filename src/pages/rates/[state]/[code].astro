@@ -22,7 +22,7 @@ export function getStaticPaths() {
 }
 
 const { rows, stateUpper } = Astro.props;
-const { state, code } = Astro.params;
+const { code } = Astro.params;
 const name = stateName(stateUpper);
 const title = `${code} reimbursement rate in ${name} by payer (2026)`;
 const description = `${code} reimbursement rate in ${name} by payer, from Parite (Medicare PFS, Medicaid FFS, UHC TiC where present). Planning ranges, not a guarantee.`;
