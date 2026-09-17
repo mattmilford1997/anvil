@@ -40,12 +40,12 @@
 # Friendly aliases
 [[redirects]]
   from = "/docs"
-  to = "https://docs.getanvil.com"
+  to = "https://docs.anvilcontracts.com"
   status = 302
 
 [[redirects]]
   from = "/trust"
-  to = "https://trust.getanvil.com"
+  to = "https://trust.anvilcontracts.com"
   status = 302
 
 [[redirects]]

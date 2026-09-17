@@ -6,8 +6,9 @@ import { SITE } from '../../../site.config.mjs';
 const faqs = [
   { q: 'What is a soft eligibility check?', a: 'A check run from name, date of birth, and payer (or a member ID if you have it) that returns coverage status, plan, and an estimated copay without asking the patient to upload a card or wait. It is the right check at booking. A hard check with full benefits detail runs before the visit.' },
   { q: 'How long does integration take?', a: 'Most teams ship the hosted widget in a day and the API in under a week. The sandbox returns the same payloads as production, including outage and not-found cases.' },
+  { q: 'What is payer outage detection for eligibility?', a: 'Payer eligibility endpoints fail. The API returns a distinct outage status instead of treating the failure as "not covered," so eligibility verification at booking can let the patient continue and re-check before the visit. We do not publish uptime percentages.' },
   { q: 'What happens when a payer\'s eligibility system is down?', a: 'The API returns a distinct outage status rather than a false negative, so your booking flow can let the patient continue and re-check later. We monitor payer availability and surface it in the dashboard.' },
-  { q: 'Can we show the patient their copay before they book?', a: 'Yes. The response includes an estimate based on the plan\'s benefit for the service type. Show it as an estimate; the final amount depends on deductible status at the date of service.' },
+  { q: 'Can we show the patient their copay before they book?', a: 'Yes. The copay estimate API response includes an estimate based on the plan\'s benefit for the service type. Show it as an estimate; the final amount depends on deductible status at the date of service.' },
   { q: 'Does this work while we are on the rented PC?', a: 'Yes. Eligibility is entity-independent. The same integration keeps working as volume moves to your own PC.' },
 ];
 const sample = `POST /v1/eligibility/soft-check
@@ -41,7 +42,7 @@ const sample = `POST /v1/eligibility/soft-check
   ctaPrimary={{ label: 'API docs', href: SITE.docsUrl }}
   ctaSecondary={{ label: 'Get started', href: '/contact' }}
 >
-  <Section>
+  <Section eyebrow="At booking" title="Eligibility verification at booking" intro="A real-time insurance eligibility API runs eligibility verification at booking from name, date of birth, and payer. The copay estimate API returns an estimated copay in the same response so the patient can book without uploading a card.">
     <FeatureRow eyebrow="Developer-first" title="Designed to sit inside your booking flow" bullets={[
       'Soft check from name, DOB, and payer. Member ID optional.',
       'Estimated copay and deductible status in the response.',
@@ -52,6 +53,14 @@ const sample = `POST /v1/eligibility/soft-check
       <p>Your engineers get sandbox keys in week one. The sandbox returns production-shaped payloads, including the ugly cases.</p>
       <pre slot="art" class="code"><code>{sample}</code></pre>
     </FeatureRow>
+  </Section>
+  <Section eyebrow="Payer outages" title="Payer outage detection for eligibility" intro="Payer eligibility systems go down. Payer outage detection is how a real-time insurance eligibility API keeps eligibility verification at booking from treating an outage as not covered.">
+    <div class="grid grid-3">
+      <div class="card"><h3>Detect the outage</h3><p class="muted">When a payer's eligibility endpoint errors, times out, or returns a silent bad response, the API emits a distinct outage status. That is not a coverage decision.</p></div>
+      <div class="card"><h3>Do not convert it to "not covered"</h3><p class="muted">A false negative at booking sends the patient away. The booking flow can let them continue, mark the copay estimate as pending, and re-check before the visit.</p></div>
+      <div class="card"><h3>Re-check before the visit</h3><p class="muted">Queue fallback bookings. When the payer recovers, re-run the check, confirm the copay estimate, and only then treat coverage as known. We do not publish uptime percentages.</p></div>
+    </div>
+    <p class="lede" style="margin-top:24px">The sandbox includes outage payloads so engineers can test the fallback before it hits production. Read the <a href="/resources/payer-eligibility-outage-detection">longer write-up on detecting payer eligibility outages</a>, or open the <a href={SITE.docsUrl}>API docs</a>.</p>
   </Section>
   <Section eyebrow="Measure it" title="What to track once eligibility is live" tight>
     <div class="grid grid-3">

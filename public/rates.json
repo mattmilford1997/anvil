@@ -1,5 +1,3585 @@
 {
-  "_readme": "Export from Parite. Each row: state (2-letter), code (CPT), payer (optional), low, high (USD per unit). Rows here are read by the rate lookup widget at build-free runtime. TODO(launch): populate from Parite. Do not publish illustrative numbers.",
-  "updated": "2026-09-15",
-  "rates": []
+  "_readme": "Parite export 2026-09-17. Real cells only (medicare, medicaid-ffs, uhc). Codes 90837/90834/90791 (+97153 medicaid where available). No illustrative numbers. Omitted codes without Parite data: 99214, 99213, 96158, 99484.",
+  "updated": "2026-09-17",
+  "source": "Parite (goparite.com)",
+  "rates": [
+    {
+      "state": "AK",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 334.31,
+      "high": 334.31,
+      "median": 334.31,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AK",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 240.07,
+      "high": 240.07,
+      "median": 240.07,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AK",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 129.01,
+      "high": 338.55,
+      "median": 173.33,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AL",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 167.51,
+      "high": 167.51,
+      "median": 167.51,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AL",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 209.37,
+      "median": 160.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AR",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 166.76,
+      "high": 166.76,
+      "median": 166.76,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AR",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 84.66,
+      "high": 201.18,
+      "median": 144.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AZ",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 155.85,
+      "high": 181.41,
+      "median": 181.41,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AZ",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 171.88,
+      "high": 171.88,
+      "median": 171.88,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AZ",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 227.01,
+      "median": 149.12,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CA",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 128.08,
+      "high": 128.08,
+      "median": 128.08,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-15"
+    },
+    {
+      "state": "CA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 179.49,
+      "high": 206.78,
+      "median": 181.4,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 284.48,
+      "median": 167.62,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CO",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 177.59,
+      "high": 177.59,
+      "median": 177.59,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CO",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.0,
+      "high": 206.27,
+      "median": 150.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CT",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 179.48,
+      "high": 179.48,
+      "median": 179.48,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CT",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 94.49,
+      "high": 238.45,
+      "median": 153.03,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DC",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 116.62,
+      "high": 150.61,
+      "median": 150.61,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "DC",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 188.26,
+      "high": 188.26,
+      "median": 188.26,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DC",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 124.39,
+      "high": 257.94,
+      "median": 163.38,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DE",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.39,
+      "high": 173.39,
+      "median": 173.39,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DE",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 80.9,
+      "high": 231.85,
+      "median": 159.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "FL",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 106.77,
+      "high": 134.82,
+      "median": 134.82,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "FL",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 171.73,
+      "high": 176.19,
+      "median": 174.47,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "FL",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 90.0,
+      "high": 227.31,
+      "median": 148.63,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "GA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 168.68,
+      "high": 174.58,
+      "median": 171.63,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "GA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.06,
+      "high": 216.59,
+      "median": 148.63,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "HI",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 179.16,
+      "high": 179.16,
+      "median": 179.16,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "HI",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 131.08,
+      "high": 232.89,
+      "median": 161.44,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.17,
+      "high": 169.17,
+      "median": 169.17,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 106.99,
+      "high": 218.97,
+      "median": 153.94,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ID",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.44,
+      "high": 169.44,
+      "median": 169.44,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ID",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 111.11,
+      "high": 218.27,
+      "median": 153.92,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IL",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 122.11,
+      "high": 122.11,
+      "median": 122.11,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2019-07-01"
+    },
+    {
+      "state": "IL",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.86,
+      "high": 175.96,
+      "median": 172.91,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IL",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 101.31,
+      "high": 226.29,
+      "median": 153.24,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IN",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 140.09,
+      "high": 162.16,
+      "median": 162.16,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "IN",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.76,
+      "high": 169.76,
+      "median": 169.76,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IN",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 230.0,
+      "median": 150.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KS",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 168.75,
+      "high": 168.75,
+      "median": 168.75,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KS",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 100.09,
+      "high": 204.61,
+      "median": 143.48,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KY",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 94.84,
+      "high": 97.8,
+      "median": 97.8,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "KY",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 168.36,
+      "high": 168.36,
+      "median": 168.36,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KY",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 106.93,
+      "high": 206.66,
+      "median": 144.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "LA",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 142.09,
+      "high": 142.09,
+      "median": 142.09,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "LA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 168.21,
+      "high": 170.82,
+      "median": 169.51,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "LA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 83.0,
+      "high": 203.66,
+      "median": 149.36,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 177.62,
+      "high": 187.15,
+      "median": 182.38,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 109.75,
+      "high": 258.0,
+      "median": 164.7,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MD",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 175.11,
+      "high": 178.8,
+      "median": 176.96,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MD",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 104.5,
+      "high": 232.41,
+      "median": 150.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ME",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.54,
+      "high": 172.7,
+      "median": 171.12,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ME",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 87.22,
+      "high": 250.02,
+      "median": 154.55,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MI",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 87.54,
+      "high": 110.55,
+      "median": 110.55,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MI",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.57,
+      "high": 172.25,
+      "median": 170.91,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MI",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 112.56,
+      "high": 232.77,
+      "median": 150.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MN",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 174.17,
+      "high": 174.17,
+      "median": 174.17,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MN",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 124.55,
+      "high": 271.56,
+      "median": 181.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MO",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 177.45,
+      "high": 177.45,
+      "median": 177.45,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "MO",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 167.2,
+      "high": 171.22,
+      "median": 170.63,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MO",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 103.37,
+      "high": 256.42,
+      "median": 148.88,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MS",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 122.35,
+      "high": 150.3,
+      "median": 150.3,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MS",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 167.0,
+      "high": 167.0,
+      "median": 167.0,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MS",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 108.16,
+      "high": 200.85,
+      "median": 150.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MT",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 192.96,
+      "high": 243.67,
+      "median": 243.67,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MT",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.35,
+      "high": 173.35,
+      "median": 173.35,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MT",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 118.89,
+      "high": 237.37,
+      "median": 159.46,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NC",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 170.13,
+      "high": 170.13,
+      "median": 170.13,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NC",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 109.0,
+      "high": 224.81,
+      "median": 152.04,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ND",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 194.5,
+      "high": 194.5,
+      "median": 194.5,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-01"
+    },
+    {
+      "state": "ND",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 172.95,
+      "high": 172.95,
+      "median": 172.95,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ND",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 125.78,
+      "high": 219.21,
+      "median": 174.86,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NE",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 238.4,
+      "high": 238.4,
+      "median": 238.4,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "NE",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.51,
+      "high": 169.51,
+      "median": 169.51,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NE",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 130.0,
+      "high": 260.84,
+      "median": 167.43,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NH",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 175.09,
+      "high": 175.09,
+      "median": 175.09,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NH",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 98.56,
+      "high": 223.43,
+      "median": 149.71,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NJ",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 182.63,
+      "high": 188.58,
+      "median": 185.61,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NJ",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 100.0,
+      "high": 209.17,
+      "median": 149.12,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NM",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.8,
+      "high": 169.8,
+      "median": 169.8,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NM",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 103.47,
+      "high": 218.27,
+      "median": 148.96,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NV",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 121.15,
+      "high": 121.15,
+      "median": 121.15,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "NV",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.28,
+      "high": 173.28,
+      "median": 173.28,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NV",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 106.4,
+      "high": 217.05,
+      "median": 151.69,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NY",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 60.38,
+      "high": 177.67,
+      "median": 177.67,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "NY",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 170.93,
+      "high": 190.53,
+      "median": 189.15,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NY",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.0,
+      "high": 239.87,
+      "median": 150.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OH",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 77.14,
+      "high": 117.91,
+      "median": 117.91,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "OH",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.49,
+      "high": 169.49,
+      "median": 169.49,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OH",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 112.56,
+      "high": 296.21,
+      "median": 153.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OK",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 126.72,
+      "high": 152.97,
+      "median": 152.97,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "OK",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 168.45,
+      "high": 168.45,
+      "median": 168.45,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OK",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 89.75,
+      "high": 218.27,
+      "median": 150.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OR",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 172.97,
+      "high": 180.16,
+      "median": 176.56,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OR",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 107.24,
+      "high": 281.44,
+      "median": 170.1,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.67,
+      "high": 177.61,
+      "median": 173.64,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "PA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.0,
+      "high": 234.25,
+      "median": 156.06,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PR",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.83,
+      "high": 173.83,
+      "median": 173.83,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 177.18,
+      "high": 177.18,
+      "median": 177.18,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 113.04,
+      "high": 249.17,
+      "median": 157.59,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SC",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 101.59,
+      "high": 117.29,
+      "median": 117.29,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-07-01"
+    },
+    {
+      "state": "SC",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.87,
+      "high": 169.87,
+      "median": 169.87,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SC",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 94.25,
+      "high": 219.14,
+      "median": 153.69,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SD",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 172.91,
+      "high": 172.91,
+      "median": 172.91,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SD",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 133.57,
+      "high": 234.04,
+      "median": 173.39,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TN",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.0,
+      "high": 169.0,
+      "median": 169.0,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TN",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 106.93,
+      "high": 237.43,
+      "median": 148.63,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TX",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 137.93,
+      "high": 137.93,
+      "median": 137.93,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-03-01"
+    },
+    {
+      "state": "TX",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 169.31,
+      "high": 176.11,
+      "median": 173.89,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TX",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.0,
+      "high": 234.75,
+      "median": 150.04,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "UT",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 170.62,
+      "high": 170.62,
+      "median": 170.62,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "UT",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 106.19,
+      "high": 209.85,
+      "median": 150.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VA",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 140.34,
+      "high": 177.22,
+      "median": 177.22,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "VA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 172.4,
+      "high": 172.4,
+      "median": 172.4,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 105.0,
+      "high": 253.38,
+      "median": 150.74,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VI",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.83,
+      "high": 173.83,
+      "median": 173.83,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 172.58,
+      "high": 172.58,
+      "median": 172.58,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 95.28,
+      "high": 245.0,
+      "median": 149.33,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WA",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 99.23,
+      "high": 127.46,
+      "median": 127.46,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "WA",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 177.21,
+      "high": 189.73,
+      "median": 183.47,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WA",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 93.21,
+      "high": 272.81,
+      "median": 156.06,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WI",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 171.02,
+      "high": 171.02,
+      "median": 171.02,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WI",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 112.56,
+      "high": 373.38,
+      "median": 169.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WV",
+      "code": "90791",
+      "payer": "medicaid-ffs",
+      "low": 97.84,
+      "high": 120.78,
+      "median": 120.78,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-04-01"
+    },
+    {
+      "state": "WV",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 167.82,
+      "high": 167.82,
+      "median": 167.82,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WV",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 214.06,
+      "median": 156.57,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WY",
+      "code": "90791",
+      "payer": "medicare",
+      "low": 173.18,
+      "high": 173.18,
+      "median": 173.18,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WY",
+      "code": "90791",
+      "payer": "uhc",
+      "low": 127.86,
+      "high": 212.61,
+      "median": 159.46,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AK",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 220.24,
+      "high": 220.24,
+      "median": 220.24,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AK",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 158.15,
+      "high": 158.15,
+      "median": 158.15,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AK",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 76.42,
+      "high": 194.75,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AL",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.14,
+      "high": 110.14,
+      "median": 110.14,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AL",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.98,
+      "high": 127.43,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AR",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 109.66,
+      "high": 109.66,
+      "median": 109.66,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AR",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 71.63,
+      "high": 117.9,
+      "median": 94.31,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AZ",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 99.05,
+      "high": 113.25,
+      "median": 113.25,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AZ",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 112.94,
+      "high": 112.94,
+      "median": 112.94,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AZ",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 150.0,
+      "median": 96.44,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CA",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 67.16,
+      "high": 67.16,
+      "median": 67.16,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-15"
+    },
+    {
+      "state": "CA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 117.7,
+      "high": 135.25,
+      "median": 118.89,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 77.31,
+      "high": 189.14,
+      "median": 108.34,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CO",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 116.55,
+      "high": 116.55,
+      "median": 116.55,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CO",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.37,
+      "high": 133.69,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CT",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 117.88,
+      "high": 117.88,
+      "median": 117.88,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CT",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 71.23,
+      "high": 159.39,
+      "median": 96.2,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DC",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 78.05,
+      "high": 98.82,
+      "median": 98.82,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "DC",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 123.52,
+      "high": 123.52,
+      "median": 123.52,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DC",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 78.73,
+      "high": 152.36,
+      "median": 101.36,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DE",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.92,
+      "high": 113.92,
+      "median": 113.92,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DE",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 65.1,
+      "high": 139.22,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "FL",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 71.44,
+      "high": 88.58,
+      "median": 88.58,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "FL",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.01,
+      "high": 116.06,
+      "median": 114.8,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "FL",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.0,
+      "high": 159.17,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "GA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.03,
+      "high": 114.73,
+      "median": 112.88,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "GA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.25,
+      "high": 138.21,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "HI",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 117.41,
+      "high": 117.41,
+      "median": 117.41,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "HI",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 76.9,
+      "high": 153.69,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.14,
+      "high": 111.14,
+      "median": 111.14,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.2,
+      "high": 143.17,
+      "median": 98.93,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ID",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.33,
+      "high": 111.33,
+      "median": 111.33,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ID",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.56,
+      "high": 131.6,
+      "median": 99.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IL",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 124.06,
+      "high": 124.06,
+      "median": 124.06,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-04-01"
+    },
+    {
+      "state": "IL",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.86,
+      "high": 115.76,
+      "median": 113.93,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IL",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.21,
+      "high": 146.84,
+      "median": 102.9,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IN",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 89.28,
+      "high": 101.51,
+      "median": 101.51,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "IN",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.53,
+      "high": 111.53,
+      "median": 111.53,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IN",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.74,
+      "high": 155.14,
+      "median": 96.44,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KS",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.9,
+      "high": 110.9,
+      "median": 110.9,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KS",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.41,
+      "high": 131.78,
+      "median": 93.03,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KY",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 62.66,
+      "high": 62.9,
+      "median": 62.9,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "KY",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.76,
+      "high": 110.76,
+      "median": 110.76,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KY",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 71.23,
+      "high": 126.32,
+      "median": 92.23,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "LA",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 85.36,
+      "high": 85.36,
+      "median": 85.36,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "LA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.68,
+      "high": 112.35,
+      "median": 111.52,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "LA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.0,
+      "high": 130.95,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 116.6,
+      "high": 122.71,
+      "median": 119.66,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 75.51,
+      "high": 195.87,
+      "median": 105.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MD",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 115.03,
+      "high": 117.45,
+      "median": 116.24,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MD",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.51,
+      "high": 147.31,
+      "median": 96.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ME",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.43,
+      "high": 113.4,
+      "median": 112.42,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ME",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.02,
+      "high": 154.71,
+      "median": 95.37,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MI",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 58.58,
+      "high": 72.63,
+      "median": 72.63,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MI",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.57,
+      "high": 113.39,
+      "median": 112.48,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MI",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 153.83,
+      "median": 96.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MN",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 114.23,
+      "high": 114.23,
+      "median": 114.23,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MN",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 76.7,
+      "high": 173.23,
+      "median": 109.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MO",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 101.9,
+      "high": 101.9,
+      "median": 101.9,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2022-07-01"
+    },
+    {
+      "state": "MO",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.05,
+      "high": 112.57,
+      "median": 112.19,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MO",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.25,
+      "high": 166.26,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MS",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 81.8,
+      "high": 98.88,
+      "median": 98.88,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MS",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 109.87,
+      "high": 109.87,
+      "median": 109.87,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MS",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.5,
+      "high": 131.5,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MT",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 129.11,
+      "high": 160.1,
+      "median": 160.1,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MT",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.9,
+      "high": 113.9,
+      "median": 113.9,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MT",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.26,
+      "high": 156.9,
+      "median": 99.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NC",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.8,
+      "high": 111.8,
+      "median": 111.8,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NC",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 72.81,
+      "high": 150.5,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ND",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 127.67,
+      "high": 127.67,
+      "median": 127.67,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-01"
+    },
+    {
+      "state": "ND",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.5,
+      "high": 113.5,
+      "median": 113.5,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ND",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 83.67,
+      "high": 131.78,
+      "median": 100.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NE",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 193.6,
+      "high": 193.6,
+      "median": 193.6,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "NE",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.35,
+      "high": 111.35,
+      "median": 111.35,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NE",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 77.52,
+      "high": 170.26,
+      "median": 102.19,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NH",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 114.95,
+      "high": 114.95,
+      "median": 114.95,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NH",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 144.09,
+      "median": 96.57,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NJ",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 119.93,
+      "high": 123.77,
+      "median": 121.85,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NJ",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 71.6,
+      "high": 128.91,
+      "median": 95.74,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NM",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.73,
+      "high": 111.73,
+      "median": 111.73,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NM",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.5,
+      "high": 128.19,
+      "median": 93.83,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NV",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 77.63,
+      "high": 77.63,
+      "median": 77.63,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "NV",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.81,
+      "high": 113.81,
+      "median": 113.81,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NV",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 133.68,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NY",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 37.79,
+      "high": 110.09,
+      "median": 110.09,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "NY",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 112.31,
+      "high": 125.18,
+      "median": 124.25,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NY",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.21,
+      "high": 167.67,
+      "median": 96.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OH",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 49.43,
+      "high": 74.01,
+      "median": 74.01,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "OH",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.49,
+      "high": 111.49,
+      "median": 111.49,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OH",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 190.7,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OK",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 84.75,
+      "high": 100.79,
+      "median": 100.79,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "OK",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.78,
+      "high": 110.78,
+      "median": 110.78,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OK",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 72.91,
+      "high": 122.07,
+      "median": 94.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OR",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.59,
+      "high": 118.17,
+      "median": 115.88,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OR",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.56,
+      "high": 180.0,
+      "median": 106.38,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.59,
+      "high": 116.7,
+      "median": 114.15,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "PA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.0,
+      "high": 148.73,
+      "median": 96.2,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PR",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 114.19,
+      "high": 114.19,
+      "median": 114.19,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 116.36,
+      "high": 116.36,
+      "median": 116.36,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 76.88,
+      "high": 155.54,
+      "median": 100.85,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SC",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 62.15,
+      "high": 70.42,
+      "median": 70.42,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-07-01"
+    },
+    {
+      "state": "SC",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.69,
+      "high": 111.69,
+      "median": 111.69,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SC",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 70.5,
+      "high": 139.4,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SD",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.45,
+      "high": 113.45,
+      "median": 113.45,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SD",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 80.32,
+      "high": 133.68,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TN",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.07,
+      "high": 111.07,
+      "median": 111.07,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TN",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 71.23,
+      "high": 150.44,
+      "median": 95.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TX",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 86.07,
+      "high": 86.07,
+      "median": 86.07,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-03-01"
+    },
+    {
+      "state": "TX",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 111.35,
+      "high": 115.6,
+      "median": 114.23,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TX",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.41,
+      "high": 150.41,
+      "median": 95.74,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "UT",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 112.17,
+      "high": 112.17,
+      "median": 112.17,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "UT",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 74.52,
+      "high": 129.96,
+      "median": 97.42,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VA",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 93.9,
+      "high": 116.44,
+      "median": 116.44,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "VA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.23,
+      "high": 113.23,
+      "median": 113.23,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 72.51,
+      "high": 164.08,
+      "median": 96.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VI",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 114.19,
+      "high": 114.19,
+      "median": 114.19,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.29,
+      "high": 113.29,
+      "median": 113.29,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 69.5,
+      "high": 152.0,
+      "median": 94.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WA",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 66.31,
+      "high": 83.48,
+      "median": 83.48,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "WA",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 116.32,
+      "high": 124.34,
+      "median": 120.33,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WA",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 177.17,
+      "median": 100.81,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WI",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 112.27,
+      "high": 112.27,
+      "median": 112.27,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WI",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 75.18,
+      "high": 204.3,
+      "median": 107.79,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WV",
+      "code": "90834",
+      "payer": "medicaid-ffs",
+      "low": 65.64,
+      "high": 79.54,
+      "median": 79.54,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-04-01"
+    },
+    {
+      "state": "WV",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 110.55,
+      "high": 110.55,
+      "median": 110.55,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WV",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 73.06,
+      "high": 139.2,
+      "median": 95.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WY",
+      "code": "90834",
+      "payer": "medicare",
+      "low": 113.72,
+      "high": 113.72,
+      "median": 113.72,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WY",
+      "code": "90834",
+      "payer": "uhc",
+      "low": 76.42,
+      "high": 129.57,
+      "median": 99.97,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AK",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 323.68,
+      "high": 323.68,
+      "median": 323.68,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AK",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 232.44,
+      "high": 232.44,
+      "median": 232.44,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AK",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 106.33,
+      "high": 288.37,
+      "median": 146.12,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AL",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 161.7,
+      "high": 161.7,
+      "median": 161.7,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AL",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 110.0,
+      "high": 183.26,
+      "median": 137.93,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AR",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 161.03,
+      "high": 161.03,
+      "median": 161.03,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AR",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 79.86,
+      "high": 162.77,
+      "median": 123.36,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "AZ",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 146.97,
+      "high": 167.92,
+      "median": 167.92,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "AZ",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 165.67,
+      "high": 165.67,
+      "median": 165.67,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "AZ",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 99.4,
+      "high": 178.23,
+      "median": 130.42,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CA",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 98.02,
+      "high": 98.02,
+      "median": 98.02,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-15"
+    },
+    {
+      "state": "CA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 172.69,
+      "high": 198.3,
+      "median": 174.41,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 100.53,
+      "high": 252.08,
+      "median": 146.25,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CO",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 170.94,
+      "high": 170.94,
+      "median": 170.94,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CO",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 83.0,
+      "high": 175.69,
+      "median": 130.94,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "CT",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 172.76,
+      "high": 172.76,
+      "median": 172.76,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "CT",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 83.13,
+      "high": 201.27,
+      "median": 131.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DC",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 114.92,
+      "high": 144.82,
+      "median": 144.82,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "DC",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 181.03,
+      "high": 181.03,
+      "median": 181.03,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DC",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 110.3,
+      "high": 206.35,
+      "median": 138.13,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "DE",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 167.09,
+      "high": 167.09,
+      "median": 167.09,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "DE",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 80.03,
+      "high": 199.11,
+      "median": 136.44,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "FL",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 105.21,
+      "high": 129.89,
+      "median": 129.89,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "FL",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 165.58,
+      "high": 169.67,
+      "median": 168.07,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "FL",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 77.25,
+      "high": 199.83,
+      "median": 126.17,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "GA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.8,
+      "high": 168.16,
+      "median": 165.48,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "GA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 83.0,
+      "high": 187.86,
+      "median": 128.16,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "HI",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 172.21,
+      "high": 172.21,
+      "median": 172.21,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "HI",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 93.12,
+      "high": 196.89,
+      "median": 142.69,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.19,
+      "high": 163.19,
+      "median": 163.19,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 104.11,
+      "high": 183.9,
+      "median": 137.44,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ID",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.45,
+      "high": 163.45,
+      "median": 163.45,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ID",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 109.79,
+      "high": 184.16,
+      "median": 139.27,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IL",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 183.16,
+      "high": 183.16,
+      "median": 183.16,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-04-01"
+    },
+    {
+      "state": "IL",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.89,
+      "high": 169.49,
+      "median": 166.71,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IL",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 85.31,
+      "high": 189.82,
+      "median": 137.78,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IN",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 132.09,
+      "high": 150.29,
+      "median": 150.29,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "IN",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.74,
+      "high": 163.74,
+      "median": 163.74,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "IN",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 96.47,
+      "high": 180.38,
+      "median": 139.72,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KS",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.83,
+      "high": 162.83,
+      "median": 162.83,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KS",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 88.36,
+      "high": 171.51,
+      "median": 125.01,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "KY",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 93.67,
+      "high": 94.13,
+      "median": 94.13,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-01-01"
+    },
+    {
+      "state": "KY",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.5,
+      "high": 162.5,
+      "median": 162.5,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "KY",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 86.76,
+      "high": 170.96,
+      "median": 125.8,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "LA",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 125.86,
+      "high": 125.86,
+      "median": 125.86,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "LA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.37,
+      "high": 164.73,
+      "median": 163.55,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "LA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 82.5,
+      "high": 169.73,
+      "median": 125.93,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 171.01,
+      "high": 179.88,
+      "median": 175.44,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 86.26,
+      "high": 297.01,
+      "median": 147.07,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MD",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 168.69,
+      "high": 172.11,
+      "median": 170.4,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MD",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 90.84,
+      "high": 197.59,
+      "median": 130.12,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ME",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.55,
+      "high": 166.4,
+      "median": 164.98,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ME",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 81.3,
+      "high": 214.38,
+      "median": 137.09,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MI",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 86.27,
+      "high": 106.5,
+      "median": 106.5,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MI",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.6,
+      "high": 166.06,
+      "median": 164.83,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MI",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 102.68,
+      "high": 183.57,
+      "median": 131.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MN",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 167.7,
+      "high": 167.7,
+      "median": 167.7,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MN",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 99.12,
+      "high": 239.82,
+      "median": 147.67,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MO",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 149.68,
+      "high": 149.68,
+      "median": 149.68,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2022-07-01"
+    },
+    {
+      "state": "MO",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 161.46,
+      "high": 165.08,
+      "median": 164.54,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MO",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 86.97,
+      "high": 195.67,
+      "median": 130.24,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MS",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 120.55,
+      "high": 145.13,
+      "median": 145.13,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MS",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 161.26,
+      "high": 161.26,
+      "median": 161.26,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MS",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 87.63,
+      "high": 159.8,
+      "median": 127.82,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "MT",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 190.15,
+      "high": 234.75,
+      "median": 234.75,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "MT",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 167.0,
+      "high": 167.0,
+      "median": 167.0,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "MT",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 104.72,
+      "high": 217.24,
+      "median": 142.2,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NC",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 164.08,
+      "high": 164.08,
+      "median": 164.08,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NC",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 102.47,
+      "high": 184.6,
+      "median": 128.89,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "ND",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 187.37,
+      "high": 187.37,
+      "median": 187.37,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-01"
+    },
+    {
+      "state": "ND",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.61,
+      "high": 166.61,
+      "median": 166.61,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "ND",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 107.19,
+      "high": 177.01,
+      "median": 145.7,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NE",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 258.13,
+      "high": 258.13,
+      "median": 258.13,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-07-01"
+    },
+    {
+      "state": "NE",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.5,
+      "high": 163.5,
+      "median": 163.5,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NE",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 96.93,
+      "high": 239.92,
+      "median": 147.07,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NH",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 168.56,
+      "high": 168.56,
+      "median": 168.56,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NH",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 87.4,
+      "high": 188.11,
+      "median": 127.08,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NJ",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 175.81,
+      "high": 181.42,
+      "median": 178.62,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NJ",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 81.11,
+      "high": 184.76,
+      "median": 130.42,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NM",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.81,
+      "high": 163.81,
+      "median": 163.81,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NM",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 84.66,
+      "high": 170.96,
+      "median": 129.05,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NV",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 116.09,
+      "high": 116.09,
+      "median": 116.09,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "NV",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.93,
+      "high": 166.93,
+      "median": 166.93,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NV",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 93.02,
+      "high": 189.06,
+      "median": 139.27,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "NY",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 57.05,
+      "high": 161.13,
+      "median": 161.13,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "NY",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 164.8,
+      "high": 183.23,
+      "median": 181.97,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "NY",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 78.75,
+      "high": 203.82,
+      "median": 131.26,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OH",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 75.77,
+      "high": 108.57,
+      "median": 108.57,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-01-01"
+    },
+    {
+      "state": "OH",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.52,
+      "high": 163.52,
+      "median": 163.52,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OH",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 104.59,
+      "high": 250.67,
+      "median": 139.72,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OK",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 124.85,
+      "high": 147.93,
+      "median": 147.93,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "OK",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.57,
+      "high": 162.57,
+      "median": 162.57,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OK",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 82.55,
+      "high": 170.96,
+      "median": 127.32,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "OR",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.65,
+      "high": 173.3,
+      "median": 169.98,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "OR",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 95.14,
+      "high": 252.08,
+      "median": 147.07,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.68,
+      "high": 171.05,
+      "median": 167.37,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "PA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 82.05,
+      "high": 189.25,
+      "median": 137.51,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "PR",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 167.44,
+      "high": 167.44,
+      "median": 167.44,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 170.65,
+      "high": 170.65,
+      "median": 170.65,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "RI",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 84.72,
+      "high": 189.6,
+      "median": 133.0,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SC",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 91.73,
+      "high": 103.83,
+      "median": 103.83,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-07-01"
+    },
+    {
+      "state": "SC",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.86,
+      "high": 163.86,
+      "median": 163.86,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SC",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 83.9,
+      "high": 187.13,
+      "median": 135.85,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "SD",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.56,
+      "high": 166.56,
+      "median": 166.56,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "SD",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 114.58,
+      "high": 189.06,
+      "median": 139.72,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TN",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.05,
+      "high": 163.05,
+      "median": 163.05,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TN",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 94.8,
+      "high": 197.55,
+      "median": 127.63,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "TX",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 127.5,
+      "high": 127.5,
+      "median": 127.5,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-03-01"
+    },
+    {
+      "state": "TX",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 163.35,
+      "high": 169.51,
+      "median": 167.56,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "TX",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 80.35,
+      "high": 192.0,
+      "median": 127.94,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "UT",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 164.53,
+      "high": 164.53,
+      "median": 164.53,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "UT",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 95.35,
+      "high": 189.06,
+      "median": 135.14,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VA",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 138.29,
+      "high": 170.73,
+      "median": 170.73,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "VA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.13,
+      "high": 166.13,
+      "median": 166.13,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 91.97,
+      "high": 202.44,
+      "median": 132.95,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "VI",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 167.44,
+      "high": 167.44,
+      "median": 167.44,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.27,
+      "high": 166.27,
+      "median": 166.27,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "VT",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 83.0,
+      "high": 188.11,
+      "median": 132.33,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WA",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 97.82,
+      "high": 122.51,
+      "median": 122.51,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    },
+    {
+      "state": "WA",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 170.61,
+      "high": 182.29,
+      "median": 176.45,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WA",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 85.95,
+      "high": 252.08,
+      "median": 146.12,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WI",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 164.86,
+      "high": 164.86,
+      "median": 164.86,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WI",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 95.69,
+      "high": 341.64,
+      "median": 147.67,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WV",
+      "code": "90837",
+      "payer": "medicaid-ffs",
+      "low": 96.38,
+      "high": 116.39,
+      "median": 116.39,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-04-01"
+    },
+    {
+      "state": "WV",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 162.04,
+      "high": 162.04,
+      "median": 162.04,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WV",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 105.12,
+      "high": 162.37,
+      "median": 137.78,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "WY",
+      "code": "90837",
+      "payer": "medicare",
+      "low": 166.83,
+      "high": 166.83,
+      "median": 166.83,
+      "source": "CMS PFS RVU26C non-facility"
+    },
+    {
+      "state": "WY",
+      "code": "90837",
+      "payer": "uhc",
+      "low": 107.67,
+      "high": 179.25,
+      "median": 137.78,
+      "source": "UHC OHBS TiC professional outpatient (Parite)"
+    },
+    {
+      "state": "IN",
+      "code": "97153",
+      "payer": "medicaid-ffs",
+      "low": 16.04,
+      "high": 16.04,
+      "median": 16.04,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-04-01"
+    },
+    {
+      "state": "MO",
+      "code": "97153",
+      "payer": "medicaid-ffs",
+      "low": 20.13,
+      "high": 20.13,
+      "median": 20.13,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2024-07-01"
+    },
+    {
+      "state": "MS",
+      "code": "97153",
+      "payer": "medicaid-ffs",
+      "low": 15.08,
+      "high": 15.08,
+      "median": 15.08,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2025-12-01"
+    },
+    {
+      "state": "ND",
+      "code": "97153",
+      "payer": "medicaid-ffs",
+      "low": 10.81,
+      "high": 10.81,
+      "median": 10.81,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-08-01"
+    },
+    {
+      "state": "OK",
+      "code": "97153",
+      "payer": "medicaid-ffs",
+      "low": 17.35,
+      "high": 17.35,
+      "median": 17.35,
+      "source": "official state Medicaid FFS (Parite parse)",
+      "effectiveFrom": "2026-07-01"
+    }
+  ]
 }

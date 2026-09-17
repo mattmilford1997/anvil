@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/Section.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../../../lib/seo';
+import {
+  ratePairs,
+  stateName,
+  codeLabel,
+  payerLabel,
+  fmtRate,
+  ratePath,
+  sourcesOnPage,
+  ratesFile,
+} from '../../../lib/rates';
+
+export function getStaticPaths() {
+  return ratePairs().map(({ state, code, rows }) => ({
+    params: { state: state.toLowerCase(), code },
+    props: { rows, stateUpper: state },
+  }));
+}
+
+const { rows, stateUpper } = Astro.props;
+const { code } = Astro.params;
+const name = stateName(stateUpper);
+const title = `${code} reimbursement rate in ${name} by payer (2026)`;
+const description = `${code} reimbursement rate in ${name} by payer, from Parite (Medicare PFS, Medicaid FFS, UHC TiC where present). Planning ranges, not a guarantee.`;
+const lows = rows.map((r) => r.low);
+const highs = rows.map((r) => r.high);
+const blendLow = Math.min(...lows);
+const blendHigh = Math.max(...highs);
+const payers = rows.map((r) => payerLabel(r.payer));
+const sources = sourcesOnPage(rows);
+const siblingCodes = ratePairs()
+  .filter((p) => p.state === stateUpper && p.code !== code)
+  .map((p) => p.code);
+const intro = `${codeLabel(code)} reimbursement rates by state and CPT code, for ${name}. Telehealth reimbursement by payer on this page is the table below: ${payers.join(', ')}. The blended published range is ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit, before patient responsibility. These are Parite ranges for planning, not a guarantee of what you will be paid.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Rates', path: '/rates' },
+    { name: `${code} in ${name}`, path: ratePath(stateUpper, code) },
+  ])]}
+>
+  <section class="rate-head">
+    <div class="container">
+      <div class="eyebrow">Rates / {name} / {code}</div>
+      <h1>{title}</h1>
+      <p class="lede">{intro}</p>
+      <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
+    </div>
+  </section>
+
+  <Section eyebrow="By payer" title={`Telehealth reimbursement by payer for ${code} in ${name}`} tight>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Payer</th>
+            <th>Low</th>
+            <th>High</th>
+            <th>Median</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td>{payerLabel(r.payer)}</td>
+              <td>{fmtRate(r.low)}</td>
+              <td>{fmtRate(r.high)}</td>
+              <td>{r.median != null ? fmtRate(r.median) : '—'}</td>
+              <td class="src">{r.source}{r.effectiveFrom ? ` · effective ${r.effectiveFrom}` : ''}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:12px">
+      Source: {ratesFile.source ?? 'Parite'}. Updated {ratesFile.updated}.
+      {sources.length > 0 && <> Labels as Parite provides them: {sources.join('; ')}.</>}
+      {' '}Not a contracted rate for your entity and not a guarantee.
+    </p>
+  </Section>
+
+  {siblingCodes.length > 0 && (
+    <Section eyebrow="Same state" title={`Other ${name} codes in this export`} tight>
+      <ul class="check-list">
+        {siblingCodes.map((c) => (
+          <li><a href={ratePath(stateUpper, c)}>{c} reimbursement rate in {name} by payer (2026)</a> — {codeLabel(c)}</li>
+        ))}
+      </ul>
+    </Section>
+  )}
+
+  <CtaBand
+    title="Know the rate. Then get the contract."
+    body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on."
+    primary={{ label: 'Get a contracting plan', href: '/contact?src=rates-page' }}
+    secondary={{ label: 'Rates hub', href: '/rates' }}
+  />
+</BaseLayout>
+<style>
+  .rate-head { padding: clamp(40px, 6vw, 72px) 0 8px; }
+  .rate-head h1 { max-width: 24ch; font-size: clamp(28px, 4.4vw, 44px); }
+  .src { font-size: 13.5px; color: var(--muted); }
+</style>
