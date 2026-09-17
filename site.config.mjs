@@ -3,13 +3,13 @@ export const SITE = {
   name: 'Anvil',
   legalName: 'Catalyze Care LLC d/b/a Anvil', // TODO(launch): confirm entity name with counsel
   tagline: 'Insurance infrastructure for care companies',
-  // TODO(launch): replace with the purchased domain. Netlify sets process.env.URL at build.
-  url: process.env.SITE_URL || 'https://www.getanvil.com',
-  docsUrl: 'https://docs.getanvil.com',      // TODO(launch): Fern/Mintlify docs host
-  trustUrl: 'https://trust.getanvil.com',    // TODO(launch): Vanta/Drata trust center
+  // Production domain: anvilcontracts.com (DNS at Netlify). Override with SITE_URL if needed.
+  url: process.env.SITE_URL || 'https://www.anvilcontracts.com',
+  docsUrl: 'https://docs.anvilcontracts.com',      // TODO(launch): Fern/Mintlify docs host — subdomain not live yet
+  trustUrl: 'https://trust.anvilcontracts.com',    // TODO(launch): Vanta/Drata trust center — subdomain not live yet
   loginUrl: 'https://app.homefront.health',  // TODO(launch): confirm Homefront portal URL
   linkedin: 'https://www.linkedin.com/company/anvil', // TODO(launch): company page URL
-  contactEmail: 'hello@getanvil.com',        // TODO(launch)
+  contactEmail: 'hello@anvilcontracts.com',        // TODO(launch): mailbox on the production domain
   parentBrands: ['Foundry PC', 'Homefront', 'Arche Studios'],
   calendly: '',  // TODO(launch): e.g. https://calendly.com/you/anvil-intro (used on /contact/success)
   ga4: '',       // TODO(launch): G-XXXXXXX

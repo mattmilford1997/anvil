@@ -17,7 +17,7 @@ Node 22. No database, no server. Forms use Netlify Forms.
 
 1. Netlify > Add new site > Import from GitHub > this repository.
 2. Build command `npm run build`, publish directory `dist` (both are read from `netlify.toml`, leave Base directory blank).
-3. Set environment variable `SITE_URL` to the production domain (for example `https://www.getanvil.com`) so canonicals and the sitemap are right. Deploy previews can leave it unset.
+3. Set environment variable `SITE_URL` to the production domain (for example `https://www.anvilcontracts.com`) so canonicals and the sitemap are right. Deploy previews can leave it unset; `site.config.mjs` defaults to that URL.
 4. Add the custom domain, enable HTTPS.
 
 ## Forms to Close

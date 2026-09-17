@@ -4,7 +4,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 
 ## Decisions (Appendix B of the spec)
 - [ ] Brand name. The site is built as **Anvil**. To rename: change `SITE.name` in `site.config.mjs`, then `grep -rl "Anvil" src public | xargs sed -i 's/Anvil/NewName/g'`, and update `Logo.astro`, `favicon.svg`, `logo.svg`, `og-default.png`.
-- [ ] Domain. Replace `https://www.getanvil.com` in `site.config.mjs`, `public/robots.txt`, `public/llms.txt`, `netlify.toml`.
+- [x] Domain. Production default is `https://www.anvilcontracts.com` in `site.config.mjs`, `public/robots.txt`, `public/llms.txt`, `netlify.toml`. Docs/trust hosts are `docs.anvilcontracts.com` / `trust.anvilcontracts.com` (subdomains not live yet).
 - [ ] Which entity is the rented PC, its contract count and states (feeds `stats.ts` and `coverage.ts`).
 - [ ] Pricing numbers: platform fee % per tier, one-time program fees, own-contract fee (`pricing.ts`, `TimelineSlider.astro`). Foundry numbers ($15,000 formation, $3,000/mo physician owner, $360/state) are already real.
 - [ ] Login destination (`SITE.loginUrl`), docs host (`SITE.docsUrl`), trust center (`SITE.trustUrl`).

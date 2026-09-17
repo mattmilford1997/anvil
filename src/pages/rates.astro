@@ -7,14 +7,25 @@ import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
 const faqs = [
+  { q: 'Where can I find reimbursement rates by state and CPT code?', a: 'This hub. Use the lookup for a state and code. Full per-state, per-code pages ship when Parite data is loaded. We do not publish illustrative numbers while the rates file is empty.' },
+  { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, once Parite has enough data for that state and code. Until then the lookup will say there is no published range yet. Ask us for the state and we will send what we have.' },
+  { q: 'Can I see telehealth reimbursement by payer?', a: 'The lookup includes an optional payer filter. Per-payer rows appear when Parite data is loaded. Ranges are not a guarantee of what you will be paid.' },
+  { q: 'Will you publish psychotherapy reimbursement rates by state?', a: 'That is the long tail of this hub: psychotherapy reimbursement rates by state, and eventually a page per state and CPT code. Those routes ship when Parite data is loaded, not as empty placeholders.' },
   { q: 'Where do these numbers come from?', a: 'From Parite, which aggregates contracted and published reimbursement data by state, payer, and code. Anvil shows ranges, not individual contract terms.' },
   { q: 'Are these the rates I will be paid?', a: 'No. They are published ranges for planning. Your contracted rate depends on the payer, the entity, the specialty, and the negotiation. Under rental you see the actual contracted rate on every statement.' },
   { q: 'Why is a code missing for my state?', a: 'We publish a range only when there is enough data behind it. Ask us for the state and code and we will send what we have.' },
   { q: 'How do you use this in contracting?', a: 'As the floor for rate proposals in your entity\'s name, and as the benchmark when we tell you a payer\'s offer is low.' },
 ];
 ---
-<BaseLayout title="Reimbursement rates by state and code" description="Published reimbursement ranges by state, payer, and CPT code for the codes care companies bill most. No form. Data from Parite." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
-  <Hero compact eyebrow="Rates" title="What payers actually pay, by state and code." sub="You cannot negotiate a rate you cannot see. Look up the range for your codes before you sign with anyone, including us." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
+<BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including Medicaid 90837 and telehealth reimbursement by payer. Full pages ship when Parite data is loaded." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
+  <Hero compact eyebrow="Rates" title="What payers actually pay, by state and code." sub="Look up reimbursement rates by state and CPT code before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state all live on this hub. Full per-state, per-code pages ship when Parite data is loaded." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
+  <Section eyebrow="The hub" title="Reimbursement rates by state and CPT code" intro="This page is the lookup. We are not shipping empty /rates/[state]/[code] routes with placeholder numbers. When Parite data is loaded, those pages go live with a one-paragraph intro and the table.">
+    <div class="grid grid-3">
+      <div class="card"><h3>Medicaid reimbursement rate for 90837</h3><p class="muted">Psychotherapy, 60 minutes, is the code most behavioral health companies model first. Pick a state in the lookup. A dedicated page for that state and code ships when Parite has a range, not before.</p></div>
+      <div class="card"><h3>Telehealth reimbursement by payer</h3><p class="muted">The optional payer filter on the lookup is how telehealth reimbursement by payer will appear: ranges per payer for the state and CPT code, once the export is populated.</p></div>
+      <div class="card"><h3>Psychotherapy reimbursement rates by state</h3><p class="muted">State psychotherapy reimbursement rates (90837, 90834, and related codes) are the long tail. Same rule: published ranges from Parite, or an honest empty state. No illustrative figures.</p></div>
+    </div>
+  </Section>
   <Section tight>
     <RateLookup />
   </Section>
