@@ -1,6 +1,6 @@
 ---
-title: "The Five Workstreams of Insurance Operations (and Which Ones You Should Never Build)"
-excerpt: "Insurance billing is five separate jobs: contracting, credentialing, eligibility, claims, and denials."
+title: "Cost of Building Insurance Operations In-House: Build vs Buy"
+excerpt: "Cost of building insurance operations in-house: five workstreams, who to hire, and when build vs buy is the better call."
 lede: "Insurance billing is five separate jobs: contracting, credentialing, eligibility, claims, and denials. Here's what each one actually involves, who you'd have to hire, and which ones make sense to own."
 summary:
   - "\"Billing\" is five distinct workstreams with five distinct skill sets. Founders who staff it as one job get five half-jobs."
@@ -11,16 +11,16 @@ publishDate: 2026-10-13
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"
-keyword: "insurance operations virtual care"
+keyword: "cost of building insurance operations in-house"
 tool: "calculator"
 faq:
+  - q: "What is the cost of building insurance operations in-house?"
+    a: "Industry ranges put fully loaded in-house operations around 20 to 25 percent of insured revenue at steady state, once contracting talent, compliance, and integration engineering are counted. The five workstreams are contracting, credentialing, eligibility, claims, and denials. Model your own case on the pricing calculator."
   - q: "Can I outsource all five workstreams to one vendor?"
     a: "Yes, and for a company going national quickly, that is usually the right first move. The question to ask any single vendor is which entity holds the payer contracts and what happens to them if you leave."
-  - q: "What does in-house insurance operations cost?"
-    a: "Industry benchmarks put fully loaded in-house operations at roughly 20 to 25 percent of insured revenue at steady state, once contracting talent, compliance, and integration engineering are counted. Use the calculator below to model your own case."
   - q: "What's the first hire if I do build?"
     a: "A contracting lead, because everything else waits on a contract. It is also the hardest hire, which is why most companies start with a partner."
-related: ["when-to-accept-insurance", "cash-pay-to-insurance-two-phase-plan", "what-in-network-nationally-means"]
+related: ["/platform", "/pricing", "when-to-accept-insurance"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 2
 dataReview: "cleared"

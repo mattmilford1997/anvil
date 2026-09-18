@@ -1,6 +1,6 @@
 ---
-title: "Cash-Pay to In-Network Without Cratering Conversion: The Two-Phase Plan"
-excerpt: "A two-phase operating plan for moving a cash-pay care company onto insurance: which states and payers to start with, how to keep the cash-pay funnel."
+title: "Cash-Pay to Insurance Transition Telehealth: The Two-Phase Plan"
+excerpt: "Cash-pay to insurance transition for telehealth: a two-phase plan, DTC to in-network, and conversion on insurance vs cash-pay."
 lede: "A two-phase operating plan for moving a cash-pay care company onto insurance: which states and payers to start with, how to keep the cash-pay funnel intact, and how to make the insurance step convert instead of leak."
 summary:
   - "The switch fails when insurance is bolted onto a cash-pay funnel as an afterthought. It succeeds when eligibility runs before the price screen."
@@ -11,9 +11,11 @@ publishDate: 2026-10-20
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
-keyword: "cash pay to insurance"
+keyword: "cash-pay to insurance transition telehealth"
 tool: "eligibility"
 faq:
+  - q: "What is a cash-pay to insurance transition for telehealth?"
+    a: "A two-phase move: go in-network where your existing demand already is, with eligibility before the price screen, then expand coverage and contract your own entity. Cash-pay stays as the fallback. Conversion holds when insured patients see a copay instead of the cash price."
   - q: "Will my conversion rate drop when I add insurance?"
     a: "Not if eligibility runs before the price screen. Companies that check coverage at booking commonly see the insured path convert better than cash-pay, because a $30 copay beats a $250 fee."
   - q: "How many states should I launch with?"
@@ -22,7 +24,7 @@ faq:
     a: "No. You can launch on an existing contracted entity in weeks. You need your own entity to eventually own the contracts, and it is much easier to start that in parallel than to migrate later."
   - q: "What do I tell cash-pay patients?"
     a: "Nothing changes for them. Same price, same flow. Insurance is an additional path, not a replacement."
-related: ["when-to-accept-insurance", "five-workstreams-insurance-operations", "what-in-network-nationally-means"]
+related: ["/solutions/virtual-care", "when-to-accept-insurance"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 3
 dataReview: "cleared"

@@ -22,3 +22,73 @@ export async function getPosts(): Promise<Post[]> {
   const list = isProd && !preview ? all.filter((p) => !holdReason(p)) : all;
   return list.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 }
+
+/** A post only if getPosts would include it (live in prod; all posts in dev/preview). Use this before linking from product pages. */
+export async function getLivePost(id: string): Promise<Post | undefined> {
+  return (await getPosts()).find((p) => p.id === id);
+}
+
+/** Product and wedge pages articles may list in `related`. Keys are site paths, not resource slugs. */
+export const relatedPages: Record<string, { title: string; excerpt: string }> = {
+  '/platform': {
+    title: 'Insurance operations platform: rent, then own',
+    excerpt: 'Payer contracting, credentialing, RCM, eligibility, and compliance. Rent, then own.',
+  },
+  '/platform/contracting': {
+    title: 'Payer contracting for telehealth. Contracts in your name.',
+    excerpt: 'Commercial and Medicaid payer enrollment, with contracts your entity holds.',
+  },
+  '/platform/credentialing': {
+    title: 'Telehealth credentialing in weeks, tracked to the day',
+    excerpt: 'Roster-add for speed, then full credentialing under your own PC.',
+  },
+  '/platform/compliance': {
+    title: 'CPOM and AKS compliance for telehealth billing',
+    excerpt: 'MSO-PC structure, AKS safe harbor, and state corporate practice of medicine.',
+  },
+  '/own-your-contracts': {
+    title: 'Own your contracts vs network rental',
+    excerpt: 'Launch on a rented PC, then migrate volume to contracts your entity holds.',
+  },
+  '/solutions/virtual-care': {
+    title: 'Virtual care: cash-pay to in-network in every state',
+    excerpt: 'Accept insurance as a virtual care company. Launch on rental, own the contracts.',
+  },
+  '/solutions/switching': {
+    title: 'Switching from a network rental vendor',
+    excerpt: 'Leave rental without a revenue gap. Form your PC, land contracts, then give notice.',
+  },
+  '/compare/bridge': {
+    title: 'Bridge alternative: compare Anvil vs Bridge',
+    excerpt: 'Bridge is network rental. Anvil migrates payer contracts into your name.',
+  },
+  '/pricing': {
+    title: 'Anvil pricing: platform fee and PC costs, published',
+    excerpt: 'Published telehealth billing platform pricing. Model build vs partner on your numbers.',
+  },
+};
+
+export type RelatedItem = {
+  href: string;
+  title: string;
+  excerpt: string;
+  post?: Post;
+};
+
+/**
+ * Resolve `related` frontmatter: resource slugs (only if getPosts would publish them) or site paths.
+ * Unpublished slugs are omitted in production so related CTAs never 404.
+ */
+export function resolveRelated(refs: string[], posts: Post[]): RelatedItem[] {
+  const items: RelatedItem[] = [];
+  for (const ref of refs) {
+    if (ref.startsWith('/')) {
+      const page = relatedPages[ref];
+      if (page) items.push({ href: ref, ...page });
+      continue;
+    }
+    const post = posts.find((p) => p.id === ref);
+    if (post) items.push({ href: `/resources/${post.id}`, title: post.data.title, excerpt: post.data.excerpt, post });
+  }
+  return items;
+}

@@ -26,7 +26,7 @@ faq:
     a: "Formation itself can be weeks. Credentialing and contracting the new PC with payers is months to a year for meaningful density, which is why it should run alongside a rented launch rather than before it."
   - q: "Can I move clinicians from a rented PC to my own?"
     a: "Yes. Each clinician is credentialed under your PC's contracts as they come online, and volume for those payers shifts. The rented PC stays live for what your PC has not contracted yet."
-related: ["migrating-from-rented-pc-to-own-contracts", "investor-diligence-payer-contracts", "cost-of-in-house-insurance-operations"]
+related: ["/own-your-contracts", "/compare/bridge", "/platform/compliance", "/solutions/switching"]
 sourceFile: "03_December_Build_Rent_Own.md"
 calendarWeek: 11
 dataReview: "cleared"
@@ -61,7 +61,7 @@ Founders treat this as either/or. It is a sequence. The right answer for most gr
 *Months 3 to 6.* Your PC's first contracts come online. Volume for those payers in those states moves to your entity.
 *Months 6 to 18.* Majority of volume on your own contracts. The rented PC remains as a backstop for states and payers you have not contracted yet.
 
-At no point does revenue pause. At the end, you own the asset. Drag the timeline slider on this page to see how the split moves month by month.
+At no point does revenue pause. At the end, you own the asset. Drag the ownership timeline slider to see how the split moves month by month.
 
 ## What to look for in a partner
 The reason most companies never get to the second half is that their vendor's business depends on them staying in the first half. Look for a partner whose model includes forming and contracting your entity from the start, with a stated migration path and pricing that steps down as volume moves to your PC.
@@ -70,10 +70,10 @@ The reason most companies never get to the second half is that their vendor's bu
 
 The product pages that sit with this article:
 
-- [Own your payer contracts](/own-your-contracts) — network rental vs owning, month by month.
-- [CPOM and AKS compliance](/platform/compliance) — MSO-PC structure and state corporate practice of medicine.
-- [Switching from a network rental vendor](/solutions/switching) — leave rental without a revenue gap.
-- [Anvil vs Bridge](/compare/bridge) — a Bridge alternative fact table. We do not list unpublished Bridge prices or features.
+- [Own your payer contracts](/own-your-contracts): network rental vs owning, month by month.
+- [CPOM and AKS compliance](/platform/compliance): MSO-PC structure and state corporate practice of medicine.
+- [Switching from a network rental vendor](/solutions/switching): leave rental without a revenue gap.
+- [Anvil vs Bridge](/compare/bridge): a Bridge alternative fact table. We do not list unpublished Bridge prices or features.
 
 Drag the ownership timeline slider to see the migration month by month, then get a formation and contracting plan for your states.
 

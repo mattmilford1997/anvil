@@ -1,7 +1,7 @@
 <div class="idle card" id="idle-cost">
   <div class="eyebrow">Idle clinician cost counter</div>
   <h3>What a credentialed clinician who cannot bill costs you</h3>
-  <p class="muted">A clinician you are paying who is waiting on enrollment costs you their revenue every day. Set the two inputs. The counter runs from the moment you loaded this page.</p>
+  <p class="muted">A clinician you are paying who is waiting on enrollment costs you their revenue every day. Set the two inputs. The counter runs from when you started it.</p>
   <form class="idle-in" onsubmit="return false">
     <div class="field"><label for="i-n">Clinicians waiting on enrollment</label><input id="i-n" type="number" min="1" value="6" inputmode="numeric" /></div>
     <div class="field"><label for="i-rev">Average monthly revenue per clinician</label><input id="i-rev" type="number" min="0" step="500" value="14000" inputmode="numeric" /></div>
@@ -9,7 +9,7 @@
   <div class="idle-out">
     <div class="res"><span>Per month</span><strong data-out="month">$0</strong></div>
     <div class="res"><span>Per day</span><strong data-out="day">$0</strong></div>
-    <div class="res live"><span>Since you opened this page</span><strong data-out="live">$0.00</strong></div>
+    <div class="res live"><span>Since you started the counter</span><strong data-out="live">$0.00</strong></div>
   </div>
   <p class="small muted">Roster-adds under an existing contract are measured in weeks. New enrollment is commonly cited at 90 to 120 days per payer. The difference is the number above, times the days you save.</p>
 </div>

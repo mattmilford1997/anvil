@@ -1,6 +1,6 @@
 ---
-title: "What an Idle Credentialed Clinician Costs You Per Day"
-excerpt: "A hired clinician who can't bill insurance yet is the most expensive line on your P&L that nobody tracks."
+title: "Credentialing Turnaround Time Cost: An Idle Clinician Per Day"
+excerpt: "Credentialing turnaround time cost: delay cost per day, idle clinicians, and clinician onboarding time for insurance."
 lede: "A hired clinician who can't bill insurance yet is the most expensive line on your P&L that nobody tracks. Here's the math per day, by clinician type, and the counter to run your own numbers."
 summary:
   - "A clinician who is hired but not yet enrolled with payers costs you salary plus the insured revenue they would be producing. The second number is usually 3 to 5x the first."
@@ -11,16 +11,18 @@ publishDate: 2026-11-10
 category: "Blog"
 icp: ["A", "B"]
 pillar: "speed"
-keyword: "cost of credentialing delays"
+keyword: "credentialing turnaround time cost"
 tool: "idle-counter"
 faq:
+  - q: "What is the credentialing turnaround time cost?"
+    a: "It is salary plus the insured visits a clinician cannot bill while enrollment is pending. Start credentialing at the offer letter, roster-add onto contracts that already exist, and sequence payers by covered lives. Run the idle clinician counter with your own rate and capacity."
   - q: "How much revenue does a clinician lose while waiting for credentialing?"
     a: "It depends on rate and capacity. Illustrative ranges: $12,000 to $18,000 a month for a full-time therapist at commercial rates, $20,000 to $35,000 for a psychiatric prescriber. Use the counter to model your own."
   - q: "Can a clinician see patients before credentialing is complete?"
     a: "Cash-pay patients, yes. Insured patients, only under an entity and contract they are already rostered on. That is why launching on an already-contracted roster while individual enrollments process is so valuable."
   - q: "When should credentialing start for a new hire?"
     a: "At the signed offer letter. Waiting for the start date wastes a month or more."
-related: ["credentialing-timeline-benchmark-by-payer", "roster-add-vs-full-enrollment", "credentialing-automation-what-works"]
+related: ["/platform/credentialing", "credentialing-timeline-benchmark-by-payer", "roster-add-vs-full-enrollment"]
 sourceFile: "02_November_Credentialing.md"
 calendarWeek: 6
 dataReview: "cleared"

@@ -1,6 +1,6 @@
 ---
-title: "What \"In-Network Nationally\" Actually Means: Contracts, Panels, Rosters, and Who Owns Them"
-excerpt: "\"In-network in all 50 states\" can mean four different things."
+title: "What Does In-Network Nationally Mean? Contracts, Panels, Rosters"
+excerpt: "What does in-network nationally mean? Payer contract vs panel vs roster, and what credentialed in all 50 states actually is."
 lede: "\"In-network in all 50 states\" can mean four different things. Here's the vocabulary (contracts, panels, rosters, delegated credentialing), what each one gets you, and the one question to ask any vendor who says it."
 summary:
   - "A payer contract belongs to a legal entity, not a clinician. Everything downstream (panels, rosters, enrollment) hangs off whose entity that is."
@@ -11,9 +11,11 @@ publishDate: 2026-10-27
 category: "Blog"
 icp: ["A", "B", "C"]
 pillar: "ownership"
-keyword: "in-network nationwide telehealth"
+keyword: "what does in-network nationally mean"
 tool: "coverage-map"
 faq:
+  - q: "What does in-network nationally mean?"
+    a: "It can mean a payer contract, an open panel, a clinician roster, or credentialing, and those are not the same thing. Ask whose entity holds the contracts, and whether you are credentialed in all 50 states or added to someone else's roster. If you leave and the contracts stay with the vendor, you were renting."
   - q: "Can a clinician be in-network on their own?"
     a: "Individual clinicians can contract as sole proprietors with some payers, but scaling that across states and payers is impractical. Group contracts held by an entity are how multi-state practices operate."
   - q: "What is delegated credentialing?"
@@ -22,7 +24,7 @@ faq:
     a: "You need one to eventually own your contracts. The most efficient sequence is to launch on the shared entity and build your own alongside it."
   - q: "How long does it take to contract my own entity?"
     a: "Plan on months for your first few payers and one to three years for national density if you go alone. The point of running it in parallel with a shared-entity launch is that none of that delays revenue."
-related: ["when-to-accept-insurance", "five-workstreams-insurance-operations", "cash-pay-to-insurance-two-phase-plan"]
+related: ["/platform/contracting", "/own-your-contracts", "when-to-accept-insurance"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 4
 dataReview: "cleared"

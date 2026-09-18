@@ -2,6 +2,8 @@
 import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import TimelineSlider from '../../components/TimelineSlider.astro';
+import { getLivePost } from '../../lib/content';
+const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const faqs = [
   { q: 'Will there be a revenue gap?', a: 'No. You keep billing through your current vendor until each of your own contracts is effective. Only then does that payer\'s new volume move. If your current agreement allows, we can also run new states on our PC during the switch.' },
   { q: 'How long does it take?', a: 'Your own PC forms in weeks. Commercial contracts commonly land in 4 to 8 months. Medicaid varies by state. Most switches complete inside 12 months without a single payer going dark.' },
@@ -43,6 +45,6 @@ const steps = [
     </div>
   </Section>
   <Section eyebrow="Related" title="The ownership ring" tight>
-    <p class="lede">The switch is one side of the same cluster: <a href="/own-your-contracts">own your payer contracts</a>, <a href="/platform/compliance">CPOM and AKS / MSO-PC</a>, <a href="/resources/renting-vs-owning-professional-corporation">rent a PC vs own a PC</a>, and the <a href="/compare/bridge">Anvil vs Bridge</a> table. Published Anvil pricing is on the <a href="/pricing">pricing</a> page.</p>
+    <p class="lede">The switch is one side of the same cluster: <a href="/own-your-contracts">own your payer contracts</a>, <a href="/platform/compliance">CPOM and AKS / MSO-PC</a>{rentOwn && <>, <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a></>}, and the <a href="/compare/bridge">Anvil vs Bridge</a> table. Published Anvil pricing is on the <a href="/pricing">pricing</a> page.</p>
   </Section>
 </SubpageLayout>
