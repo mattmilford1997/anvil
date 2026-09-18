@@ -35,7 +35,7 @@ const sources = sourcesOnPage(rows);
 const siblingCodes = ratePairs()
   .filter((p) => p.state === stateUpper && p.code !== code)
   .map((p) => p.code);
-const intro = `${codeLabel(code)} reimbursement rates by state and CPT code, for ${name}. Telehealth reimbursement by payer on this page is the table below: ${payers.join(', ')}. The blended published range is ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit, before patient responsibility. These are Parite ranges for planning, not a guarantee of what you will be paid.`;
+const intro = `${codeLabel(code)} reimbursement rates by state and CPT code, for ${name}. Payer ranges for this code in ${name} cover telehealth reimbursement by payer: ${payers.join(', ')}. The blended published range is ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit, before patient responsibility. These are Parite ranges for planning, not a guarantee of what you will be paid.`;
 ---
 <BaseLayout
   title={title}
@@ -73,7 +73,7 @@ const intro = `${codeLabel(code)} reimbursement rates by state and CPT code, for
               <td>{payerLabel(r.payer)}</td>
               <td>{fmtRate(r.low)}</td>
               <td>{fmtRate(r.high)}</td>
-              <td>{r.median != null ? fmtRate(r.median) : '—'}</td>
+              <td>{r.median != null ? fmtRate(r.median) : 'n/a'}</td>
               <td class="src">{r.source}{r.effectiveFrom ? ` · effective ${r.effectiveFrom}` : ''}</td>
             </tr>
           ))}
@@ -88,10 +88,10 @@ const intro = `${codeLabel(code)} reimbursement rates by state and CPT code, for
   </Section>
 
   {siblingCodes.length > 0 && (
-    <Section eyebrow="Same state" title={`Other ${name} codes in this export`} tight>
+    <Section eyebrow="Same state" title={`Other ${name} codes`} tight>
       <ul class="check-list">
         {siblingCodes.map((c) => (
-          <li><a href={ratePath(stateUpper, c)}>{c} reimbursement rate in {name} by payer (2026)</a> — {codeLabel(c)}</li>
+          <li><a href={ratePath(stateUpper, c)}>{c} reimbursement rate in {name} by payer (2026)</a>, {codeLabel(c)}</li>
         ))}
       </ul>
     </Section>

@@ -13,11 +13,13 @@ const { eyebrow, title, bullets = [], flip = false, cta } = Astro.props;
   <div class="fr-art"><slot name="art" /></div>
 </div>
 <style>
-  .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .fr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; min-width: 0; max-width: 100%; }
   .fr.flip .fr-art { order: -1; }
-  .fr h3 { font-size: clamp(24px, 3vw, 32px); }
+  .fr h3 { font-size: clamp(24px, 3vw, 32px); overflow-wrap: anywhere; }
+  .fr-copy { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
   .fr-copy :global(p) { color: var(--muted); }
-  .fr-art { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; min-height: 240px; display: flex; align-items: center; justify-content: center; }
+  .fr-art { min-width: 0; max-width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; min-height: 240px; display: flex; align-items: center; justify-content: center; overflow: auto; }
+  .fr-art :global(*) { min-width: 0; max-width: 100%; }
   .fr-art:empty { display: none; }
-  @media (max-width: 800px) { .fr { grid-template-columns: 1fr; gap: 20px; } .fr.flip .fr-art { order: 0; } }
+  @media (max-width: 800px) { .fr { grid-template-columns: minmax(0, 1fr); gap: 20px; } .fr.flip .fr-art { order: 0; } .fr-art { padding: 16px; } }
 </style>
