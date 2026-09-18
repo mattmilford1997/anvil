@@ -6,6 +6,8 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
+import { getLivePost } from '../../lib/content';
+const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 
 const faqs = [
   {
@@ -91,7 +93,7 @@ const rows: [string, string[]][] = [
       <li><a href="/solutions/switching">Switching from a network rental vendor</a></li>
       <li><a href="/own-your-contracts">Own your contracts vs network rental</a></li>
       <li><a href="/platform/compliance">CPOM and AKS compliance for telehealth billing</a></li>
-      <li><a href="/resources/renting-vs-owning-professional-corporation">Rent a PC vs own a PC</a></li>
+      {rentOwn && <li><a href={`/resources/${rentOwn.id}`}>Rent a PC vs own a PC</a></li>}
       <li><a href="/pricing">Published Anvil pricing</a></li>
       <li><a href="/contact">Get a switching plan</a></li>
     </ul>

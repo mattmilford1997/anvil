@@ -2,6 +2,8 @@
 import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import { SITE } from '../../../site.config.mjs';
+import { getLivePost } from '../../lib/content';
+const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const faqs = [
   { q: 'Is the rental structure legal?', a: 'It is structured to align with the personal services and management contracts safe harbor under the federal Anti-Kickback Statute: written agreements, terms of at least a year, compensation set in advance at fair market value, and not tied to the volume or value of referrals. Independent counsel reviews every structure. Anvil does not claim an OIG advisory opinion.' },
   { q: 'What about state corporate practice of medicine rules?', a: 'Federal fraud-and-abuse analysis does not address state CPOM. Each state has its own rules on who may own a professional entity and what a management company may control. We structure your own PC state by state through Foundry PC, which has done this across the country.' },
@@ -67,6 +69,6 @@ const faqs = [
     <p class="small muted" style="margin-top:12px">Compliance page language reviewed by counsel before publication. TODO(launch): counsel sign-off.</p>
   </Section>
   <Section eyebrow="Related" title="Owning the PC is the CPOM answer in practice" tight>
-    <p class="lede">See <a href="/own-your-contracts">own your contracts</a> for how volume moves to an entity you control. The founder-level version is <a href="/resources/renting-vs-owning-professional-corporation">rent a PC vs own a PC</a>. If you are leaving a network rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table.</p>
+    <p class="lede">See <a href="/own-your-contracts">own your contracts</a> for how volume moves to an entity you control.{rentOwn && <> The founder-level version is <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a>.</>} If you are leaving a network rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table.</p>
   </Section>
 </SubpageLayout>

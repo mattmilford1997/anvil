@@ -21,6 +21,7 @@ const resources = defineCollection({
       .enum(['calculator', 'rate-lookup', 'coverage-map', 'idle-counter', 'timeline', 'readiness-checklist', 'eligibility', 'benchmark-download', 'diligence-checklist', 'docs', 'map-download', 'audit-checklist', 'all', 'none'])
       .default('none'),
     faq,
+    // Resource slugs and/or site paths (e.g. /own-your-contracts). Unpublished slugs are omitted at render.
     related: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
     featured: z.boolean().default(false),

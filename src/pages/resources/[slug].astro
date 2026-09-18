@@ -2,12 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+import RelatedCard from '../../components/RelatedCard.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 import GatedDownload from '../../components/GatedDownload.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { render } from 'astro:content';
 import { showHeld, breadcrumbJsonLd, fmtDate, absolute } from '../../lib/seo';
-import { getPosts, holdReason } from '../../lib/content';
+import { getPosts, holdReason, resolveRelated } from '../../lib/content';
 import { SITE } from '../../../site.config.mjs';
 import { authors } from '../../data/team';
 export async function getStaticPaths() {
@@ -20,9 +21,10 @@ const { Content, headings } = await render(entry);
 const author = authors[d.author];
 const all = await getPosts();
 const hold = holdReason(entry);
-const related = d.related.map((s) => all.find((p) => p.id === s)).filter(Boolean).slice(0, 3);
-const fallback = all.filter((p) => p.id !== entry.id && !related.includes(p)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()).slice(0, 3 - related.length);
-const rel = [...related, ...fallback];
+const relatedItems = resolveRelated(d.related, all);
+const relatedIds = new Set(relatedItems.flatMap((item) => (item.post ? [item.post.id] : [])));
+const fallback = all.filter((p) => p.id !== entry.id && !relatedIds.has(p.id)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()).slice(0, Math.max(0, 3 - relatedItems.length));
+const rel = [...relatedItems, ...fallback.map((p) => ({ href: `/resources/${p.id}`, title: p.data.title, excerpt: p.data.excerpt, post: p }))];
 const toc = headings.filter((h) => h.depth === 2);
 const tools: Record<string, { label: string; href: string; blurb: string }> = {
   calculator: { label: 'Open the build vs partner calculator', href: '/pricing#calculator', blurb: 'Put your revenue target, states, and clinicians in. See in-house cost, headcount, and the Anvil fee side by side.' },
@@ -80,7 +82,7 @@ const articleLd = {
         <NewsletterForm compact />
       </aside>
     </div>
-    {rel.length > 0 && <section class="section-tight"><div class="container"><h2 style="font-size:24px">Related</h2><div class="grid grid-3">{rel.map((p) => <ArticleCard post={p!} />)}</div></div></section>}
+    {rel.length > 0 && <section class="section-tight"><div class="container"><h2 style="font-size:24px">Related</h2><div class="grid grid-3">{rel.map((item) => item.post ? <ArticleCard post={item.post} /> : <RelatedCard href={item.href} title={item.title} excerpt={item.excerpt} />)}</div></div></section>}
   </article>
   <CtaBand title="Ready to model this on your numbers?" body="Get a contracting plan for your codes and states." primary={{ label: 'Get started', href: `/contact?src=bl-${entry.id}` }} />
 </BaseLayout>

@@ -1,0 +1,15 @@
+---
+interface Props { href: string; title: string; excerpt: string }
+const { href, title, excerpt } = Astro.props;
+---
+<article class="ac card reveal">
+  <h3><a href={href}>{title}</a></h3>
+  <p class="muted">{excerpt}</p>
+</article>
+<style>
+  .ac { display: flex; flex-direction: column; gap: 10px; }
+  .ac h3 { font-size: 20px; margin: 0; line-height: 1.25; }
+  .ac h3 a { text-decoration: none; color: var(--ink); }
+  .ac h3 a:hover { color: var(--accent); }
+  .ac p { flex: 1; font-size: 15.5px; }
+</style>

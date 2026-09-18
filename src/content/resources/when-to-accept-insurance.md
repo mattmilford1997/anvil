@@ -1,6 +1,6 @@
 ---
-title: "When Should a Care Company Start Accepting Insurance? Seven Signals"
-excerpt: "Seven concrete signals that a cash-pay care company is ready to accept insurance, what each one costs you if you ignore it, and the two-phase plan for."
+title: "When Should a Virtual Care Company Accept Insurance? Seven Signals"
+excerpt: "When should a virtual care company accept insurance? Seven signals and a readiness framework for making the switch."
 lede: "Seven concrete signals that a cash-pay care company is ready to accept insurance, what each one costs you if you ignore it, and the two-phase plan for making the switch without losing your funnel."
 summary:
   - "Most founders switch to insurance six to twelve months too late, because cash-pay revenue hides the ceiling until CAC starts climbing."
@@ -11,9 +11,11 @@ publishDate: 2026-10-06
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
-keyword: "accept insurance telehealth"
+keyword: "when should a virtual care company accept insurance"
 tool: "readiness-checklist"
 faq:
+  - q: "When should a virtual care company accept insurance?"
+    a: "When four or more of the seven signals are true: rising CAC, drop-off at the price step, patients asking if you take insurance, a competitor in-network, outcomes you can show a payer, a board TAM question, or turning away insured patients who need the care. Score the signals on the readiness checklist."
   - q: "How long does it take to accept insurance for the first time?"
     a: "If you build it yourself, plan on 90 to 120 days per clinician per payer for credentialing plus one to three years to reach national contract density. Through a platform with an existing credentialed entity, clinicians can be roster-added and billing within weeks, with your own contracts built in parallel."
   - q: "Will accepting insurance lower my revenue per visit?"
@@ -22,7 +24,7 @@ faq:
     a: "No. Most companies run both indefinitely. Cash-pay stays for uninsured patients, out-of-network plans, and services payers do not cover."
   - q: "What's the first thing to do?"
     a: "Download the readiness checklist below and score yourself on the seven signals. If you score four or more, the next step is a coverage plan for your states."
-related: ["five-workstreams-insurance-operations", "cash-pay-to-insurance-two-phase-plan", "what-in-network-nationally-means"]
+related: ["/solutions/virtual-care", "/own-your-contracts", "cash-pay-to-insurance-two-phase-plan"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 1
 dataReview: "cleared"

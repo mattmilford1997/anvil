@@ -10,10 +10,10 @@ import { testimonials } from '../../data/testimonials';
 const cases = (await getCollection('customers', ({ data }) => !isProd || !data.draft)).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
 ---
-<BaseLayout title="Customers" description="Case studies from care companies on Anvil, published as customers go live and sign off. Real numbers, real timelines." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
-  <Hero compact eyebrow="Customers" title="Case studies with numbers in them." sub="Case studies are published as customers go live and sign off on the numbers. Until then, ask us for a reference in your specialty." />
+<BaseLayout title="Telehealth billing case studies" description="Telehealth billing case studies, published as customers go live and sign off. In-network launch timelines and insurance billing results, when they exist." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
+  <Hero compact eyebrow="Customers" title="Case studies with numbers in them." sub="Telehealth billing case studies are published as customers go live and sign off on the numbers. Until then, ask us for a reference in your specialty." />
   <Section tight>
-    {cases.length === 0 && <p class="lede">Case studies are being finalized. <a href="/contact">Ask us</a> for a reference in your specialty.</p>}
+    {cases.length === 0 && <p class="lede">Telehealth billing case studies are being finalized with customers. <a href="/contact">Ask us</a> for a reference in your specialty.</p>}
     <div class="grid grid-2">
       {cases.map((c) => (
         <a href={`/customers/${c.id}`} class="card cs reveal">

@@ -6,8 +6,8 @@ import Tiles from '../components/Tiles.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
 ---
-<BaseLayout title="For health plans" description="A quality-governed, multi-specialty network of care companies under fee-for-service. Behavioral health, rural, and specialty network adequacy." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
-  <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." sub="One contract, one credentialed group, many care companies under one set of charting standards and quality governance. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
+<BaseLayout title="Network adequacy behavioral health for health plans" description="Network adequacy behavioral health for health plans. A quality-governed telehealth provider network, including rural coverage, under fee-for-service." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
+  <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." sub="Network adequacy behavioral health coverage from one contracted, credentialed group: many care companies, one set of charting standards. Rural and specialty gaps, under fee-for-service. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
   <Section>
     <Tiles items={[
       { icon: 'users', title: 'One group, many programs', body: 'Psychiatry, therapy, ABA, IOP, interventional, in-home, school-based. Contract once, cover the gaps that show up in your adequacy reports.' },
