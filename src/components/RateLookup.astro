@@ -20,7 +20,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
     <div>
       <div class="eyebrow">Rate lookup</div>
       <h3>{compact ? 'What do payers pay for your codes?' : 'Published reimbursement rates by state and CPT code'}</h3>
-      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. Only CPT codes with at least one Parite row are listed.</p>}
+      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. The lookup lists CPT codes Parite has now.</p>}
     </div>
   </div>
   <form class="rl-form" onsubmit="return false">
@@ -37,7 +37,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
         <option value="">Choose a service</option>
         {services.map((s) => <option value={s.code}>{s.label}</option>)}
       </select>
-      {!compact && <span class="hint">Not in this export: 99214, 99213, 96158, 99484. We do not list a code until Parite has a row.</span>}
+      {!compact && <span class="hint">Codes in the lookup now match the Parite file. More codes ship when Parite has them.</span>}
     </div>
     {!compact && (
       <div class="field">
@@ -105,7 +105,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
       if (!st || !code) { out.innerHTML = '<p class="muted">Pick a state and a code to see the range.</p>'; return; }
       const hits = rows.filter((r) => r.state === st && r.code === code && (!payer || r.payer === payer));
       if (!hits.length) {
-        out.innerHTML = `<p><strong>No published range for ${code} in ${st}.</strong> <span class="muted">This export only includes codes with at least one Parite row. 99214, 99213, 96158, and 99484 are omitted until data exists. Ask us for this state and code and we will send what we have.</span></p>`;
+        out.innerHTML = `<p><strong>No published range for ${code} in ${st}.</strong> <span class="muted">Ask us for this state and code and we will send what we have. More codes ship when Parite has them.</span></p>`;
         return;
       }
       const low = Math.min(...hits.map((h) => h.low)), high = Math.max(...hits.map((h) => h.high));
@@ -113,7 +113,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
       const href = `/rates/${st.toLowerCase()}/${code}`;
       let html = `<div class="range"><strong>${rangeText}</strong><span class="muted">per unit, ${hits.length} payer${hits.length > 1 ? 's' : ''} in ${st}</span></div>`;
       html += '<table><thead><tr><th>Payer</th><th>Low</th><th>High</th><th>Median</th><th>Source</th></tr></thead><tbody>' +
-        hits.map((h) => `<tr><td>${payerName(h.payer, labels)}</td><td>${money(h.low)}</td><td>${money(h.high)}</td><td>${h.median != null ? money(h.median) : '—'}</td><td>${h.source || 'Parite'}</td></tr>`).join('') +
+        hits.map((h) => `<tr><td>${payerName(h.payer, labels)}</td><td>${money(h.low)}</td><td>${money(h.high)}</td><td>${h.median != null ? money(h.median) : 'n/a'}</td><td>${h.source || 'Parite'}</td></tr>`).join('') +
         '</tbody></table>';
       html += `<p class="small" style="margin-top:12px"><a href="${href}">${code} reimbursement rate in ${st} by payer (2026)</a></p>`;
       out.innerHTML = html;

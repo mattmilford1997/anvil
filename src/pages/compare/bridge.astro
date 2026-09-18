@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: 'How does Anvil handle behavioral health compared with a generalist rental vendor?',
-    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. We do not list Bridge\'s specialty mix here. See their site, then ask us to walk your license mix.',
+    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. Send us your license mix and we will walk it. Ask Bridge for their specialty list if you are comparing coverage.',
   },
   {
     q: 'How do I switch from Bridge, or any network rental vendor, without a revenue gap?',
@@ -26,11 +26,11 @@ const faqs = [
   },
   {
     q: 'What does Anvil cost next to Bridge?',
-    a: 'Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. We do not publish Bridge\'s prices. Model Anvil on the pricing page, then ask us to compare on your numbers.',
+    a: 'Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. Model Anvil on the pricing page, then send us your numbers for a side-by-side.',
   },
   {
     q: 'How do CPOM and AKS show up in this comparison?',
-    a: 'Anvil\'s rental phase is structured to align with the AKS personal services safe harbor. Your own PC is structured for each state\'s corporate practice of medicine rules, with an MSO-PC management agreement. That is the ownership path network rental does not take. Counsel reviews every Anvil structure. We do not describe Bridge\'s legal structure here.',
+    a: 'Anvil\'s rental phase is structured to align with the AKS personal services safe harbor. Your own PC is structured for each state\'s corporate practice of medicine rules, with an MSO-PC management agreement. That is the ownership path network rental does not take. Counsel reviews every Anvil structure.',
   },
 ];
 
@@ -38,10 +38,10 @@ const rows: [string, string[]][] = [
   ['Payer contract ownership', ['Migrates to your entity', 'Vendor holds the contracts']],
   ['Entity you bill under', ['Anvil PC, then your own PC', 'A rented professional corporation']],
   ['Network model', ['Rent, then own', 'Network rental']],
-  ['MSO-PC and CPOM', ['AKS-aligned rental. Your PC structured for state CPOM.', 'Not described here. Ask them.']],
-  ['Behavioral health', ['Medicaid MCO, ABA, psychiatry, IOP, collaborative care', 'Not listed here. See their site.']],
+  ['MSO-PC and CPOM', ['AKS-aligned rental. Your PC structured for state CPOM.', 'Vendor-held PC. Typical of network rental.']],
+  ['Behavioral health', ['Medicaid MCO, ABA, psychiatry, IOP, collaborative care', 'Ask Bridge for their specialty list']],
   ['Switching path', ['Land your contracts, then give notice', 'Review your current agreement']],
-  ['Pricing', ['Published. See pricing.', 'Not listed here']],
+  ['Pricing', ['Published. See pricing.', 'Ask Bridge for pricing']],
   ['Rate visibility', ['Contracted rate and fee as separate lines', 'Lease fee, typical of network rental']],
   ['If you leave', ['Contracts stay with your PC after migration', 'Leaving without contracts is a relaunch']],
 ];
@@ -55,14 +55,14 @@ const rows: [string, string[]][] = [
     compact
     eyebrow="Compare / Bridge"
     title="A Bridge alternative that ends with contracts in your name."
-    sub="Compare Bridge and Anvil on who owns the payer contracts, which entity you bill under, and how you leave network rental. This is a fact table from Anvil's public model, not a teardown of unpublished Bridge features or prices."
+    sub="Compare Bridge and Anvil on who owns the payer contracts, which entity you bill under, and how you leave network rental. Anvil publishes the model: you launch on a rented PC, then migrate to contracts in your name."
     primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
     secondary={{ label: 'How switching works', href: '/solutions/switching' }}
   />
 
   <Section eyebrow="The difference" title="Bridge rents the network. Anvil migrates you off it." intro="Bridge is a network rental vendor. Anvil starts there so you can launch, then moves volume to payer contracts your own entity holds. Rent, then own.">
     <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />
-    <p class="small muted" style="margin-top:16px">Anvil cells are from published site copy. Bridge cells describe the network rental model Bridge operates. They are not a quote from Bridge, and they are not a claim about unpublished Bridge features, fees, or customer counts. Where we do not have a public number, we say so.</p>
+    <p class="small muted" style="margin-top:16px">Anvil cells come from published site copy. Bridge cells describe the network-rental model: the vendor holds the contracts, you bill under a rented professional corporation, and leaving without your own contracts is a relaunch.</p>
   </Section>
 
   <Section eyebrow="What the rows mean" title="Ownership, entity, behavioral health, and the switch">
@@ -77,7 +77,7 @@ const rows: [string, string[]][] = [
       </div>
       <div class="card">
         <h3>Behavioral health depth</h3>
-        <p class="muted">Anvil is built for psychiatry, therapy, ABA, and IOP groups going from one state to many. Medicaid MCO panels, ABA authorizations, supervision billing, and collaborative care codes are the work. We do not inventory Bridge's specialty coverage here. Start with <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.</p>
+        <p class="muted">Anvil is built for psychiatry, therapy, ABA, and IOP groups going from one state to many. Medicaid MCO panels, ABA authorizations, supervision billing, and collaborative care codes are the work. Start with <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.</p>
       </div>
       <div class="card">
         <h3>The switching path</h3>
@@ -100,7 +100,7 @@ const rows: [string, string[]][] = [
   <Section tight><Faq items={faqs} /></Section>
   <CtaBand
     title="Send us your current agreement. We will map the exit."
-    body="Notice terms, which payers move first, and what you own when you are done. No invented Bridge quotes. Your numbers, our published model."
+    body="Notice terms, which payers move first, and what you own when you are done. Bring your numbers. We will map them against published Anvil pricing."
     primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
     secondary={{ label: 'See pricing', href: '/pricing' }}
   />
