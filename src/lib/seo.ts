@@ -8,6 +8,18 @@ export function absolute(path: string) {
   return new URL(path, SITE.url).toString();
 }
 
+/** True for off-site http(s) URLs. Same-origin absolute URLs stay in-app. */
+export function isExternalHref(href?: string) {
+  if (!href) return false;
+  if (href.startsWith('/') || href.startsWith('#') || href.startsWith('?')) return false;
+  if (href.startsWith('mailto:') || href.startsWith('tel:')) return true;
+  try {
+    return new URL(href, SITE.url).origin !== new URL(SITE.url).origin;
+  } catch {
+    return false;
+  }
+}
+
 export function orgJsonLd() {
   return {
     '@context': 'https://schema.org',

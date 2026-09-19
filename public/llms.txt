@@ -62,6 +62,8 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 
 - [Company](https://www.anvilcontracts.com/company)
 - [Contact](https://www.anvilcontracts.com/contact)
+- [API docs](https://www.anvilcontracts.com/docs): eligibility API reference is not published yet
+- [Trust center](https://www.anvilcontracts.com/trust): publishes with SOC 2; HIPAA in place, SOC 2 Type II in progress
 
 ## Key facts
 

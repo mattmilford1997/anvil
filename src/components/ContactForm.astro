@@ -4,7 +4,8 @@ const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]
 ---
 <form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form">
   <input type="hidden" name="form-name" value="anvil-leads" />
-  <p class="hp"><label>Leave this empty <input name="bot-field" /></label></p>
+  <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+  <input type="hidden" name="form_started" value="" />
   <!-- Attribution, filled client-side from sessionStorage -->
   <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" />
   <input type="hidden" name="referrer" /><input type="hidden" name="landing" /><input type="hidden" name="go_slug" />
@@ -58,7 +59,8 @@ const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]
   <button type="submit" class="btn btn-primary btn-lg">Send</button>
 </form>
 <style>
-  .cf { padding: 32px; }
+  .cf { position: relative; padding: 32px; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   fieldset { border: 0; padding: 0; margin: 0 0 16px; }
   legend { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
   .radios { display: grid; gap: 8px; }
@@ -74,8 +76,17 @@ const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landing'].forEach((k) => set(k, a[k]));
       set('go_slug', a.src || new URLSearchParams(location.search).get('src') || undefined);
     } catch {}
-    // Light client-side rate limit: one submit per 10s.
+    const started = Date.now();
+    const ts = f.querySelector<HTMLInputElement>('[name=form_started]');
+    if (ts) ts.value = String(started);
+    // Light client-side rate limit: reject under 2s from load, then one submit per 10s.
     let last = 0;
-    f.addEventListener('submit', (e) => { const now = Date.now(); if (now - last < 10000) e.preventDefault(); last = now; });
+    f.addEventListener('submit', (e) => {
+      const now = Date.now();
+      const startAt = Number(ts?.value || started);
+      if (now - startAt < 2000) { e.preventDefault(); return; }
+      if (now - last < 10000) e.preventDefault();
+      last = now;
+    });
   }
 </script>

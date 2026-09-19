@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+<BaseLayout
+  title="Trust center"
+  description="The Anvil trust center publishes with SOC 2. See compliance, BAA, and privacy until then."
+  path="/trust"
+  jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Trust', path: '/trust' }])]}
+>
+  <Section>
+    <div class="eyebrow">Trust</div>
+    <h1>The trust center publishes with SOC 2.</h1>
+    <p class="lede">SOC 2 Type II is in progress. The report and sub-processor list will publish when it completes. Until then, current controls, the BAA request, and the privacy policy are linked below.</p>
+    <div class="btn-group">
+      <a href="/platform/compliance" class="btn btn-primary">Compliance</a>
+      <a href="/legal/baa" class="btn btn-ghost">BAA</a>
+      <a href="/legal/privacy" class="btn btn-ghost">Privacy</a>
+    </div>
+  </Section>
+</BaseLayout>
