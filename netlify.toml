@@ -37,17 +37,7 @@
   status = 302
   force = true
 
-# Friendly aliases
-[[redirects]]
-  from = "/docs"
-  to = "https://docs.anvilcontracts.com"
-  status = 302
-
-[[redirects]]
-  from = "/trust"
-  to = "https://trust.anvilcontracts.com"
-  status = 302
-
+# Friendly aliases. /docs and /trust are first-party pages, not external hosts.
 [[redirects]]
   from = "/login"
   to = "https://app.homefront.health"

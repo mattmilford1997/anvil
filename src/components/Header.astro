@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import { mainNav } from '../data/nav';
 import { SITE } from '../../site.config.mjs';
+import { isExternalHref } from '../lib/seo';
 const current = Astro.url.pathname;
 ---
 <header class="hdr">
@@ -22,7 +23,7 @@ const current = Astro.url.pathname;
             </div>
           </li>
         ) : (
-          <li><a href={g.href} class:list={['nav-link', { active: current === g.href }]} target={g.href?.startsWith('http') ? '_blank' : undefined} rel={g.href?.startsWith('http') ? 'noopener' : undefined}>{g.label}</a></li>
+          <li><a href={g.href} class:list={['nav-link', { active: current === g.href || current === (g.href ? new URL(g.href, SITE.url).pathname : '') }]} target={isExternalHref(g.href) ? '_blank' : undefined} rel={isExternalHref(g.href) ? 'noopener' : undefined}>{g.label}</a></li>
         ))}
       </ul>
     </nav>

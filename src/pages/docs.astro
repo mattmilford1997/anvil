@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+<BaseLayout
+  title="API docs"
+  description="Anvil API docs are coming. See eligibility at booking, or contact us."
+  path="/docs"
+  jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Docs', path: '/docs' }])]}
+>
+  <Section>
+    <div class="eyebrow">Docs</div>
+    <h1>API docs are coming.</h1>
+    <p class="lede">The eligibility API reference is not published yet. Read how eligibility works, or contact us.</p>
+    <div class="btn-group">
+      <a href="/platform/eligibility" class="btn btn-primary">Eligibility</a>
+      <a href="/contact" class="btn btn-ghost">Contact</a>
+    </div>
+  </Section>
+</BaseLayout>
