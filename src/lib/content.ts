@@ -28,6 +28,18 @@ export async function getLivePost(id: string): Promise<Post | undefined> {
   return (await getPosts()).find((p) => p.id === id);
 }
 
+/** Held October 2026 posts, for hub teasers that must not claim a live article. */
+export async function getUpcomingOctoberPosts(): Promise<Post[]> {
+  const all = await getCollection('resources');
+  return all
+    .filter((p) => {
+      const hold = holdReason(p);
+      const d = p.data.publishDate;
+      return !!hold && d.getUTCFullYear() === 2026 && d.getUTCMonth() === 9;
+    })
+    .sort((a, b) => a.data.publishDate.valueOf() - b.data.publishDate.valueOf());
+}
+
 /** Product and wedge pages articles may list in `related`. Keys are site paths, not resource slugs. */
 export const relatedPages: Record<string, { title: string; excerpt: string }> = {
   '/platform': {

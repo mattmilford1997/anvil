@@ -1,7 +1,7 @@
 ---
 title: "Health Plan Audits: Three Flags, Five Rationalizations, and One Charting Standard That Survives Them"
-excerpt: "Payer audits of virtual care companies are no longer random."
-lede: "Payer audits of virtual care companies are no longer random. Here are the three claim patterns that trigger them, the five things founders tell themselves that make it worse, and the documentation standard that makes an audit a formality instead of a crisis."
+excerpt: "Health plan audit risk for virtual care: the claim patterns that trigger reviews, and the charting standard that survives them."
+lede: "Health plan audit risk for virtual care is no longer a random letter. Here are the three claim patterns that trigger reviews, the five things founders tell themselves that make it worse, and the documentation standard that makes an audit a formality instead of a crisis."
 summary:
   - "Payers now audit from data, continuously. A virtual care company with a distinctive billing pattern will be reviewed. The question is whether the charts hold up."
   - "Three patterns trigger most reviews: code distribution that differs from peers, visit frequency or duration outliers, and modifier or place-of-service inconsistencies."
@@ -11,9 +11,11 @@ publishDate: 2027-03-16
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"
-keyword: "health plan audit telehealth"
+keyword: "health plan audit risk virtual care"
 tool: "audit-checklist"
 faq:
+  - q: "What is health plan audit risk for virtual care?"
+    a: "The chance a payer reviews your claims from analytics (code mix, frequency, modifiers) and recoups if the charts do not hold. Virtual care companies are flagged more often because their patterns differ from brick-and-mortar peers."
   - q: "What triggers a health plan audit of a telehealth company?"
     a: "Claim analytics: code distribution unlike peers, visit frequency or duration outliers, and modifier or place-of-service inconsistencies."
   - q: "How do I prepare for a payer audit?"
@@ -22,13 +24,13 @@ faq:
     a: "Yes, under contract, with recoupment rights. Commercial-only billing does not remove audit exposure."
   - q: "What documentation is required for telehealth visits?"
     a: "Typically modality, patient and clinician location, consent where required, and the same clinical elements as an in-person visit for the code billed. Payer policies vary; align to each."
-related: ["oig-advisory-opinion-25-03-and-state-cpom", "state-cpom-telehealth-billing-map-2027", "hybrid-in-person-care-insurance-billing"]
+related: ["/platform/compliance", "oig-advisory-opinion-25-03-and-state-cpom", "state-cpom-telehealth-billing-map-2027"]
 sourceFile: "06_March_Compliance_Structure.md"
 calendarWeek: 24
 dataReview: "cleared"
 draft: false
 ---
-We run internal chart audits for every customer billing through Anvil, and we have handled payer audits for several of them. This is what we have learned.
+Health plan audit risk for virtual care is a claim-pattern problem, not a random letter. We run internal chart audits for every customer billing through Anvil, and we have handled payer audits for several of them. This is what we have learned.
 
 ## How audits are triggered now
 Payers run analytics on every claim. A group whose distribution of codes, visit frequency, time-based billing, or modifiers differs from its specialty peers gets flagged. Telehealth companies are structurally likely to differ from brick-and-mortar peers, which means they are structurally likely to be flagged. This is not a sign of wrongdoing. It is a sign of being different, and the payer's next step is to ask for charts.

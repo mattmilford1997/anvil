@@ -44,6 +44,22 @@ const offerLd = {
       {pricingNotes.map((n) => <li>{n}</li>)}
     </ul>
   </Section>
+  <Section eyebrow="What the numbers cover" title="Payer contracting cost, credentialing cost per clinician, and the rental PC fee">
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Payer contracting cost</h3>
+        <p class="muted">Payer contracting cost for your own entity is in Scale: the one-time program fee and the platform fee. We do not invoice a separate per-contract fee for commercial or Medicaid enrollment.</p>
+      </div>
+      <div class="card">
+        <h3>Credentialing cost per clinician</h3>
+        <p class="muted">Credentialing cost per clinician is included. Roster-adds under our PC and full credentialing under your entity are not billed per clinician.</p>
+      </div>
+      <div class="card">
+        <h3>Rental PC fee</h3>
+        <p class="muted">The rental PC fee is the platform fee on collections while you bill under our PC. Build and Scale also include the monthly physician owner fee for your own PC.</p>
+      </div>
+    </div>
+  </Section>
   <Section eyebrow="Model it" title="Build vs partner, on your numbers" tight>
     <BuildVsPartnerCalc />
   </Section>

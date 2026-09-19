@@ -20,7 +20,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
     <div>
       <div class="eyebrow">Rate lookup</div>
       <h3>{compact ? 'What do payers pay for your codes?' : 'Published reimbursement rates by state and CPT code'}</h3>
-      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. The lookup lists CPT codes Parite has now.</p>}
+      {!compact && <p class="muted">Ranges are drawn from contracted and published rates for the state and code. They are ranges, not guarantees. The lookup lists the codes Parite has numbers for.</p>}
     </div>
   </div>
   <form class="rl-form" onsubmit="return false">
@@ -37,7 +37,7 @@ const states = Object.entries(rateStateNames).sort((a, b) => a[1].localeCompare(
         <option value="">Choose a service</option>
         {services.map((s) => <option value={s.code}>{s.label}</option>)}
       </select>
-      {!compact && <span class="hint">Codes in the lookup now match the Parite file. More codes ship when Parite has them.</span>}
+      {!compact && <span class="hint">If a code you bill is missing, ask us. We add codes when Parite has the numbers.</span>}
     </div>
     {!compact && (
       <div class="field">
