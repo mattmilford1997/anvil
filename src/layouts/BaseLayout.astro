@@ -21,7 +21,7 @@ const path = Astro.props.path ?? Astro.url.pathname;
 const canonical = absolute(path);
 const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
 const ld = [orgJsonLd(), websiteJsonLd(), ...jsonLd];
-const ga4Id = SITE.ga4 || import.meta.env.PUBLIC_GA4 || '';
+const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
 ---
 <!doctype html>
 <html lang="en">

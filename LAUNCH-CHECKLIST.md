@@ -24,7 +24,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 ## Integrations
 - [ ] Netlify: base directory `anvil`, env `SITE_URL`, custom domain, HTTPS.
 - [ ] Netlify Forms: enable, add outgoing webhook to Zapier/Make -> Close for each form.
-- [ ] Analytics: set `SITE.ga4` or Netlify `PUBLIC_GA4` (GA4 measurement ID). Loader is consent-gated (`anvil_consent === 'allow'` / `anvil:consent`). Do not invent a G- ID. Add PostHog / LinkedIn Insight snippets in `BaseLayout.astro` behind the same consent event if wanted.
+- [x] Analytics: `SITE.ga4` is `G-PT5J74C7KT` (CoS). Loader is consent-gated (`anvil_consent === 'allow'` / `anvil:consent`). Optional Netlify override: `PUBLIC_GA4`. Add PostHog / LinkedIn Insight snippets in `BaseLayout.astro` behind the same consent event if wanted.
 - [ ] Calendly: set `SITE.calendly` for the confirmation page embed.
 - [ ] Google Search Console: verify, submit `/sitemap-index.xml`.
 - [ ] Dedicated docs site (Fern/Mintlify) and SOC 2 trust center. First-party stubs ship at `/docs` and `/trust` until those hosts exist.

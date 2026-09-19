@@ -16,8 +16,8 @@ export const SITE = {
   contactEmail: 'hello@anvilcontracts.com',        // TODO(launch): mailbox on the production domain
   parentBrands: ['Foundry PC', 'Homefront', 'Arche Studios'],
   calendly: '',  // TODO(launch): e.g. https://calendly.com/you/anvil-intro (used on /contact/success)
-  // Measurement ID from SITE.ga4 or PUBLIC_GA4 at build time. Empty means no analytics.
-  ga4: process.env.PUBLIC_GA4 || '',
+  // CoS measurement ID. PUBLIC_GA4 overrides this at build time if set.
+  ga4: process.env.PUBLIC_GA4 || 'G-PT5J74C7KT',
   posthog: '',   // TODO(launch): phc_...
   linkedinInsight: '', // TODO(launch): partner id
 };
