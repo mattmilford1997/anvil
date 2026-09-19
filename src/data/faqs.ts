@@ -1,6 +1,7 @@
 export type Faq = { q: string; a: string };
 
 export const homeFaqs: Faq[] = [
+  { q: 'What is insurance billing infrastructure for virtual care?', a: 'The stack that lets a care company get in-network nationally and bill insurance in all 50 states: payer contracting, credentialing, eligibility, claims, and compliance. Anvil is that stack as a payer contracting platform. You launch on our PC, then own the contracts.' },
   { q: 'How can we be in-network nationally in weeks?', a: 'Because the contracts already exist. Anvil operates a credentialed 50-state professional corporation with payer contracts in place. Your clinicians are added to those contracts as a roster change, which takes weeks, not the quarters a new contract takes.' },
   { q: 'Who owns the payer contracts?', a: 'During the rental phase, Anvil\'s PC holds them. From day one we also form your own PC, place a physician owner, and contract your entity with payers. As those come live, volume moves to your PC and the contracts, rates, and relationships are yours.' },
   { q: 'Can we see what we will be paid?', a: 'Yes. Before you sign, you can look up what payers pay for your codes by state. During the rental phase, statements show the contracted rate and the platform fee as separate lines.' },
@@ -10,6 +11,7 @@ export const homeFaqs: Faq[] = [
 ];
 
 export const ownFaqs: Faq[] = [
+  { q: 'What does it mean to own your payer contracts?', a: 'The participation agreements sit in an entity you control, with portable payer contracts and billing under your own entity. Network rental vs owning contracts is the difference between a lease fee and an asset you can take to diligence or a sale. Anvil launches you on rental, then migrates you.' },
   { q: 'Why would I want to own contracts? Isn\'t that the work I am outsourcing?', a: 'You outsource the work, not the asset. Anvil does the contracting for your entity. You end up with a company that holds its own payer relationships when you raise or sell.' },
   { q: 'Does building my own PC slow down the launch?', a: 'No. It runs in parallel and never gates your go-live. You bill through our PC first and through yours as each contract comes live.' },
   { q: 'How long does the migration take?', a: 'Typically 6 to 18 months depending on states and payers. Commercial contracts for a new entity often land in 4 to 8 months. Medicaid managed care varies by state.' },
@@ -23,6 +25,7 @@ export const ownFaqs: Faq[] = [
 ];
 
 export const pricingFaqs: Faq[] = [
+  { q: 'What is telehealth billing platform pricing?', a: 'On Anvil it is a published platform fee on collections during rental, plus fixed fees for your own PC and physician owner. Payer contracting cost and credentialing cost per clinician are included in the tiers, not billed as surprise line items. The rental PC fee is the platform fee while you bill under our PC.' },
   { q: 'Why publish pricing?', a: 'Because you should be able to model this without a sales call. Most vendors in this category do not publish, which usually means the number depends on who is asking.' },
   { q: 'What is the platform fee charged on?', a: 'Collections, not billed charges. If a claim is not paid, there is no fee on it.' },
   { q: 'What does the physician owner fee cover?', a: 'A licensed physician who owns your PC under the friendly-PC structure, matched by Foundry PC, with the agreements and ongoing obligations that structure requires. $3,000 per month, 12-month minimum.' },

@@ -118,6 +118,23 @@ export function samplePairs(): RatePair[] {
   return samplePairKeys.map(([state, code]) => all.find((p) => p.state === state && p.code === code)).filter((p): p is RatePair => !!p);
 }
 
+/** Highest-search 90837 state pages. Only pairs that exist in the JSON. */
+export const longTail90837Keys: [string, string][] = [
+  ['OH', '90837'],
+  ['CA', '90837'],
+  ['TX', '90837'],
+  ['NY', '90837'],
+  ['FL', '90837'],
+  ['IL', '90837'],
+  ['PA', '90837'],
+  ['WA', '90837'],
+];
+
+export function longTail90837Pairs(): RatePair[] {
+  const all = ratePairs();
+  return longTail90837Keys.map(([state, code]) => all.find((p) => p.state === state && p.code === code)).filter((p): p is RatePair => !!p);
+}
+
 export function sourcesOnPage(rows: RateRow[]) {
   return [...new Set(rows.map((r) => r.source).filter(Boolean))] as string[];
 }

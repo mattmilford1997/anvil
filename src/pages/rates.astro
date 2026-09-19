@@ -6,12 +6,13 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, ratePath, stateName, codeLabel, ratesFile, rateRows, codesInData } from '../lib/rates';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, ratesFile, rateRows, codesInData } from '../lib/rates';
 const samples = samplePairs();
+const longTail90837 = longTail90837Pairs();
 const codes = codesInData();
 const faqs = [
   { q: 'Where can I find reimbursement rates by state and CPT code?', a: 'Use the lookup, or open a page such as 90837 in Ohio. Ranges come from Parite. They are not a guarantee of what you will be paid.' },
-  { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, in states where the Parite export includes a Medicaid FFS cell. Ohio 90837 is one example. If Medicaid FFS is missing for a state, that row is blank until Parite has it.' },
+  { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, in states where the Parite export includes a Medicaid FFS cell. Ohio 90837 and California 90837 are examples. If Medicaid FFS is missing for a state, that row is blank until Parite has it.' },
   { q: 'Can I see telehealth reimbursement by payer?', a: 'Yes. Each state and code pair is a table of telehealth reimbursement by payer for that CPT code (Medicare PFS, Medicaid FFS, and UHC TiC where Parite has a cell). The lookup has the same payer filter.' },
   { q: 'Will you publish psychotherapy reimbursement rates by state?', a: 'Yes. 90837, 90834, and 90791 have a page per state. 97153 appears where Medicaid FFS is in the file. More codes ship when Parite has them.' },
   { q: 'Where do these numbers come from?', a: 'From Parite, which aggregates contracted and published reimbursement data by state, payer, and code. Anvil shows ranges, not individual contract terms. Source labels (Medicare PFS, Medicaid FFS, UHC TiC) are Parite\'s.' },
@@ -31,6 +32,16 @@ const faqs = [
   </Section>
   <Section tight>
     <RateLookup />
+  </Section>
+  <Section eyebrow="Long tail" title="90837 reimbursement rate by state" intro="Psychotherapy, 60 minutes, is the query clinicians search first. These pages exist because Parite has at least one row. Ohio and California 90837 are the usual starting points.">
+    <ul class="check-list">
+      {longTail90837.map((p) => (
+        <li>
+          <a href={ratePath(p.state, p.code)}>{p.code} reimbursement rate in {stateName(p.state)} by payer (2026)</a>
+          <span class="muted">. {codeLabel(p.code)}, {p.rows.length} payer{p.rows.length === 1 ? '' : 's'}</span>
+        </li>
+      ))}
+    </ul>
   </Section>
   <Section eyebrow="Sample pages" title="Open a state and code from the current Parite data" intro="Generated where at least one row exists. Title pattern: [Code] reimbursement rate in [State] by payer (2026).">
     <ul class="check-list">
