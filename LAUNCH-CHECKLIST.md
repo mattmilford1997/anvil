@@ -9,7 +9,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 - [ ] Pricing numbers: platform fee % per tier, one-time program fees, own-contract fee (`pricing.ts`, `TimelineSlider.astro`). Foundry numbers ($15,000 formation, $3,000/mo physician owner, $360/state) are already real.
 - [ ] Login destination (`SITE.loginUrl`).
 - [x] Docs and trust first-party stubs (`SITE.docsUrl` = `/docs`, `SITE.trustUrl` = `/trust`). Dedicated docs host and SOC 2 trust center remain closed.
-- [ ] Counsel sign-off on `/platform/compliance`, `/legal/privacy`, `/legal/terms`, and the footer disclaimer.
+- [ ] Counsel sign-off on `/platform/compliance`, `/legal/privacy`, `/legal/terms`, and the footer disclaimer. Visible `TODO(launch)` copy on privacy and terms is removed; effective date publishes after review.
 
 ## Data to fill
 - [ ] `src/data/stats.ts`: real states live, payers live, clinicians credentialed, median days to first paid claim. Set `verified: true`.
