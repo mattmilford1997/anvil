@@ -21,6 +21,7 @@ const path = Astro.props.path ?? Astro.url.pathname;
 const canonical = absolute(path);
 const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
 const ld = [orgJsonLd(), websiteJsonLd(), ...jsonLd];
+const ga4Id = SITE.ga4 || import.meta.env.PUBLIC_GA4 || '';
 ---
 <!doctype html>
 <html lang="en">
@@ -46,16 +47,31 @@ const ld = [orgJsonLd(), websiteJsonLd(), ...jsonLd];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absolute(ogImage)} />
     {ld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
-    {SITE.ga4 && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4}`}></script>
-        <script is:inline define:vars={{ id: SITE.ga4 }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', id, { anonymize_ip: true });
-        </script>
-      </>
+    {ga4Id && (
+      <script is:inline define:vars={{ ga4Id }}>
+        (function () {
+          if (!ga4Id) return;
+          function loadGa() {
+            if (window.__anvilGaLoaded) return;
+            window.__anvilGaLoaded = true;
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments); }
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', ga4Id, { anonymize_ip: true });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+            document.head.appendChild(s);
+          }
+          try {
+            if (localStorage.getItem('anvil_consent') === 'allow') loadGa();
+            window.addEventListener('anvil:consent', function (e) {
+              if (e.detail === 'allow') loadGa();
+            });
+          } catch (err) {}
+        })();
+      </script>
     )}
   </head>
   <body>

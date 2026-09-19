@@ -123,7 +123,16 @@ tr:last-child td { border-bottom: 0; }
 .field input[type=radio], .field input[type=checkbox] { width: auto; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
 @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
-.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+}
 
 /* Prose (article bodies) */
 .prose { max-width: 720px; }

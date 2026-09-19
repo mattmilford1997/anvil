@@ -7,14 +7,34 @@ const { title = 'The insurance memo', body = 'Biweekly. One number, one take, on
   <p class="muted">{body}</p>
   <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success?src=newsletter" class="nl-form">
     <input type="hidden" name="form-name" value="newsletter" />
-    <p class="hp"><label>Leave empty <input name="bot-field" /></label></p>
+    <p class="hp" aria-hidden="true"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+    <input type="hidden" name="form_started" value="" />
     <label for="nl-email" class="sr-only">Work email</label>
     <input id="nl-email" type="email" name="email" placeholder="Work email" required />
     <button type="submit" class="btn btn-primary">Subscribe</button>
   </form>
 </div>
 <style>
+  .nl { position: relative; }
   .nl h3 { font-size: 20px; margin-bottom: 4px; }
-  .nl-form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .nl-form { position: relative; display: flex; gap: 8px; flex-wrap: wrap; }
   .nl-form input[type=email] { flex: 1 1 180px; font: inherit; font-size: 15px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 999px; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 </style>
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[name=newsletter]').forEach((f) => {
+    if (f.dataset.guarded) return;
+    f.dataset.guarded = '1';
+    const started = Date.now();
+    const ts = f.querySelector<HTMLInputElement>('[name=form_started]');
+    if (ts) ts.value = String(started);
+    let last = 0;
+    f.addEventListener('submit', (e) => {
+      const now = Date.now();
+      const startAt = Number(ts?.value || started);
+      if (now - startAt < 2000) { e.preventDefault(); return; }
+      if (now - last < 10000) e.preventDefault();
+      last = now;
+    });
+  });
+</script>

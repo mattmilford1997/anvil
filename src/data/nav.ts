@@ -40,7 +40,7 @@ export const footerNav: { title: string; items: NavLink[] }[] = [
       { label: 'Rates by state', href: '/rates' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'Blog and guides', href: '/resources' },
-      { label: 'API docs', href: SITE.docsUrl, external: true },
+      { label: 'API docs', href: SITE.docsUrl },
     ],
   },
   {
@@ -49,7 +49,7 @@ export const footerNav: { title: string; items: NavLink[] }[] = [
       { label: 'About', href: '/company' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Trust center', href: SITE.trustUrl, external: true },
+      { label: 'Trust center', href: SITE.trustUrl },
       { label: 'BAA', href: '/legal/baa' },
       { label: 'Privacy', href: '/legal/privacy' },
       { label: 'Terms', href: '/legal/terms' },

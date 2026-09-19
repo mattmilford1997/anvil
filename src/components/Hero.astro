@@ -1,7 +1,16 @@
 ---
 import ProductMock from './ProductMock.astro';
-interface Props { eyebrow?: string; title: string; sub: string; primary?: { label: string; href: string }; secondary?: { label: string; href: string }; mock?: boolean; compact?: boolean }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, mock = false, compact = false } = Astro.props;
+interface Props {
+  eyebrow?: string;
+  title: string;
+  sub: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  secondaryAs?: 'button' | 'link';
+  mock?: boolean;
+  compact?: boolean;
+}
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false } = Astro.props;
 ---
 <section class:list={['hero', { compact, 'has-mock': mock }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
@@ -12,8 +21,11 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
       <p class="lede">{sub}</p>
       <div class="btn-group">
         <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
-        {secondary && <a href={secondary.href} class="btn btn-ghost btn-lg">{secondary.label}</a>}
+        {secondary && secondaryAs === 'button' && <a href={secondary.href} class="btn btn-ghost btn-lg">{secondary.label}</a>}
       </div>
+      {secondary && secondaryAs === 'link' && (
+        <p class="hero-alt"><a href={secondary.href}>{secondary.label}</a></p>
+      )}
       <slot name="below" />
     </div>
     {mock && <div class="hero-mock"><ProductMock /></div>}
@@ -30,6 +42,9 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
   .hero :global(h1 em) { font-style: normal; color: var(--accent); }
   .hero :global(h1 s) { text-decoration-color: var(--accent); text-decoration-thickness: 3px; color: var(--muted); }
   .lede { margin-bottom: 28px; }
+  .hero-alt { margin: 16px 0 0; font-size: 15px; }
+  .hero-alt a { color: var(--muted); font-weight: 500; }
+  .hero-alt a:hover { color: var(--accent); }
   @media (max-width: 960px) { .has-mock .hero-in { grid-template-columns: 1fr; } .hero-mock { max-width: 560px; } }
 </style>
 <script>
