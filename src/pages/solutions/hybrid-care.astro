@@ -3,10 +3,11 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
 const faqs = [
+  { q: 'What is in-home care insurance billing?', a: 'Billing visits delivered in a home, clinic, or school under the correct place of service, with site enrollment where the payer requires it. Telehealth-only vendors often refuse the model. Anvil bills it: place of service, site enrollment, interventional psychiatry, and school-based programs.' },
   { q: 'Telehealth-only vendors turned us down. Why can you take us?', a: 'Because the platform was built for these models from the start. Place of service, facility components, travel, and site-specific enrollment are part of how we bill, not exceptions to it.' },
   { q: 'Does the rented PC work for in-person care?', a: 'Yes, where the state and payer allow the structure and the site is enrolled. Some in-person programs need site-level enrollment under your own PC sooner, and we sequence that first.' },
-  { q: 'Interventional psychiatry?', a: 'Yes. TMS, ketamine and esketamine, and the authorization and documentation those require.' },
-  { q: 'School-based programs?', a: 'Yes. Medicaid school-based billing and the district agreements around it.' },
+  { q: 'How does interventional psychiatry billing work?', a: 'TMS, ketamine and esketamine, plus the authorization and documentation those codes require. Facility and professional components can be two claims on one visit.' },
+  { q: 'How does school-based program billing work?', a: 'Medicaid school-based billing, place of service 03, and the district agreements around it. We sequence site enrollment before volume moves.' },
 ];
 ---
 <SubpageLayout
@@ -21,12 +22,25 @@ const faqs = [
   ctaBody="Sites, states, license mix, and codes. We come back with the enrollment sequence and what runs on rental versus your own PC first."
   ctaPrimary={{ label: 'Get started', href: '/contact?src=hybrid' }}
 >
-  <Section eyebrow="What changes off-screen" title="The parts of billing that only exist in person">
+  <Section eyebrow="What changes off-screen" title="Place of service billing and site enrollment">
+    <p class="lede">Place of service billing is why hybrid claims fail on a telehealth-only stack. Each site is enrolled with each payer. Sequence matters. We enroll sites under your own PC when rental cannot cover them.</p>
     <Tiles items={[
-      { icon: 'map', title: 'Place of service and site enrollment', body: 'Each site is enrolled with each payer. Sequence matters. We enroll sites under your own PC when rental cannot cover them.' },
+      { icon: 'map', title: 'Place of service and site enrollment', body: 'POS 02, 10, 11, 12, and 03 are not interchangeable. Site enrollment is a payer file, not a checkbox on the claim.' },
       { icon: 'file', title: 'Facility and professional components', body: 'IOP, PHP, interventional procedures. Two claims, two fee schedules, one visit.' },
       { icon: 'users', title: 'In-home and school-based', body: 'Travel, place of service 12 and 03, district agreements, Medicaid school-based programs.' },
       { icon: 'shield', title: 'Authorizations', body: 'TMS, esketamine, ABA, and the re-authorization calendar that keeps a program from stalling.' },
     ]} cols={4} />
+  </Section>
+  <Section eyebrow="Specialty programs" title="Interventional psychiatry billing and school-based program billing">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Interventional psychiatry billing</h3>
+        <p class="muted">TMS, ketamine, and esketamine need authorizations, site enrollment, and often a facility component. We bill the professional and facility sides as the payer requires, then keep the re-authorization calendar from stalling the chair schedule.</p>
+      </div>
+      <div class="card">
+        <h3>School-based program billing</h3>
+        <p class="muted">Medicaid school-based programs need district agreements, place of service 03, and site enrollment before the first claim. We sequence that work so the school year is not waiting on a portal.</p>
+      </div>
+    </div>
   </Section>
 </SubpageLayout>

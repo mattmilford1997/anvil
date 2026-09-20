@@ -5,6 +5,7 @@ import TimelineSlider from '../../components/TimelineSlider.astro';
 import { getLivePost } from '../../lib/content';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const faqs = [
+  { q: 'How do I switch from a network rental vendor?', a: 'Keep billing where you are. Form your PC, file contract applications in your name, move volume payer by payer as each contract is effective, then give notice. Leave the rental PC only after the majority of volume is on contracts you own. Remaining payers can run through Anvil\'s rented PC.' },
   { q: 'Will there be a revenue gap?', a: 'No. You keep billing through your current vendor until each of your own contracts is effective. Only then does that payer\'s new volume move. If your current agreement allows, we can also run new states on our PC during the switch.' },
   { q: 'How long does it take?', a: 'Your own PC forms in weeks. Commercial contracts commonly land in 4 to 8 months. Medicaid varies by state. Most switches complete inside 12 months without a single payer going dark.' },
   { q: 'What do we need from our current vendor?', a: 'Your clinicians\' credentialing documents and any executed agreement terms about notice and non-solicitation. We review those before you give notice.' },
@@ -32,6 +33,7 @@ const steps = [
   ctaPrimary={{ label: 'Get started', href: '/contact?src=switching' }}
 >
   <Section eyebrow="The switch" title="No revenue gap, by construction">
+    <p class="lede">The exit papers an MSO-PC structure for corporate practice of medicine, so billing under your own entity is compliant as volume moves. The CPOM and AKS language is on <a href="/platform/compliance">compliance</a>.</p>
     <div class="grid grid-4">
       {steps.map(([t, b]) => <div class="card"><h3 style="font-size:18px">{t}</h3><p class="muted" style="font-size:15px">{b}</p></div>)}
     </div>

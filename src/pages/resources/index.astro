@@ -4,15 +4,17 @@ import Section from '../../components/Section.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { breadcrumbJsonLd } from '../../lib/seo';
-import { getPosts } from '../../lib/content';
+import { breadcrumbJsonLd, showHeld, fmtDate } from '../../lib/seo';
+import { getPosts, getUpcomingOctoberPosts } from '../../lib/content';
 const posts = await getPosts();
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
+const liveIds = new Set(posts.map((p) => p.id));
+const octUpcoming = (await getUpcomingOctoberPosts()).filter((p) => !liveIds.has(p.id));
 const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 ---
-<BaseLayout title="Resources: insurance ops for care companies" description="Long-form guides on accepting insurance, credentialing, payer contracting, eligibility, and owning your contracts. Written by operators who run insurance-billing care companies." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
-  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Model it, don't vibe it.</h1><p class="lede">Frameworks, cost tables, and the numbers behind insurance operations for care companies. Every article ends with a tool, not a pitch.</p></div></section>
+<BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting. Frameworks and cost tables, written for founders who run billing." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
+  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Model it, don't vibe it.</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.{octUpcoming.length > 0 && <> October titles below are queued, not published yet.</>}</p></div></section>
   <Section tight>
     <div class="filters" role="tablist" aria-label="Filter by type">
       {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}
@@ -24,6 +26,20 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
           {rest.map((p) => <div data-cat={p.data.category}><ArticleCard post={p} /></div>)}
         </div>
         <p class="muted empty" hidden>No posts in this category yet.</p>
+        {octUpcoming.length > 0 && (
+          <div class="card oct-tease">
+            <h2>Coming in October</h2>
+            <p class="muted">Queued insurance ops guides for care companies. They are not live yet. Titles appear on the hub when they publish.</p>
+            <ul class="oct-list">
+              {octUpcoming.map((p) => (
+                <li>
+                  {showHeld ? <a href={`/resources/${p.id}`}>{p.data.title}</a> : <span>{p.data.title}</span>}
+                  <span class="muted small"> Scheduled {fmtDate(p.data.publishDate)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <aside class="res-side">
         <NewsletterForm />
@@ -43,6 +59,11 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
   .tools { list-style: none; padding: 0; margin: 0; }
   .tools li { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
   .tools li:last-child { border-bottom: 0; }
+  .oct-tease { margin-top: 28px; }
+  .oct-tease h2 { font-size: 22px; margin: 0 0 8px; }
+  .oct-list { list-style: none; padding: 0; margin: 12px 0 0; }
+  .oct-list li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .oct-list li:last-child { border-bottom: 0; }
   @media (max-width: 900px) { .res-grid { grid-template-columns: 1fr; } .res-side { position: static; } }
 </style>
 <script>
