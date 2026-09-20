@@ -3,16 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Section from '../../components/Section.astro';
 import { SITE } from '../../../site.config.mjs';
 ---
-<BaseLayout title="Thanks" description="We have your note. Book a time now if you would rather not wait." noindex>
+  <BaseLayout title="Thanks" description="We have your note. We will reply within one business day." noindex>
   <Section>
     <div class="ok">
       <div class="eyebrow">Received</div>
       <h1>Thanks. We will reply within one business day.</h1>
-      <p class="lede">If you would rather not wait, pick a time now.</p>
       {SITE.calendly ? (
-        <div class="cal"><iframe src={`${SITE.calendly}?hide_gdpr_banner=1&background_color=f7f4ee&primary_color=c4552d`} title="Book a time" loading="lazy"></iframe></div>
+        <>
+          <p class="lede">If you would rather not wait, pick a time now.</p>
+          <div class="cal"><iframe src={`${SITE.calendly}?hide_gdpr_banner=1&background_color=f7f4ee&primary_color=c4552d`} title="Book a time" loading="lazy"></iframe></div>
+        </>
       ) : (
-        <p class="small muted">TODO(launch): set SITE.calendly in site.config.mjs to embed booking here.</p>
+        <p class="lede">A booking calendar publishes here when it is live. Prefer email now? <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
       )}
       <div class="btn-group" style="margin-top:24px"><a href="/rates" class="btn btn-primary">Look up rates while you wait</a><a href="/resources" class="btn btn-ghost">Read the resources</a></div>
     </div>

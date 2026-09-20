@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /rates
+Allow: /compare
 Disallow: /contact/success
 Sitemap: https://www.anvilcontracts.com/sitemap-index.xml

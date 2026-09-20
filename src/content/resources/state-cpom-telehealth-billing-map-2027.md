@@ -11,9 +11,11 @@ publishDate: 2027-03-09
 category: "Report"
 icp: ["A", "B", "D"]
 pillar: "depth"
-keyword: "corporate practice of medicine by state"
+keyword: "corporate practice of medicine by state telehealth"
 tool: "map-download"
 faq:
+  - q: "What is corporate practice of medicine by state for telehealth?"
+    a: "Each state sets who may own a professional entity, how a management company may be paid, and how telehealth visits may be billed. CPOM strictness, fee-splitting, physician-owner rules, and telehealth modality rules vary independently. Confirm current rules with counsel before forming or billing."
   - q: "Which states have the strictest corporate practice of medicine laws?"
     a: "California, New York, and Texas are commonly cited as strict, with active enforcement. Several others are strict on paper with variable enforcement. The download lists each state."
   - q: "Can a management company take a percentage of revenue?"
@@ -22,7 +24,7 @@ faq:
     a: "In some states, a domestic professional entity is required. In others, a foreign PC may register. The map's entity column covers each."
   - q: "Do telehealth billing rules vary by state?"
     a: "Yes, independently of CPOM. Modality, place of service, in-state licensure, and Medicaid telehealth coverage for behavioral health all vary."
-related: ["oig-advisory-opinion-25-03-and-state-cpom", "health-plan-audits-virtual-care", "hybrid-in-person-care-insurance-billing"]
+related: ["/platform/compliance", "oig-advisory-opinion-25-03-and-state-cpom", "/own-your-contracts"]
 sourceFile: "06_March_Compliance_Structure.md"
 calendarWeek: 23
 dataReview: "cleared"

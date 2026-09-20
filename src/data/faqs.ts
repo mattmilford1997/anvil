@@ -8,6 +8,7 @@ export const homeFaqs: Faq[] = [
   { q: 'Do you work with Medicaid?', a: 'Yes. Medicaid managed care enrollment and contracting, state by state, is part of the platform, and Medicaid contracting for your own entity is included in the Scale tier.' },
   { q: 'Is the structure compliant?', a: 'The rental phase is structured to align with the personal services and management contracts safe harbor under the federal Anti-Kickback Statute, with fees set in advance at fair market value. On top of that we structure your own PC for each state\'s corporate practice of medicine rules, which federal guidance does not address. Counsel reviews every structure.' },
   { q: 'What does it cost?', a: 'Pricing is published. A platform fee on collections during rental, plus fixed one-time and monthly fees for your own PC and physician owner. See the pricing page.' },
+  { q: 'Is Anvil a Bridge alternative?', a: 'Yes. Bridge is a network rental vendor. Anvil is a Bridge alternative that launches you on a rented PC, then migrates volume so you own your payer contracts. The side-by-side is on the Anvil vs Bridge page.' },
 ];
 
 export const ownFaqs: Faq[] = [

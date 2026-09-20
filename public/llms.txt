@@ -7,25 +7,26 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 ## Core pages
 
 - [Home](https://www.anvilcontracts.com/): the rent-then-own model in one scroll
-- [How it works](https://www.anvilcontracts.com/platform): five workstreams, two entities, one platform
+- [How it works](https://www.anvilcontracts.com/platform): five workstreams (payer contracting, credentialing, RCM, eligibility, compliance), two entities, one platform
 - [Own your contracts](https://www.anvilcontracts.com/own-your-contracts): why network rental is renting your revenue, and the month-by-month migration
-- [Rates](https://www.anvilcontracts.com/rates): reimbursement rates by state and CPT code; lookup plus per-state pages (e.g. [90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837)) from Parite
+- [Anvil vs Bridge](https://www.anvilcontracts.com/compare/bridge): Bridge alternative fact table. Bridge is network rental; Anvil migrates payer contracts into your name
+- [Rates](https://www.anvilcontracts.com/rates): telehealth reimbursement rates by payer, state, and CPT code; lookup plus per-state pages from Parite (e.g. [90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837), [90837 in California](https://www.anvilcontracts.com/rates/ca/90837), [90837 in Texas](https://www.anvilcontracts.com/rates/tx/90837), [90837 in New York](https://www.anvilcontracts.com/rates/ny/90837), [90837 in Florida](https://www.anvilcontracts.com/rates/fl/90837), [90834 in California](https://www.anvilcontracts.com/rates/ca/90834), [90791 in New York](https://www.anvilcontracts.com/rates/ny/90791), [97153 in Indiana](https://www.anvilcontracts.com/rates/in/97153))
 - [Pricing](https://www.anvilcontracts.com/pricing): Launch, Build, Scale tiers and a build-vs-partner calculator
 
 ## Platform
 
 - [Eligibility at booking](https://www.anvilcontracts.com/platform/eligibility): real-time insurance eligibility API, copay estimate, payer outage detection
-- [Credentialing and enrollment](https://www.anvilcontracts.com/platform/credentialing)
-- [Payer contracting](https://www.anvilcontracts.com/platform/contracting)
-- [Coding, claims, denials, AR](https://www.anvilcontracts.com/platform/rcm)
-- [Compliance and structure](https://www.anvilcontracts.com/platform/compliance)
+- [Credentialing and enrollment](https://www.anvilcontracts.com/platform/credentialing): telehealth credentialing services, roster-add vs full enrollment
+- [Payer contracting](https://www.anvilcontracts.com/platform/contracting): payer contracting for telehealth; own your payer contracts
+- [Coding, claims, denials, AR](https://www.anvilcontracts.com/platform/rcm): telehealth revenue cycle management
+- [Compliance and structure](https://www.anvilcontracts.com/platform/compliance): corporate practice of medicine (CPOM) for telehealth, AKS safe harbor MSO, MSO-PC structure; HIPAA in place, SOC 2 Type II in progress. No OIG advisory opinion is claimed.
 
 ## Solutions
 
 - [Virtual care](https://www.anvilcontracts.com/solutions/virtual-care)
-- [Behavioral health](https://www.anvilcontracts.com/solutions/behavioral-health)
+- [Behavioral health](https://www.anvilcontracts.com/solutions/behavioral-health): behavioral health payer contracting, ABA credentialing, Medicaid MCO panels, psychiatry credentialing multi-state, collaborative care billing
 - [Hybrid and in-person](https://www.anvilcontracts.com/solutions/hybrid-care)
-- [Switching from a network rental vendor](https://www.anvilcontracts.com/solutions/switching)
+- [Switching from a network rental vendor](https://www.anvilcontracts.com/solutions/switching): Bridge alternative; leave a rental PC and migrate payer contracts with no revenue gap
 - [Health plans](https://www.anvilcontracts.com/health-plans)
 
 ## Resources

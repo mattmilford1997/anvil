@@ -2,22 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Section from '../../components/Section.astro';
-import FeatureRow from '../../components/FeatureRow.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Faq from '../../components/Faq.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
 
 const workstreams = [
   { name: 'Payer contracting', hire: 'Contracting lead with payer relationships in each state, plus counsel for contract review.', anvil: 'Rent: you bill under our existing contracts. Own: we contract your entity with commercial, Medicaid, and MA payers, and you see the rate ladder.', href: '/platform/contracting' },
-  { name: 'Credentialing and enrollment', hire: 'One credentialing specialist per 30-40 clinicians, a CAQH process, and someone chasing payer portals every week.', anvil: 'Roster-adds under our PC in weeks. Full credentialing files under your entity, largely automated, tracked in one place.', href: '/platform/credentialing' },
-  { name: 'Real-time eligibility', hire: 'A clearinghouse contract, an engineer to integrate 270/271, and ops to handle the payer outages.', anvil: 'One API and a hosted widget. Soft check at booking, copay estimate, outage detection built in.', href: '/platform/eligibility' },
-  { name: 'Coding and claims', hire: 'Certified coders, a billing team, a clearinghouse, and charting standards that survive an audit.', anvil: 'Coding review, claim submission, and charting standards that survive an audit. Clean-claim rate reported monthly.', href: '/platform/rcm' },
-  { name: 'Denials and AR', hire: 'AR specialists working aging reports, appeals writers, and a way to see which payer is the problem.', anvil: 'Denial management and appeals, AR by payer and by clinician, with the claims risk on us during rental.', href: '/platform/rcm' },
+  { name: 'Credentialing', hire: 'One credentialing specialist per 30-40 clinicians, a CAQH process, and someone chasing payer portals every week.', anvil: 'Roster-adds under our PC in weeks. Full credentialing files under your entity, largely automated, tracked in one place.', href: '/platform/credentialing' },
+  { name: 'RCM', hire: 'Certified coders, a billing team, AR specialists, and charting standards that survive an audit.', anvil: 'Coding, claims, denial management, and AR. Clean-claim rate reported monthly. Claims risk on us during rental.', href: '/platform/rcm' },
+  { name: 'Eligibility', hire: 'A clearinghouse contract, an engineer to integrate 270/271, and ops to handle the payer outages.', anvil: 'One API and a hosted widget. Soft check at booking, copay estimate, outage detection built in.', href: '/platform/eligibility' },
+  { name: 'Compliance', hire: 'Healthcare counsel for AKS and each state CPOM analysis, plus a security program.', anvil: 'Rental structured for the AKS personal services safe harbor. Your PC structured for CPOM by state. HIPAA in place; SOC 2 Type II in progress.', href: '/platform/compliance' },
+];
+
+const faqs = [
+  { q: 'What is an insurance operations platform for care companies?', a: 'The five workstreams in one place: payer contracting, credentialing, RCM, eligibility, and compliance. Anvil runs them first under our entity so you can launch, then under yours so you own the contracts.' },
+  { q: 'What does it mean to own your payer contracts?', a: 'The participation agreements sit in an entity you control. Anvil launches you on a rented PC, then migrates volume to contracts in your name. That is the difference between a lease and an asset.' },
 ];
 ---
 <BaseLayout title="Insurance operations platform: rent, then own" description="Insurance operations platform for care companies. Payer contracting, credentialing, RCM, eligibility, and compliance. Rent, then own." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }])]}>
-  <Hero compact eyebrow="Platform" title="Rent the network. Own the contracts. Run both on one platform." sub="Anvil is an insurance operations platform for care companies. We run all five workstreams, first under our entity so you can launch, then under yours so you keep the asset." secondary={{ label: 'See pricing', href: '/pricing' }} />
+  <Hero compact eyebrow="Platform" title="Rent the network. Own the contracts. Run both on one platform." sub="Anvil is an insurance operations platform for care companies. The five workstreams are payer contracting, credentialing, RCM, eligibility, and compliance. We run them first under our entity so you can launch, then under yours so you keep the asset." secondary={{ label: 'See pricing', href: '/pricing' }} />
 
-  <Section eyebrow="The five workstreams" title="What you would have to hire, and what Anvil does instead">
+  <Section eyebrow="The five workstreams" title="Payer contracting, credentialing, RCM, eligibility, and compliance" intro="What you would have to hire for each workstream, and what Anvil runs instead.">
     <div class="table-wrap reveal">
       <table>
         <thead><tr><th>Workstream</th><th>Build it yourself</th><th>With Anvil</th></tr></thead>
@@ -60,6 +65,7 @@ const workstreams = [
     </div>
   </Section>
 
+  <Section tight><Faq items={faqs} /></Section>
   <CtaBand title="See the five workstreams on your own numbers." body="Run the calculator, then talk to us about the tier that fits." primary={{ label: 'Open the calculator', href: '/pricing#calculator' }} secondary={{ label: 'Get started', href: '/contact' }} />
 </BaseLayout>
 <style>

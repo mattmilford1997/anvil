@@ -7,8 +7,8 @@ import CtaBand from '../components/CtaBand.astro';
 import { team } from '../data/team';
 import { breadcrumbJsonLd } from '../lib/seo';
 ---
-<BaseLayout title="Company" description="Anvil is built by Arche Studios, the team behind Foundry PC and Homefront. Insurance infrastructure for care companies, built by people who have run them." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
-  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is the platform we wished existed each time we launched a care company. Rent a network to start. Own the contracts to finish. Built by the team behind Foundry PC and Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+<BaseLayout title="Insurance infrastructure for care companies" description="Anvil is insurance infrastructure for care companies. Built by Arche Studios, the team behind Foundry PC and Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
+  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is insurance infrastructure for care companies: the platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Foundry PC and Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
   <Section eyebrow="Mission" tight>
     <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
   </Section>
@@ -29,8 +29,8 @@ import { breadcrumbJsonLd } from '../lib/seo';
       {team.map((p) => (
         <div class="card person"><div class="avatar" aria-hidden="true">{p.name.split(' ').map((n) => n[0]).join('')}</div><h3>{p.name}</h3><div class="muted small">{p.title}</div><p class="muted" style="font-size:15px;margin-top:10px">{p.bio}</p>{p.linkedin && <a href={p.linkedin} rel="noopener" target="_blank" class="small">LinkedIn</a>}</div>
       ))}
-      <div class="card person muted"><h3 style="font-size:18px">Heads of payer ops, credentialing, engineering, and legal</h3><p class="small">TODO(launch): add names, titles, and photos.</p></div>
     </div>
+    <p class="small muted" style="margin-top:20px">Leadership profiles publish as the team page is filled out.</p>
   </Section>
   <Section eyebrow="Built on" title="Three companies, one platform" tight>
     <div class="grid grid-3">

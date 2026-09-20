@@ -1,7 +1,7 @@
 ---
 title: "ABA Authorizations and Medicaid: Building an Intake Flow That Doesn't Stall"
-excerpt: "ABA is the hardest behavioral health service to move from inquiry to first billable session: diagnosis requirements, assessment authorizations, treatment."
-lede: "ABA is the hardest behavioral health service to move from inquiry to first billable session: diagnosis requirements, assessment authorizations, treatment plan authorizations, and Medicaid MCO rules that vary by state. Here's the intake flow that keeps families moving."
+excerpt: "ABA credentialing and authorization: diagnosis, assessment auth, treatment plan, and Medicaid MCO rules that vary by state."
+lede: "ABA credentialing and authorization is the hardest behavioral health service to move from inquiry to first billable session: diagnosis requirements, assessment authorizations, treatment plan authorizations, and Medicaid MCO rules that vary by state. Here's the intake flow that keeps families moving."
 summary:
   - "ABA intake stalls in three places: getting a qualifying diagnosis on file, getting the assessment authorized, and getting the treatment plan authorized. Each is a payer-specific gate."
   - "Eligibility for ABA is not \"plan active.\" It is plan active, ABA benefit present, diagnosis on file, authorization status, and provider type in network."
@@ -11,9 +11,11 @@ publishDate: 2027-02-23
 category: "Blog"
 icp: ["B"]
 pillar: "depth"
-keyword: "ABA authorization process"
+keyword: "ABA credentialing and authorization"
 tool: "none"
 faq:
+  - q: "What is ABA credentialing and authorization?"
+    a: "ABA credentialing enrolls the rendering provider types (BCBA, BCaBA, RBT under supervision) with each payer. Authorization is the intake gate after that: qualifying diagnosis, assessment units, then treatment-plan hours. Both have to be in place before a billable session."
   - q: "How long does ABA authorization take?"
     a: "Assessment authorization commonly takes days to a few weeks depending on the payer; treatment plan authorization similar. Total inquiry-to-first-session time is often two to four months, most of it administrative and much of it avoidable with parallel intake."
   - q: "Does Medicaid cover ABA?"
@@ -22,7 +24,7 @@ faq:
     a: "Plan active, ABA benefit present, age limits, diagnosis on file, authorization status and remaining units, and provider type network status."
   - q: "Why do ABA treatment plans get hours cut?"
     a: "Usually because the plan does not map clearly to the payer's medical-necessity criteria. Writing the plan with the authorization specialist involved reduces cuts and appeals."
-related: ["eligibility-at-booking-conversion-lift", "soft-check-hard-check-eligibility-api", "payer-eligibility-outage-detection"]
+related: ["/solutions/behavioral-health", "eligibility-at-booking-conversion-lift", "payer-eligibility-outage-detection"]
 sourceFile: "05_February_Eligibility_Conversion.md"
 calendarWeek: 21
 dataReview: "cleared"
