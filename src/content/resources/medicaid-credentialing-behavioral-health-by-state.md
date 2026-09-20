@@ -1,7 +1,7 @@
 ---
 title: "Medicaid Credentialing for Behavioral Health, State by State"
-excerpt: "Medicaid is the largest payer in behavioral health and the least standardized to credential with."
-lede: "Medicaid is the largest payer in behavioral health and the least standardized to credential with. A state-by-state guide to MCO structures, provider type requirements, carve-outs, and the sequencing that gets a BH group billing Medicaid across state lines."
+excerpt: "Medicaid enrollment for behavioral health across multiple states: MCO structures, provider types, carve-outs, and sequencing."
+lede: "Medicaid enrollment for behavioral health is a multi-state problem: 50 state programs, each with fee-for-service enrollment plus MCOs that credential separately. A state-by-state guide to MCO structures, provider type requirements, carve-outs, and the sequencing that gets a BH group billing Medicaid across state lines."
 summary:
   - "Medicaid is not one payer. It is 50 state programs, each with its own fee-for-service enrollment plus a set of managed care organizations that each credential separately."
   - "Behavioral health provider types, supervision rules, and telehealth allowances vary by state and change often. Enrollment sequencing matters more than in commercial."
@@ -11,9 +11,11 @@ publishDate: 2026-12-01
 category: "Blog"
 icp: ["B"]
 pillar: "depth"
-keyword: "Medicaid credentialing behavioral health"
+keyword: "Medicaid enrollment behavioral health multi-state"
 tool: "coverage-map"
 faq:
+  - q: "How does Medicaid enrollment for behavioral health work across multiple states?"
+    a: "Each state is its own program: state Medicaid enrollment first, then each MCO credentials and contracts separately. Provider types, supervision, carve-outs, and telehealth rules change by state. Sequence state enrollment first, then the largest MCOs, and map licenses before you hire."
   - q: "How long does Medicaid credentialing take for behavioral health providers?"
     a: "Longer than commercial. State enrollment comes first and must finish before any MCO will process you, then each MCO runs its own review. Plan on a quarter or more from first application to a paid claim, and longer in states with a behavioral health carve-out. Sequencing (state first, then largest MCOs) and clean provider type mapping reduce it."
   - q: "Do I need a separate contract with each Medicaid MCO?"
@@ -22,7 +24,7 @@ faq:
     a: "It depends on the state. Some allow supervised billing under a fully licensed clinician; some do not allow it at all. Check before hiring for that state."
   - q: "Is Medicaid worth it for a behavioral health group?"
     a: "In most states, Medicaid is the largest single source of behavioral health demand. The margin per visit is lower and the credentialing is harder, which is exactly why groups that do it well have a durable advantage."
-related: ["credentialing-timeline-benchmark-by-payer", "cost-of-credentialing-delays", "roster-add-vs-full-enrollment"]
+related: ["/solutions/behavioral-health", "credentialing-timeline-benchmark-by-payer", "roster-add-vs-full-enrollment"]
 sourceFile: "02_November_Credentialing.md"
 calendarWeek: 9
 dataReview: "cleared"

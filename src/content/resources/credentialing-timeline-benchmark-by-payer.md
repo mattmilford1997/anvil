@@ -14,6 +14,8 @@ pillar: "speed"
 keyword: "credentialing timeline by payer"
 tool: "benchmark-download"
 faq:
+  - q: "What is the credentialing timeline by payer?"
+    a: "Payer processing alone is typically 30 to 90 days depending on the payer. End to end, including prep and follow-up, 90 to 120 days is the common average, and it can be cut substantially by controlling the parts that are not payer processing. Credentialing turnaround time is that full calendar, not the payer's queue alone."
   - q: "How long does credentialing take with a national payer?"
     a: "Payer processing alone is typically 30 to 90 days depending on the payer. End to end, including prep and follow-up, 90 to 120 days is the common average, and it can be cut substantially by controlling the parts that are not payer processing."
   - q: "What causes credentialing applications to be rejected?"
@@ -22,7 +24,7 @@ faq:
     a: "Application preparation and submission can be automated for many payers. Payer processing cannot. The gain is fewer errors and near-zero prep time, which shortens the total timeline and reduces bounces."
   - q: "What is the fastest way to get a clinician billing?"
     a: "Enrolling them on a roster under an entity that already holds the contract, rather than credentialing a new entity from scratch. That is typically weeks instead of months."
-related: ["cost-of-credentialing-delays", "roster-add-vs-full-enrollment", "credentialing-automation-what-works"]
+related: ["cost-of-credentialing-delays", "roster-add-vs-full-enrollment", "/platform/credentialing"]
 sourceFile: "02_November_Credentialing.md"
 calendarWeek: 5
 dataReview: "cleared"

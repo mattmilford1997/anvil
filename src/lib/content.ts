@@ -66,6 +66,10 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     title: 'Virtual care: cash-pay to in-network in every state',
     excerpt: 'Accept insurance as a virtual care company. Launch on rental, own the contracts.',
   },
+  '/solutions/behavioral-health': {
+    title: 'Behavioral health payer contracting and credentialing',
+    excerpt: 'Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing.',
+  },
   '/solutions/switching': {
     title: 'Switching from a network rental vendor',
     excerpt: 'Leave rental without a revenue gap. Form your PC, land contracts, then give notice.',

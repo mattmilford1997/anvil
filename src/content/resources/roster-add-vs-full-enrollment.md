@@ -11,9 +11,11 @@ publishDate: 2026-11-17
 category: "Blog"
 icp: ["C"]
 pillar: "ownership"
-keyword: "delegated credentialing telehealth"
+keyword: "roster add vs full enrollment"
 tool: "none"
 faq:
+  - q: "What is roster-add vs full enrollment?"
+    a: "Roster-add puts a clinician on an existing entity's payer contract, usually in weeks. Full enrollment credentials your entity and your clinicians with each payer, usually in months, and the contract is yours. Delegated credentialing is the payer arrangement that makes the fastest roster-adds possible."
   - q: "What is delegated credentialing?"
     a: "A formal agreement in which a payer authorizes a trusted entity to credential clinicians on the payer's behalf and submit rosters. It is the mechanism behind the fastest roster-add timelines and is granted only to entities with an audited credentialing program."
   - q: "Is roster-add the same as being in-network?"
@@ -22,7 +24,7 @@ faq:
     a: "Yes. It requires a contracting lead, credentialing specialists, and patience. Most growth-stage companies outsource the labor and keep the entity."
   - q: "How long until my own entity is billing meaningful volume?"
     a: "Typically your first few payers in your top states within six months, and the majority of volume on your own contracts within 12 to 18 months, if the process starts at launch."
-related: ["credentialing-timeline-benchmark-by-payer", "cost-of-credentialing-delays", "credentialing-automation-what-works"]
+related: ["credentialing-timeline-benchmark-by-payer", "/platform/credentialing", "cost-of-credentialing-delays"]
 sourceFile: "02_November_Credentialing.md"
 calendarWeek: 7
 dataReview: "cleared"

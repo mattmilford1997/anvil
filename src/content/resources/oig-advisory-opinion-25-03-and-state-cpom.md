@@ -11,9 +11,11 @@ publishDate: 2027-03-02
 category: "Blog"
 icp: ["A", "C"]
 pillar: "depth"
-keyword: "OIG advisory opinion 25-03 CPOM"
+keyword: "CPOM by state telehealth"
 tool: "none"
 faq:
+  - q: "What is corporate practice of medicine by state for telehealth?"
+    a: "State rules on who may own a professional entity and what a management company may control when you bill medical services, including telehealth. OIG Advisory Opinion 25-03 addresses federal AKS only. CPOM, fee-splitting, and licensure still apply state by state on top."
   - q: "What did OIG Advisory Opinion 25-03 approve?"
     a: "A telehealth arrangement in which a physician-owned PC with payer contracts leases clinicians from platform PCs at fixed hourly rates and buys administrative services from platform MSOs for fixed fees, found to fit within the AKS personal services and management contracts safe harbor on the facts certified."
   - q: "Does the OIG opinion cover state corporate practice of medicine?"
@@ -22,7 +24,7 @@ faq:
     a: "Only the requestor is protected. Others can use it as guidance for structuring but should obtain their own counsel review."
   - q: "What makes an MSO-PC arrangement compliant?"
     a: "Federal safe-harbor fee discipline plus state-specific entity, ownership, and fee structuring, documented per state."
-related: ["state-cpom-telehealth-billing-map-2027", "health-plan-audits-virtual-care", "hybrid-in-person-care-insurance-billing"]
+related: ["/platform/compliance", "state-cpom-telehealth-billing-map-2027", "/own-your-contracts"]
 sourceFile: "06_March_Compliance_Structure.md"
 calendarWeek: 22
 dataReview: "cleared"
