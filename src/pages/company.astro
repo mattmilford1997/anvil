@@ -29,8 +29,8 @@ import { breadcrumbJsonLd } from '../lib/seo';
       {team.map((p) => (
         <div class="card person"><div class="avatar" aria-hidden="true">{p.name.split(' ').map((n) => n[0]).join('')}</div><h3>{p.name}</h3><div class="muted small">{p.title}</div><p class="muted" style="font-size:15px;margin-top:10px">{p.bio}</p>{p.linkedin && <a href={p.linkedin} rel="noopener" target="_blank" class="small">LinkedIn</a>}</div>
       ))}
-      <div class="card person muted"><h3 style="font-size:18px">Heads of payer ops, credentialing, engineering, and legal</h3><p class="small muted">More operators as we hire. Names and photos publish when people start.</p></div>
     </div>
+    <p class="small muted" style="margin-top:20px">Leadership profiles publish as the team page is filled out.</p>
   </Section>
   <Section eyebrow="Built on" title="Three companies, one platform" tight>
     <div class="grid grid-3">

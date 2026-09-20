@@ -3,20 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import CtaBand from '../components/CtaBand.astro';
-const roles = [
-  { title: 'Payer contracting lead', loc: 'Remote, US', blurb: 'Own contracting for customer entities across commercial, Medicaid, and MA. You have negotiated behavioral health contracts and you know what a closed panel exception looks like.' },
-  { title: 'Credentialing operations manager', loc: 'Remote, US', blurb: 'Run roster-adds and full enrollments across both entities, on Homefront. You measure your work in days and you hate a stale tracker.' },
-  { title: 'Software engineer, eligibility and integrations', loc: 'Remote, US', blurb: 'Build the eligibility API, the hosted widget, and the EHR and clearinghouse integrations. You have shipped healthcare APIs and you care about the outage case.' },
-  { title: 'Account manager', loc: 'Remote, US', blurb: 'Own a book of live care companies from launch through migration. You are the person who says "your PC\'s Aetna contract is effective on the first" and means it.' },
-];
+import { SITE } from '../../site.config.mjs';
 ---
 <BaseLayout title="Careers in insurance ops for care companies" description="Join Anvil building insurance infrastructure for care companies. Remote, US. Payer contracting, credentialing, and engineering.">
   <Hero compact eyebrow="Careers" title="Do the work that makes care companies possible." sub="Small team, operator culture, regulated business. We publish our pricing and our playbook. We expect the same directness inside." primary={{ label: 'Introduce yourself', href: '/contact?src=careers' }} />
   <Section eyebrow="Open roles" tight>
-    <div class="grid grid-2">
-      {roles.map((r) => <div class="card"><div class="tag">{r.loc}</div><h3 style="margin-top:12px;font-size:20px">{r.title}</h3><p class="muted" style="font-size:15px">{r.blurb}</p><a href={`/contact?src=careers-${r.title.toLowerCase().replace(/[^a-z]+/g, '-')}`} class="btn btn-ghost">Apply</a></div>)}
-    </div>
-    <p class="small muted" style="margin-top:20px">Introduce yourself even if a listing is not a current opening.</p>
+    <p class="lede">Open roles publish here as we hire. If you do not see a fit, <a href="/contact?src=careers">introduce yourself</a> or email <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</p>
   </Section>
   <CtaBand title="Don't see your role?" body="Tell us what you would build or run here." primary={{ label: 'Introduce yourself', href: '/contact?src=careers' }} secondary={undefined} />
 </BaseLayout>
