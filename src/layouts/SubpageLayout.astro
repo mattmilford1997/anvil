@@ -11,11 +11,14 @@ interface Props {
   crumbs: { name: string; path: string }[];
   faqs?: { q: string; a: string }[];
   ctaTitle?: string; ctaBody?: string; ctaPrimary?: { label: string; href: string }; ctaSecondary?: { label: string; href: string };
+  prompt?: string;
+  promptId?: string;
+  answer?: string;
 }
-const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary } = Astro.props;
+const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary, prompt, promptId, answer } = Astro.props;
 ---
 <BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs)]}>
-  <Hero compact eyebrow={eyebrow} title={title} sub={sub} secondary={{ label: 'See pricing', href: '/pricing' }} />
+  <Hero compact eyebrow={eyebrow} title={title} sub={sub} prompt={prompt} promptId={promptId} answer={answer} secondary={{ label: 'See pricing', href: '/pricing' }} />
   <slot />
   {faqs.length > 0 && <Section tight><Faq items={faqs} /></Section>}
   <CtaBand title={ctaTitle} body={ctaBody} primary={ctaPrimary} secondary={ctaSecondary} />

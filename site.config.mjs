@@ -11,7 +11,8 @@ export const SITE = {
   // Absolute equivalents: https://www.anvilcontracts.com/docs and .../trust
   docsUrl: '/docs',
   trustUrl: '/trust',
-  loginUrl: 'https://app.homefront.health',  // TODO(launch): confirm Homefront portal URL
+  // No customer login host is published. /login redirects to /contact (see netlify.toml).
+  loginUrl: '/contact',
   linkedin: 'https://www.linkedin.com/company/anvil', // TODO(launch): company page URL
   contactEmail: 'hello@anvilcontracts.com',        // TODO(launch): mailbox on the production domain
   parentBrands: ['Foundry PC', 'Homefront', 'Arche Studios'],

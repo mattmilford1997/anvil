@@ -1,11 +1,12 @@
 ---
-interface Props { eyebrow?: string; title: string; bullets?: string[]; flip?: boolean; cta?: { label: string; href: string } }
-const { eyebrow, title, bullets = [], flip = false, cta } = Astro.props;
+interface Props { eyebrow?: string; title: string; bullets?: string[]; flip?: boolean; cta?: { label: string; href: string }; heading?: 'h2' | 'h3' }
+const { eyebrow, title, bullets = [], flip = false, cta, heading = 'h3' } = Astro.props;
+const Tag = heading;
 ---
 <div class:list={['fr reveal', { flip }]}>
   <div class="fr-copy">
     {eyebrow && <div class="eyebrow">{eyebrow}</div>}
-    <h3>{title}</h3>
+    <Tag>{title}</Tag>
     <slot />
     {bullets.length > 0 && <ul class="check-list">{bullets.map((b) => <li>{b}</li>)}</ul>}
     {cta && <a href={cta.href} class="btn btn-ghost">{cta.label}</a>}
@@ -15,7 +16,7 @@ const { eyebrow, title, bullets = [], flip = false, cta } = Astro.props;
 <style>
   .fr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; min-width: 0; max-width: 100%; }
   .fr.flip .fr-art { order: -1; }
-  .fr h3 { font-size: clamp(24px, 3vw, 32px); overflow-wrap: anywhere; }
+  .fr h2, .fr h3 { font-size: clamp(24px, 3vw, 32px); overflow-wrap: anywhere; }
   .fr-copy { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
   .fr-copy :global(p) { color: var(--muted); }
   .fr-art { min-width: 0; max-width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; min-height: 240px; display: flex; align-items: center; justify-content: center; overflow: auto; }

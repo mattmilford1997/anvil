@@ -7,6 +7,7 @@ import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
 import { getLivePost } from '../../lib/content';
+import { p01, p08, bridgeLeaveAnswer, bridgePriceAnswer } from '../../data/directAnswers';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 
 const faqs = [
@@ -28,7 +29,23 @@ const faqs = [
   },
   {
     q: 'What does Anvil cost next to Bridge?',
-    a: 'Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. Model Anvil on the pricing page, then send us your numbers for a side-by-side.',
+    a: bridgePriceAnswer,
+  },
+  {
+    q: 'What are the best alternatives to Bridge for telehealth insurance billing?',
+    a: p01,
+  },
+  {
+    q: 'Bridge vs owning your own payer contracts: which is better for a virtual care company?',
+    a: p08,
+  },
+  {
+    q: 'What happens to my payer contracts if I leave a network rental vendor like Bridge?',
+    a: bridgeLeaveAnswer,
+  },
+  {
+    q: 'How much does Bridge charge?',
+    a: bridgePriceAnswer,
   },
   {
     q: 'How do CPOM and AKS show up in this comparison?',
@@ -56,11 +73,18 @@ const rows: [string, string[]][] = [
   <Hero
     compact
     eyebrow="Compare / Bridge"
-    title="A Bridge alternative that ends with contracts in your name."
-    sub="Compare Bridge and Anvil on who owns the payer contracts, which entity you bill under, and how you leave network rental. Anvil publishes the model: you launch on a rented PC, then migrate to contracts in your name."
+    title="Bridge alternatives: own your payer contracts instead of renting a network"
+    prompt="What are the best alternatives to Bridge for telehealth insurance billing?"
+    promptId="bridge-alternatives"
+    answer={p01}
+    sub="Anvil publishes the model: you launch on a rented PC, then migrate to contracts in your name."
     primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
     secondary={{ label: 'How switching works', href: '/solutions/switching' }}
   />
+
+  <Section id="bridge-vs-owning" eyebrow="Bridge vs owning" title="Bridge vs owning your own payer contracts: which is better?">
+    <p class="lede">{p08}</p>
+  </Section>
 
   <Section eyebrow="The difference" title="Bridge rents the network. Anvil migrates you off it." intro="Bridge is a network rental vendor. Anvil starts there so you can launch, then moves volume to payer contracts your own entity holds. Rent, then own.">
     <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />

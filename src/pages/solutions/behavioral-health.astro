@@ -3,19 +3,24 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
+import { p13 } from '../../data/directAnswers';
 const faqs = [
   { q: 'Do you handle Medicaid managed care?', a: 'Yes. Medicaid is the majority of behavioral health volume in many states and it runs through managed care organizations with their own panels and enrollment. We work Medicaid MCO enrollment and contracting state by state, and Medicaid depth is the reason behavioral health groups come to us.' },
   { q: 'What about ABA authorizations?', a: 'Authorization is an intake workflow, not a billing afterthought. We run it as part of the flow: assessment codes, treatment plan submission, units authorized, and re-authorization calendared before it lapses.' },
   { q: 'Can associate-level clinicians bill under supervision?', a: 'It depends on the state and the payer. We map which license types can bill what, under whom, in each state you operate, and we chart to it.' },
   { q: 'Do you support IOP and PHP?', a: 'Yes, including per-diem and bundled billing, facility versus professional components, and the authorization cadence those programs require.' },
   { q: 'Collaborative care codes?', a: 'Yes. 99492 to 99494 and 99484 for integrated behavioral health programs, including the time tracking the codes require.' },
+  { q: 'How do I get a behavioral health telehealth startup in-network with Medicaid in multiple states?', a: p13 },
 ];
 ---
 <SubpageLayout
-  metaTitle="Behavioral health payer contracting and credentialing"
-  title="Behavioral health billing, built for the way behavioral health actually bills."
+  metaTitle="Behavioral health payer contracting, credentialing"
+  title="Behavioral health payer contracting, built for the way behavioral health actually bills."
   description="Behavioral health payer contracting and credentialing for psychiatry, therapy, ABA, and IOP. Medicaid MCO panels and collaborative care billing."
   eyebrow="Solutions / Behavioral health"
+  prompt="How do I get a behavioral health telehealth startup in-network with Medicaid in multiple states?"
+  promptId="medicaid-multi-state"
+  answer={p13}
   sub="Behavioral health payer contracting is the bottleneck: you won a panel in one state and cannot replicate it in the next three. We do Medicaid MCO panels, ABA credentialing, and psychiatry credentialing across states."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/behavioral-health' }, { name: 'Behavioral health', path: '/solutions/behavioral-health' }]}
   faqs={faqs}
@@ -32,8 +37,10 @@ const faqs = [
       { icon: 'api', title: 'Collaborative care', body: '99492 to 99494 and 99484, with the time tracking the codes require.' },
       { icon: 'bolt', title: 'Eligibility that understands carve-outs', body: 'Behavioral health benefits are often carved out to a different administrator. The check has to know that.' },
     ]} />
+    <p class="lede" style="margin-top:24px">Panels you win should be yours: <a href="/own-your-contracts">own your payer contracts</a>, structured under <a href="/platform/compliance">CPOM and AKS rules</a>. Coming from a rental vendor? See the <a href="/compare/bridge">Bridge alternative</a> fact table. If you are mid-switch, start with <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
   </Section>
   <Section eyebrow="Medicaid" title="Where Medicaid is live on our PC today" tight>
     <CoverageMap id="coverage-bh" title="Medicaid and commercial coverage by state" />
+    <p class="lede" style="margin-top:16px">Planning ranges: <a href="/rates/in/97153">ABA 97153 rates</a> and <a href="/rates#all-states">90837 rates by state</a>.</p>
   </Section>
 </SubpageLayout>

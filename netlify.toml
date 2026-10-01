@@ -38,10 +38,24 @@
   force = true
 
 # Friendly aliases. /docs and /trust are first-party pages, not external hosts.
+# No customer login host is published. Send /login to contact instead of a dead app domain.
 [[redirects]]
   from = "/login"
-  to = "https://app.homefront.health"
+  to = "/contact"
   status = 302
+
+# File-format builds also emit *.html. Canonicals are extensionless; send the .html URL there.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/blog"

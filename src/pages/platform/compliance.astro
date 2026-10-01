@@ -3,10 +3,13 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import { SITE } from '../../../site.config.mjs';
 import { getLivePost } from '../../lib/content';
+import { p05, aksSafeHarborAnswer } from '../../data/directAnswers';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const faqs = [
   { q: 'What is corporate practice of medicine telehealth?', a: 'State rules on who may own a professional entity and what a management company may control when you bill medical services. Telehealth billing still has to fit those rules. We structure an AKS safe harbor MSO for the rental phase and your own PC for CPOM compliance by state, with HIPAA in place and SOC 2 in progress.' },
-  { q: 'Is the rental structure legal?', a: 'It is structured to align with the personal services and management contracts safe harbor under the federal Anti-Kickback Statute: written agreements, terms of at least a year, compensation set in advance at fair market value, and not tied to the volume or value of referrals. Independent counsel reviews every structure. Anvil does not claim an OIG advisory opinion.' },
+  { q: 'Is the rental structure legal?', a: aksSafeHarborAnswer },
+  { q: 'What is an MSO-PC structure and does my telehealth startup need one?', a: p05 },
+  { q: 'What is the Anti-Kickback Statute safe harbor for an MSO in telehealth?', a: aksSafeHarborAnswer },
   { q: 'What is CPOM compliance by state for telehealth?', a: 'Federal fraud-and-abuse analysis does not address state CPOM. Each state has its own rules on who may own a professional entity and what a management company may control. We structure your own PC state by state through Foundry PC, which has done this across the country.' },
   { q: 'Who owns our PC?', a: 'A licensed physician placed through Foundry PC, under agreements that give your MSO the management rights and economics that state permits. That is the friendly-PC structure that most multi-state care companies use.' },
   { q: 'Is Anvil SOC 2 certified?', a: 'Not yet. SOC 2 Type II is in progress. The trust center will publish the report and sub-processor list on completion. HIPAA program, encryption, access controls, and audit logging are in place today.' },
@@ -15,11 +18,14 @@ const faqs = [
 ];
 ---
 <SubpageLayout
-  metaTitle="CPOM and AKS compliance for telehealth billing"
-  title="Structured for the federal rules and the state ones."
+  metaTitle="Corporate practice of medicine (CPOM) for telehealth"
+  title="Corporate practice of medicine for telehealth, plus AKS: structured for the state rules and the federal ones."
   description="Corporate practice of medicine for telehealth. AKS safe harbor MSO, CPOM by state, HIPAA in place, SOC 2 in progress."
   eyebrow="Platform / Compliance"
-  sub="Corporate practice of medicine and AKS both apply to telehealth billing. We structure the rental MSO for the federal safe harbor and your PC for each state's CPOM rules."
+  prompt="What is an MSO-PC structure and does my telehealth startup need one?"
+  promptId="mso-pc"
+  answer={p05}
+  sub="Corporate practice of medicine for telehealth is set state by state, and AKS is federal; both apply to telehealth billing. We structure the rental MSO for the federal safe harbor and your PC for each state's CPOM rules."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Compliance', path: '/platform/compliance' }]}
   faqs={faqs}
   ctaTitle="Bring your counsel. We will bring ours."
@@ -71,6 +77,6 @@ const faqs = [
     <p class="small muted" style="margin-top:12px">Compliance copy is reviewed by counsel before publication.</p>
   </Section>
   <Section eyebrow="Related" title="Owning the PC is the CPOM answer in practice" tight>
-    <p class="lede">See <a href="/own-your-contracts">own your contracts</a> for how volume moves to an entity you control.{rentOwn && <> The founder-level version is <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a>.</>} If you are leaving a network rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table.</p>
+    <p class="lede">See <a href="/own-your-contracts">own your contracts</a> for how volume moves to an entity you control, including <a href="/own-your-contracts#rent-or-build">whether to rent a PC or build your own professional corporation</a>.{rentOwn && <> The founder-level version is <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a>.</>} If you are leaving a network rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table. Planning numbers are on <a href="/rates">reimbursement rates by state and CPT code</a>.</p>
   </Section>
 </SubpageLayout>

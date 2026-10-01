@@ -4,6 +4,7 @@ import Section from '../../components/Section.astro';
 import FeatureRow from '../../components/FeatureRow.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
 import RateLookup from '../../components/RateLookup.astro';
+import { p11 } from '../../data/directAnswers';
 const faqs = [
   { q: 'What is payer contracting for telehealth?', a: 'Payer contracting for telehealth is commercial and Medicaid payer enrollment so you can bill in-network from the states you serve. Anvil runs that work for your entity so you own your payer contracts, with the rate visible before you sign.' },
   { q: 'How do we own our payer contracts?', a: 'We file applications in your PC\'s name. You approve the terms. When a contract is effective, new visits with that payer bill under your entity. The contracts stay with your PC if you ever switch vendors.' },
@@ -12,6 +13,7 @@ const faqs = [
   { q: 'Can we see the rate ladder?', a: 'Yes. Before you sign, the rate lookup shows published ranges by state and code. During contracting you see the proposed and executed rates for your entity. Under rental you see the contracted rate and the platform fee separately.' },
   { q: 'What if a payer panel is closed?', a: 'We tell you before you plan around it. Closed panels are common in behavioral health. We work the exception path and, where it is closed for good, route that payer\'s volume through our PC until it opens.' },
   { q: 'Who holds the contracts after migration?', a: 'Your PC. Anvil manages them under your management services agreement. If you ever switch vendors, the contracts do not move.' },
+  { q: 'What are the best payer contracting companies for virtual care startups?', a: p11 },
 ];
 ---
 <SubpageLayout
@@ -19,6 +21,9 @@ const faqs = [
   title="Contracts in your name. Rates you can see."
   description="Payer contracting for telehealth: commercial and Medicaid payer enrollment in your name. Own your payer contracts, with published rates."
   eyebrow="Platform / Contracting"
+  prompt="What are the best payer contracting companies for virtual care startups?"
+  promptId="payer-contracting-companies"
+  answer={p11}
   sub="Payer contracting for telehealth puts commercial and Medicaid enrollment in your name. You should never bill under a contract whose rate you cannot see. We show the range before you sign, the executed rate after, and our fee as a separate line."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Contracting', path: '/platform/contracting' }]}
   faqs={faqs}
@@ -33,7 +38,7 @@ const faqs = [
       'Renewals calendared from day one. The first renewal is where the rate moves.',
       'Every executed rate in your reporting, by payer, by code, by state.',
     ]}>
-      <p>Contracting is a sequence, not a batch. We order it so revenue lands earliest where you have clinicians and lives.</p>
+      <p>Contracting is a sequence, not a batch. We order it so revenue lands earliest where you have clinicians and lives. This is how you <a href="/own-your-contracts">own your payer contracts</a> instead of renting a network. Comparing vendors? See the <a href="/compare/bridge">Bridge alternative</a> fact table. Published ranges are on <a href="/rates">reimbursement rates by state and CPT code</a>.</p>
     </FeatureRow>
   </Section>
   <Section eyebrow="Coverage" title="Where you can bill on our PC today, and where we can contract yours" tight>

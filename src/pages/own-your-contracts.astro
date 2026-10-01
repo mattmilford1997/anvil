@@ -7,6 +7,7 @@ import GatedDownload from '../components/GatedDownload.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { ownFaqs } from '../data/faqs';
+import { p02, p04, p14 } from '../data/directAnswers';
 import { breadcrumbJsonLd } from '../lib/seo';
 import { getLivePost } from '../lib/content';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
@@ -18,8 +19,18 @@ const months = [
   ['Months 12-18', 'Steady state. Anvil runs RCM and renewals on contracts you own. Rental PC stays available for new states and closed panels.'],
 ];
 ---
-<BaseLayout title="Own your contracts vs network rental" description="Network rental means renting your revenue. Anvil launches you on a rented PC and migrates you to contracts your own entity holds, over 6 to 18 months, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
-  <Hero compact eyebrow="Own your contracts" title="If your vendor owns your payer contracts, you don't have insurance revenue. You have a lease." sub="Own your payer contracts instead of staying on network rental. Forward this to your board: what network rental vs owning contracts actually means, why rental is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
+<BaseLayout title="Own your payer contracts vs network rental" description="Own your payer contracts instead of network rental. Launch on our PC, then move to contracts your entity holds, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
+  <Hero compact eyebrow="Own your contracts" title="Own your payer contracts. If your vendor owns them, you don't have insurance revenue. You have a lease." prompt="How do I own my payer contracts instead of renting a network?" promptId="own-payer-contracts" answer={p02} sub="Own your payer contracts instead of staying on network rental. Forward this to your board: what network rental vs owning contracts actually means, why rental is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
+
+  <Section id="rent-or-build" eyebrow="Rent, then build" title="Should I rent a PC or build my own professional corporation?">
+    <p class="lede">{p04}</p>
+    <p>Published ranges for the codes you would contract are on <a href="/rates">reimbursement rates by state and CPT code</a>.</p>
+  </Section>
+
+  <Section id="network-rental" eyebrow="Definition" title="What is network rental in telehealth, and what are the risks?">
+    <p class="lede">{p14}</p>
+    <p>This is different from a health plan leasing a PPO network, which is also called network rental.</p>
+  </Section>
 
   <Section eyebrow="The problem" title="Network rental is renting your revenue">
     <div class="grid grid-3">
@@ -27,7 +38,7 @@ const months = [
       <div class="card"><h3>You never see the rate</h3><p class="muted">You are paid a lease fee, not the contracted rate. You cannot negotiate with a payer. You cannot see the ladder. You cannot tell whether the fee is fair.</p></div>
       <div class="card"><h3>One vendor, one point of failure</h3><p class="muted">A payer terminating the vendor's group contract terminates every customer's coverage with that payer at once. That is concentration risk your investors will ask about.</p></div>
     </div>
-    <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. {rentOwn ? <>Read <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a>, then compare</> : <>Compare</>} the model on <a href="/compare/bridge">Anvil vs Bridge</a>, see how we paper <a href="/platform/compliance">CPOM and AKS</a>, or start from <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
+    <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. Compare the model on <a href="/compare/bridge">Anvil vs Bridge</a>, see how we paper <a href="/platform/compliance">CPOM and the MSO-PC structure</a>, start from <a href="/solutions/switching">switching from a network rental vendor</a>, or open <a href="/rates">reimbursement rates by state and CPT code</a>. The rent-or-build answer is <a href="#rent-or-build">above</a>.</p>
   </Section>
 
   <Section eyebrow="The migration" title="How volume moves from our PC to yours" intro="Both tracks start on day one. Nothing about the migration gates your launch or interrupts billing.">

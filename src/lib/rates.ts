@@ -58,6 +58,48 @@ export function codeLabel(code: string) {
   return codeLabels[code] ?? code;
 }
 
+/** Anchor text on the rates hub: "{code} {short name} in {State}". */
+export const codeAnchorNames: Record<string, string> = {
+  '90791': 'psychiatric evaluation',
+  '90834': 'psychotherapy 45 min',
+  '90837': 'psychotherapy 60 min',
+  '97153': 'ABA treatment 15 min',
+};
+
+export function codeAnchorName(code: string) {
+  return codeAnchorNames[code] ?? codeLabel(code);
+}
+
+/** Service name without the leading code, for the rate-page first sentence. */
+export function codeServiceName(code: string) {
+  const label = codeLabel(code);
+  return label.startsWith(`${code} `) ? label.slice(code.length).trim() : label;
+}
+
+/**
+ * Title rule: first option that fits in 60 characters.
+ * Returned string is the full document title (no further suffix).
+ */
+export function ratePageTitle(code: string, name: string) {
+  const branded = `${code} reimbursement rate in ${name} by payer (2026) | Anvil`;
+  if (branded.length <= 60) return branded;
+  const mid = `${code} reimbursement rate in ${name} by payer (2026)`;
+  if (mid.length <= 60) return mid;
+  const short = `${code} reimbursement rate in ${name} (2026)`;
+  if (short.length > 60) throw new Error(`Rate title over 60 chars (${short.length}): ${short}`);
+  return short;
+}
+
+export function ratePageDescription(code: string, name: string) {
+  const description = `${code} reimbursement rate in ${name}: Medicaid FFS, Medicare PFS, and UHC TiC where present, from Parite. Planning ranges, not a guarantee.`;
+  if (description.length > 155) throw new Error(`Rate meta over 155 chars (${description.length}): ${description}`);
+  return description;
+}
+
+export function ratePageH1(code: string, name: string) {
+  return `${code} reimbursement rate in ${name} by payer (2026)`;
+}
+
 export function stateName(state: string) {
   const st = state.toUpperCase();
   return rateStateNames[st] ?? st;
@@ -112,6 +154,42 @@ export const samplePairKeys: [string, string][] = [
   ['FL', '90837'],
   ['IN', '97153'],
 ];
+
+export type RateJurisdiction = { state: string; name: string; pairs: RatePair[] };
+
+/** One row per jurisdiction, for the crawlable all-states index. */
+export function ratesByJurisdiction(): RateJurisdiction[] {
+  const map = new Map<string, RatePair[]>();
+  for (const pair of ratePairs()) {
+    const list = map.get(pair.state) ?? [];
+    list.push(pair);
+    map.set(pair.state, list);
+  }
+  return [...map.entries()]
+    .map(([state, pairs]) => ({
+      state,
+      name: stateName(state),
+      pairs: [...pairs].sort((a, b) => a.code.localeCompare(b.code)),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function assertRateSeo() {
+  const pairs = ratePairs();
+  const paths = new Set<string>();
+  for (const pair of pairs) {
+    const name = stateName(pair.state);
+    const title = ratePageTitle(pair.code, name);
+    const description = ratePageDescription(pair.code, name);
+    if (title.length > 60) throw new Error(`Rate title over 60 (${title.length}): ${title}`);
+    if (description.length > 155) throw new Error(`Rate meta over 155 (${description.length}): ${description}`);
+    if (/[—–]/.test(title) || /[—–]/.test(description)) throw new Error(`Dash in rate SEO for ${pair.state} ${pair.code}`);
+    paths.add(ratePath(pair.state, pair.code));
+  }
+  if (paths.size !== pairs.length) throw new Error(`Expected ${pairs.length} unique rate paths, got ${paths.size}`);
+}
+
+assertRateSeo();
 
 export function samplePairs(): RatePair[] {
   const all = ratePairs();

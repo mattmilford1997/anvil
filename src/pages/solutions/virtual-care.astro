@@ -4,12 +4,16 @@ import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
 import Timeline from '../../components/Timeline.astro';
 import { getLivePost } from '../../lib/content';
+import { p03, p07, p12, cashPayToInNetworkAnswer } from '../../data/directAnswers';
 const when = await getLivePost('when-to-accept-insurance');
 const twoPhase = await getLivePost('cash-pay-to-insurance-two-phase-plan');
 const five = await getLivePost('five-workstreams-insurance-operations');
 const faqs = [
   { q: 'How do I accept insurance as a virtual care company?', a: 'Start cash-pay to insurance in the states where your patients already are. Roster-add clinicians for in-network telehealth in every state you launch, keep cash-pay as the fallback, and form your own PC in parallel so DTC to in-network is an asset, not a lease.' },
-  { q: 'We are cash-pay today. Where do we start?', a: 'Pick the 3 to 5 states with the most covered lives among your patients and clinicians. We roster-add those clinicians under our contracts, turn on eligibility at booking, and keep cash-pay as the fallback path. Your own PC forms in the same states at the same time.' },
+  { q: 'We are cash-pay today. Where do we start?', a: cashPayToInNetworkAnswer },
+  { q: 'When should a virtual care company start accepting insurance instead of cash pay?', a: p07 },
+  { q: 'How long does it take a telehealth company to start accepting insurance?', a: p12 },
+  { q: 'How do I go from cash pay to in-network for my direct-to-consumer telehealth company?', a: cashPayToInNetworkAnswer },
   { q: 'Will adding insurance hurt our booking conversion?', a: 'It hurts when the insurance step asks for a card upload and a wait. It helps when a soft check at booking tells the patient they are covered and what the copay is. The commonly cited lift is 2 to 5x on the insurance path.' },
   { q: 'Do we need to hire anyone?', a: 'No. Contracting, credentialing, eligibility, coding, and denials are all delivered. You keep one ops owner as the point of contact.' },
   { q: 'What will our Series B diligence see?', a: 'Insured revenue billed under an entity you control, payer contracts in your name, and a vendor you could replace without relaunching. That is the point of doing both tracks.' },
@@ -20,6 +24,9 @@ const faqs = [
   title="Cash-pay to in-network, in every state, without hiring a billing department."
   description="Accept insurance as a virtual care company: cash-pay to insurance and in-network telehealth in every state. Launch in weeks, own contracts by year one."
   eyebrow="Solutions / Virtual care"
+  prompt="When should a virtual care company start accepting insurance?"
+  promptId="when-to-accept"
+  answer={p07}
   sub="Accept insurance as a virtual care company without building the five teams it usually takes. Your board is asking about TAM; competitors already take insurance. Go cash-pay to in-network telehealth in every state, and own the result."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/virtual-care' }, { name: 'Virtual care', path: '/solutions/virtual-care' }]}
   faqs={faqs}
@@ -27,6 +34,12 @@ const faqs = [
   ctaBody="Tell us your states, clinicians, and codes. We map the first 90 days and the migration after it."
   ctaPrimary={{ label: 'Get started', href: '/contact?src=virtual-care' }}
 >
+  <Section id="how-long" eyebrow="Timing" title="How long does it take a telehealth company to start accepting insurance?">
+    <p class="lede">{p12}</p>
+  </Section>
+  <Section eyebrow="For startups" title="Launch on a credentialed group, then build your own">
+    <p class="lede">{p03}</p>
+  </Section>
   <Section eyebrow="Why now" title="Cash-pay to insurance, including DTC to in-network">
     <p class="lede">Cash-pay to insurance is the move most virtual care boards ask for. DTC to in-network does not have to crater conversion if eligibility runs before the price screen, and it does not have to leave you on a rented network if your own PC forms on day one.</p>
     <Tiles items={[

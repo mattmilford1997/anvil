@@ -55,11 +55,11 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     excerpt: 'Roster-add for speed, then full credentialing under your own PC.',
   },
   '/platform/compliance': {
-    title: 'CPOM and AKS compliance for telehealth billing',
+    title: 'Corporate practice of medicine (CPOM) for telehealth',
     excerpt: 'MSO-PC structure, AKS safe harbor, and state corporate practice of medicine.',
   },
   '/own-your-contracts': {
-    title: 'Own your contracts vs network rental',
+    title: 'Own your payer contracts vs network rental',
     excerpt: 'Launch on a rented PC, then migrate volume to contracts your entity holds.',
   },
   '/solutions/virtual-care': {
@@ -67,7 +67,7 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     excerpt: 'Accept insurance as a virtual care company. Launch on rental, own the contracts.',
   },
   '/solutions/behavioral-health': {
-    title: 'Behavioral health payer contracting and credentialing',
+    title: 'Behavioral health payer contracting, credentialing',
     excerpt: 'Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing.',
   },
   '/solutions/switching': {
