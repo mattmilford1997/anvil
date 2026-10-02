@@ -14,8 +14,10 @@ interface Props {
   promptId?: string;
   /** 40 to 60 word direct answer, plain text under the prompt. */
   answer?: string;
+  /** Extra hero sentences. Hidden on small screens so the primary CTA stays in the first view. */
+  subMore?: string;
 }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer } = Astro.props;
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore } = Astro.props;
 ---
 <section class:list={['hero', { compact, 'has-mock': mock }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
@@ -25,7 +27,7 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
       <h1 set:html={title} />
       {prompt && <h2 id={promptId} class="hero-q">{prompt}</h2>}
       {answer && <p class="lede direct-answer">{answer}</p>}
-      <p class="lede">{sub}</p>
+      <p class="lede">{sub}{subMore && <> <span class="hero-more">{subMore}</span></>}</p>
       <div class="btn-group">
         <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
         {secondary && secondaryAs === 'button' && <a href={secondary.href} class="btn btn-ghost btn-lg">{secondary.label}</a>}
@@ -55,6 +57,16 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
   .hero-alt a { color: var(--muted); font-weight: 500; }
   .hero-alt a:hover { color: var(--accent); }
   @media (max-width: 960px) { .has-mock .hero-in { grid-template-columns: 1fr; } .hero-mock { max-width: 560px; } }
+  @media (max-width: 480px) {
+    .hero:not(.compact) { padding: 24px 0 28px; }
+    .hero:not(.compact) .hero-copy { display: flex; flex-direction: column; }
+    .hero:not(.compact) .hero-q { order: 1; margin-bottom: 8px; }
+    .hero:not(.compact) .lede:not(.direct-answer) { order: 2; margin-bottom: 16px; }
+    .hero:not(.compact) .btn-group { order: 3; }
+    .hero:not(.compact) .hero-alt { order: 4; margin-top: 12px; }
+    .hero:not(.compact) .direct-answer { order: 5; margin-top: 20px; margin-bottom: 0; }
+    .hero:not(.compact) .hero-more { display: none; }
+  }
 </style>
 <script>
   // Low-contrast animated dot field. Skipped when reduced motion is set.

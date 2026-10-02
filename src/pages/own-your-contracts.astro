@@ -5,6 +5,7 @@ import Section from '../components/Section.astro';
 import TimelineSlider from '../components/TimelineSlider.astro';
 import GatedDownload from '../components/GatedDownload.astro';
 import Faq from '../components/Faq.astro';
+import WedgeRelated from '../components/WedgeRelated.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { ownFaqs } from '../data/faqs';
 import { p02, p04, p14 } from '../data/directAnswers';
@@ -83,6 +84,7 @@ const months = [
     <p class="lede">Rental fees do not step down. Ownership fees do. Run both on your numbers in the <a href="/pricing#calculator">calculator</a>{rentOwn && <>, or read the <a href={`/resources/${rentOwn.id}`}>full comparison</a></>}. If you are leaving a rental vendor, start with <a href="/solutions/switching">switching</a> or the <a href="/compare/bridge">Anvil vs Bridge</a> table.</p>
   </Section>
 
+  <WedgeRelated current="/own-your-contracts" />
   <Section tight><Faq items={ownFaqs} /></Section>
   <CtaBand title="Rent for speed. Own for the asset. Start both today." body="Tell us your states and clinicians. We will map the migration month by month." primary={{ label: 'Get started', href: '/contact?src=own' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
 </BaseLayout>

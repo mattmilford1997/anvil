@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/Section.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import WedgeRelated from '../../../components/WedgeRelated.astro';
+import { breadcrumbJsonLd } from '../../../lib/seo';
+import {
+  ratesByJurisdiction,
+  ratePath,
+  codeLabel,
+  stateHubPath,
+  stateHubTitle,
+  stateHubH1,
+  stateHubDescription,
+  codeHubPath,
+} from '../../../lib/rates';
+
+export function getStaticPaths() {
+  return ratesByJurisdiction().map((jurisdiction) => ({
+    params: { state: jurisdiction.state.toLowerCase() },
+    props: { jurisdiction },
+  }));
+}
+
+const { jurisdiction } = Astro.props;
+const { name, state, pairs } = jurisdiction;
+const title = stateHubTitle(name);
+const h1 = stateHubH1(name);
+const description = stateHubDescription(name);
+const path = stateHubPath(state);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Rates', path: '/rates' },
+    { name: h1, path },
+  ])]}
+>
+  <section class="rate-head">
+    <div class="container">
+      <div class="eyebrow">Rates / {name}</div>
+      <h1>{h1}</h1>
+      <p class="lede">{name} therapy reimbursement rates by CPT code are the Parite ranges we publish for this state. Each code below is a payer table. These are planning ranges, not a guarantee of what you will be paid.</p>
+      <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
+    </div>
+  </section>
+  <Section eyebrow="CPT codes" title={`CPT codes with published ranges in ${name}`} tight>
+    <ul class="check-list">
+      {pairs.map((p) => (
+        <li>
+          <a href={ratePath(p.state, p.code)}>{p.code} reimbursement rate in {name} by payer (2026)</a>
+          <span class="muted">. {codeLabel(p.code)}. Also see <a href={codeHubPath(p.code)}>{p.code} reimbursement rates by state</a>.</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+  <WedgeRelated current={path} />
+  <CtaBand
+    title="Know the rate. Then get the contract."
+    body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on."
+    primary={{ label: 'Get a contracting plan', href: '/contact?src=rates-state' }}
+    secondary={{ label: 'Rates hub', href: '/rates' }}
+  />
+</BaseLayout>
+<style>
+  .rate-head { padding: clamp(40px, 6vw, 72px) 0 8px; }
+  .rate-head h1 { max-width: 22ch; font-size: clamp(28px, 4.4vw, 44px); }
+</style>
