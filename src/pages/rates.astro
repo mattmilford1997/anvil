@@ -6,7 +6,8 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs } from '../lib/rates';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath } from '../lib/rates';
+import WedgeRelated from '../components/WedgeRelated.astro';
 const jurisdictions = ratesByJurisdiction();
 const allStateHrefs = jurisdictions.flatMap((j) => j.pairs.map((p) => ratePath(p.state, p.code)));
 if (new Set(allStateHrefs).size !== ratePairs().length) {
@@ -64,7 +65,7 @@ const faqs = [
     <ul class="all-states">
       {jurisdictions.map((j) => (
         <li>
-          <strong>{j.name}:</strong>{' '}
+          <strong><a href={stateHubPath(j.state)}>{j.name} therapy reimbursement rates by CPT code</a>:</strong>{' '}
           {j.pairs.map((p, i) => (
             <>
               {i > 0 && ', '}
@@ -75,6 +76,13 @@ const faqs = [
       ))}
     </ul>
   </Section>
+  <Section eyebrow="By code" title="Reimbursement rates by CPT code" intro="One page per code, linking every state where Parite has a range.">
+    <ul class="check-list">
+      {codes.map((code) => (
+        <li><a href={codeHubPath(code)}>{code} reimbursement rates by state</a> <span class="muted">. {codeLabel(code)}</span></li>
+      ))}
+    </ul>
+  </Section>
   <Section eyebrow="Methodology" title="How to read the ranges" tight>
     <div class="grid grid-2">
       <div class="card"><h3>What a range is</h3><p class="muted">The low and high of contracted and published allowed amounts for the code in that state, across the payers we have data for. Per unit, before patient responsibility. Not a guarantee.</p></div>
@@ -82,6 +90,7 @@ const faqs = [
     </div>
     <p class="small muted" style="margin-top:16px">Source: {ratesFile.source ?? 'Parite'}. Medicare figures are CMS PFS RVU26C non-facility. Medicaid figures are official state Medicaid FFS. UHC figures are UHC OHBS TiC professional outpatient.</p>
   </Section>
+  <WedgeRelated current="/rates" />
   <Section tight><Faq items={faqs} /></Section>
   <CtaBand title="Know the rate. Then get the contract." body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
 </BaseLayout>

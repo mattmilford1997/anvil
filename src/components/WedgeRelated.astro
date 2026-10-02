@@ -1,0 +1,21 @@
+---
+import Section from './Section.astro';
+
+interface Props { current: string }
+const { current } = Astro.props;
+const path = current.split('#')[0];
+const links = [
+  { href: '/own-your-contracts', label: 'Own your payer contracts' },
+  { href: '/own-your-contracts#rent-or-build', label: 'Rent a PC vs own a PC' },
+  { href: '/platform/compliance#mso-pc', label: 'MSO-PC structure for telehealth' },
+  { href: '/platform/compliance', label: 'Corporate practice of medicine for telehealth' },
+  { href: '/solutions/switching', label: 'Switch from a network rental vendor' },
+  { href: '/rates', label: 'Reimbursement rates by state and CPT code' },
+  { href: '/compare/bridge', label: 'Bridge alternative' },
+].filter((link) => link.href.split('#')[0] !== path);
+---
+<Section eyebrow="Related" title="Related" tight>
+  <ul class="check-list">
+    {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+  </ul>
+</Section>

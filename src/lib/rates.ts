@@ -174,6 +174,124 @@ export function ratesByJurisdiction(): RateJurisdiction[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/** States that share a border. Used only to link a code page to the same code nearby. */
+export const nearbyStates: Record<string, string[]> = {
+  AK: [],
+  AL: ['FL', 'GA', 'MS', 'TN'],
+  AR: ['LA', 'MO', 'MS', 'OK', 'TN', 'TX'],
+  AZ: ['CA', 'CO', 'NM', 'NV', 'UT'],
+  CA: ['AZ', 'NV', 'OR'],
+  CO: ['AZ', 'KS', 'NE', 'NM', 'OK', 'UT', 'WY'],
+  CT: ['MA', 'NY', 'RI'],
+  DC: ['MD', 'VA'],
+  DE: ['MD', 'NJ', 'PA'],
+  FL: ['AL', 'GA'],
+  GA: ['AL', 'FL', 'NC', 'SC', 'TN'],
+  HI: [],
+  IA: ['IL', 'MN', 'MO', 'NE', 'SD', 'WI'],
+  ID: ['MT', 'NV', 'OR', 'UT', 'WA', 'WY'],
+  IL: ['IA', 'IN', 'KY', 'MO', 'WI'],
+  IN: ['IL', 'KY', 'MI', 'OH'],
+  KS: ['CO', 'MO', 'NE', 'OK'],
+  KY: ['IL', 'IN', 'MO', 'OH', 'TN', 'VA', 'WV'],
+  LA: ['AR', 'MS', 'TX'],
+  MA: ['CT', 'NH', 'NY', 'RI', 'VT'],
+  MD: ['DC', 'DE', 'PA', 'VA', 'WV'],
+  ME: ['NH'],
+  MI: ['IN', 'OH', 'WI'],
+  MN: ['IA', 'ND', 'SD', 'WI'],
+  MO: ['AR', 'IA', 'IL', 'KS', 'KY', 'NE', 'OK', 'TN'],
+  MS: ['AL', 'AR', 'LA', 'TN'],
+  MT: ['ID', 'ND', 'SD', 'WY'],
+  NC: ['GA', 'SC', 'TN', 'VA'],
+  ND: ['MN', 'MT', 'SD'],
+  NE: ['CO', 'IA', 'KS', 'MO', 'SD', 'WY'],
+  NH: ['MA', 'ME', 'VT'],
+  NJ: ['DE', 'NY', 'PA'],
+  NM: ['AZ', 'CO', 'OK', 'TX', 'UT'],
+  NV: ['AZ', 'CA', 'ID', 'OR', 'UT'],
+  NY: ['CT', 'MA', 'NJ', 'PA', 'VT'],
+  OH: ['IN', 'KY', 'MI', 'PA', 'WV'],
+  OK: ['AR', 'CO', 'KS', 'MO', 'NM', 'TX'],
+  OR: ['CA', 'ID', 'NV', 'WA'],
+  PA: ['DE', 'MD', 'NJ', 'NY', 'OH', 'WV'],
+  PR: [],
+  RI: ['CT', 'MA'],
+  SC: ['GA', 'NC'],
+  SD: ['IA', 'MN', 'MT', 'ND', 'NE', 'WY'],
+  TN: ['AL', 'AR', 'GA', 'KY', 'MO', 'MS', 'NC', 'VA'],
+  TX: ['AR', 'LA', 'NM', 'OK'],
+  UT: ['AZ', 'CO', 'ID', 'NM', 'NV', 'WY'],
+  VA: ['DC', 'KY', 'MD', 'NC', 'TN', 'WV'],
+  VI: [],
+  VT: ['MA', 'NH', 'NY'],
+  WA: ['ID', 'OR'],
+  WI: ['IA', 'IL', 'MI', 'MN'],
+  WV: ['KY', 'MD', 'OH', 'PA', 'VA'],
+  WY: ['CO', 'ID', 'MT', 'NE', 'SD', 'UT'],
+};
+
+export function stateHubPath(state: string) {
+  return `/rates/${state.toLowerCase()}`;
+}
+
+export function codeHubPath(code: string) {
+  return `/rates/code/${code}`;
+}
+
+export function stateHubH1(name: string) {
+  return `${name} therapy reimbursement rates by CPT code`;
+}
+
+/** Title stem. BaseLayout adds " | Anvil". Full H1 may be longer than 60. */
+export function stateHubTitle(name: string) {
+  const full = stateHubH1(name);
+  if (`${full} | Anvil`.length <= 60) return full;
+  const mid = `${name} therapy reimbursement rates`;
+  if (`${mid} | Anvil`.length <= 60) return mid;
+  const short = `${name} reimbursement rates`;
+  if (`${short} | Anvil`.length > 60) throw new Error(`State hub title over 60: ${short}`);
+  return short;
+}
+
+export function stateHubDescription(name: string) {
+  const description = `${name} therapy reimbursement rates by CPT code, from Parite. Planning ranges for the codes we publish, not a guarantee of payment.`;
+  if (description.length > 155) throw new Error(`State hub meta over 155 (${description.length}): ${description}`);
+  return description;
+}
+
+export function codeHubTitle(code: string) {
+  const stem = `${code} reimbursement rates by state`;
+  if (`${stem} | Anvil`.length > 60) throw new Error(`Code hub title over 60: ${stem}`);
+  return stem;
+}
+
+export function codeHubH1(code: string) {
+  return `${code} reimbursement rates by state`;
+}
+
+export function codeHubDescription(code: string) {
+  const description = `${code} reimbursement rates by state, from Parite. Open a state for the payer table. Planning ranges, not a guarantee of payment.`;
+  if (description.length > 155) throw new Error(`Code hub meta over 155 (${description.length}): ${description}`);
+  return description;
+}
+
+export function pairsForState(state: string) {
+  const st = state.toUpperCase();
+  return ratePairs().filter((p) => p.state === st);
+}
+
+export function pairsForCode(code: string) {
+  return ratePairs().filter((p) => p.code === code).sort((a, b) => stateName(a.state).localeCompare(stateName(b.state)));
+}
+
+export function nearbyPairs(state: string, code: string) {
+  const want = new Set((nearbyStates[state.toUpperCase()] ?? []).map((s) => s.toUpperCase()));
+  return ratePairs()
+    .filter((p) => p.code === code && want.has(p.state))
+    .sort((a, b) => stateName(a.state).localeCompare(stateName(b.state)));
+}
+
 function assertRateSeo() {
   const pairs = ratePairs();
   const paths = new Set<string>();
@@ -187,6 +305,18 @@ function assertRateSeo() {
     paths.add(ratePath(pair.state, pair.code));
   }
   if (paths.size !== pairs.length) throw new Error(`Expected ${pairs.length} unique rate paths, got ${paths.size}`);
+  for (const j of ratesByJurisdiction()) {
+    const title = `${stateHubTitle(j.name)} | Anvil`;
+    const description = stateHubDescription(j.name);
+    if (title.length > 60) throw new Error(`State hub title over 60 (${title.length}): ${title}`);
+    if (/[—–]/.test(title) || /[—–]/.test(description) || /[—–]/.test(stateHubH1(j.name))) throw new Error(`Dash in state hub SEO for ${j.state}`);
+  }
+  for (const code of codesInData()) {
+    const title = `${codeHubTitle(code)} | Anvil`;
+    const description = codeHubDescription(code);
+    if (title.length > 60) throw new Error(`Code hub title over 60 (${title.length}): ${title}`);
+    if (/[—–]/.test(title) || /[—–]/.test(description)) throw new Error(`Dash in code hub SEO for ${code}`);
+  }
 }
 
 assertRateSeo();

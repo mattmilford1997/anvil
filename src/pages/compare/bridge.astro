@@ -5,19 +5,18 @@ import Section from '../../components/Section.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import WedgeRelated from '../../components/WedgeRelated.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
-import { getLivePost } from '../../lib/content';
 import { p01, p08, bridgeLeaveAnswer, bridgePriceAnswer } from '../../data/directAnswers';
-const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 
 const faqs = [
   {
     q: 'Who owns the payer contracts on Anvil vs on Bridge?',
-    a: 'On Anvil, you launch on our contracted PC and we migrate volume to contracts in your entity\'s name. Bridge is a network rental vendor: the vendor holds the contracts. If you never hold them, they are not an asset you can take with you.',
+    a: 'On Anvil, you launch on our contracted PC and we migrate volume to contracts in your entity\'s name. Bridge\'s homepage describes a 50-state PC and does not say who holds the payer contracts. If you never hold them, they are not an asset you can take with you.',
   },
   {
     q: 'Is Bridge a rental PC, and does Anvil use my own entity?',
-    a: 'Bridge rents you access to a professional corporation the vendor controls. Anvil uses a rental PC to launch, then forms your own PC, places a physician owner, and bills under your entity as each of your contracts becomes effective.',
+    a: 'Bridge\'s homepage says it uses a 50-state PC. It does not say whether that PC is yours. Anvil uses a PC to launch, then forms your own PC, places a physician owner, and bills under your entity as each of your contracts becomes effective.',
   },
   {
     q: 'How does Anvil handle behavioral health compared with a generalist rental vendor?',
@@ -50,15 +49,17 @@ const faqs = [
 ];
 
 const rows: [string, string[]][] = [
-  ['Payer contract ownership', ['Migrates to your entity', 'Vendor holds the contracts']],
-  ['Entity you bill under', ['Anvil PC, then your own PC', 'A rented professional corporation']],
-  ['Network model', ['Rent, then own', 'Network rental']],
-  ['MSO-PC and CPOM', ['AKS-aligned rental. Your PC structured for state CPOM.', 'Vendor-held PC. Typical of network rental.']],
-  ['Behavioral health', ['Medicaid MCO, ABA, psychiatry, IOP, collaborative care', 'Ask Bridge for their specialty list']],
-  ['Switching path', ['Land your contracts, then give notice', 'Review your current agreement']],
-  ['Pricing', ['Published. See pricing.', 'Ask Bridge for pricing']],
-  ['Rate visibility', ['Contracted rate and fee as separate lines', 'Lease fee, typical of network rental']],
-  ['If you leave', ['Contracts stay with your PC after migration', 'Leaving without contracts is a relaunch']],
+  ['Launch time', ['Weeks, by roster-add on our PC', 'As little as 30 days, on Bridge\'s homepage']],
+  ['Professional corporation', ['Our PC to launch, then your own PC', '50-state PC, on Bridge\'s homepage']],
+  ['Who holds the payer contracts', ['Moves to your entity', 'Not published']],
+  ['Pricing', ['Published on the pricing page', 'Not published']],
+  ['Eligibility', ['Real-time insurance eligibility API at booking', 'Real-time eligibility and out-of-pocket estimates, on Bridge\'s homepage']],
+  ['SOC 2', ['Type II in progress. HIPAA in place.', 'SOC 2 certified, on Bridge\'s homepage']],
+  ['Claims risk', ['Anvil carries it during rental', 'No financial risk for claims and denials, on Bridge\'s homepage']],
+  ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties, on Bridge\'s homepage. A specialty list is not published']],
+  ['If you leave', ['Published on the switching page', 'Not published']],
+  ['Reimbursement rates', ['Published by state and CPT code', 'Not published']],
+  ['MSO-PC and CPOM', ['Published on the compliance page', 'Not published']],
 ];
 ---
 <BaseLayout
@@ -84,7 +85,7 @@ const rows: [string, string[]][] = [
 
   <Section eyebrow="The difference" title="Bridge rents the network. Anvil migrates you off it." intro="Bridge is a network rental vendor. Anvil starts there so you can launch, then moves volume to payer contracts your own entity holds. Rent, then own.">
     <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />
-    <p class="small muted" style="margin-top:16px">Anvil cells come from published site copy. Bridge cells describe the network-rental model: the vendor holds the contracts, you bill under a rented professional corporation, and leaving without your own contracts is a relaunch. MSO-PC and CPOM language is on <a href="/platform/compliance">compliance</a>. The ownership path is on <a href="/own-your-contracts">own your contracts</a>. The exit steps are on <a href="/solutions/switching">switching</a>.</p>
+    <p class="small muted" style="margin-top:16px">Anvil cells are from this site. Bridge cells are from the Bridge homepage at usebridge.com, reviewed October 2026, or marked Not published when that page does not state them. The exit steps are on <a href="/solutions/switching">switch from a network rental vendor</a>.</p>
   </Section>
 
   <Section eyebrow="What the rows mean" title="Ownership, entity, behavioral health, and the switch">
@@ -108,16 +109,7 @@ const rows: [string, string[]][] = [
     </div>
   </Section>
 
-  <Section eyebrow="Related" title="Read next" tight>
-    <ul class="check-list">
-      <li><a href="/solutions/switching">Switching from a network rental vendor</a></li>
-      <li><a href="/own-your-contracts">Own your contracts vs network rental</a></li>
-      <li><a href="/platform/compliance">CPOM and AKS compliance for telehealth billing</a></li>
-      {rentOwn && <li><a href={`/resources/${rentOwn.id}`}>Rent a PC vs own a PC</a></li>}
-      <li><a href="/pricing">Published Anvil pricing</a></li>
-      <li><a href="/contact">Get a switching plan</a></li>
-    </ul>
-  </Section>
+  <WedgeRelated current="/compare/bridge" />
 
   <Section tight><Faq items={faqs} /></Section>
   <CtaBand

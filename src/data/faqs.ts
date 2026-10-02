@@ -1,4 +1,4 @@
-import { p02, p03, p04, p06, p09, p14, vendorOwnsAnswer } from './directAnswers';
+import { p02, p03, p04, p06, p09, p14, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
 
 export type Faq = { q: string; a: string };
 
@@ -34,6 +34,7 @@ export const ownFaqs: Faq[] = [
 
 export const pricingFaqs: Faq[] = [
   { q: 'How much does it cost to get a telehealth company credentialed and contracted with insurance payers?', a: p09 },
+  { q: 'Should a virtual care company build insurance billing in-house or outsource it?', a: buildInHouseAnswer },
   { q: 'What is telehealth billing platform pricing?', a: 'On Anvil it is a published platform fee on collections during rental, plus fixed fees for your own PC and physician owner. Payer contracting cost and credentialing cost per clinician are included in the tiers, not billed as surprise line items. The rental PC fee is the platform fee while you bill under our PC.' },
   { q: 'Why publish pricing?', a: 'Because you should be able to model this without a sales call. Most vendors in this category do not publish, which usually means the number depends on who is asking.' },
   { q: 'What is the platform fee charged on?', a: 'Collections, not billed charges. If a claim is not paid, there is no fee on it.' },

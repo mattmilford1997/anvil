@@ -14,7 +14,7 @@ const octUpcoming = (await getUpcomingOctoberPosts()).filter((p) => !liveIds.has
 const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 ---
 <BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting, with frameworks and cost tables for founders." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
-  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.{octUpcoming.length > 0 && <> October titles below are queued, not published yet.</>}</p></div></section>
+  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.</p></div></section>
   <Section tight>
     <div class="filters" role="tablist" aria-label="Filter by type">
       {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}
@@ -26,10 +26,10 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
           {rest.map((p) => <div data-cat={p.data.category}><ArticleCard post={p} /></div>)}
         </div>
         <p class="muted empty" hidden>No posts in this category yet.</p>
-        {octUpcoming.length > 0 && (
+        {showHeld && octUpcoming.length > 0 && (
           <div class="card oct-tease">
-            <h2>Coming in October</h2>
-            <p class="muted">Queued insurance ops guides for care companies. They are not live yet. Titles appear on the hub when they publish.</p>
+            <h2>Scheduled for October</h2>
+            <p class="muted">These guides are on the editorial calendar. This list is for preview only and is omitted from the live site.</p>
             <ul class="oct-list">
               {octUpcoming.map((p) => (
                 <li>

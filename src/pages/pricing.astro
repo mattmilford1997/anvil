@@ -7,7 +7,7 @@ import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { tiers, pricingNotes } from '../data/pricing';
 import { pricingFaqs } from '../data/faqs';
-import { p09 } from '../data/directAnswers';
+import { p09, buildInHouseAnswer } from '../data/directAnswers';
 import { breadcrumbJsonLd, fmtMoney, absolute } from '../lib/seo';
 const offerLd = {
   '@context': 'https://schema.org',
@@ -60,6 +60,9 @@ const offerLd = {
         <p class="muted">The rental PC fee is the platform fee on collections while you bill under our PC. Build and Scale also include the monthly physician owner fee for your own PC.</p>
       </div>
     </div>
+  </Section>
+  <Section eyebrow="Build or outsource" title="Should a virtual care company build insurance billing in-house or outsource it?">
+    <p class="lede">{buildInHouseAnswer}</p>
   </Section>
   <Section eyebrow="Model it" title="Build vs partner, on your numbers" tight>
     <BuildVsPartnerCalc />
