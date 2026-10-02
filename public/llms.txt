@@ -9,7 +9,7 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 - [Home](https://www.anvilcontracts.com/): the rent-then-own model in one scroll
 - [How it works](https://www.anvilcontracts.com/platform): five workstreams (payer contracting, credentialing, RCM, eligibility, compliance), two entities, one platform
 - [Own your contracts](https://www.anvilcontracts.com/own-your-contracts): why network rental is renting your revenue, and the month-by-month migration
-- [Anvil vs Bridge](https://www.anvilcontracts.com/compare/bridge): Bridge alternative fact table. Bridge is network rental; Anvil migrates payer contracts into your name
+- [Anvil vs Bridge](https://www.anvilcontracts.com/compare/bridge): Bridge alternative fact table. Bridge's homepage describes a 50-state PC; Anvil migrates payer contracts into your name
 - [Rates](https://www.anvilcontracts.com/rates): telehealth reimbursement rates by payer, state, and CPT code; lookup plus per-state and per-code hubs from Parite (e.g. [90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837), [90837 in California](https://www.anvilcontracts.com/rates/ca/90837), [90837 in Texas](https://www.anvilcontracts.com/rates/tx/90837), [90837 in New York](https://www.anvilcontracts.com/rates/ny/90837), [90837 in Florida](https://www.anvilcontracts.com/rates/fl/90837), [90834 in California](https://www.anvilcontracts.com/rates/ca/90834), [90791 in New York](https://www.anvilcontracts.com/rates/ny/90791), [97153 in Indiana](https://www.anvilcontracts.com/rates/in/97153))
 - [90837 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90837)
 - [90834 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90834)

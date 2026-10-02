@@ -76,7 +76,7 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
   },
   '/compare/bridge': {
     title: 'Bridge alternative: compare Anvil vs Bridge',
-    excerpt: 'Bridge is network rental. Anvil migrates payer contracts into your name.',
+    excerpt: 'Bridge\'s homepage describes a 50-state PC. Anvil migrates payer contracts into your name.',
   },
   '/pricing': {
     title: 'Anvil pricing: platform fee and PC costs, published',

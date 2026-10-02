@@ -6,7 +6,7 @@
  */
 
 export const p01 =
-  "Anvil is a Bridge alternative for virtual care companies that want to own their payer contracts. Anvil launches your clinicians in-network on a credentialed 50-state professional corporation, then forms your own PC in parallel and moves volume to payer contracts in your entity's name. With network rental the vendor holds the contracts; with Anvil they end up with you.";
+  "Anvil is a Bridge alternative for virtual care companies that want to own their payer contracts. Anvil launches your clinicians in-network on a credentialed 50-state professional corporation, then forms your own PC in parallel and moves volume to payer contracts in your entity's name. On Anvil, the payer contracts end up with you.";
 
 export const p08 =
   "Bridge's homepage describes a 50-state PC and launch in as little as 30 days. It does not say who holds the payer contracts. Owning means the contracts sit in your own PC and stay with you if you switch vendors. Anvil launches on our PC, then migrates volume payer by payer to contracts in your entity's name.";
@@ -72,7 +72,7 @@ export const buildInHouseAnswer =
   "Outsource the five workstreams to launch, and keep ownership of the contracts. Building contracting, credentialing, eligibility, coding, and denials in-house means hiring those teams before the first insured visit. Anvil runs them while your own PC is formed, and publishes the platform fee and PC fees so you can model both.";
 
 export const rcmCompanyAnswer =
-  "Look for a telehealth revenue cycle management company that codes, submits claims, works denials, and reports clean-claim rate under the entity that holds the contract. Anvil runs virtual care RCM while you bill on our PC, when we carry claims risk, and after volume moves to your PC. Ask who owns the payer contracts.";
+  "Look for a telehealth revenue cycle management company that codes, submits claims, works denials, and reports clean-claim rate under the entity that holds the contract. Anvil runs virtual care RCM while you bill on our PC and we carry claims risk, and after volume moves to your PC. Ask who owns the payer contracts.";
 
 export const psychiatryCredentialingAnswer =
   "Roster-add psychiatry and therapy clinicians onto contracts that already exist, then file full enrollment under your own professional corporation. Roster-adds typically take weeks. Full enrollment is commonly 90 to 120 days per payer when unmanaged. Anvil tracks every file per clinician and per payer.";
