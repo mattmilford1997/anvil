@@ -6,7 +6,12 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, ratesFile, codesInData } from '../lib/rates';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs } from '../lib/rates';
+const jurisdictions = ratesByJurisdiction();
+const allStateHrefs = jurisdictions.flatMap((j) => j.pairs.map((p) => ratePath(p.state, p.code)));
+if (new Set(allStateHrefs).size !== ratePairs().length) {
+  throw new Error(`all-states index has ${new Set(allStateHrefs).size} links; routes have ${ratePairs().length}`);
+}
 const samples = samplePairs();
 const longTail90837 = longTail90837Pairs();
 const codes = codesInData();
@@ -22,14 +27,15 @@ const faqs = [
   { q: 'How do you use this in contracting?', a: 'As the floor for rate proposals in your entity\'s name, and the benchmark when we tell you a payer\'s offer is low.' },
 ];
 ---
-<BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including Medicaid 90837 and telehealth reimbursement by payer. Pages from Parite: Medicare PFS, Medicaid FFS, UHC TiC." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
-  <Hero compact eyebrow="Rates" title="What payers actually pay, by state and code." sub="Look up telehealth reimbursement rates by payer, then by state and CPT code, before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state are in the lookup and on per-state pages built from Parite." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
+<BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including the Medicaid rate for 90837 and telehealth reimbursement by payer. Built from Parite data." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
+  <Hero compact eyebrow="Rates" title="Reimbursement rates by state and CPT code: what payers actually pay." sub="Look up reimbursement rates by state and CPT code, then filter telehealth reimbursement by payer, before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state are in the lookup and on per-state pages built from Parite." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
   <Section eyebrow="The hub" title="Reimbursement rates by state and CPT code" intro={`Look up telehealth reimbursement rates by payer for ${codeList} by state. The numbers come from Parite. They are published ranges for planning, not a guarantee of what you will be paid. Each state and code pair is a payer table.`}>
     <div class="grid grid-3">
       <div class="card"><h3>Medicaid reimbursement rate for 90837</h3><p class="muted">Psychotherapy, 60 minutes, is the code most behavioral health companies model first. Start with <a href={ratePath('OH', '90837')}>90837 reimbursement rate in Ohio by payer (2026)</a>, then use the lookup for your state.</p></div>
       <div class="card"><h3>Telehealth reimbursement by payer</h3><p class="muted">Every state and code page is a payer table: Medicare PFS, Medicaid FFS, and UnitedHealthcare TiC where Parite has the number. Filter the lookup the same way. Labels are Parite's, not ours.</p></div>
       <div class="card"><h3>Psychotherapy reimbursement rates by state</h3><p class="muted">90837, 90834, and 90791 have a page per state. 97153 (ABA) appears in states where Parite has Medicaid FFS. We add codes when Parite has them.</p></div>
     </div>
+    <p class="lede" style="margin-top:24px">Use the tables when you <a href="/own-your-contracts">own your payer contracts</a> and when you plan <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. The <a href="/compare/bridge">Bridge alternative</a> fact table is the vendor comparison. Structure for the contracts sits on <a href="/platform/compliance">CPOM and the MSO-PC</a>. Leaving a rental vendor starts on <a href="/solutions/switching">switching</a>.</p>
   </Section>
   <Section tight>
     <RateLookup />
@@ -54,6 +60,21 @@ const faqs = [
       ))}
     </ul>
   </Section>
+  <Section id="all-states" eyebrow="All states" title="Reimbursement rates by state and CPT code, all states" intro="Every published state and CPT code page. Open the code you bill.">
+    <ul class="all-states">
+      {jurisdictions.map((j) => (
+        <li>
+          <strong>{j.name}:</strong>{' '}
+          {j.pairs.map((p, i) => (
+            <>
+              {i > 0 && ', '}
+              <a href={ratePath(p.state, p.code)}>{p.code} {codeAnchorName(p.code)} in {j.name}</a>
+            </>
+          ))}
+        </li>
+      ))}
+    </ul>
+  </Section>
   <Section eyebrow="Methodology" title="How to read the ranges" tight>
     <div class="grid grid-2">
       <div class="card"><h3>What a range is</h3><p class="muted">The low and high of contracted and published allowed amounts for the code in that state, across the payers we have data for. Per unit, before patient responsibility. Not a guarantee.</p></div>
@@ -64,3 +85,7 @@ const faqs = [
   <Section tight><Faq items={faqs} /></Section>
   <CtaBand title="Know the rate. Then get the contract." body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
 </BaseLayout>
+<style>
+  .all-states { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .all-states li { font-size: 15px; line-height: 1.55; }
+</style>

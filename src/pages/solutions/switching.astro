@@ -3,6 +3,7 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import TimelineSlider from '../../components/TimelineSlider.astro';
 import { getLivePost } from '../../lib/content';
+import { switchWithoutGapAnswer } from '../../data/directAnswers';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const faqs = [
   { q: 'How do I switch from a network rental vendor?', a: 'Keep billing where you are. Form your PC, file contract applications in your name, move volume payer by payer as each contract is effective, then give notice. Leave the rental PC only after the majority of volume is on contracts you own. Remaining payers can run through Anvil\'s rented PC.' },
@@ -11,7 +12,7 @@ const faqs = [
   { q: 'What do we need from our current vendor?', a: 'Your clinicians\' credentialing documents and any executed agreement terms about notice and non-solicitation. We review those before you give notice.' },
   { q: 'Can our engineers keep the same eligibility integration?', a: 'You will move to our API, which is designed to be a small change. Sandbox keys come first so the swap is tested before any volume moves.' },
   { q: 'What if a payer panel is closed for a new entity?', a: 'That payer\'s volume runs through our rented PC until the panel opens. You are never stuck on your old vendor for one payer.' },
-  { q: 'Are you a Bridge alternative?', a: 'Yes. Bridge is a network rental vendor. Anvil launches you on a rented PC and migrates you to payer contracts in your name. The Anvil vs Bridge page is the side-by-side fact table.' },
+  { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
 ];
 const steps = [
   ['Before notice', 'Review your agreement. Collect credentialing files. Form your PC and place the physician owner. File contract applications in your name.'],
@@ -23,9 +24,9 @@ const steps = [
 <SubpageLayout
   metaTitle="Switching from a network rental vendor"
   title="Leave the rental. Keep the revenue."
-  description="Move from a network rental vendor to contracts your own entity holds, with no revenue gap. Form your PC, land your contracts, then give notice."
+  description="Switch from a network rental vendor to contracts your own entity holds, with no revenue gap. Compare Anvil and Bridge, then plan the exit payer by payer."
   eyebrow="Solutions / Switching"
-  sub="A Bridge alternative for teams leaving a network rental vendor. You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. Keep billing where you are while your own contracts come live, then switch payer by payer."
+  sub="Switch from a network rental vendor without a revenue gap. You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. Keep billing where you are while your own contracts come live, then switch payer by payer."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/switching' }, { name: 'Switching', path: '/solutions/switching' }]}
   faqs={faqs}
   ctaTitle="Send us your current agreement. We will map the exit."
@@ -39,14 +40,14 @@ const steps = [
     </div>
     <div style="margin-top:32px"><TimelineSlider /></div>
   </Section>
-  <Section id="compare-bridge" eyebrow="Bridge alternative" title="Compare Anvil and Bridge">
-    <p class="lede">Bridge is a network rental vendor. Anvil is a Bridge alternative that launches you on a rented PC, then migrates volume to payer contracts in your name. Rent, then own.</p>
+  <Section id="compare-bridge" eyebrow="Side by side" title="Compare Anvil and Bridge">
+    <p class="lede">Bridge is a network rental vendor: the vendor holds the payer contracts. For the side-by-side, see the <a href="/compare/bridge">best alternatives to Bridge</a>.</p>
     <div class="btn-group" style="margin-top:8px">
-      <a href="/compare/bridge" class="btn btn-primary">Anvil vs Bridge fact table</a>
+      <a href="/compare/bridge" class="btn btn-primary">Bridge alternative: Anvil vs Bridge fact table</a>
       <a href="/own-your-contracts" class="btn btn-ghost">How owning contracts works</a>
     </div>
   </Section>
   <Section eyebrow="Related" title="The ownership ring" tight>
-    <p class="lede">The switch is one side of the same cluster: <a href="/own-your-contracts">own your payer contracts</a>, <a href="/platform/compliance">CPOM and AKS / MSO-PC</a>{rentOwn && <>, <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a></>}, and the <a href="/compare/bridge">Anvil vs Bridge</a> table. Published Anvil pricing is on the <a href="/pricing">pricing</a> page.</p>
+    <p class="lede">The switch is one side of the same cluster: <a href="/own-your-contracts">own your payer contracts</a>, <a href="/own-your-contracts#rent-or-build">rent a PC or build your own professional corporation</a>, <a href="/platform/compliance">CPOM and AKS / MSO-PC</a>{rentOwn && <>, <a href={`/resources/${rentOwn.id}`}>rent a PC vs own a PC</a></>}, the <a href="/compare/bridge">best alternatives to Bridge</a>, and <a href="/rates">reimbursement rates by state and CPT code</a>. Published Anvil pricing is on the <a href="/pricing">pricing</a> page.</p>
   </Section>
 </SubpageLayout>

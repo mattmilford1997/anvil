@@ -13,14 +13,18 @@ import ResourcesTeaser from '../components/ResourcesTeaser.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { homeFaqs } from '../data/faqs';
+import { p06 } from '../data/directAnswers';
 import { testimonials } from '../data/testimonials';
 import { isProd } from '../lib/seo';
 const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
 ---
-<BaseLayout title="Anvil | Bill insurance in every state. Own the contracts." description="Insurance billing infrastructure for virtual care. Get in-network nationally and bill insurance in all 50 states, then own the contracts." path="/">
+<BaseLayout title="Insurance billing infrastructure for virtual care" description="Insurance billing infrastructure for virtual care. Get in-network nationally and bill insurance in all 50 states, then own the contracts." path="/">
   <Hero
     eyebrow="Insurance infrastructure for care companies"
     title="Bill insurance in every state in <em>weeks</em>. Own the contracts by year one."
+    prompt="How do I get my telehealth company in-network with insurance in all 50 states?"
+    promptId="in-network-50-states"
+    answer={p06}
     sub="Anvil is insurance billing infrastructure for virtual care. Get in-network nationally and bill insurance in all 50 states on our credentialed PC, then use the same payer contracting platform to put those contracts in your name. Launch in weeks. We contract your own entity while you grow so the payer relationships end up on your balance sheet, not ours."
     primary={{ label: 'Get started', href: '/contact' }}
     secondary={{ label: 'Or see rates by state', href: '/rates' }}
@@ -44,6 +48,7 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
 
   <Section eyebrow="Compare" title="What you get, and what you keep" tight>
     <ComparisonTable />
+    <p class="lede" style="margin-top:24px">Go deeper: <a href="/platform/rcm">telehealth revenue cycle management</a>, <a href="/solutions/behavioral-health">behavioral health payer contracting</a>, and the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
   </Section>
 
   <Section eyebrow="Rate transparency" title="What do payers pay for your codes?" intro="The single most useful number in this decision, and the one nobody publishes. Pick a state and a code. No form.">

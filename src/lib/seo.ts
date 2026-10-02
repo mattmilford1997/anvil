@@ -4,8 +4,19 @@ export const isProd = import.meta.env.PROD;
 /** True when gates are bypassed (dev server or ANVIL_PREVIEW=1). Used to show hold banners. */
 export const showHeld = !isProd || process.env.ANVIL_PREVIEW === '1';
 
+/** Extensionless canonical path. Astro file output puts `.html` on Astro.url. */
+export function cleanPath(path: string) {
+  let p = path.split('#')[0].split('?')[0];
+  p = p.replace(/\.html$/i, '');
+  if (p === '/index' || p === 'index') return '/';
+  if (p.endsWith('/index')) p = p.slice(0, -'/index'.length);
+  if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+  if (!p.startsWith('/')) p = `/${p}`;
+  return p === '' ? '/' : p;
+}
+
 export function absolute(path: string) {
-  return new URL(path, SITE.url).toString();
+  return new URL(cleanPath(path), SITE.url).toString();
 }
 
 /** True for off-site http(s) URLs. Same-origin absolute URLs stay in-app. */

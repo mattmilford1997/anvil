@@ -26,13 +26,19 @@ export const mainNav: NavGroup[] = [
   { label: 'Rates', href: '/rates' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Resources', href: '/resources' },
-  { label: 'Docs', href: SITE.docsUrl },
   { label: 'Company', href: '/company' },
 ];
 
 export const footerNav: { title: string; items: NavLink[] }[] = [
   { title: 'Platform', items: platformItems.map(({ label, href }) => ({ label, href })) },
-  { title: 'Solutions', items: [...solutionItems.map(({ label, href }) => ({ label, href })), { label: 'Health plans', href: '/health-plans' }] },
+  {
+    title: 'Solutions',
+    items: [
+      ...solutionItems.map(({ label, href }) => ({ label, href })),
+      { label: 'Anvil vs Bridge', href: '/compare/bridge' },
+      { label: 'Health plans', href: '/health-plans' },
+    ],
+  },
   {
     title: 'Resources',
     items: [
@@ -40,7 +46,6 @@ export const footerNav: { title: string; items: NavLink[] }[] = [
       { label: 'Rates by state', href: '/rates' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'Blog and guides', href: '/resources' },
-      { label: 'API docs', href: SITE.docsUrl },
     ],
   },
   {

@@ -8,7 +8,8 @@ export default defineConfig({
   build: { format: 'file' },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/contact/success') && !page.includes('/legal/'),
+      // /docs and /customers are placeholders until an API reference and signed-off case studies exist.
+      filter: (page) => !page.includes('/contact/success') && !page.includes('/legal/') && !page.includes('/docs') && !page.includes('/customers'),
     }),
   ],
   markdown: { shikiConfig: { theme: 'github-light' } },

@@ -9,8 +9,13 @@ interface Props {
   secondaryAs?: 'button' | 'link';
   mock?: boolean;
   compact?: boolean;
+  /** Exact prompt, rendered as an H2 directly under the H1. */
+  prompt?: string;
+  promptId?: string;
+  /** 40 to 60 word direct answer, plain text under the prompt. */
+  answer?: string;
 }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false } = Astro.props;
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer } = Astro.props;
 ---
 <section class:list={['hero', { compact, 'has-mock': mock }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
@@ -18,6 +23,8 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
     <div class="hero-copy">
       {eyebrow && <div class="eyebrow">{eyebrow}</div>}
       <h1 set:html={title} />
+      {prompt && <h2 id={promptId} class="hero-q">{prompt}</h2>}
+      {answer && <p class="lede direct-answer">{answer}</p>}
       <p class="lede">{sub}</p>
       <div class="btn-group">
         <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
@@ -39,6 +46,8 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
   .hero-in > * { min-width: 0; }
   .has-mock .hero-in { grid-template-columns: 1.05fr 0.95fr; }
   .hero h1 { max-width: 16ch; }
+  .hero-q { font-size: clamp(22px, 2.6vw, 30px); max-width: 34ch; line-height: 1.2; margin: 4px 0 12px; }
+  .direct-answer { margin-bottom: 12px; }
   .hero :global(h1 em) { font-style: normal; color: var(--accent); }
   .hero :global(h1 s) { text-decoration-color: var(--accent); text-decoration-thickness: 3px; color: var(--muted); }
   .lede { margin-bottom: 28px; }
