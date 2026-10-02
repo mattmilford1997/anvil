@@ -15,7 +15,7 @@ export const bridgeLeaveAnswer =
   "Contracts in your own professional corporation stay with you if you leave. Under network rental the vendor holds the payer contracts, so leaving without contracts in your name is a relaunch.";
 
 export const bridgePriceAnswer =
-  "Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. Model Anvil on the pricing page, then send us your numbers for a side-by-side.";
+  "Bridge does not publish pricing on its site that we could verify. Anvil publishes pricing: a platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves to contracts you own. Model Anvil on the pricing page, then send us your numbers for a side-by-side.";
 
 export const p02 =
   "To own your payer contracts, form your own professional corporation with a physician owner, then file payer contract applications in that PC's name. Anvil runs this in parallel while you bill on our credentialed PC, then moves each payer's volume to your entity as its contract becomes effective. The contracts stay with your PC if you switch vendors.";
@@ -60,10 +60,10 @@ export const p13 =
   "Medicaid behavioral health runs through managed care organizations, each with its own panels and enrollment, so it is worked state by state. Anvil does Medicaid MCO enrollment and contracting per state, closed-panel exception paths included, plus psychiatry credentialing across states and ABA authorizations. Clinicians can bill on our PC while your own panels come through.";
 
 export const switchWithoutGapAnswer =
-  "Keep billing through your current vendor until each of your own contracts is effective, so there is no revenue gap. Form your professional corporation, file contract applications in your name, and move volume payer by payer as each contract is effective, then give notice. Remaining payers can run through Anvil's rented PC. If your current agreement allows, new states can run on our PC during the switch.";
+  "Keep billing through your current vendor until each of your own contracts is effective, so there is no revenue gap. Form your professional corporation, file contract applications in your name, and move volume payer by payer as each contract is effective, then give notice. Remaining payers can run through Anvil's rented PC.";
 
 export const credentialingServicesAnswer =
   "For a multi-state clinician network, roster-adds under existing contracts typically take weeks, and full enrollment under a new entity is commonly 90 to 120 days per payer when unmanaged. Anvil does the roster-add for speed and full enrollment under your own professional corporation for ownership, and tracks every file per clinician and per payer.";
 
 export const eligibilityApiAnswer =
-  "A soft check at booking uses name, date of birth, and payer and returns coverage, plan, and an estimated copay. When a payer endpoint fails, the API returns a distinct outage status instead of not covered, so booking can continue and the check can run again before the visit. The public API reference is not published yet.";
+  "A soft check at booking uses name, date of birth, and payer and returns coverage, plan, and an estimated copay. When a payer endpoint fails, the API returns a distinct outage status instead of not covered, so booking can continue and the check can run again before the visit. Sandbox keys come first, so your engineers can test the outage path before launch.";
