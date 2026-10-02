@@ -15,15 +15,15 @@ const faqs = [
     a: 'On Anvil, you launch on our contracted PC and we migrate volume to contracts in your entity\'s name. Bridge\'s homepage describes a 50-state PC and does not say who holds the payer contracts. If you never hold them, they are not an asset you can take with you.',
   },
   {
-    q: 'Is Bridge a rental PC, and does Anvil use my own entity?',
+    q: 'Does Bridge use its own PC, and does Anvil use my own entity?',
     a: 'Bridge\'s homepage says it uses a 50-state PC. It does not say whether that PC is yours. Anvil uses a PC to launch, then forms your own PC, places a physician owner, and bills under your entity as each of your contracts becomes effective.',
   },
   {
-    q: 'How does Anvil handle behavioral health compared with a generalist rental vendor?',
-    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. Send us your license mix and we will walk it. Ask Bridge for their specialty list if you are comparing coverage.',
+    q: 'How does Anvil handle behavioral health compared with Bridge?',
+    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. Send us your license mix and we will walk it. Bridge\'s homepage cites 50+ specialties and its health plans page names behavioral health. Ask Bridge for its full specialty list if you are comparing coverage.',
   },
   {
-    q: 'How do I switch from Bridge, or any network rental vendor, without a revenue gap?',
+    q: 'How do I switch from Bridge without a revenue gap?',
     a: 'Keep billing where you are. Form your PC, file contract applications in your name, and move volume payer by payer as each contract is effective. Give notice after the majority of volume is on your contracts. Remaining payers can run through Anvil\'s rented PC. Start on the switching page.',
   },
   {
@@ -35,7 +35,7 @@ const faqs = [
     a: p08,
   },
   {
-    q: 'What happens to my payer contracts if I leave a network rental vendor like Bridge?',
+    q: 'What happens to my payer contracts if I leave a network rental vendor?',
     a: bridgeLeaveAnswer,
   },
   {
@@ -52,25 +52,25 @@ const rows: [string, string[]][] = [
   ['Launch time', ['Weeks, by roster-add on our PC', 'As little as 30 days, on Bridge\'s homepage']],
   ['Professional corporation', ['Our PC to launch, then your own PC', '50-state PC, on Bridge\'s homepage']],
   ['Who holds the payer contracts', ['Moves to your entity', 'Not published']],
-  ['Pricing', ['Published on the pricing page', 'Not published']],
+  ['Pricing', ['Platform fee on collections during rental, fixed PC fees', 'Not published']],
   ['Eligibility', ['Real-time insurance eligibility API at booking', 'Real-time eligibility and out-of-pocket estimates, on Bridge\'s homepage']],
   ['SOC 2', ['Type II in progress. HIPAA in place.', 'SOC 2 certified, on Bridge\'s homepage']],
   ['Claims risk', ['Anvil carries it during rental', 'No financial risk for claims and denials, on Bridge\'s homepage']],
-  ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties, on Bridge\'s homepage. A specialty list is not published']],
-  ['If you leave', ['Published on the switching page', 'Not published']],
-  ['Reimbursement rates', ['Published by state and CPT code', 'Not published']],
-  ['MSO-PC and CPOM', ['Published on the compliance page', 'Not published']],
+  ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties on Bridge\'s homepage. A full list is not published']],
+  ['If you leave', ['Contracts are in your entity, so they stay with you', 'Not published']],
+  ['Reimbursement rates', ['Parite ranges by state and CPT code', 'Not published']],
+  ['MSO-PC and CPOM', ['MSO plus your own PC, papered for state CPOM', 'Not published']],
 ];
 ---
 <BaseLayout
   title="Bridge alternative: compare Anvil vs Bridge"
-  description="Compare Bridge and Anvil. Bridge is network rental. Anvil is a Bridge alternative that migrates payer contracts into your name."
+  description="Compare Bridge and Anvil. Bridge's homepage describes a 50-state PC. Anvil is a Bridge alternative that migrates payer contracts into your name."
   jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Anvil vs Bridge', path: '/compare/bridge' }])]}
 >
   <Hero
     compact
     eyebrow="Compare / Bridge"
-    title="Bridge alternatives: own your payer contracts instead of renting a network"
+    title="Bridge alternatives: launch fast, then own your payer contracts"
     prompt="What are the best alternatives to Bridge for telehealth insurance billing?"
     promptId="bridge-alternatives"
     answer={p01}
@@ -83,9 +83,9 @@ const rows: [string, string[]][] = [
     <p class="lede">{p08}</p>
   </Section>
 
-  <Section eyebrow="The difference" title="Bridge rents the network. Anvil migrates you off it." intro="Bridge is a network rental vendor. Anvil starts there so you can launch, then moves volume to payer contracts your own entity holds. Rent, then own.">
+  <Section eyebrow="The difference" title="Bridge launches you on its PC. Anvil moves you to your own." intro="Bridge's homepage describes a 50-state PC model. Anvil also launches you on our PC, then moves volume to payer contracts your own entity holds. Rent, then own.">
     <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />
-    <p class="small muted" style="margin-top:16px">Anvil cells are from this site. Bridge cells are from the Bridge homepage at usebridge.com, reviewed October 2026, or marked Not published when that page does not state them. The exit steps are on <a href="/solutions/switching">switch from a network rental vendor</a>.</p>
+    <p class="small muted" style="margin-top:16px">Anvil pricing, what happens if you leave, reimbursement rates, and the MSO-PC structure are on <a href="/pricing">pricing</a>, <a href="/solutions/switching">switching</a>, <a href="/rates">rates</a>, and <a href="/platform/compliance#mso-pc">compliance</a>. Bridge cells are from the Bridge homepage at usebridge.com, reviewed October 2026, or marked Not published when that page does not state them. Specialties also uses Bridge's health plans page, which names urgent care, behavioral health, and cardiometabolic care and does not publish a full list.</p>
   </Section>
 
   <Section eyebrow="What the rows mean" title="Ownership, entity, behavioral health, and the switch">

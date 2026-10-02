@@ -8,6 +8,8 @@ import {
   ratesByJurisdiction,
   ratePath,
   codeLabel,
+  payerNamesInRows,
+  joinLabels,
   stateHubPath,
   stateHubTitle,
   stateHubH1,
@@ -24,6 +26,18 @@ export function getStaticPaths() {
 
 const { jurisdiction } = Astro.props;
 const { name, state, pairs } = jurisdiction;
+const payerPhrase = joinLabels(payerNamesInRows(pairs.flatMap((p) => p.rows)));
+const codePayerPhrases = pairs.map((p) => ({ code: p.code, phrase: joinLabels(payerNamesInRows(p.rows)) }));
+const samePayers = new Set(codePayerPhrases.map((c) => c.phrase)).size <= 1;
+const smaller = codePayerPhrases.filter((c) => c.phrase !== payerPhrase);
+const varyClause = smaller.length === 0
+  ? ''
+  : smaller.length === 1
+    ? `${smaller[0].code} has ${smaller[0].phrase} only`
+    : `${smaller.slice(0, -1).map((c) => `${c.code} has ${c.phrase} only`).join(', ')}, and ${smaller[smaller.length - 1].code} has ${smaller[smaller.length - 1].phrase} only`;
+const rateLede = samePayers
+  ? `${name} therapy reimbursement rates by CPT code are Parite ranges from ${payerPhrase}.`
+  : `${name} therapy reimbursement rates by CPT code are Parite ranges from ${payerPhrase}. Payers vary by code: ${varyClause}.`;
 const title = stateHubTitle(name);
 const h1 = stateHubH1(name);
 const description = stateHubDescription(name);
@@ -42,7 +56,7 @@ const path = stateHubPath(state);
     <div class="container">
       <div class="eyebrow">Rates / {name}</div>
       <h1>{h1}</h1>
-      <p class="lede">{name} therapy reimbursement rates by CPT code are the Parite ranges we publish for this state. Each code below is a payer table. These are planning ranges, not a guarantee of what you will be paid.</p>
+      <p class="lede">{rateLede} These are planning ranges, not a guarantee of what you will be paid.</p>
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>
   </section>

@@ -8,7 +8,9 @@ import {
   codesInData,
   pairsForCode,
   stateName,
-  codeLabel,
+  codeServiceName,
+  payerNamesInRows,
+  joinLabels,
   ratePath,
   stateHubPath,
   codeHubPath,
@@ -23,6 +25,7 @@ export function getStaticPaths() {
 
 const { code } = Astro.props;
 const pairs = pairsForCode(code);
+const payerPhrase = joinLabels(payerNamesInRows(pairs.flatMap((p) => p.rows)));
 const title = codeHubTitle(code);
 const h1 = codeHubH1(code);
 const description = codeHubDescription(code);
@@ -41,7 +44,7 @@ const path = codeHubPath(code);
     <div class="container">
       <div class="eyebrow">Rates / {code}</div>
       <h1>{h1}</h1>
-      <p class="lede">{code} ({codeLabel(code)}) reimbursement rates by state come from Parite. Open a state for the payer table. These are planning ranges, not a guarantee of what you will be paid.</p>
+      <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid.</p>
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>
   </section>

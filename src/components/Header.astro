@@ -74,7 +74,7 @@ const current = Astro.url.pathname;
   .mobile details a, .m-link { display: block; padding: 10px 0 10px 12px; text-decoration: none; color: var(--text); }
   .m-link { padding-left: 0; font-weight: 600; border-bottom: 1px solid var(--border); }
   .m-cta { display: flex; gap: 10px; margin-top: 16px; }
-  @media (max-width: 1080px) { .nav, .hdr-cta { display: none; } .burger { display: flex; } }
+  @media (max-width: 1080px) { .nav, .hdr-cta { display: none; } .burger { display: flex; margin-left: auto; } }
 </style>
 <script>
   const burger = document.querySelector('.burger') as HTMLButtonElement | null;

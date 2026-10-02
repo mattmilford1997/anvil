@@ -76,6 +76,32 @@ export function codeServiceName(code: string) {
   return label.startsWith(`${code} `) ? label.slice(code.length).trim() : label;
 }
 
+const payerShortNames: Record<string, string> = {
+  medicare: 'Medicare',
+  'medicaid-ffs': 'Medicaid FFS',
+  uhc: 'UnitedHealthcare',
+};
+
+/** Short payer name for hub intros. Does not invent a payer that is absent from the rows. */
+export function shortPayerName(payer?: string) {
+  if (!payer) return 'Blended';
+  return payerShortNames[payer] ?? payerLabel(payer);
+}
+
+export function joinLabels(labels: string[]) {
+  if (labels.length <= 1) return labels[0] ?? '';
+  if (labels.length === 2) return `${labels[0]} and ${labels[1]}`;
+  return `${labels.slice(0, -1).join(', ')} and ${labels[labels.length - 1]}`;
+}
+
+/** Payer names actually present on these rows, in display order. */
+export function payerNamesInRows(rows: RateRow[]) {
+  const set = new Set(rows.map((r) => r.payer).filter((p): p is string => Boolean(p)));
+  const ordered = payerOrder.filter((p) => set.has(p));
+  const rest = [...set].filter((p) => !payerOrder.includes(p)).sort();
+  return [...ordered, ...rest].map((p) => shortPayerName(p));
+}
+
 /**
  * Title rule: first option that fits in 60 characters.
  * Returned string is the full document title (no further suffix).
@@ -271,7 +297,8 @@ export function codeHubH1(code: string) {
 }
 
 export function codeHubDescription(code: string) {
-  const description = `${code} reimbursement rates by state, from Parite. Open a state for the payer table. Planning ranges, not a guarantee of payment.`;
+  const phrase = joinLabels(payerNamesInRows(rateRows.filter((r) => r.code === code)));
+  const description = `${code} reimbursement rates by state from Parite: ${phrase} where published. Planning ranges, not a guarantee.`;
   if (description.length > 155) throw new Error(`Code hub meta over 155 (${description.length}): ${description}`);
   return description;
 }
