@@ -13,7 +13,6 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
 <BaseLayout title="Telehealth billing case studies" description="Telehealth billing case studies, published as customers go live and sign off. In-network launch timelines and insurance billing results, when they exist." noindex={cases.length === 0} jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Customers', path: '/customers' }])]}>
   <Hero compact eyebrow="Customers" title="Telehealth billing case studies" sub="Telehealth billing case studies are published as customers go live and sign off on the numbers. None are published yet. Until then, ask us for a reference in your specialty." />
   <Section tight>
-    {cases.length === 0 && <p class="lede">Telehealth billing case studies are being finalized with customers. <a href="/contact">Ask us</a> for a reference in your specialty.</p>}
     <div class="grid grid-2">
       {cases.map((c) => (
         <a href={`/customers/${c.id}`} class="card cs reveal">

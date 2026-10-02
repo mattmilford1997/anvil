@@ -44,18 +44,9 @@
   to = "/contact"
   status = 302
 
-# File-format builds also emit *.html. Canonicals are extensionless; send the .html URL there.
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/*.html"
-  to = "/:splat"
-  status = 301
-  force = true
+# File-format builds also emit *.html. A splat only matches at the end of a path,
+# so "/*.html" never catches /platform/rcm.html. scripts/html-redirects.mjs writes
+# a forced 301 for each dist HTML file into dist/_redirects.
 
 [[redirects]]
   from = "/blog"

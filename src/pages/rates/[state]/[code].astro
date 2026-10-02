@@ -45,7 +45,7 @@ const siblingCodes = ratePairs()
 const payerList = payers.length <= 1 ? (payers[0] ?? '') : payers.length === 2 ? `${payers[0]} and ${payers[1]}` : `${payers.slice(0, -1).join(', ')}, and ${payers[payers.length - 1]}`;
 const service = codeServiceName(code);
 const rangeSentence = fmtRate(blendLow) === fmtRate(blendHigh)
-  ? `The ${code} reimbursement rate in ${name} (${service}) is ${fmtRate(blendLow)} per unit (${payerList}), before patient responsibility.`
+  ? `The ${code} reimbursement rate in ${name} (${service}) is ${fmtRate(blendLow)} per unit from ${payerList}, before patient responsibility.`
   : `The ${code} reimbursement rate in ${name} (${service}) ranges from ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit across ${payerList}, before patient responsibility.`;
 const intro = `${rangeSentence} These are Parite ranges for planning, not a guarantee of what you will be paid.`;
 ---

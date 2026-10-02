@@ -13,8 +13,8 @@ const liveIds = new Set(posts.map((p) => p.id));
 const octUpcoming = (await getUpcomingOctoberPosts()).filter((p) => !liveIds.has(p.id));
 const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 ---
-<BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting. Frameworks and cost tables, written for founders who run billing." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
-  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Model it, don't vibe it.</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.{octUpcoming.length > 0 && <> October titles below are queued, not published yet.</>}</p></div></section>
+<BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting, with frameworks and cost tables for founders." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
+  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.{octUpcoming.length > 0 && <> October titles below are queued, not published yet.</>}</p></div></section>
   <Section tight>
     <div class="filters" role="tablist" aria-label="Filter by type">
       {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}

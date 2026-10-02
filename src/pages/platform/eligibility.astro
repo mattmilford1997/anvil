@@ -2,7 +2,6 @@
 import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import FeatureRow from '../../components/FeatureRow.astro';
-import { SITE } from '../../../site.config.mjs';
 import { getLivePost } from '../../lib/content';
 import { eligibilityApiAnswer } from '../../data/directAnswers';
 const outagePost = await getLivePost('payer-eligibility-outage-detection');
@@ -38,16 +37,16 @@ const sample = `POST /v1/eligibility/soft-check
 }`;
 ---
 <SubpageLayout
-  metaTitle="Insurance eligibility API at booking"
+  metaTitle="Real-time insurance eligibility API at booking"
   title="Eligibility at booking. One API, no card upload, no three-day wait."
   description="Real-time insurance eligibility API: eligibility verification at booking, copay estimate API, and payer outage detection."
   eyebrow="Platform / Eligibility"
   sub="A real-time insurance eligibility API at booking checks coverage the moment a patient picks a payer, shows the copay, and never treats a payer outage as not covered. Commonly cited lift: 2 to 5x."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Eligibility', path: '/platform/eligibility' }]}
   faqs={faqs}
-  ctaTitle="Read the docs, then run a check in the sandbox."
+  ctaTitle="Run a check in the sandbox."
   ctaBody="Keys are issued in week one. Your engineers do not need to wait for enrollment."
-  ctaPrimary={{ label: 'API docs', href: SITE.docsUrl }}
+  ctaPrimary={{ label: 'Request sandbox keys', href: '/contact?src=eligibility' }}
   ctaSecondary={{ label: 'Get started', href: '/contact' }}
 >
   <Section eyebrow="At booking" title="Eligibility verification at booking" intro="A real-time insurance eligibility API runs eligibility verification at booking from name, date of birth, and payer. The copay estimate API returns an estimated copay in the same response so the patient can book without uploading a card.">
@@ -57,7 +56,7 @@ const sample = `POST /v1/eligibility/soft-check
       'Distinct outage status so a payer outage never reads as "not covered".',
       'Hosted widget for no-code, REST API and TypeScript and Python clients for everything else.',
       'Webhooks for re-verification before the visit.',
-    ]} cta={{ label: 'Open the docs', href: SITE.docsUrl }}>
+    ]} cta={{ label: 'Request sandbox keys', href: '/contact?src=eligibility' }}>
       <p>Your engineers get sandbox keys in week one. The sandbox returns production-shaped payloads, including the ugly cases.</p>
       <pre slot="art" class="code"><code>{sample}</code></pre>
     </FeatureRow>
@@ -68,7 +67,7 @@ const sample = `POST /v1/eligibility/soft-check
       <div class="card"><h3>Do not convert it to "not covered"</h3><p class="muted">A false negative at booking sends the patient away. The booking flow can let them continue, mark the copay estimate as pending, and re-check before the visit.</p></div>
       <div class="card"><h3>Re-check before the visit</h3><p class="muted">Queue fallback bookings. When the payer recovers, re-run the check, confirm the copay estimate, and only then treat coverage as known. Outage signals come from live payer responses in the eligibility check, not a separate uptime dashboard.</p></div>
     </div>
-    <p class="lede" style="margin-top:24px">The sandbox includes outage payloads so engineers can test the fallback before it hits production. {outagePost ? <>Read the <a href={`/resources/${outagePost.id}`}>longer write-up on detecting payer eligibility outages</a>.</> : <>A longer write-up on detecting payer eligibility outages is not published yet.</>} The public API reference is not published yet. Eligibility keeps working as you <a href="/own-your-contracts">own your payer contracts</a>.</p>
+    <p class="lede" style="margin-top:24px">The sandbox includes outage payloads so engineers can test the fallback before it hits production. {outagePost && <>Read the <a href={`/resources/${outagePost.id}`}>longer write-up on detecting payer eligibility outages</a>. </>}Eligibility keeps working as you <a href="/own-your-contracts">own your payer contracts</a>.</p>
   </Section>
   <Section eyebrow="Measure it" title="What to track once eligibility is live" tight>
     <div class="grid grid-3">
