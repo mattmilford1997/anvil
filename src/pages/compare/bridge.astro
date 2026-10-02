@@ -15,12 +15,12 @@ const faqs = [
     a: 'On Anvil, you launch on our contracted PC and we migrate volume to contracts in your entity\'s name. Bridge\'s homepage describes a 50-state PC and does not say who holds the payer contracts. If you never hold them, they are not an asset you can take with you.',
   },
   {
-    q: 'Is Bridge a rental PC, and does Anvil use my own entity?',
+    q: 'Does Bridge use its own PC, and does Anvil use my own entity?',
     a: 'Bridge\'s homepage says it uses a 50-state PC. It does not say whether that PC is yours. Anvil uses a PC to launch, then forms your own PC, places a physician owner, and bills under your entity as each of your contracts becomes effective.',
   },
   {
-    q: 'How does Anvil handle behavioral health compared with a generalist rental vendor?',
-    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. Send us your license mix and we will walk it. Ask Bridge for their specialty list if you are comparing coverage.',
+    q: 'How does Anvil handle behavioral health compared with Bridge?',
+    a: 'Anvil publishes a dedicated behavioral health path: Medicaid MCO panels, ABA authorizations, psychiatry credentialing across states, supervision billing, IOP and PHP, and collaborative care codes. Send us your license mix and we will walk it. Bridge\'s homepage cites 50+ specialties and its health plans page names behavioral health. Ask Bridge for its full specialty list if you are comparing coverage.',
   },
   {
     q: 'How do I switch from Bridge without a revenue gap?',
@@ -56,7 +56,7 @@ const rows: [string, string[]][] = [
   ['Eligibility', ['Real-time insurance eligibility API at booking', 'Real-time eligibility and out-of-pocket estimates, on Bridge\'s homepage']],
   ['SOC 2', ['Type II in progress. HIPAA in place.', 'SOC 2 certified, on Bridge\'s homepage']],
   ['Claims risk', ['Anvil carries it during rental', 'No financial risk for claims and denials, on Bridge\'s homepage']],
-  ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties on Bridge\'s homepage. Health plans page names urgent care, behavioral health, cardiometabolic care, and more. A full list is not published']],
+  ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties on Bridge\'s homepage. A full list is not published']],
   ['If you leave', ['Contracts are in your entity, so they stay with you', 'Not published']],
   ['Reimbursement rates', ['Parite ranges by state and CPT code', 'Not published']],
   ['MSO-PC and CPOM', ['MSO plus your own PC, papered for state CPOM', 'Not published']],
@@ -70,7 +70,7 @@ const rows: [string, string[]][] = [
   <Hero
     compact
     eyebrow="Compare / Bridge"
-    title="Bridge alternatives: own your payer contracts instead of renting a network"
+    title="Bridge alternatives: launch fast, then own your payer contracts"
     prompt="What are the best alternatives to Bridge for telehealth insurance billing?"
     promptId="bridge-alternatives"
     answer={p01}
