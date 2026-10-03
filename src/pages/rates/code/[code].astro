@@ -58,6 +58,13 @@ const path = codeHubPath(code);
       ))}
     </ul>
   </Section>
+  <Section eyebrow="Other codes" title="Reimbursement rates by state for other CPT codes" tight>
+    <ul class="check-list">
+      {codesInData().filter((c) => c !== code).map((c) => (
+        <li><a href={codeHubPath(c)}>{c} reimbursement rates by state</a><span class="muted">, {codeServiceName(c)}</span></li>
+      ))}
+    </ul>
+  </Section>
   <WedgeRelated current={path} />
   <CtaBand
     title="Know the rate. Then get the contract."

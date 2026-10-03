@@ -59,6 +59,9 @@ export const p11 =
 export const p13 =
   "Medicaid behavioral health runs through managed care organizations, each with its own panels and enrollment, so it is worked state by state. Anvil does Medicaid MCO enrollment and contracting per state, closed-panel exception paths included, plus psychiatry credentialing across states and ABA authorizations. Clinicians can bill on our PC while your own panels come through.";
 
+export const vendorQuestionsAnswer =
+  "Ask who holds the payer contracts and whose entity you bill under. Ask whether you see the contracted rate or only a fee, what the notice and non-solicitation terms are, what happens to contracts and credentialing files if you leave, and whether there is a path to contracts in your own professional corporation.";
+
 export const switchWithoutGapAnswer =
   "Keep billing through your current vendor until each of your own contracts is effective, so there is no revenue gap. Form your professional corporation, file contract applications in your name, and move volume payer by payer as each contract is effective, then give notice. Remaining payers can run through Anvil's rented PC.";
 

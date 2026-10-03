@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
       <span class="ftr-links">
         <a href="/legal/privacy">Privacy</a>
         <a href="/legal/terms">Terms</a>
-        <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        {SITE.linkedin && <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
       </span>
     </div>
     <p class="ftr-disclaimer">Anvil is not a law firm and does not provide legal advice. Structures described on this site are implemented with independent counsel. Reimbursement figures shown are published ranges, not guarantees.</p>

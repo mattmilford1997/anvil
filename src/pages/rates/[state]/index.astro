@@ -15,6 +15,7 @@ import {
   stateHubH1,
   stateHubDescription,
   codeHubPath,
+  nearbyHubs,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -42,6 +43,7 @@ const title = stateHubTitle(name);
 const h1 = stateHubH1(name);
 const description = stateHubDescription(name);
 const path = stateHubPath(state);
+const neighbors = nearbyHubs(state);
 ---
 <BaseLayout
   title={title}
@@ -70,6 +72,13 @@ const path = stateHubPath(state);
       ))}
     </ul>
   </Section>
+  {neighbors.length > 0 && (
+    <Section eyebrow="Nearby states" title={`Therapy reimbursement rates in states near ${name}`} tight>
+      <ul class="check-list">
+        {neighbors.map((j) => <li><a href={stateHubPath(j.state)}>{j.name} therapy reimbursement rates by CPT code</a></li>)}
+      </ul>
+    </Section>
+  )}
   <WedgeRelated current={path} />
   <CtaBand
     title="Know the rate. Then get the contract."
