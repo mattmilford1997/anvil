@@ -91,9 +91,19 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [Switching from a network rental vendor](https://www.anvilcontracts.com/solutions/switching): switch from a network rental vendor; leave a rental PC and migrate payer contracts with no revenue gap
 - [Health plans](https://www.anvilcontracts.com/health-plans): network adequacy for behavioral health under fee-for-service
 
+## Questions answered
+
+- [How do I own my payer contracts instead of renting a network?](https://www.anvilcontracts.com/own-your-contracts#own-payer-contracts)
+- [Should I rent a PC or build my own professional corporation?](https://www.anvilcontracts.com/own-your-contracts#rent-or-build)
+- [What is network rental in telehealth, and what are the risks?](https://www.anvilcontracts.com/own-your-contracts#network-rental)
+- [What is an MSO-PC structure and does my telehealth startup need one?](https://www.anvilcontracts.com/platform/compliance#mso-pc)
+- [What should a telehealth founder ask before signing with an insurance billing or network rental vendor?](https://www.anvilcontracts.com/solutions/switching#vendor-questions)
+- [When should a virtual care company start accepting insurance?](https://www.anvilcontracts.com/solutions/virtual-care#when-to-accept)
+- [What are the best alternatives to Bridge for telehealth insurance billing?](https://www.anvilcontracts.com/compare/bridge#bridge-alternatives)
+
 ## Resources
 
-- [Resources hub](https://www.anvilcontracts.com/resources): insurance ops guides for care companies. Individual articles are listed here only after they are published.
+- [Resources hub](https://www.anvilcontracts.com/resources): insurance ops guides for care companies, with an index of the answers above. Individual articles are listed here only after they are published.
 
 ## Company
 

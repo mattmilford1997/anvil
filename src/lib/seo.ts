@@ -39,7 +39,7 @@ export function orgJsonLd() {
     legalName: SITE.legalName,
     url: SITE.url,
     logo: absolute('/logo.svg'),
-    sameAs: [SITE.linkedin],
+    ...(SITE.linkedin ? { sameAs: [SITE.linkedin] } : {}),
     contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: SITE.contactEmail }],
   };
 }

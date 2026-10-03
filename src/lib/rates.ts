@@ -257,6 +257,12 @@ export const nearbyStates: Record<string, string[]> = {
   WY: ['CO', 'ID', 'MT', 'NE', 'SD', 'UT'],
 };
 
+/** Neighboring jurisdictions that have a state hub, sorted by name. Uses nearbyStates only. */
+export function nearbyHubs(state: string): RateJurisdiction[] {
+  const want = new Set((nearbyStates[state.toUpperCase()] ?? []).map((s) => s.toUpperCase()));
+  return ratesByJurisdiction().filter((j) => want.has(j.state));
+}
+
 export function stateHubPath(state: string) {
   return `/rates/${state.toLowerCase()}`;
 }

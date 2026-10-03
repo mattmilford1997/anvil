@@ -10,6 +10,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 - [ ] Login destination (`SITE.loginUrl`).
 - [x] Docs and trust first-party stubs (`SITE.docsUrl` = `/docs`, `SITE.trustUrl` = `/trust`). Dedicated docs host and SOC 2 trust center remain closed.
 - [ ] Counsel sign-off on `/platform/compliance`, `/legal/privacy`, `/legal/terms`, and the footer disclaimer. Visible `TODO(launch)` copy on privacy and terms is removed; effective date publishes after review.
+- [ ] LinkedIn company page. Set SITE.linkedin in site.config.mjs; Organization sameAs and the footer link render only when it is set. The old placeholder pointed to an unrelated company.
 
 ## Data to fill
 - [ ] `src/data/stats.ts`: real states live, payers live, clinicians credentialed, median days to first paid claim. Set `verified: true`.

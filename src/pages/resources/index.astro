@@ -15,17 +15,39 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 ---
 <BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting, with frameworks and cost tables for founders." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
   <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.</p></div></section>
+  <Section id="answers" eyebrow="Answers" title="Insurance ops questions, answered" tight>
+    <ul class="check-list">
+      <li><a href="/#in-network-50-states">How do I get my telehealth company in-network with insurance in all 50 states?</a></li>
+      <li><a href="/solutions/virtual-care#when-to-accept">When should a virtual care company start accepting insurance?</a></li>
+      <li><a href="/solutions/virtual-care#how-long">How long does it take a telehealth company to start accepting insurance?</a></li>
+      <li><a href="/own-your-contracts#own-payer-contracts">How do I own my payer contracts instead of renting a network?</a></li>
+      <li><a href="/own-your-contracts#rent-or-build">Should I rent a PC or build my own professional corporation?</a></li>
+      <li><a href="/own-your-contracts#network-rental">What is network rental in telehealth, and what are the risks?</a></li>
+      <li><a href="/platform/compliance#mso-pc">What is an MSO-PC structure and does my telehealth startup need one?</a></li>
+      <li><a href="/solutions/switching#vendor-questions">What should a telehealth founder ask before signing with an insurance billing or network rental vendor?</a></li>
+      <li><a href="/solutions/switching">How do I switch from a network rental vendor to my own payer contracts without losing revenue?</a></li>
+      <li><a href="/pricing#credentialing-cost">How much does it cost to get a telehealth company credentialed and contracted with insurance payers?</a></li>
+      <li><a href="/rates/code/90837">What are telehealth reimbursement rates for CPT 90837 by state?</a></li>
+      <li><a href="/compare/bridge#bridge-alternatives">What are the best alternatives to Bridge for telehealth insurance billing?</a></li>
+    </ul>
+  </Section>
   <Section tight>
-    <div class="filters" role="tablist" aria-label="Filter by type">
-      {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}
-    </div>
+    {posts.length > 0 && (
+      <div class="filters" role="tablist" aria-label="Filter by type">
+        {cats.map((c, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-cat={c} class:list={['chip', { on: i === 0 }]}>{c}</button>)}
+      </div>
+    )}
     <div class="res-grid">
       <div class="res-main">
-        {featured && <div data-cat={featured.data.category}><ArticleCard post={featured} featured /></div>}
-        <div class="grid grid-2" style="margin-top:20px">
-          {rest.map((p) => <div data-cat={p.data.category}><ArticleCard post={p} /></div>)}
-        </div>
-        <p class="muted empty" hidden>No posts in this category yet.</p>
+        {posts.length > 0 && (
+          <>
+            {featured && <div data-cat={featured.data.category}><ArticleCard post={featured} featured /></div>}
+            <div class="grid grid-2" style="margin-top:20px">
+              {rest.map((p) => <div data-cat={p.data.category}><ArticleCard post={p} /></div>)}
+            </div>
+            <p class="muted empty" hidden>No posts in this category yet.</p>
+          </>
+        )}
         {showHeld && octUpcoming.length > 0 && (
           <div class="card oct-tease">
             <h2>Scheduled for October</h2>

@@ -16,10 +16,12 @@ interface Props {
   answer?: string;
   /** Extra hero sentences. Hidden on small screens so the primary CTA stays in the first view. */
   subMore?: string;
+  /** Desktop: put the primary CTA above the direct answer. Mobile order stays as it is. */
+  ctaFirst?: boolean;
 }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore } = Astro.props;
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore, ctaFirst = false } = Astro.props;
 ---
-<section class:list={['hero', { compact, 'has-mock': mock }]}>
+<section class:list={['hero', { compact, 'has-mock': mock, 'cta-first': ctaFirst }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
   <div class="container hero-in">
     <div class="hero-copy">
@@ -27,7 +29,7 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
       <h1 set:html={title} />
       {prompt && <h2 id={promptId} class="hero-q">{prompt}</h2>}
       {answer && <p class="lede direct-answer">{answer}</p>}
-      <p class="lede">{sub}{subMore && <> <span class="hero-more">{subMore}</span></>}</p>
+      <p class="lede">{sub}{subMore && !ctaFirst && <> <span class="hero-more">{subMore}</span></>}</p>
       <div class="btn-group">
         <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
         {secondary && secondaryAs === 'button' && <a href={secondary.href} class="btn btn-ghost btn-lg">{secondary.label}</a>}
@@ -35,6 +37,7 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
       {secondary && secondaryAs === 'link' && (
         <p class="hero-alt"><a href={secondary.href}>{secondary.label}</a></p>
       )}
+      {subMore && ctaFirst && <p class="lede hero-more-block">{subMore}</p>}
       <slot name="below" />
     </div>
     {mock && <div class="hero-mock"><ProductMock /></div>}
@@ -66,6 +69,13 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
     .hero:not(.compact) .hero-alt { order: 4; margin-top: 12px; }
     .hero:not(.compact) .direct-answer { order: 5; margin-top: 20px; margin-bottom: 0; }
     .hero:not(.compact) .hero-more { display: none; }
+    .hero:not(.compact) .hero-more-block { display: none; }
+  }
+  @media (min-width: 481px) {
+    .hero.cta-first .hero-copy { display: flex; flex-direction: column; }
+    .hero.cta-first .direct-answer { order: 5; margin-top: 24px; }
+    .hero.cta-first .hero-more-block { order: 6; margin-bottom: 0; }
+    .hero.cta-first .lede:not(.direct-answer):not(.hero-more-block) { margin-bottom: 20px; }
   }
 </style>
 <script>

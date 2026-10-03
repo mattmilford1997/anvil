@@ -30,6 +30,7 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
     primary={{ label: 'Get started', href: '/contact' }}
     secondary={{ label: 'Or see rates by state', href: '/rates' }}
     secondaryAs="link"
+    ctaFirst
     mock
   />
   <Section>
@@ -45,6 +46,7 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
   <Section eyebrow="How it works" title="Two tracks from day one. One of them ends with you owning the contracts." intro="Most vendors stop at the first track. We run both, because a care company that never owns its payer relationships is renting its revenue.">
     <Timeline />
     <div style="margin-top:32px"><a href="/own-your-contracts" class="btn btn-primary">How the migration works</a></div>
+    <p class="small muted" style="margin-top:12px">Deciding now? Read <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a> and the <a href="/platform/compliance#mso-pc">MSO-PC structure for telehealth</a>.</p>
   </Section>
 
   <Section eyebrow="Compare" title="What you get, and what you keep" tight>

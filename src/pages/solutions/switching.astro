@@ -3,7 +3,7 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import WedgeRelated from '../../components/WedgeRelated.astro';
 import TimelineSlider from '../../components/TimelineSlider.astro';
-import { switchWithoutGapAnswer } from '../../data/directAnswers';
+import { switchWithoutGapAnswer, vendorQuestionsAnswer } from '../../data/directAnswers';
 const faqs = [
   { q: 'How do I switch from a network rental vendor?', a: 'Keep billing where you are. Form your PC, file contract applications in your name, move volume payer by payer as each contract is effective, then give notice. Leave the rental PC only after the majority of volume is on contracts you own. Remaining payers can run through Anvil\'s rented PC.' },
   { q: 'Will there be a revenue gap?', a: 'No. You keep billing through your current vendor until each of your own contracts is effective. Only then does that payer\'s new volume move. If your current agreement allows, we can also run new states on our PC during the switch.' },
@@ -12,6 +12,7 @@ const faqs = [
   { q: 'Can our engineers keep the same eligibility integration?', a: 'You will move to our API, which is designed to be a small change. Sandbox keys come first so the swap is tested before any volume moves.' },
   { q: 'What if a payer panel is closed for a new entity?', a: 'That payer\'s volume runs through our rented PC until the panel opens. You are never stuck on your old vendor for one payer.' },
   { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
+  { q: 'What should a telehealth founder ask before signing with an insurance billing or network rental vendor?', a: vendorQuestionsAnswer },
 ];
 const steps = [
   ['Before notice', 'Review your agreement. Collect credentialing files. Form your PC and place the physician owner. File contract applications in your name.'],
@@ -22,7 +23,7 @@ const steps = [
 ---
 <SubpageLayout
   metaTitle="Switching from a network rental vendor"
-  title="Leave the rental. Keep the revenue."
+  title="Switching from a network rental vendor without losing revenue"
   description="Switch from a network rental vendor to payer contracts your own entity holds, with no revenue gap. Keep billing while your contracts come live."
   eyebrow="Solutions / Switching"
   sub="Switch from a network rental vendor without a revenue gap. You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. Keep billing where you are while your own contracts come live, then switch payer by payer."
@@ -33,11 +34,25 @@ const steps = [
   ctaPrimary={{ label: 'Get started', href: '/contact?src=switching' }}
 >
   <Section eyebrow="The switch" title="No revenue gap, by construction">
-    <p class="lede">The exit papers an MSO-PC structure for corporate practice of medicine, so billing under your own entity is compliant as volume moves. The CPOM and AKS language is on <a href="/platform/compliance">compliance</a>. How volume moves to an entity you control is on <a href="/own-your-contracts">own your contracts</a>.</p>
+    <p class="lede">The exit papers an MSO-PC structure for corporate practice of medicine, so billing under your own entity is compliant as volume moves. See <a href="/platform/compliance">CPOM and AKS compliance for telehealth</a> and how to <a href="/own-your-contracts">own your payer contracts</a> month by month.</p>
     <div class="grid grid-4">
       {steps.map(([t, b]) => <div class="card"><h3 style="font-size:18px">{t}</h3><p class="muted" style="font-size:15px">{b}</p></div>)}
     </div>
     <div style="margin-top:32px"><TimelineSlider /></div>
+  </Section>
+  <Section id="vendor-questions" eyebrow="Switching checklist" title="What should a telehealth founder ask before signing with an insurance billing or network rental vendor?">
+    <p class="lede">{vendorQuestionsAnswer}</p>
+    <ul class="check-list">
+      <li>Who holds the payer contracts: you, or the vendor's professional corporation (PC)?</li>
+      <li>Whose entity do claims bill under, and who receives the payment?</li>
+      <li>Do you see the contracted rate for each payer and code, or only a fee?</li>
+      <li>What are the notice, term, and non-solicitation terms?</li>
+      <li>If you leave, what happens to your payer contracts and credentialing files?</li>
+      <li>Is there a path to payer contracts in your own PC, and does the fee change as volume moves?</li>
+      <li>Who carries claims and denial risk while you bill under the vendor's PC?</li>
+      <li>Is pricing published, so you can model it before a sales call?</li>
+    </ul>
+    <p class="lede" style="margin-top:24px">Anvil's answers: payer contracts move to your own PC as each one becomes effective, the contracted rate and our fee are separate lines, the platform fee steps down as volume moves, and <a href="/pricing">pricing is published</a>.</p>
   </Section>
   <Section id="compare-bridge" eyebrow="Side by side" title="Compare Anvil and Bridge">
     <p class="lede">Bridge's homepage describes a 50-state PC. It does not say who holds the payer contracts. The fact table is on <a href="/compare/bridge">Anvil vs Bridge</a>.</p>
