@@ -14,9 +14,11 @@ import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { homeFaqs } from '../data/faqs';
 import { p06 } from '../data/directAnswers';
+import { getPosts } from '../lib/content';
 import { testimonials } from '../data/testimonials';
 import { isProd } from '../lib/seo';
 const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
+const resourcePosts = await getPosts();
 ---
 <BaseLayout title="Insurance billing infrastructure for virtual care" description="Insurance billing infrastructure for virtual care. Get in-network nationally and bill insurance in all 50 states, then own the contracts." path="/">
   <Hero
@@ -69,8 +71,14 @@ const showTestimonials = testimonials.some((t) => t.approved) || !isProd;
   </Section>
 
   <Section eyebrow="Resources" title="Model it, don't vibe it." tight>
-    <ResourcesTeaser />
-    <div style="margin-top:24px"><a href="/resources" class="btn btn-ghost">All resources</a></div>
+    {resourcePosts.length > 0 ? (
+      <>
+        <ResourcesTeaser />
+        <div style="margin-top:24px"><a href="/resources" class="btn btn-ghost">All resources</a></div>
+      </>
+    ) : (
+      <p class="lede">Insurance ops questions already answered on this site are in the <a href="/resources#answers">answer index</a>.</p>
+    )}
   </Section>
 
   <Section tight>

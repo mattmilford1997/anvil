@@ -56,8 +56,6 @@ export const footerNav: { title: string; items: NavLink[] }[] = [
       { label: 'Contact', href: '/contact' },
       { label: 'Trust center', href: SITE.trustUrl },
       { label: 'BAA', href: '/legal/baa' },
-      { label: 'Privacy', href: '/legal/privacy' },
-      { label: 'Terms', href: '/legal/terms' },
     ],
   },
 ];

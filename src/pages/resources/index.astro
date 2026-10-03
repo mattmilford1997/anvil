@@ -14,7 +14,7 @@ const octUpcoming = (await getUpcomingOctoberPosts()).filter((p) => !liveIds.has
 const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 ---
 <BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting, with frameworks and cost tables for founders." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
-  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Insurance ops guides for care companies. Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables. Live articles end with a tool, not a pitch.</p></div></section>
+  <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables.{posts.length > 0 && <> Live articles end with a tool, not a pitch.</>}</p></div></section>
   <Section id="answers" eyebrow="Answers" title="Insurance ops questions, answered" tight>
     <ul class="check-list">
       <li><a href="/#in-network-50-states">How do I get my telehealth company in-network with insurance in all 50 states?</a></li>
