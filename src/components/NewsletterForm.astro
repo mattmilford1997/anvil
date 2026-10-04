@@ -33,8 +33,9 @@ const { title = 'The insurance memo', body = 'Biweekly. One number, one take, on
       const now = Date.now();
       const startAt = Number(ts?.value || started);
       if (now - startAt < 2000) { e.preventDefault(); return; }
-      if (now - last < 10000) e.preventDefault();
+      if (now - last < 10000) { e.preventDefault(); return; }
       last = now;
+      try { sessionStorage.setItem('anvil_lead_pending', '1'); } catch {}
     });
   });
 </script>
