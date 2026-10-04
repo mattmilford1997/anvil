@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Section from '../../../components/Section.astro';
 import CtaBand from '../../../components/CtaBand.astro';
+import WedgeRelated from '../../../components/WedgeRelated.astro';
 import { breadcrumbJsonLd } from '../../../lib/seo';
 import {
   ratePairs,
@@ -127,8 +128,10 @@ const intro = `${rangeSentence} These are Parite ranges for planning, not a guar
   )}
 
   <Section tight>
-    <p class="lede">Rates are negotiated, not fixed. A rate your entity negotiated needs a contract in your entity's name, so see <a href="/platform/contracting">payer contracting for telehealth</a>, how to <a href="/own-your-contracts">own your payer contracts</a>{bhCodes.has(code) && <>, <a href="/solutions/behavioral-health">behavioral health payer contracting</a></>}, <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a>, and the <a href="/compare/bridge">Bridge alternative</a> fact table. <a href="/rates#all-states">Same code in other states</a>.</p>
+    <p class="lede">Rates are negotiated, not fixed. A rate your entity negotiated needs a contract in your entity's name, so see <a href="/platform/contracting">payer contracting for telehealth</a>, how to <a href="/own-your-contracts">own your payer contracts</a>{bhCodes.has(code) && <>, <a href="/solutions/behavioral-health">behavioral health payer contracting</a></>}, and <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a>. <a href="/rates#all-states">Same code in other states</a>.</p>
   </Section>
+
+  <WedgeRelated current={ratePath(stateUpper, code)} />
 
   <CtaBand
     title="Know the rate. Then get the contract."
