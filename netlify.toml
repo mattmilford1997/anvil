@@ -57,3 +57,13 @@
   from = "/blog/*"
   to = "/resources/:splat"
   status = 301
+
+[[redirects]]
+  from = "/privacy"
+  to = "/legal/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/og-default.png"
+  to = "/og-default-v2.png"
+  status = 301

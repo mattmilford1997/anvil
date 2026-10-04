@@ -1,8 +1,7 @@
 ---
-import { stateNames } from '../data/coverage';
-const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]));
+// Inquiry form v2. Netlify Form "anvil-leads". Netlify detects it from built HTML at deploy time.
 ---
-<form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form">
+<form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form" aria-describedby="cf-privacy">
   <input type="hidden" name="form-name" value="anvil-leads" />
   <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
   <input type="hidden" name="form_started" value="" />
@@ -11,61 +10,69 @@ const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]
   <input type="hidden" name="referrer" /><input type="hidden" name="landing" /><input type="hidden" name="go_slug" />
 
   <div class="field-row">
-    <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required autocomplete="name" /></div>
-    <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email" /></div>
-  </div>
-  <div class="field-row">
-    <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" required autocomplete="organization" /></div>
-    <div class="field"><label for="f-site">Website</label><input id="f-site" name="website" type="url" placeholder="https://" /></div>
-  </div>
-  <div class="field-row">
-    <div class="field"><label for="f-role">Your role</label>
-      <select id="f-role" name="role" required>
-        <option value="">Choose</option><option>CEO / Founder</option><option>COO / Operations</option><option>CFO / Finance</option><option>Engineering / Product</option><option>Clinical leadership</option><option>Other</option>
-      </select></div>
-    <div class="field"><label for="f-model">Care model</label>
-      <select id="f-model" name="care_model" required>
-        <option value="">Choose</option><option>Virtual</option><option>Hybrid</option><option>In-person</option><option>In-home</option><option>School-based</option>
-      </select></div>
-  </div>
-  <div class="field-row">
-    <div class="field"><label for="f-billing">Current billing</label>
-      <select id="f-billing" name="current_billing" required>
-        <option value="">Choose</option><option>Cash-pay only</option><option>Some insurance, one or a few states</option><option>In-network nationally through a vendor</option><option>In-network nationally, in-house</option>
-      </select></div>
-    <div class="field"><label for="f-clin">Clinicians</label>
-      <select id="f-clin" name="clinicians" required>
-        <option value="">Choose</option><option>1-10</option><option>11-25</option><option>26-50</option><option>51-100</option><option>100+</option>
-      </select></div>
-  </div>
-  <div class="field">
-    <label for="f-states">States of interest</label>
-    <select id="f-states" name="states" multiple size="6">
-      {states.map(([k, v]) => <option value={k}>{v}</option>)}
-    </select>
-    <span class="hint">Hold Cmd or Ctrl to pick several. Leave blank for all 50.</span>
-  </div>
-  <fieldset class="field">
-    <legend>What do you need?</legend>
-    <div class="radios">
-      <label><input type="radio" name="need" value="Rent now" required /> Bill in-network now on your PC</label>
-      <label><input type="radio" name="need" value="Build my own" /> Build my own PC and contracts</label>
-      <label><input type="radio" name="need" value="Both" /> Both, rent now and own later</label>
-      <label><input type="radio" name="need" value="Switching from a vendor" /> Switching from a network rental vendor</label>
+    <div class="field">
+      <label for="f-name">Name</label>
+      <input id="f-name" name="name" type="text" required autocomplete="name" />
     </div>
-  </fieldset>
-  <div class="field"><label for="f-msg">Anything else</label><textarea id="f-msg" name="message" rows="4" placeholder="Codes you bill, payers you care about, timeline."></textarea></div>
-  <p class="small muted">Please do not include patient information. This form is for business inquiries only.</p>
-  <button type="submit" class="btn btn-primary btn-lg">Send</button>
+    <div class="field">
+      <label for="f-email">Work email</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email" inputmode="email" />
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="f-company">Company</label>
+      <input id="f-company" name="company" type="text" required autocomplete="organization" />
+    </div>
+    <div class="field">
+      <label for="f-role">Role</label>
+      <select id="f-role" name="role" required>
+        <option value="">Choose</option>
+        <option>CEO / Founder</option>
+        <option>COO / Operations</option>
+        <option>CFO / Finance</option>
+        <option>Engineering / Product</option>
+        <option>Clinical leadership</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="f-states">Which states?</label>
+    <input id="f-states" name="states" type="text" required autocomplete="off" placeholder="e.g. CA, TX, NY or all 50" aria-describedby="f-states-hint" />
+    <span class="hint" id="f-states-hint">Not sure yet? Type "not sure".</span>
+  </div>
+
+  <div class="field">
+    <label for="f-need">What do you need?</label>
+    <select id="f-need" name="need" required>
+      <option value="">Choose</option>
+      <option value="Payer contracting">Payer contracting</option>
+      <option value="Launch on Anvil PC">Launch on Anvil PC</option>
+      <option value="MSO-PC setup">MSO-PC setup</option>
+      <option value="Credentialing">Credentialing</option>
+      <option value="Billing and RCM">Billing and RCM</option>
+      <option value="Switching vendors">Switching vendors</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="f-msg">Message</label>
+    <textarea id="f-msg" name="message" rows="4" placeholder="Codes you bill, payers you care about, timeline."></textarea>
+  </div>
+
+  <p class="small muted" id="cf-privacy">We use these details only to reply to your inquiry. Please do not include patient information. See our <a href="/legal/privacy">privacy policy</a>.</p>
+  <p class="small cf-status" id="cf-status" role="status" aria-live="polite"></p>
+  <button type="submit" class="btn btn-primary btn-lg">Send inquiry</button>
 </form>
 <style>
   .cf { position: relative; padding: 32px; }
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-  fieldset { border: 0; padding: 0; margin: 0 0 16px; }
-  legend { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-  .radios { display: grid; gap: 8px; }
-  .radios label { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 400; }
-  .radios input { accent-color: var(--accent); }
+  .cf-status:empty { display: none; }
+  @media (max-width: 600px) { .cf { padding: 20px; } .cf .btn { width: 100%; } }
 </style>
 <script>
   const f = document.getElementById('contact-form') as HTMLFormElement | null;
@@ -78,15 +85,17 @@ const states = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]
     } catch {}
     const started = Date.now();
     const ts = f.querySelector<HTMLInputElement>('[name=form_started]');
+    const status = document.getElementById('cf-status');
     if (ts) ts.value = String(started);
-    // Light client-side rate limit: reject under 2s from load, then one submit per 10s.
+    // Light client-side guard: block submits under 2s from load, then one submit per 10s. Tell the person why.
     let last = 0;
     f.addEventListener('submit', (e) => {
       const now = Date.now();
       const startAt = Number(ts?.value || started);
-      if (now - startAt < 2000) { e.preventDefault(); return; }
-      if (now - last < 10000) e.preventDefault();
+      if (now - startAt < 2000) { e.preventDefault(); if (status) status.textContent = 'One moment, then press Send inquiry again.'; return; }
+      if (now - last < 10000) { e.preventDefault(); if (status) status.textContent = 'Sending. Please wait a few seconds.'; return; }
       last = now;
+      try { sessionStorage.setItem('anvil_lead_pending', '1'); } catch {}
     });
   }
 </script>
