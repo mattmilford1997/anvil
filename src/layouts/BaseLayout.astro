@@ -18,7 +18,7 @@ interface Props {
   /** Use the title string as the document title, with no "| Anvil" suffix. */
   exactTitle?: boolean;
 }
-const { title, description, ogImage = '/og-default.png', jsonLd = [], noindex = false, type = 'website', exactTitle = false } = Astro.props;
+const { title, description, ogImage = '/og-default-v2.png', jsonLd = [], noindex = false, type = 'website', exactTitle = false } = Astro.props;
 const path = cleanPath(Astro.props.path ?? Astro.url.pathname);
 const canonical = absolute(path);
 const fullTitle = exactTitle || title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;

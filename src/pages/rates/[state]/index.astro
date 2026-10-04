@@ -73,7 +73,7 @@ const neighbors = nearbyHubs(state);
     </ul>
   </Section>
   {neighbors.length > 0 && (
-    <Section eyebrow="Nearby states" title="Rates in nearby states" tight>
+    <Section title="Rates in nearby states" tight>
       <ul class="check-list">
         {neighbors.map((j) => <li><a href={stateHubPath(j.state)}>{j.name}</a></li>)}
       </ul>
