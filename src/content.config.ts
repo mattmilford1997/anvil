@@ -7,6 +7,8 @@ const resources = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: z.object({
     title: z.string(),
+    // Document title when the H1 is longer than 60 characters with the brand suffix.
+    metaTitle: z.string().optional(),
     excerpt: z.string().max(160), // meta description
     lede: z.string().optional(),   // longer intro shown under the title
     summary: z.array(z.string()).default([]),

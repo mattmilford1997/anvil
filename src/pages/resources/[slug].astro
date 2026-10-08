@@ -52,7 +52,7 @@ const articleLd = {
   mainEntityOfPage: absolute(`/resources/${entry.id}`), image: absolute(d.ogImage ?? '/og-default-v2.png'),
 };
 ---
-<BaseLayout title={d.title} description={d.excerpt} type="article" noindex={!!hold} ogImage={d.ogImage} jsonLd={[articleLd, breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: d.title, path: `/resources/${entry.id}` }])]}>
+<BaseLayout title={d.metaTitle ?? d.title} description={d.excerpt} type="article" noindex={!!hold} ogImage={d.ogImage} jsonLd={[articleLd, breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: d.title, path: `/resources/${entry.id}` }])]}>
   <article>
     <header class="art-head">
       <div class="container">

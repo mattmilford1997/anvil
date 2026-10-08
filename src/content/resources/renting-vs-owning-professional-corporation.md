@@ -71,9 +71,12 @@ The reason most companies never get to the second half is that their vendor's bu
 The product pages that sit with this article:
 
 - [Own your payer contracts](/own-your-contracts): network rental vs owning, month by month.
-- [CPOM and AKS compliance](/platform/compliance): MSO-PC structure and state corporate practice of medicine.
+- [Rent a PC or build your own](/own-your-contracts#rent-or-build): the sequence, not a fork.
+- [MSO-PC structure for telehealth](/platform/compliance#mso-pc): how the two entities are papered.
+- [Corporate practice of medicine for telehealth](/platform/compliance#cpom-aks-structure): state rules on who may own the PC.
 - [Switching from a network rental vendor](/solutions/switching): leave rental without a revenue gap.
-- [Anvil vs Bridge](/compare/bridge): a Bridge alternative fact table. We do not list unpublished Bridge prices or features.
+- [Bridge alternative fact table](/compare/bridge): what Bridge's homepage states, and what it does not.
+- [90837 reimbursement rates by state](/rates/code/90837): published Parite ranges for 90837.
 
 Drag the ownership timeline slider to see the migration month by month, then get a formation and contracting plan for your states.
 

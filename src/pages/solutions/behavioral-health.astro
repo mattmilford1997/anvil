@@ -5,6 +5,7 @@ import Tiles from '../../components/Tiles.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
 import { p13, psychiatryCredentialingAnswer } from '../../data/directAnswers';
 const faqs = [
+  { q: 'What is behavioral health payer contracting?', a: 'Behavioral health payer contracting is getting psychiatry, therapy, ABA, and IOP groups in-network across states: Medicaid MCO panels, ABA credentialing, psychiatry credentialing, supervision billing, and collaborative care codes.' },
   { q: 'Do you handle Medicaid managed care?', a: 'Yes. Medicaid is the majority of behavioral health volume in many states and it runs through managed care organizations with their own panels and enrollment. We work Medicaid MCO enrollment and contracting state by state, and Medicaid depth is the reason behavioral health groups come to us.' },
   { q: 'What about ABA authorizations?', a: 'Authorization is an intake workflow, not a billing afterthought. We run it as part of the flow: assessment codes, treatment plan submission, units authorized, and re-authorization calendared before it lapses.' },
   { q: 'Can associate-level clinicians bill under supervision?', a: 'It depends on the state and the payer. We map which license types can bill what, under whom, in each state you operate, and we chart to it.' },
@@ -29,6 +30,9 @@ const faqs = [
   ctaBody="We will tell you which panels are open, which payers are a roster-add, and how supervision billing works in each state."
   ctaPrimary={{ label: 'Get started', href: '/contact?src=behavioral-health' }}
 >
+  <Section eyebrow="The work" title="What behavioral health payer contracting covers">
+    <p class="lede">Behavioral health payer contracting is the work of getting psychiatry, therapy, and ABA groups in-network across states. That means Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing. The same groups also need <a href="/platform/rcm">telehealth revenue cycle management</a> once the claims start.</p>
+  </Section>
   <Section eyebrow="Credentialing" title="Best way to get psychiatry or therapy clinicians credentialed with commercial payers in multiple states?">
     <p class="lede">{psychiatryCredentialingAnswer}</p>
   </Section>

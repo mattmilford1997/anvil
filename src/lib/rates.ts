@@ -107,13 +107,11 @@ export function payerNamesInRows(rows: RateRow[]) {
  * Returned string is the full document title (no further suffix).
  */
 export function ratePageTitle(code: string, name: string) {
-  const branded = `${code} reimbursement rate in ${name} by payer (2026) | Anvil`;
+  const branded = `CPT ${code} reimbursement rate in ${name} (2026) | Anvil`;
   if (branded.length <= 60) return branded;
-  const mid = `${code} reimbursement rate in ${name} by payer (2026)`;
-  if (mid.length <= 60) return mid;
-  const short = `${code} reimbursement rate in ${name} (2026)`;
-  if (short.length > 60) throw new Error(`Rate title over 60 chars (${short.length}): ${short}`);
-  return short;
+  const plain = `CPT ${code} reimbursement rate in ${name} (2026)`;
+  if (plain.length > 60) throw new Error(`Rate title over 60 chars (${plain.length}): ${plain}`);
+  return plain;
 }
 
 export function ratePageDescription(code: string, name: string) {

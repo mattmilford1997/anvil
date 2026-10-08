@@ -1,0 +1,16 @@
+---
+import Section from './Section.astro';
+
+const links = [
+  { href: '/compare/bridge', label: 'Bridge alternative for virtual care billing' },
+  { href: '/solutions/switching', label: 'Switch from a network rental vendor' },
+  { href: '/platform/compliance#mso-pc', label: 'MSO-PC structure for telehealth' },
+  { href: '/platform/rcm', label: 'Telehealth revenue cycle management' },
+  { href: '/platform/credentialing', label: 'Telehealth credentialing services' },
+];
+---
+<Section eyebrow="Related" title="From the rate to the contract" tight>
+  <ul class="check-list">
+    {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+  </ul>
+</Section>
