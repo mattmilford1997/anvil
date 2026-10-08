@@ -1,5 +1,6 @@
 ---
 title: "When Should a Virtual Care Company Accept Insurance? Seven Signals"
+metaTitle: "When should a virtual care company accept insurance?"
 excerpt: "When should a virtual care company accept insurance? Seven signals and a readiness framework for making the switch."
 lede: "Seven concrete signals that a cash-pay care company is ready to accept insurance, what each one costs you if you ignore it, and the two-phase plan for making the switch without losing your funnel."
 summary:

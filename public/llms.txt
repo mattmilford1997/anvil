@@ -104,6 +104,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 ## Resources
 
 - [Resources hub](https://www.anvilcontracts.com/resources): insurance ops guides for care companies, with an index of the answers above. Individual articles are listed here only after they are published.
+- [When should a virtual care company accept insurance?](https://www.anvilcontracts.com/resources/when-to-accept-insurance): seven signals and a readiness checklist for cash-pay companies.
 
 ## Company
 
