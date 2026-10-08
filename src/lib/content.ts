@@ -75,7 +75,7 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     excerpt: 'Leave rental without a revenue gap. Form your PC, land contracts, then give notice.',
   },
   '/compare/bridge': {
-    title: 'Bridge alternative: compare Anvil vs Bridge',
+    title: 'Bridge alternative for virtual care billing',
     excerpt: 'Bridge\'s homepage describes a 50-state PC. Anvil migrates payer contracts into your name.',
   },
   '/pricing': {

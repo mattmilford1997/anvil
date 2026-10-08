@@ -61,6 +61,6 @@ Phase 2: expand coverage and move toward owning your payer relationships. More s
 
 ## Next step
 
-Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states.
+Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. The product page is [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts).
 
 ---
