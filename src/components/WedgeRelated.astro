@@ -15,8 +15,9 @@ const links = [
 ].filter((link) => link.href.split('#')[0] !== path);
 const seen = new Set<string>();
 const related = links.filter((link) => {
-  if (seen.has(link.href)) return false;
-  seen.add(link.href);
+  const key = link.href.split('#')[0];
+  if (seen.has(key)) return false;
+  seen.add(key);
   return true;
 }).slice(0, 5);
 ---
