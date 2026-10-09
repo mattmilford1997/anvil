@@ -33,13 +33,12 @@ const faqs = [
   <Section eyebrow="The hub" title="Reimbursement rates by state and CPT code" intro={`Look up telehealth reimbursement rates by payer for ${codeList} by state. The numbers come from Parite. They are published ranges for planning, not a guarantee of what you will be paid. Each state and code pair is a payer table.`}>
     <div class="grid grid-3">
       <div class="card"><h3>Medicaid reimbursement rate for 90837</h3><p class="muted">Psychotherapy, 60 minutes, is the code most behavioral health companies model first. Start with <a href={ratePath('OH', '90837')}>90837 reimbursement rate in Ohio by payer (2026)</a>, then use the lookup for your state.</p></div>
-      <div class="card"><h3>Telehealth reimbursement by payer</h3><p class="muted">Every state and code page is a payer table: Medicare PFS, Medicaid FFS, and UnitedHealthcare TiC where Parite has the number. Filter the lookup the same way. Labels are Parite's, not ours.</p></div>
       <div class="card"><h3>Psychotherapy reimbursement rates by state</h3><p class="muted">90837, 90834, and 90791 have a page per state. 97153 (ABA) appears in states where Parite has Medicaid FFS. We add codes when Parite has them.</p></div>
     </div>
     <p class="lede" style="margin-top:24px">Use the tables when you <a href="/own-your-contracts">own your payer contracts</a> and when you plan <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. The <a href="/compare/bridge">Bridge alternative</a> fact table is the vendor comparison. Structure for the contracts sits on <a href="/platform/compliance">CPOM and the MSO-PC</a>. Leaving a rental vendor starts on <a href="/solutions/switching">switching</a>.</p>
   </Section>
   <Section id="rates-by-payer" eyebrow="By payer" title="Telehealth reimbursement rates by payer">
-    <p class="lede">Telehealth reimbursement rates by payer are the columns on each state and code page. Where Parite has a number, the table shows Medicare PFS, Medicaid FFS, and UnitedHealthcare TiC. The lookup filters the same way. Those labels are Parite's.</p>
+    <p class="lede">Telehealth reimbursement rates by payer are the rows of the table on each state and CPT code page, for example <a href={ratePath('OH', '90837')}>90837 in Ohio</a>. Where Parite has a number, the table shows Medicare PFS, Medicaid FFS, and UnitedHealthcare TiC.</p>
   </Section>
   <Section tight>
     <RateLookup />
