@@ -341,6 +341,11 @@ function assertRateSeo() {
     const description = stateHubDescription(j.name);
     if (title.length > 60) throw new Error(`State hub title over 60 (${title.length}): ${title}`);
     if (/[—–]/.test(title) || /[—–]/.test(description) || /[—–]/.test(stateHubH1(j.name))) throw new Error(`Dash in state hub SEO for ${j.state}`);
+    const listed = new Set(j.pairs.map((p) => ratePath(p.state, p.code)));
+    const expected = new Set(pairsForState(j.state).map((p) => ratePath(p.state, p.code)));
+    if (listed.size !== expected.size || [...expected].some((path) => !listed.has(path))) {
+      throw new Error(`State hub ${j.state} does not list every code page`);
+    }
   }
   for (const code of codesInData()) {
     const title = `${codeHubTitle(code)} | Anvil`;

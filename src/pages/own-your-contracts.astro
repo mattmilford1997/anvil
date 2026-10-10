@@ -12,6 +12,8 @@ import { p02, p04, p14 } from '../data/directAnswers';
 import { breadcrumbJsonLd } from '../lib/seo';
 import { getLivePost } from '../lib/content';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
+const ownMeaning = ownFaqs.find((f) => f.q === 'What does it mean to own your payer contracts?');
+const ownDefinition = ownMeaning ? `${ownMeaning.a.split('. ')[0]}.` : '';
 const months = [
   ['Month 1', 'Your PC is formed in launch states. Physician owner matched. Clinicians roster-added under Anvil\'s contracts. You are billing.'],
   ['Months 1-4', 'Credentialing files built under your entity. Contract applications filed in your PC\'s name with your top payers.'],
@@ -23,7 +25,11 @@ const months = [
 <BaseLayout title="Own your payer contracts vs network rental" description="Own your payer contracts instead of network rental. Launch on our PC, then move to contracts your entity holds, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
   <Hero compact eyebrow="Own your contracts" title="Own your payer contracts. If your vendor owns them, you don't have insurance revenue. You have a lease." prompt="How do I own my payer contracts instead of renting a network?" promptId="own-payer-contracts" answer={p02} sub="Own your payer contracts instead of staying on network rental. Forward this to your board: what network rental vs owning contracts actually means, why rental is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
 
-  <Section id="rent-or-build" eyebrow="Rent, then build" title="Should I rent a PC or build my own professional corporation?">
+  <Section id="definition" eyebrow="Definition" title="What does it mean to own your payer contracts?">
+    <p class="lede">{ownDefinition}</p>
+  </Section>
+
+  <Section id="rent-or-build" eyebrow="Rent, then build" title="Rent a PC vs own a PC">
     <p class="lede">{p04}</p>
     <p>Published ranges for the codes you would contract are on <a href="/rates/code/90837">90837 reimbursement rates by state</a>.</p>
   </Section>

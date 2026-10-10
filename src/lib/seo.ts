@@ -48,6 +48,25 @@ export function websiteJsonLd() {
   return { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url };
 }
 
+/** Organization and WebSite blocks stay valid, and sameAs stays off LinkedIn until a company URL exists. */
+function assertSiteJsonLd() {
+  const org = orgJsonLd();
+  const site = websiteJsonLd();
+  if (org['@context'] !== 'https://schema.org' || org['@type'] !== 'Organization' || !org.name || !org.url || !org.logo) {
+    throw new Error('Organization JSON-LD is missing context, type, name, url, or logo');
+  }
+  if (site['@context'] !== 'https://schema.org' || site['@type'] !== 'WebSite' || !site.name || !site.url) {
+    throw new Error('WebSite JSON-LD is missing context, type, name, or url');
+  }
+  const sameAs = 'sameAs' in org ? org.sameAs : undefined;
+  if (sameAs?.some((url) => /linkedin/i.test(url))) {
+    throw new Error('Organization JSON-LD must not set sameAs to LinkedIn yet');
+  }
+  if ('sameAs' in site) throw new Error('WebSite JSON-LD must not set sameAs');
+}
+
+assertSiteJsonLd();
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     '@context': 'https://schema.org',
