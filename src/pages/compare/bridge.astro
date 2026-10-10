@@ -9,6 +9,8 @@ import WedgeRelated from '../../components/WedgeRelated.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
 import { p01, p08, bridgeLeaveAnswer, bridgePriceAnswer } from '../../data/directAnswers';
 
+const goodBridgeAlternative = 'Anvil is a Bridge alternative that launches clinicians in-network on a credentialed 50-state professional corporation, then moves volume to payer contracts in your entity\'s name. Bridge\'s homepage describes a 50-state PC and does not say who holds the payer contracts.';
+
 const faqs = [
   {
     q: 'Who owns the payer contracts on Anvil vs on Bridge?',
@@ -46,6 +48,10 @@ const faqs = [
     q: 'How do CPOM and AKS show up in this comparison?',
     a: 'Anvil\'s rental phase is structured to align with the AKS personal services safe harbor. Your own PC is structured for each state\'s corporate practice of medicine rules, with an MSO-PC management agreement. That is the ownership path. Counsel reviews every Anvil structure.',
   },
+  {
+    q: 'What is a good Bridge alternative?',
+    a: goodBridgeAlternative,
+  },
 ];
 
 const rows: [string, string[]][] = [
@@ -67,6 +73,9 @@ const rows: [string, string[]][] = [
   description="Compare Bridge and Anvil. Bridge's homepage describes a 50-state PC. Anvil is a Bridge alternative that migrates payer contracts into your name."
   jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Anvil vs Bridge', path: '/compare/bridge' }])]}
 >
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> Anvil vs Bridge</div>
+  </nav>
   <Hero
     compact
     eyebrow="Compare / Bridge"
@@ -78,6 +87,10 @@ const rows: [string, string[]][] = [
     primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
     secondary={{ label: 'How switching works', href: '/solutions/switching' }}
   />
+
+  <Section id="good-bridge-alternative" eyebrow="Short answer" title="What is a good Bridge alternative?">
+    <p class="lede">{goodBridgeAlternative}</p>
+  </Section>
 
   <Section id="bridge-vs-owning" eyebrow="Bridge vs owning" title="Bridge vs owning your own payer contracts: which is better?">
     <p class="lede">{p08}</p>
@@ -119,3 +132,8 @@ const rows: [string, string[]][] = [
     secondary={{ label: 'See pricing', href: '/pricing' }}
   />
 </BaseLayout>
+<style>
+  .bridge-crumbs { padding: 20px 0 0; font-size: 14px; color: var(--muted); }
+  .bridge-crumbs a { color: var(--muted); font-weight: 500; }
+  .bridge-crumbs span { margin: 0 6px; }
+</style>

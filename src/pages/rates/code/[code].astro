@@ -48,6 +48,9 @@ const path = codeHubPath(code);
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>
   </section>
+  <Section id="telehealth-rates-by-state" eyebrow="Telehealth" title={`CPT ${code} telehealth reimbursement rates by state`}>
+    <p class="lede">CPT {code} telehealth reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state.</p>
+  </Section>
   <Section eyebrow="States" title={`States with a published ${code} range`} tight>
     <ul class="check-list">
       {pairs.map((p) => (
