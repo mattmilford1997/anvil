@@ -13,7 +13,7 @@ export const SITE = {
   trustUrl: '/trust',
   // No customer login host is published. /login redirects to /contact (see netlify.toml).
   loginUrl: '/contact',
-  linkedin: '', // TODO(launch): company page URL. Empty means no sameAs and no footer link.
+  linkedin: 'https://www.linkedin.com/company/getanvilcontracts',
   contactEmail: 'hello@anvilcontracts.com',        // TODO(launch): mailbox on the production domain
   parentBrands: ['Foundry PC', 'Homefront', 'Arche Studios'],
   calendly: '',  // TODO(launch): e.g. https://calendly.com/you/anvil-intro (used on /contact/success)

@@ -109,6 +109,12 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [Telehealth reimbursement rates by payer](https://www.anvilcontracts.com/rates#rates-by-payer)
 - [CPT 90837 telehealth reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90837#telehealth-rates-by-state)
 - [Health plan audit risk for virtual care](https://www.anvilcontracts.com/platform/rcm)
+- [Network rental vendors compared](https://www.anvilcontracts.com/solutions/switching#vendors-compared)
+- [Telehealth provider network for health plans](https://www.anvilcontracts.com/health-plans#provider-network)
+- [Rural network adequacy](https://www.anvilcontracts.com/health-plans#rural-adequacy)
+- [How to bill fee-for-service insurance telehealth](https://www.anvilcontracts.com/health-plans#ffs-billing)
+- [Ohio psychotherapy reimbursement rates](https://www.anvilcontracts.com/rates/oh#psychotherapy-rates)
+- [Medicaid reimbursement rate for 90837 in Ohio](https://www.anvilcontracts.com/rates/oh#medicaid-90837)
 
 ## Resources
 
@@ -118,6 +124,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 ## Company
 
 - [Company](https://www.anvilcontracts.com/company)
+- [Anvil Contracts on LinkedIn](https://www.linkedin.com/company/getanvilcontracts)
 - [Contact](https://www.anvilcontracts.com/contact)
 - [Trust center](https://www.anvilcontracts.com/trust): publishes with SOC 2; HIPAA in place, SOC 2 Type II in progress
 
