@@ -10,6 +10,7 @@ import {
   codeLabel,
   payerNamesInRows,
   joinLabels,
+  fmtRate,
   stateHubPath,
   stateHubTitle,
   stateHubH1,
@@ -48,7 +49,12 @@ const psychCodes = ['90791', '90834', '90837'];
 const psychPairs = pairs.filter((p) => psychCodes.includes(p.code));
 const psychCodeList = joinLabels(psychPairs.map((p) => p.code));
 const psychPayers = joinLabels(payerNamesInRows(psychPairs.flatMap((p) => p.rows)));
-const hasMedicaid90837 = pairs.some((p) => p.code === '90837' && p.rows.some((r) => r.payer === 'medicaid-ffs'));
+const medicaid90837 = pairs.find((p) => p.code === '90837')?.rows.find((r) => r.payer === 'medicaid-ffs');
+const medicaid90837Range = medicaid90837
+  ? (medicaid90837.low === medicaid90837.high
+    ? fmtRate(medicaid90837.low)
+    : `${fmtRate(medicaid90837.low)} to ${fmtRate(medicaid90837.high)}`)
+  : '';
 ---
 <BaseLayout
   title={title}
@@ -69,12 +75,12 @@ const hasMedicaid90837 = pairs.some((p) => p.code === '90837' && p.rows.some((r)
   </section>
   {psychPairs.length > 0 && (
     <Section id="psychotherapy-rates" eyebrow="Psychotherapy" title={`${name} psychotherapy reimbursement rates`}>
-      <p class="lede">{name} psychotherapy reimbursement rates are published Parite ranges for {psychCodeList}. Payers with a number on these codes: {psychPayers}.</p>
+      <p class="lede">Parite published ranges for {psychCodeList} in {name}. Published ranges come from {psychPayers}.</p>
     </Section>
   )}
-  {hasMedicaid90837 && (
-    <Section id="medicaid-90837" eyebrow="Medicaid" title={`Medicaid reimbursement rate for 90837 in ${name}`}>
-      <p class="lede">The Medicaid reimbursement rate for 90837 in {name} is the Medicaid FFS range Parite published for that code in this state.</p>
+  {medicaid90837 && (
+    <Section id="medicaid-90837" eyebrow="Medicaid" title={`Medicaid 90837 range in ${name}`}>
+      <p class="lede">Parite lists Medicaid FFS for 90837 in {name} at {medicaid90837Range} per unit. See the <a href={ratePath(state, '90837')}>90837 reimbursement rate in {name} by payer</a>.</p>
     </Section>
   )}
   <Section eyebrow="CPT codes" title={`CPT codes with published ranges in ${name}`} tight>

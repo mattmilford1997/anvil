@@ -1,5 +1,6 @@
 ---
 title: "The Real Cost of Building Insurance Ops In-House: A Line-Item Model"
+metaTitle: "Cost of in-house insurance operations"
 excerpt: "A line-item cost model for building commercial and Medicaid insurance operations in-house: headcount by workstream, tooling, compliance, timeline, and the."
 lede: "A line-item cost model for building commercial and Medicaid insurance operations in-house: headcount by workstream, tooling, compliance, timeline, and the opportunity cost of idle clinicians. Download the model and run your own numbers."
 summary:
@@ -22,7 +23,7 @@ faq:
     a: "A structure where a partner does the labor on all five workstreams, you launch on their contracted entity for speed, and they build and contract your own entity in parallel so the contracts end up yours."
   - q: "Does the model include Medicaid?"
     a: "The download has a Medicaid toggle that adds state program enrollment and MCO contracting headcount, which is where many behavioral health models are most under-budgeted."
-related: ["renting-vs-owning-professional-corporation", "investor-diligence-payer-contracts", "migrating-from-rented-pc-to-own-contracts"]
+related: ["renting-vs-owning-professional-corporation", "investor-diligence-payer-contracts", "migrating-from-rented-pc-to-own-contracts", "/own-your-contracts"]
 sourceFile: "03_December_Build_Rent_Own.md"
 calendarWeek: 10
 dataReview: "cleared"

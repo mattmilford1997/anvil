@@ -8,14 +8,19 @@ import { breadcrumbJsonLd } from '../lib/seo';
 ---
 <BaseLayout title="Network adequacy behavioral health for health plans" description="Network adequacy behavioral health for health plans. A quality-governed telehealth provider network, including rural coverage, under fee-for-service." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
   <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." sub="Network adequacy behavioral health coverage from one contracted, credentialed group: many care companies, one set of charting standards. Rural and specialty gaps, under fee-for-service. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
-  <Section id="provider-network" eyebrow="The network" title="Telehealth provider network for health plans">
-    <p class="lede">A telehealth provider network for health plans here is one contracted, credentialed group: many care companies, one set of charting standards. Read how a care company can <a href="/own-your-contracts">own your payer contracts</a>, under <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a>.</p>
-  </Section>
-  <Section id="rural-adequacy" eyebrow="Coverage" title="Rural network adequacy">
-    <p class="lede">Rural network adequacy on this network is rural and specialty gaps, under fee-for-service.</p>
-  </Section>
-  <Section id="ffs-billing" eyebrow="Payment" title="How to bill fee-for-service insurance telehealth">
-    <p class="lede">Fee-for-service means pay for delivered visits at contracted rates, with reporting by program, by state, and by outcome measure. Not a PEPM.</p>
+  <Section tight class="hp-answers">
+    <div class="hp-block" id="provider-network">
+      <h2>Telehealth provider network for health plans</h2>
+      <p class="lede">One contracted, credentialed group covers many care companies under one set of charting standards, so you contract once. Read how a care company can <a href="/own-your-contracts">own your payer contracts</a>, under <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a>.</p>
+    </div>
+    <div class="hp-block" id="rural-adequacy">
+      <h2>Rural network adequacy</h2>
+      <p class="lede">The same group covers rural and specialty gaps, and those visits are paid fee-for-service.</p>
+    </div>
+    <div class="hp-block" id="ffs-billing">
+      <h2>How to bill fee-for-service insurance telehealth</h2>
+      <p class="lede">Bill each delivered visit at the contracted rate. Report by program, by state, and by outcome measure. Not a PEPM.</p>
+    </div>
   </Section>
   <Section>
     <Tiles items={[
@@ -26,3 +31,7 @@ import { breadcrumbJsonLd } from '../lib/seo';
   </Section>
   <CtaBand title="Tell us where adequacy is short." body="States, specialties, and the plan products. We will tell you what we can stand up and how fast." primary={{ label: 'Contact network development', href: '/contact?src=health-plans' }} secondary={undefined} />
 </BaseLayout>
+<style>
+  .hp-block + .hp-block { margin-top: 28px; }
+  .hp-block h2 { font-size: clamp(26px, 3vw, 36px); margin: 0 0 12px; }
+</style>

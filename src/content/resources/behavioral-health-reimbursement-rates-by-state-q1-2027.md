@@ -1,5 +1,6 @@
 ---
 title: "How to Read Reimbursement for 90837, 99214, and 96158 by State"
+metaTitle: "How to read 90837 rates by state"
 excerpt: "Why the same behavioral health code pays differently by state and payer, what drives the spread, and how to turn published ranges into a contracting plan."
 lede: "The same 53-minute session pays differently in two states, and differently across two payers in the same state. Here is what drives the spread for 90837, 99214, and 96158, how to read a published range without misreading it, and how to build a rate ladder you can use in rollout and contracting."
 summary:

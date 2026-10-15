@@ -1,5 +1,6 @@
 ---
 title: "Cash-Pay to Insurance Transition Telehealth: The Two-Phase Plan"
+metaTitle: "Cash-pay to insurance transition telehealth"
 excerpt: "Cash-pay to insurance transition for telehealth: a two-phase plan, DTC to in-network, and conversion on insurance vs cash-pay."
 lede: "A two-phase operating plan for moving a cash-pay care company onto insurance: which states and payers to start with, how to keep the cash-pay funnel intact, and how to make the insurance step convert instead of leak."
 summary:
@@ -24,7 +25,7 @@ faq:
     a: "No. You can launch on an existing contracted entity in weeks. You need your own entity to eventually own the contracts, and it is much easier to start that in parallel than to migrate later."
   - q: "What do I tell cash-pay patients?"
     a: "Nothing changes for them. Same price, same flow. Insurance is an additional path, not a replacement."
-related: ["/solutions/virtual-care", "when-to-accept-insurance"]
+related: ["/solutions/virtual-care", "when-to-accept-insurance", "/own-your-contracts"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 3
 dataReview: "cleared"
@@ -52,6 +53,8 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 
 ## The mistakes
 Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. Each one is survivable. All four together is a year of lost growth.
+
+The operating plan for a virtual care company is [virtual care](/solutions/virtual-care). The ownership step is to [own your payer contracts](/own-your-contracts).
 
 ## Next step
 

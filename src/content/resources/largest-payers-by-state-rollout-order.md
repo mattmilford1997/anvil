@@ -1,5 +1,6 @@
 ---
 title: "The 3 to 5 Payers That Cover 80% of Lives in Each State, and What That Means for Your Rollout Order"
+metaTitle: "Payers that cover most lives, by state"
 excerpt: "In most states, three to five payers cover the large majority of commercially insured and Medicaid lives."
 lede: "In most states, three to five payers cover the large majority of commercially insured and Medicaid lives. Here's how to find them, how to combine payer share with rates and credentialing timelines, and the rollout sequence that follows."
 summary:

@@ -1,5 +1,6 @@
 ---
 title: "Hybrid and In-Person Care Companies: Why Telehealth-Only Billing Vendors Can't Take You, and What to Do Instead"
+metaTitle: "Hybrid and in-person insurance billing"
 excerpt: "If your model includes in-person visits, in-home care, procedures, or intensive programs, most telehealth billing platforms are structurally unable to."
 lede: "If your model includes in-person visits, in-home care, procedures, or intensive programs, most telehealth billing platforms are structurally unable to support you. Here's why, what changes for hybrid billing, and how companies that run hybrid models get in-network nationally anyway."
 summary:

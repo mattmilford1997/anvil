@@ -1,5 +1,6 @@
 ---
 title: "Six Months of Insurance Infrastructure: What We Would Tell a Founder Starting Today"
+metaTitle: "Six months of insurance infrastructure"
 excerpt: "Six months of writing about credentialing, contracts, rates, eligibility, and compliance, condensed into lessons for a founder starting today."
 lede: "Six months ago we started writing about how care companies get on insurance, own their contracts, and see what they are paid. This post condenses those 25 posts into the lessons we would give a founder starting today, organized by the six things we think a platform owes you."
 summary:

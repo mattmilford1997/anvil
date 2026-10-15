@@ -1,5 +1,6 @@
 ---
 title: "Credentialing Turnaround Time Cost: An Idle Clinician Per Day"
+metaTitle: "Credentialing turnaround time cost"
 excerpt: "Credentialing turnaround time cost: delay cost per day, idle clinicians, and clinician onboarding time for insurance."
 lede: "A hired clinician who can't bill insurance yet is the most expensive line on your P&L that nobody tracks. Here's the math per day, by clinician type, and the counter to run your own numbers."
 summary:
@@ -53,6 +54,8 @@ Three reasons. Salary is a visible expense and lost revenue is not. Credentialin
 
 ## A note for behavioral health
 Medicaid MCO enrollment can be slower and more variable than commercial. If Medicaid is a meaningful share of your demand, the idle cost is higher and the sequencing matters more. We cover the state-by-state picture at the end of this month.
+
+Enrollment is [telehealth credentialing services](/platform/credentialing).
 
 ## Next step
 

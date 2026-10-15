@@ -1,5 +1,6 @@
 ---
 title: "Payer Eligibility Systems Go Down. Detect It Before Your Funnel Does"
+metaTitle: "Detect a payer eligibility outage"
 excerpt: "Payer real-time eligibility endpoints fail more often than anyone admits, and most care companies find out from their conversion dashboard days later."
 lede: "Payer real-time eligibility endpoints fail more often than anyone admits, and most care companies find out from their conversion dashboard days later. How to detect payer outages in minutes, what to show the patient, and how to recover."
 summary:

@@ -1,5 +1,6 @@
 ---
 title: "Soft Check vs Hard Check: Designing an Insurance Step That Feels Like Checkout (Developer Edition)"
+metaTitle: "Soft check vs hard check for eligibility"
 excerpt: "A developer's guide to building an insurance step that converts: the two-stage eligibility pattern (soft check for routing, hard check for coverage and."
 lede: "A developer's guide to building an insurance step that converts: the two-stage eligibility pattern (soft check for routing, hard check for coverage and cost), what each call returns, where to put them in the flow, and how to handle the edge cases."
 summary:

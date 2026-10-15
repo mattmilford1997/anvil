@@ -1,5 +1,6 @@
 ---
 title: "Roster-Add vs Full Enrollment: What \"In-Network in 30 Days\" Really Means"
+metaTitle: "Roster-add vs full enrollment"
 excerpt: "Two very different processes get called \"credentialing.\" One takes weeks because the contract already exists."
 lede: "Two very different processes get called \"credentialing.\" One takes weeks because the contract already exists. The other takes months because it creates one. Here's how to tell which you're buying and why you eventually need both."
 summary:
@@ -57,3 +58,5 @@ The sequence that works: roster-add on day one, entity formation and full enroll
 4. When I leave, which contracts come with me?
 
 If the answers are "ours," "we don't do that," "there isn't one," and "none," you are buying roster-add only. Price it accordingly and plan the second step with someone else.
+
+Both passes are [telehealth credentialing services](/platform/credentialing). Full enrollment is how you [own your payer contracts](/own-your-contracts).

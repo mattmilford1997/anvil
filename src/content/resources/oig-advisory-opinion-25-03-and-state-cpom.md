@@ -1,5 +1,6 @@
 ---
 title: "The OIG Opinion Everyone Cites, and the State Law It Doesn't Cover"
+metaTitle: "OIG Advisory Opinion 25-03 and state law"
 excerpt: "OIG Advisory Opinion 25-03 gave the telehealth industry a federal roadmap for MSO and PC leasing arrangements."
 lede: "OIG Advisory Opinion 25-03 gave the telehealth industry a federal roadmap for MSO and PC leasing arrangements. It says nothing about state corporate practice of medicine rules. Here's what the opinion covers, what it doesn't, and what a compliant structure needs on top."
 summary:

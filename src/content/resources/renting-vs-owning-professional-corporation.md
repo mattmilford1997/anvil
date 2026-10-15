@@ -1,5 +1,6 @@
 ---
 title: "Rent a PC vs Own a PC: The Decision Most Founders Don't Know They're Making"
+metaTitle: "Rent a PC vs own a PC"
 excerpt: "Rent a PC vs own a PC: professional corporation rental is faster; owning is an asset. MSO-PC structure and how to rent now, own later."
 lede: "Rent a PC vs own a PC is the choice most founders do not know they are making. When you bill insurance through a vendor's contracted entity, you are renting a professional corporation."
 summary:
