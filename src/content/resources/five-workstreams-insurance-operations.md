@@ -1,6 +1,6 @@
 ---
 title: "Cost of Building Insurance Operations In-House: Build vs Buy"
-metaTitle: "Cost of building insurance operations in-house"
+metaTitle: "Build vs buy for five insurance workstreams"
 excerpt: "Cost of building insurance operations in-house: five workstreams, who to hire, and when build vs buy is the better call."
 lede: "Insurance billing is five separate jobs: contracting, credentialing, eligibility, claims, and denials. Here's what each one actually involves, who you'd have to hire, and which ones make sense to own."
 summary:

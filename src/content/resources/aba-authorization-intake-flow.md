@@ -1,6 +1,6 @@
 ---
 title: "ABA Authorizations and Medicaid: Building an Intake Flow That Doesn't Stall"
-metaTitle: "ABA credentialing and authorization"
+metaTitle: "ABA authorization intake flow"
 excerpt: "ABA credentialing and authorization: diagnosis, assessment auth, treatment plan, and Medicaid MCO rules that vary by state."
 lede: "ABA credentialing and authorization is the hardest behavioral health service to move from inquiry to first billable session: diagnosis requirements, assessment authorizations, treatment plan authorizations, and Medicaid MCO rules that vary by state. Here's the intake flow that keeps families moving."
 summary:

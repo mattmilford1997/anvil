@@ -67,7 +67,7 @@ That parallel path is the single biggest difference between vendors in this cate
 ## The question to ask
 "When we leave, which payer contracts come with us?" If the answer is a list, you are building an asset. If the answer is "none, but you'd stay on our platform," you are renting one.
 
-The contracting work is [payer contracting for telehealth](/platform/contracting). The end state is to [own your payer contracts](/own-your-contracts).
+When you want contracts in your name, start with [payer contracting for telehealth](/platform/contracting), so you [own your payer contracts](/own-your-contracts) if you leave.
 
 ## Next step
 
