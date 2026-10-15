@@ -1,5 +1,6 @@
 ---
 title: "Cost of Building Insurance Operations In-House: Build vs Buy"
+metaTitle: "Cost of building insurance operations in-house"
 excerpt: "Cost of building insurance operations in-house: five workstreams, who to hire, and when build vs buy is the better call."
 lede: "Insurance billing is five separate jobs: contracting, credentialing, eligibility, claims, and denials. Here's what each one actually involves, who you'd have to hire, and which ones make sense to own."
 summary:
@@ -20,7 +21,7 @@ faq:
     a: "Yes, and for a company going national quickly, that is usually the right first move. The question to ask any single vendor is which entity holds the payer contracts and what happens to them if you leave."
   - q: "What's the first hire if I do build?"
     a: "A contracting lead, because everything else waits on a contract. It is also the hardest hire, which is why most companies start with a partner."
-related: ["/platform", "/pricing", "when-to-accept-insurance"]
+related: ["/platform", "/pricing", "when-to-accept-insurance", "/own-your-contracts"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 2
 dataReview: "cleared"
@@ -65,6 +66,8 @@ Here is the honest map.
 | Claims and denials | Not early | Buy it until you have the volume to justify a team, and keep the data so you can move later. |
 
 The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second.
+
+See how the five workstreams run on the [platform](/platform), and how you [own your payer contracts](/own-your-contracts).
 
 ## Next step
 

@@ -1,5 +1,6 @@
 ---
 title: "Eligibility at Booking: The Conversion Lift and How to Measure It"
+metaTitle: "Eligibility at booking: conversion lift"
 excerpt: "Checking insurance eligibility before the price screen is the change that moves a care funnel most. Here is how to measure the lift in your own data."
 lede: "Checking insurance eligibility at the moment of booking, before the price screen, is the single change that moves a care company's funnel most. Here is why it works, the range the industry commonly cites, and a method for measuring the lift in your own funnel so you do not have to take anyone's number on faith."
 summary:

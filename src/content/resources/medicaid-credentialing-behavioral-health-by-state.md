@@ -1,5 +1,6 @@
 ---
 title: "Medicaid Credentialing for Behavioral Health, State by State"
+metaTitle: "Medicaid credentialing, behavioral health"
 excerpt: "Medicaid enrollment for behavioral health across multiple states: MCO structures, provider types, carve-outs, and sequencing."
 lede: "Medicaid enrollment for behavioral health is a multi-state problem: 50 state programs, each with fee-for-service enrollment plus MCOs that credential separately. A state-by-state guide to MCO structures, provider type requirements, carve-outs, and the sequencing that gets a BH group billing Medicaid across state lines."
 summary:

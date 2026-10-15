@@ -1,5 +1,6 @@
 ---
 title: "Credentialing Takes 90 to 120 Days Because Nobody Is Watching It"
+metaTitle: "Why credentialing takes 90 to 120 days"
 excerpt: "Credentialing runs 90 to 120 days per clinician per payer when unmanaged. Most of that is waiting nobody tracks. Here is where the days go."
 lede: "Credentialing is commonly cited at 90 to 120 days per clinician per payer when nobody manages it, and most of that time is waiting that nobody is tracking. Here's where the days go, how the main payer types differ, and the three interventions that cut the parts you control."
 summary:

@@ -1,5 +1,6 @@
 ---
 title: "What Does In-Network Nationally Mean? Contracts, Panels, Rosters"
+metaTitle: "What does in-network nationally mean?"
 excerpt: "What does in-network nationally mean? Payer contract vs panel vs roster, and what credentialed in all 50 states actually is."
 lede: "\"In-network in all 50 states\" can mean four different things. Here's the vocabulary (contracts, panels, rosters, delegated credentialing), what each one gets you, and the one question to ask any vendor who says it."
 summary:
@@ -65,6 +66,8 @@ That parallel path is the single biggest difference between vendors in this cate
 
 ## The question to ask
 "When we leave, which payer contracts come with us?" If the answer is a list, you are building an asset. If the answer is "none, but you'd stay on our platform," you are renting one.
+
+The contracting work is [payer contracting for telehealth](/platform/contracting). The end state is to [own your payer contracts](/own-your-contracts).
 
 ## Next step
 

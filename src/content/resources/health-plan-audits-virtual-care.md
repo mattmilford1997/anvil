@@ -1,5 +1,6 @@
 ---
 title: "Health Plan Audits: Three Flags, Five Rationalizations, and One Charting Standard That Survives Them"
+metaTitle: "Health plan audit risk for virtual care"
 excerpt: "Health plan audit risk for virtual care: the claim patterns that trigger reviews, and the charting standard that survives them."
 lede: "Health plan audit risk for virtual care is no longer a random letter. Here are the three claim patterns that trigger reviews, the five things founders tell themselves that make it worse, and the documentation standard that makes an audit a formality instead of a crisis."
 summary:

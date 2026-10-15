@@ -1,5 +1,6 @@
 ---
 title: "Payer Contracting 101: Rack Rates, Rate Ladders, and the First Renewal"
+metaTitle: "Payer contracting 101 for care companies"
 excerpt: "How payer contracting actually works for a care company: what a participation agreement contains, why first contracts land at rack rates, how rate ladders."
 lede: "How payer contracting actually works for a care company: what a participation agreement contains, why first contracts land at rack rates, how rate ladders work, what leverage you have and when, and how to prepare for the first renewal."
 summary:

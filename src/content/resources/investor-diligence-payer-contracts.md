@@ -1,5 +1,6 @@
 ---
 title: "What Series A and B Investors Ask About Your Payer Contracts"
+metaTitle: "Investor questions on payer contracts"
 excerpt: "The payer contract questions that show up in Series A and B diligence for care companies, what a strong answer looks like, and the answers that end up in."
 lede: "The payer contract questions that show up in Series A and B diligence for care companies, what a strong answer looks like, and the answers that end up in the risk section. Includes a downloadable diligence checklist."
 summary:
@@ -22,7 +23,7 @@ faq:
     a: "There is no fixed rule. Above roughly 30 percent for a single payer invites questions; above 50 percent invites terms."
   - q: "How early should I form my own PC?"
     a: "As soon as you launch on a shared entity. Running the two in parallel costs little and avoids the \"no plan\" answer."
-related: ["cost-of-in-house-insurance-operations", "renting-vs-owning-professional-corporation", "migrating-from-rented-pc-to-own-contracts"]
+related: ["cost-of-in-house-insurance-operations", "renting-vs-owning-professional-corporation", "migrating-from-rented-pc-to-own-contracts", "/own-your-contracts"]
 sourceFile: "03_December_Build_Rent_Own.md"
 calendarWeek: 12
 dataReview: "cleared"

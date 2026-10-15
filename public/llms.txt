@@ -114,7 +114,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [Rural network adequacy](https://www.anvilcontracts.com/health-plans#rural-adequacy)
 - [How to bill fee-for-service insurance telehealth](https://www.anvilcontracts.com/health-plans#ffs-billing)
 - [Ohio psychotherapy reimbursement rates](https://www.anvilcontracts.com/rates/oh#psychotherapy-rates)
-- [Medicaid reimbursement rate for 90837 in Ohio](https://www.anvilcontracts.com/rates/oh#medicaid-90837)
+- [Medicaid reimbursement rate for 90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837)
 
 ## Resources
 

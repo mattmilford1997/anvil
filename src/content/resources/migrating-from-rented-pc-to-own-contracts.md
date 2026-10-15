@@ -1,5 +1,6 @@
 ---
 title: "The Migration Playbook: Rented PC to Your Own Without a Revenue Gap"
+metaTitle: "Migrate from a rented PC without a gap"
 excerpt: "How to move insured volume from a billing vendor's contracted entity to your own professional corporation, payer by payer, without a gap in revenue."
 lede: "How to move insured volume from a billing vendor's contracted entity to your own professional corporation, payer by payer and state by state, without a gap in revenue. The sequencing, the traps, and a month-by-month plan."
 summary:
@@ -22,7 +23,7 @@ faq:
     a: "No. The clinician, the visit, and the coverage are the same. Only the billing entity behind the claim changes."
   - q: "What data should I export before migrating?"
     a: "Claim-level detail by payer, state, clinician, and code, with paid amounts and denial reasons. It drives sequencing and your first rate negotiation."
-related: ["cost-of-in-house-insurance-operations", "renting-vs-owning-professional-corporation", "investor-diligence-payer-contracts"]
+related: ["cost-of-in-house-insurance-operations", "renting-vs-owning-professional-corporation", "investor-diligence-payer-contracts", "/solutions/switching"]
 sourceFile: "03_December_Build_Rent_Own.md"
 calendarWeek: 13
 dataReview: "cleared"
@@ -104,6 +105,8 @@ Medicaid gets its own line because it varies more than commercial. Some states e
 
 ## How Anvil runs a migration
 Anvil forms your professional corporation in parallel with the inventory, so formation is never the thing you wait on. Contracts are filed in your entity's name. As each contract becomes effective, new visits for that payer and state route to your PC. Claims already in flight stay where they are until they resolve. Whatever is not yet migrated keeps billing where it bills today, and the share of volume on your own contracts is a number you can see, not one you have to compute. See [/platform/contracting](/platform/contracting) for the mechanics, and [/resources/renting-vs-owning-professional-corporation](/resources/renting-vs-owning-professional-corporation) if you are still deciding whether to make the move at all.
+
+If a vendor holds the contracts today, start with [switching from a network rental vendor](/solutions/switching).
 
 ## Next step
 
