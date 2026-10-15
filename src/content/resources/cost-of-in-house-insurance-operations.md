@@ -1,6 +1,6 @@
 ---
 title: "The Real Cost of Building Insurance Ops In-House: A Line-Item Model"
-metaTitle: "A line-item model for in-house insurance"
+metaTitle: "Line-item cost model for in-house insurance ops"
 excerpt: "A line-item cost model for building commercial and Medicaid insurance operations in-house: headcount by workstream, tooling, compliance, timeline, and the."
 lede: "A line-item cost model for building commercial and Medicaid insurance operations in-house: headcount by workstream, tooling, compliance, timeline, and the opportunity cost of idle clinicians. Download the model and run your own numbers."
 summary:

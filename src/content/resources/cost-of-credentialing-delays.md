@@ -55,7 +55,7 @@ Three reasons. Salary is a visible expense and lost revenue is not. Credentialin
 ## A note for behavioral health
 Medicaid MCO enrollment can be slower and more variable than commercial. If Medicaid is a meaningful share of your demand, the idle cost is higher and the sequencing matters more. We cover the state-by-state picture at the end of this month.
 
-The way we run that enrollment is [telehealth credentialing services](/platform/credentialing).
+We run that enrollment for you through our [telehealth credentialing services](/platform/credentialing).
 
 ## Next step
 
