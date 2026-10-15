@@ -68,6 +68,7 @@ const sample = `POST /v1/eligibility/soft-check
       <div class="card"><h3>Re-check before the visit</h3><p class="muted">Queue fallback bookings. When the payer recovers, re-run the check, confirm the copay estimate, and only then treat coverage as known. Outage signals come from live payer responses in the eligibility check, not a separate uptime dashboard.</p></div>
     </div>
     <p class="lede" style="margin-top:24px">The sandbox includes outage payloads so engineers can test the fallback before it hits production. {outagePost && <>Read the <a href={`/resources/${outagePost.id}`}>longer write-up on detecting payer eligibility outages</a>. </>}Eligibility keeps working as you <a href="/own-your-contracts">own your payer contracts</a>.</p>
+    <p class="lede">If you are leaving a rental vendor, start with <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
   </Section>
   <Section eyebrow="Measure it" title="What to track once eligibility is live" tight>
     <div class="grid grid-3">

@@ -48,7 +48,10 @@ export function websiteJsonLd() {
   return { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url };
 }
 
-/** Organization and WebSite blocks stay valid, and sameAs stays off LinkedIn until a company URL exists. */
+/** Only the Anvil Contracts company page. linkedin.com/company/anvil is a different company. */
+const allowedLinkedIn = 'https://www.linkedin.com/company/getanvilcontracts';
+
+/** Organization and WebSite blocks stay valid. sameAs may include only the Anvil Contracts LinkedIn URL. */
 function assertSiteJsonLd() {
   const org = orgJsonLd();
   const site = websiteJsonLd();
@@ -59,8 +62,15 @@ function assertSiteJsonLd() {
     throw new Error('WebSite JSON-LD is missing context, type, name, or url');
   }
   const sameAs = 'sameAs' in org ? org.sameAs : undefined;
-  if (sameAs?.some((url) => /linkedin/i.test(url))) {
-    throw new Error('Organization JSON-LD must not set sameAs to LinkedIn yet');
+  const linkedInValues = (sameAs ?? []).filter((url) => /linkedin/i.test(url));
+  if (linkedInValues.some((url) => url !== allowedLinkedIn)) {
+    throw new Error('Organization JSON-LD sameAs may only include https://www.linkedin.com/company/getanvilcontracts');
+  }
+  if ((sameAs ?? []).some((url) => /linkedin\.com\/company\/anvil(?:\/|$|\?|#)/i.test(url))) {
+    throw new Error('Organization JSON-LD must not use linkedin.com/company/anvil');
+  }
+  if (SITE.linkedin === allowedLinkedIn && (!sameAs || sameAs.length !== 1 || sameAs[0] !== allowedLinkedIn)) {
+    throw new Error('Organization JSON-LD sameAs must be the Anvil Contracts LinkedIn URL');
   }
   if ('sameAs' in site) throw new Error('WebSite JSON-LD must not set sameAs');
 }
