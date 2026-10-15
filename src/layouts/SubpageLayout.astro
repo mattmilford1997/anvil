@@ -20,6 +20,6 @@ const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle
 <BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs)]}>
   <Hero compact eyebrow={eyebrow} title={title} sub={sub} prompt={prompt} promptId={promptId} answer={answer} secondary={{ label: 'See pricing', href: '/pricing' }} />
   <slot />
-  {faqs.length > 0 && <Section tight><Faq items={faqs} /></Section>}
+  {faqs.length > 0 && <Section id="questions" tight><Faq items={faqs} /></Section>}
   <CtaBand title={ctaTitle} body={ctaBody} primary={ctaPrimary} secondary={ctaSecondary} />
 </BaseLayout>

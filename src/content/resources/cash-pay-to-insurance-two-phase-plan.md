@@ -54,7 +54,7 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 ## The mistakes
 Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. Each one is survivable. All four together is a year of lost growth.
 
-The operating plan for a virtual care company is [virtual care](/solutions/virtual-care). The ownership step is to [own your payer contracts](/own-your-contracts).
+For the cash-pay switch, follow the [virtual care](/solutions/virtual-care) plan, then [own your payer contracts](/own-your-contracts) so they sit in your entity.
 
 ## Next step
 

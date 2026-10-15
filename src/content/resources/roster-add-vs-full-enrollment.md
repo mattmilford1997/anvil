@@ -59,4 +59,4 @@ The sequence that works: roster-add on day one, entity formation and full enroll
 
 If the answers are "ours," "we don't do that," "there isn't one," and "none," you are buying roster-add only. Price it accordingly and plan the second step with someone else.
 
-Both passes are [telehealth credentialing services](/platform/credentialing). Full enrollment is how you [own your payer contracts](/own-your-contracts).
+We run both the roster-add and the full enrollment as [telehealth credentialing services](/platform/credentialing). Full enrollment is what lets you [own your payer contracts](/own-your-contracts).
