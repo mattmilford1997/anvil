@@ -18,10 +18,12 @@ interface Props {
   subMore?: string;
   /** Desktop: put the primary CTA above the direct answer. Mobile order stays as it is. */
   ctaFirst?: boolean;
+  /** On small screens, tighten the hero and place the primary button above the long answer. */
+  foldCta?: boolean;
 }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore, ctaFirst = false } = Astro.props;
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore, ctaFirst = false, foldCta = false } = Astro.props;
 ---
-<section class:list={['hero', { compact, 'has-mock': mock, 'cta-first': ctaFirst }]}>
+<section class:list={['hero', { compact, 'has-mock': mock, 'cta-first': ctaFirst, 'fold-cta': foldCta }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
   <div class="container hero-in">
     <div class="hero-copy">
@@ -61,6 +63,14 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
   .hero-alt a:hover { color: var(--accent); }
   @media (max-width: 960px) { .has-mock .hero-in { grid-template-columns: 1fr; } .hero-mock { max-width: 560px; } }
   @media (max-width: 480px) {
+    .hero.compact.fold-cta { padding: 16px 0 20px; }
+    .hero.compact.fold-cta h1 { max-width: none; margin-bottom: 8px; }
+    .hero.compact.fold-cta .hero-copy { display: flex; flex-direction: column; }
+    .hero.compact.fold-cta .hero-q { order: 1; margin: 0 0 8px; font-size: 20px; }
+    .hero.compact.fold-cta .lede:not(.direct-answer) { order: 2; margin-bottom: 12px; }
+    .hero.compact.fold-cta .btn-group { order: 3; }
+    .hero.compact.fold-cta .hero-alt { order: 4; margin-top: 10px; }
+    .hero.compact.fold-cta .direct-answer { order: 5; margin-top: 16px; margin-bottom: 0; }
     .hero:not(.compact) { padding: 24px 0 28px; }
     .hero:not(.compact) .hero-copy { display: flex; flex-direction: column; }
     .hero:not(.compact) .hero-q { order: 1; margin-bottom: 8px; }
