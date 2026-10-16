@@ -17,6 +17,7 @@ import {
   codeHubTitle,
   codeHubH1,
   codeHubDescription,
+  fmtRate,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -26,6 +27,12 @@ export function getStaticPaths() {
 const { code } = Astro.props;
 const pairs = pairsForCode(code);
 const payerPhrase = joinLabels(payerNamesInRows(pairs.flatMap((p) => p.rows)));
+const medicaidPairs = pairs.flatMap((p) => {
+  const row = p.rows.find((r) => r.payer === 'medicaid-ffs');
+  if (!row) return [];
+  const range = row.low === row.high ? fmtRate(row.low) : `${fmtRate(row.low)} to ${fmtRate(row.high)}`;
+  return [{ state: p.state, range }];
+});
 const title = codeHubTitle(code);
 const h1 = codeHubH1(code);
 const description = codeHubDescription(code);
@@ -51,6 +58,19 @@ const path = codeHubPath(code);
   <Section id="telehealth-rates-by-state" eyebrow="Telehealth" title={`CPT ${code} telehealth reimbursement rates by state`}>
     <p class="lede">CPT {code} telehealth reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state.</p>
   </Section>
+  {medicaidPairs.length > 0 && (
+    <Section eyebrow="Medicaid" title={`Medicaid ${code} reimbursement rate by state`}>
+      <p class="lede">Medicaid FFS ranges Parite publishes for {code}. Planning ranges, not a guarantee of payment.</p>
+      <ul class="check-list">
+        {medicaidPairs.map((p) => (
+          <li>
+            <a href={ratePath(p.state, code)}>{stateName(p.state)}</a>
+            <span class="muted">: {p.range}</span>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  )}
   <Section eyebrow="States" title={`States with a published ${code} range`} tight>
     <ul class="check-list">
       {pairs.map((p) => (
