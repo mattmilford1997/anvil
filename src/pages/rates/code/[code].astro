@@ -33,6 +33,7 @@ const medicaidPairs = pairs.flatMap((p) => {
   const range = row.low === row.high ? fmtRate(row.low) : `${fmtRate(row.low)} to ${fmtRate(row.high)}`;
   return [{ state: p.state, range }];
 });
+const medicaidOnly = medicaidPairs.length > 0 && pairs.every((p) => p.rows.every((r) => r.payer === 'medicaid-ffs'));
 const title = codeHubTitle(code);
 const h1 = codeHubH1(code);
 const description = codeHubDescription(code);
@@ -60,7 +61,7 @@ const path = codeHubPath(code);
   </Section>
   {medicaidPairs.length > 0 && (
     <Section eyebrow="Medicaid" title={`Medicaid ${code} reimbursement rate by state`}>
-      <p class="lede">Medicaid FFS ranges Parite publishes for {code}. Planning ranges, not a guarantee of payment.</p>
+      {!medicaidOnly && <p class="lede">Medicaid FFS ranges Parite publishes for {code}. Planning ranges, not a guarantee of payment.</p>}
       <ul class="check-list">
         {medicaidPairs.map((p) => (
           <li>
