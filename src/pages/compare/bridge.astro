@@ -69,8 +69,8 @@ const rows: [string, string[]][] = [
 ];
 ---
 <BaseLayout
-  title="Bridge alternative for virtual care billing"
-  description="Compare Bridge and Anvil. Bridge's homepage describes a 50-state PC. Anvil is a Bridge alternative that migrates payer contracts into your name."
+  title="Bridge insurance billing alternative"
+  description="Bridge (usebridge.com) insurance billing alternative. Bridge's homepage describes a 50-state PC. Anvil migrates payer contracts into your name."
   jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Anvil vs Bridge', path: '/compare/bridge' }])]}
 >
   <nav class="bridge-crumbs" aria-label="Breadcrumb">
@@ -79,11 +79,11 @@ const rows: [string, string[]][] = [
   <Hero
     compact
     eyebrow="Compare / Bridge"
-    title="Bridge alternatives: launch fast, then own your payer contracts"
+    title="Bridge insurance billing alternative: launch fast, then own your payer contracts"
     prompt="What are the best alternatives to Bridge for telehealth insurance billing?"
     promptId="bridge-alternatives"
     answer={p01}
-    sub="Anvil publishes the model: you launch on a rented PC, then migrate to contracts in your name."
+    sub="Anvil publishes the model next to Bridge (usebridge.com): you launch on a rented PC, then migrate to contracts in your name."
     primary={{ label: 'Get started', href: '/contact?src=compare-bridge' }}
     secondary={{ label: 'How switching works', href: '/solutions/switching' }}
   />
@@ -116,6 +116,7 @@ const rows: [string, string[]][] = [
         <p class="muted">Switch if you are at renewal, or an investor asked who holds the payer contracts, and those contracts are not in your entity. Do not give notice first. Keep billing where you are, form your PC, and move volume payer by payer. The steps are on <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
       </div>
     </div>
+    <p class="lede" style="margin-top:24px">The launch choice is <a href="/own-your-contracts#rent-or-build">rent a PC vs own a PC</a>, under <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a>.</p>
   </Section>
 
   <WedgeRelated current="/compare/bridge" />

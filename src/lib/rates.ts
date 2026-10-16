@@ -285,7 +285,7 @@ export function stateHubTitle(name: string) {
 }
 
 export function stateHubDescription(name: string) {
-  const description = `${name} therapy reimbursement rates by CPT code, from Parite. Planning ranges for the codes we publish, not a guarantee of payment.`;
+  const description = `${name} therapy and psychotherapy reimbursement rates by CPT code, from Parite. Planning ranges, not a guarantee of payment.`;
   if (description.length > 155) throw new Error(`State hub meta over 155 (${description.length}): ${description}`);
   return description;
 }

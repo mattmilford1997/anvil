@@ -22,7 +22,7 @@ const months = [
   ['Months 12-18', 'Steady state. Anvil runs RCM and renewals on contracts you own. Rental PC stays available for new states and closed panels.'],
 ];
 ---
-<BaseLayout title="Own your payer contracts vs network rental" description="Own your payer contracts instead of network rental. Launch on our PC, then move to contracts your entity holds, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
+<BaseLayout title="Own your payer contracts vs network rental" description="Own your payer contracts instead of network rental. Launch on our PC, then move to portable payer contracts your entity holds, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
   <Hero compact eyebrow="Own your contracts" title="Own your payer contracts. If your vendor owns them, you don't have insurance revenue. You have a lease." prompt="How do I own my payer contracts instead of renting a network?" promptId="own-payer-contracts" answer={p02} sub="Own your payer contracts instead of staying on network rental. Forward this to your board: what network rental vs owning contracts actually means, why rental is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
 
   <Section id="definition" eyebrow="Definition" title="What does it mean to own your payer contracts?">
@@ -46,6 +46,15 @@ const months = [
       <div class="card"><h3>One vendor, one point of failure</h3><p class="muted">A payer terminating the vendor's group contract terminates every customer's coverage with that payer at once. That is concentration risk your investors will ask about.</p></div>
     </div>
     <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. Read <a href="#rent-or-build">whether to rent a PC or build your own professional corporation</a>, how an <a href="/platform/compliance#mso-pc">MSO-PC structure for telehealth</a> is papered, and how <a href="/platform/compliance#cpom-aks-structure">corporate practice of medicine for telehealth</a> applies to your own PC. If you are already on a vendor, start with <a href="/solutions/switching">switching from a network rental vendor</a>. Compare that path on the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
+  </Section>
+
+  <Section id="how-to-own" eyebrow="The steps" title="How to own your payer contracts">
+    <ol class="own-steps">
+      <li>Launch on our PC so clinicians are billing while your entity is formed.</li>
+      <li>Form your PC and place a physician owner.</li>
+      <li>Contract and credential that PC. File applications in your PC's name.</li>
+      <li>Move volume as each contract goes effective. Claims in flight are unaffected.</li>
+    </ol>
   </Section>
 
   <Section eyebrow="The migration" title="How volume moves from our PC to yours" intro="Both tracks start on day one. Nothing about the migration gates your launch or interrupts billing.">
@@ -95,6 +104,8 @@ const months = [
   <CtaBand title="Rent for speed. Own for the asset. Start both today." body="Tell us your states and clinicians. We will map the migration month by month." primary={{ label: 'Get started', href: '/contact?src=own' }} secondary={{ label: 'See pricing', href: '/pricing' }} />
 </BaseLayout>
 <style>
+  .own-steps { margin: 0; padding-left: 1.25em; display: grid; gap: 10px; max-width: 720px; }
+  .own-steps li { padding-left: 0.35em; }
   .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
   .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
   .step .when { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }

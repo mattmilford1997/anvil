@@ -44,6 +44,39 @@ for (const file of files.sort()) {
   if (!metaMatch) errors.push(`${rel}: missing meta description`);
   else if (description.length > 155) errors.push(`${rel}: meta description is ${description.length} characters`);
   if (h1s.length !== 1) errors.push(`${rel}: expected 1 H1, found ${h1s.length}`);
+
+  const ldRe = /<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi;
+  let ldMatch;
+  while ((ldMatch = ldRe.exec(html))) {
+    const raw = ldMatch[1].trim();
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      try {
+        parsed = JSON.parse(decode(raw));
+      } catch (err) {
+        errors.push(`${rel}: JSON-LD parse error: ${err instanceof Error ? err.message : 'invalid JSON'}`);
+        continue;
+      }
+    }
+    checkFaqPage(parsed, rel, errors);
+  }
+}
+
+function checkFaqPage(value, rel, errors) {
+  const items = Array.isArray(value) ? value : [value];
+  for (const item of items) {
+    if (!item || typeof item !== 'object') continue;
+    if (item['@graph']) checkFaqPage(item['@graph'], rel, errors);
+    const type = item['@type'];
+    const types = Array.isArray(type) ? type : type ? [type] : [];
+    if (!types.includes('FAQPage')) continue;
+    const entity = item.mainEntity;
+    if (!Array.isArray(entity) || entity.length === 0) {
+      errors.push(`${rel}: FAQPage JSON-LD has no mainEntity`);
+    }
+  }
 }
 
 if (errors.length > 0) {
@@ -52,4 +85,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`SEO gate passed (${files.length} pages, one H1, title <= 60, meta <= 155).`);
+console.log(`SEO gate passed (${files.length} pages, one H1, title <= 60, meta <= 155, JSON-LD parsed).`);
