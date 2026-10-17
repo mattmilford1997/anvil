@@ -352,9 +352,12 @@ export function rateFaqs(code: string, state: string, rows: RateRow[]) {
   const name = stateName(state);
   return rows.map((row) => {
     const who = faqPayerNames[row.payer ?? ''] ?? shortPayerName(row.payer);
+    const low = fmtRate(row.low);
+    const high = fmtRate(row.high);
+    const amount = low === high ? `is ${low} per unit` : `is ${low} to ${high} per unit`;
     return {
       q: `What is the ${who} reimbursement rate for ${code} in ${name}?`,
-      a: `The ${who} reimbursement rate for ${code} in ${name} is ${fmtRate(row.low)} to ${fmtRate(row.high)} per unit. These are planning ranges from Parite, not a guarantee of payment.`,
+      a: `The ${who} reimbursement rate for ${code} in ${name} ${amount}. These are planning ranges from Parite, not a guarantee of payment.`,
     };
   });
 }

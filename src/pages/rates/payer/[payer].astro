@@ -21,15 +21,10 @@ const { hub } = Astro.props;
 const found = payerHubBySlug(hub.slug);
 if (!found) throw new Error(`Missing payer hub ${hub.slug}`);
 const rows = rowsForPayer(hub.payer);
-const has90837 = rows.some((row) => row.code === '90837');
-const has97153 = rows.some((row) => row.code === '97153');
 const who = shortPayerName(hub.payer);
-const intro = [
-  `Telehealth reimbursement rates by payer on this page are the ${who} rows Parite published`,
-  has90837 ? `, including the ${who === 'Medicaid FFS' ? 'Medicaid' : who} 90837 rate in each state with a row` : '',
-  has97153 ? '. 97153 is listed only where Parite published a row' : '',
-  '. These are planning ranges from Parite, not a guarantee of payment.',
-].join('');
+const payerName = hub.payer === 'medicaid-ffs' ? 'Medicaid' : who;
+const abaLine = hub.slug === 'medicaid' ? ' 97153 appears only where Parite publishes it.' : '';
+const intro = `${payerName} reimbursement rates by state and CPT code, from Parite, including the ${payerName} 90837 rate in every state Parite covers.${abaLine} These are planning ranges, not a guarantee of payment.`;
 ---
 <BaseLayout
   title={hub.title}
