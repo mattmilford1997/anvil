@@ -29,6 +29,16 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
+# Default Netlify host only. The host is an exact match, so
+# deploy-preview-N--anvil-arche.netlify.app and branch deploys are not redirected.
+# scripts/html-redirects.mjs also writes this as the first line of dist/_redirects,
+# because Netlify reads _redirects before netlify.toml.
+[[redirects]]
+  from = "https://anvil-arche.netlify.app/*"
+  to = "https://www.anvilcontracts.com/:splat"
+  status = 301
+  force = true
+
 # Tracked /go/ links (attribution by article/CTA). Add one per CTA placement.
 # Keep the query string so Close/GA can read the source.
 [[redirects]]
