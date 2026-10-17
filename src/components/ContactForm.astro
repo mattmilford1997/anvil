@@ -95,7 +95,6 @@
       if (now - startAt < 2000) { e.preventDefault(); if (status) status.textContent = 'One moment, then press Send inquiry again.'; return; }
       if (now - last < 10000) { e.preventDefault(); if (status) status.textContent = 'Sending. Please wait a few seconds.'; return; }
       last = now;
-      try { sessionStorage.setItem('anvil_lead_pending', '1'); } catch {}
     });
   }
 </script>

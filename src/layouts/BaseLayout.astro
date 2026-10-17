@@ -108,6 +108,49 @@ const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
         if (!store.landing) { store.landing = location.pathname; changed = true; }
         if (changed) sessionStorage.setItem('anvil_attr', JSON.stringify(store));
       } catch {}
+      // Remember a Netlify form submit so /contact/success can fire generate_lead.
+      // Runs after each form's own submit handler, so a blocked submit never qualifies.
+      document.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        // Netlify removes data-netlify from published HTML. Every lead form posts to /contact/success.
+        const actionPath = (form.getAttribute('action') || '').split('?')[0];
+        if (actionPath !== '/contact/success' && !actionPath.endsWith('/contact/success')) return;
+        if (event.defaultPrevented) return;
+        const trap = form.querySelector('[name="bot-field"]');
+        if (trap && 'value' in trap && String(trap.value).trim() !== '') return;
+        const netlifyName = form.getAttribute('name') || 'lead';
+        const path = location.pathname;
+        const formNames: Record<string, string> = {
+          'anvil-leads': 'inquiry',
+          newsletter: 'newsletter',
+          'calculator-export': 'calculator',
+          'baa-request': 'baa',
+          'diligence-checklist': 'diligence_checklist',
+          'readiness-checklist': 'readiness_checklist',
+          'credentialing-benchmark': 'credentialing_benchmark',
+          'cpom-map-2027': 'cpom_map',
+          'audit-checklist': 'audit_checklist',
+        };
+        let formLocation = 'inline';
+        if (netlifyName === 'anvil-leads') formLocation = 'contact_page';
+        else if (netlifyName === 'newsletter') formLocation = path.startsWith('/resources/') && path !== '/resources' ? 'article_sidebar' : 'resources_sidebar';
+        else if (netlifyName === 'calculator-export') formLocation = 'pricing_calculator';
+        else if (netlifyName === 'baa-request') formLocation = 'baa_page';
+        else if (netlifyName === 'diligence-checklist' && path.startsWith('/own-your-contracts')) formLocation = 'own_your_contracts';
+        else if (path.startsWith('/resources/')) formLocation = 'article_inline';
+        const debugValue = new URLSearchParams(location.search).get('debug_mode');
+        const debugMode = new URLSearchParams(location.search).has('debug_mode') && debugValue !== '0' && debugValue !== 'false';
+        try {
+          sessionStorage.setItem('anvil_lead_pending', JSON.stringify({
+            form_name: formNames[netlifyName] || netlifyName,
+            page_path: path,
+            form_location: formLocation,
+            debug_mode: debugMode,
+            at: Date.now(),
+          }));
+        } catch (err) {}
+      });
     </script>
   </body>
 </html>
