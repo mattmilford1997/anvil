@@ -22,12 +22,23 @@ import { SITE } from '../../../site.config.mjs';
   <script is:inline>
     (function () {
       try {
-        if (sessionStorage.getItem('anvil_lead_pending') !== '1') return; // only right after a real submit, not on refresh or direct visits
+        var raw = sessionStorage.getItem('anvil_lead_pending');
         sessionStorage.removeItem('anvil_lead_pending');
-        if (typeof window.gtag !== 'function') return; // no consent, no event
-        var src = new URLSearchParams(location.search).get('src');
-        if (src === 'newsletter') window.gtag('event', 'sign_up', { method: 'newsletter' });
-        else window.gtag('event', 'generate_lead', { form_name: 'anvil-leads' });
+        if (!raw || raw === '1') return;
+        var data = JSON.parse(raw);
+        if (!data || !data.form_name || !data.page_path || !data.form_location) return;
+        if (!data.at || Date.now() - data.at > 120000) return;
+        if (localStorage.getItem('anvil_consent') !== 'allow') return;
+        if (typeof window.gtag !== 'function') return;
+        var params = {
+          form_name: data.form_name,
+          page_path: data.page_path,
+          form_location: data.form_location,
+        };
+        var debugValue = new URLSearchParams(location.search).get('debug_mode');
+        var debugOn = data.debug_mode || (new URLSearchParams(location.search).has('debug_mode') && debugValue !== '0' && debugValue !== 'false');
+        if (debugOn) params.debug_mode = true;
+        window.gtag('event', 'generate_lead', params);
       } catch (e) {}
     })();
   </script>
