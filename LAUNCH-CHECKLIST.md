@@ -31,7 +31,7 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 - [ ] Dedicated docs site (Fern/Mintlify) and SOC 2 trust center. First-party stubs ship at `/docs` and `/trust` until those hosts exist.
 
 ## Acceptance (Phase 1)
-- [ ] Lighthouse 90+ mobile on Home, Platform, Own Your Contracts, Pricing, Contact, Company, Resources.
+- [x] Lighthouse 90+ mobile on Home, Platform, Own Your Contracts, Pricing, Contact, Company, Resources.
 - [ ] Contact form creates a Close lead with UTM and `go_slug`.
 - [ ] FAQ schema validates (Rich Results Test) on Home and one article.
 - [ ] Every page: one H1, meta title under 60 chars, description under 155.

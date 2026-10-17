@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/Section.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../../../lib/seo';
+import {
+  payerHubs,
+  payerHubBySlug,
+  rowsForPayer,
+  stateName,
+  fmtRate,
+  ratePath,
+  shortPayerName,
+} from '../../../lib/rates';
+
+export function getStaticPaths() {
+  return payerHubs.map((hub) => ({ params: { payer: hub.slug }, props: { hub } }));
+}
+
+const { hub } = Astro.props;
+const found = payerHubBySlug(hub.slug);
+if (!found) throw new Error(`Missing payer hub ${hub.slug}`);
+const rows = rowsForPayer(hub.payer);
+const who = shortPayerName(hub.payer);
+const payerName = hub.payer === 'medicaid-ffs' ? 'Medicaid' : who;
+const abaLine = hub.slug === 'medicaid' ? ' 97153 appears only where Parite publishes it.' : '';
+const intro = `${payerName} reimbursement rates by state and CPT code, from Parite, including the ${payerName} 90837 rate in every state Parite covers.${abaLine} These are planning ranges, not a guarantee of payment.`;
+---
+<BaseLayout
+  title={hub.title}
+  description={hub.description}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Rates', path: '/rates' },
+    { name: hub.h1, path: `/rates/payer/${hub.slug}` },
+  ])]}
+>
+  <section class="rate-head">
+    <div class="container">
+      <div class="eyebrow">Rates / {who}</div>
+      <h1>{hub.h1}</h1>
+      <p class="lede">{intro}</p>
+      <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
+    </div>
+  </section>
+  <Section eyebrow="State and code" title={`${who} rates by state and CPT code`} tight>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Code</th>
+            <th>Low</th>
+            <th>High</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <td>{stateName(row.state)}</td>
+              <td><a href={ratePath(row.state, row.code)}>{row.code} in {stateName(row.state)}</a></td>
+              <td>{fmtRate(row.low)}</td>
+              <td>{fmtRate(row.high)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
+  <CtaBand
+    title="Know the rate. Then get the contract."
+    body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on."
+    primary={{ label: 'Get a contracting plan', href: '/contact?src=rates-payer' }}
+    secondary={{ label: 'Rates hub', href: '/rates' }}
+  />
+</BaseLayout>
+<style>
+  .rate-head { padding: clamp(40px, 6vw, 72px) 0 8px; }
+  .rate-head h1 { max-width: 22ch; font-size: clamp(28px, 4.4vw, 44px); }
+</style>

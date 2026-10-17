@@ -27,7 +27,14 @@ const faqs = [
         <thead><tr><th>Workstream</th><th>Build it yourself</th><th>With Anvil</th></tr></thead>
         <tbody>
           {workstreams.map((w) => (
-            <tr><th scope="row"><a href={w.href}>{w.name}</a></th><td class="muted">{w.hire}</td><td>{w.anvil}</td></tr>
+            <tr>
+              <th scope="row"><a href={w.href}>{w.name}</a></th>
+              <td class="muted">{w.hire}</td>
+              <td>
+                {w.anvil}
+                {w.name === 'Compliance' && <p>See whether to <a href="/own-your-contracts#rent-or-build">rent a PC or own one</a> and how <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a> applies.</p>}
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

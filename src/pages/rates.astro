@@ -5,8 +5,8 @@ import Section from '../components/Section.astro';
 import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
-import { breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath } from '../lib/rates';
+import { absolute, breadcrumbJsonLd } from '../lib/seo';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath } from '../lib/rates';
 import WedgeRelated from '../components/WedgeRelated.astro';
 const jurisdictions = ratesByJurisdiction();
 const allStateHrefs = jurisdictions.flatMap((j) => j.pairs.map((p) => ratePath(p.state, p.code)));
@@ -17,6 +17,28 @@ const samples = samplePairs();
 const longTail90837 = longTail90837Pairs();
 const codes = codesInData();
 const codeList = codes.length > 1 ? `${codes.slice(0, -1).join(', ')}, and ${codes[codes.length - 1]}` : (codes[0] ?? '');
+const datasetJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Telehealth reimbursement rates by state, CPT code, and payer',
+  description: 'Planning ranges for telehealth reimbursement rates by payer, state, and CPT code. Source: Parite. Not a guarantee of payment.',
+  url: absolute('/rates'),
+  creator: { '@type': 'Organization', name: 'Anvil' },
+  dateModified: '2026-09-17',
+  spatialCoverage: { '@type': 'Place', name: 'United States' },
+  variableMeasured: [
+    { '@type': 'PropertyValue', name: 'CPT code' },
+    { '@type': 'PropertyValue', name: 'payer' },
+    { '@type': 'PropertyValue', name: 'low' },
+    { '@type': 'PropertyValue', name: 'high' },
+  ],
+  distribution: {
+    '@type': 'DataDownload',
+    contentUrl: 'https://www.anvilcontracts.com/rates.json',
+    encodingFormat: 'application/json',
+  },
+  isBasedOn: { '@type': 'CreativeWork', name: 'Parite' },
+};
 const faqs = [
   { q: 'Where can I find reimbursement rates by state and CPT code?', a: 'Use the lookup, or open a page such as 90837 in Ohio. Ranges come from Parite. They are not a guarantee of what you will be paid.' },
   { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, in states where Parite has a Medicaid FFS figure. Ohio 90837 and California 90837 are examples. If Medicaid FFS is missing for a state, that row stays blank until Parite has it.' },
@@ -28,7 +50,7 @@ const faqs = [
   { q: 'How do you use this in contracting?', a: 'As the floor for rate proposals in your entity\'s name, and the benchmark when we tell you a payer\'s offer is low.' },
 ];
 ---
-<BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including the Medicaid rate for 90837 and telehealth reimbursement by payer. Built from Parite data." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }])]}>
+<BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including the Medicaid rate for 90837 and telehealth reimbursement by payer. Built from Parite data." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }]), datasetJsonLd]}>
   <Hero compact eyebrow="Rates" title="Reimbursement rates by state and CPT code: what payers actually pay." sub="Look up reimbursement rates by state and CPT code, then filter telehealth reimbursement by payer, before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state are in the lookup and on per-state pages built from Parite." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
   <Section eyebrow="The hub" title="Reimbursement rates by state and CPT code" intro={`Look up telehealth reimbursement rates by payer for ${codeList} by state. The numbers come from Parite. They are published ranges for planning, not a guarantee of what you will be paid. Each state and code pair is a payer table.`}>
     <div class="grid grid-2">
@@ -38,7 +60,7 @@ const faqs = [
     <p class="lede" style="margin-top:24px">Use the tables when you <a href="/own-your-contracts">own your payer contracts</a> and when you plan <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. The <a href="/compare/bridge">Bridge alternative</a> fact table is the vendor comparison. Structure for the contracts sits on <a href="/platform/compliance">CPOM and the MSO-PC</a>. Leaving a rental vendor starts on <a href="/solutions/switching">switching</a>.</p>
   </Section>
   <Section id="rates-by-payer" eyebrow="By payer" title="Telehealth reimbursement rates by payer">
-    <p class="lede">Telehealth reimbursement rates by payer are the rows of the table on each state and CPT code page, for example <a href={ratePath('OH', '90837')}>90837 in Ohio</a>. Where Parite has a number, the table shows Medicare PFS, Medicaid FFS, and UnitedHealthcare TiC.</p>
+    <p class="lede">Telehealth reimbursement rates by payer are the rows of the table on each state and CPT code page, for example <a href={ratePath('OH', '90837')}>90837 in Ohio</a>. Open <a href={payerHubPath('medicare')}>Medicare</a>, <a href={payerHubPath('medicaid-ffs')}>Medicaid</a>, and <a href={payerHubPath('uhc')}>UnitedHealthcare</a>.</p>
   </Section>
   <Section tight>
     <RateLookup />

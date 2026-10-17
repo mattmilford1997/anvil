@@ -56,9 +56,9 @@ Each of these signals has a price. CAC inflation compounds. Funnel drop-off is a
 A rough worked example: a clinic with 12 clinicians doing 80 cash-pay visits a month each is at 960 visits. If in-network demand lets each clinician fill 120 visits, that is 1,440 visits at a lower price but a much larger pool, and the marginal visit costs you almost nothing to acquire. Run your own numbers with the calculator linked below. The gap is usually larger than founders expect.
 
 ## The two-phase plan
-Phase 1: go in-network where the lives are, fast. Pick the states and payers that cover the most insured patients in your existing demand, get clinicians enrolled, turn on eligibility at booking so insured patients see their coverage before they see a price. Keep cash-pay live for everyone else. Nothing in your funnel breaks.
+Phase 1: go in-network where the lives are, fast. Pick the states and payers that cover the most insured patients in your existing demand, get clinicians enrolled, turn on eligibility at booking so insured patients see their coverage before they see a price. Keep cash-pay live for everyone else. Nothing in your funnel breaks. The fast path for that phase is [renting a PC to launch](/own-your-contracts#rent-or-build).
 
-Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one.
+Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one. If Phase 1 is already a vendor's network, leaving it is [switching from a network rental vendor](/solutions/switching).
 
 ## Next step
 
