@@ -113,7 +113,9 @@ const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
       document.addEventListener('submit', (event) => {
         const form = event.target;
         if (!(form instanceof HTMLFormElement)) return;
-        if (!form.hasAttribute('data-netlify')) return;
+        // Netlify removes data-netlify from published HTML. Every lead form posts to /contact/success.
+        const actionPath = (form.getAttribute('action') || '').split('?')[0];
+        if (actionPath !== '/contact/success' && !actionPath.endsWith('/contact/success')) return;
         if (event.defaultPrevented) return;
         const trap = form.querySelector('[name="bot-field"]');
         if (trap && 'value' in trap && String(trap.value).trim() !== '') return;
