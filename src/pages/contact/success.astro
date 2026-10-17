@@ -32,13 +32,16 @@ import { SITE } from '../../../site.config.mjs';
         if (typeof window.gtag !== 'function') return;
         var params = {
           form_name: data.form_name,
-          page_path: data.page_path,
+          form_page_path: data.page_path,
           form_location: data.form_location,
         };
         var debugValue = new URLSearchParams(location.search).get('debug_mode');
         var debugOn = data.debug_mode || (new URLSearchParams(location.search).has('debug_mode') && debugValue !== '0' && debugValue !== 'false');
         if (debugOn) params.debug_mode = true;
         window.gtag('event', 'generate_lead', params);
+        if (new URLSearchParams(location.search).get('src') === 'newsletter') {
+          window.gtag('event', 'sign_up', { method: 'newsletter' });
+        }
       } catch (e) {}
     })();
   </script>
