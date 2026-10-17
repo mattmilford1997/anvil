@@ -284,10 +284,79 @@ export function stateHubTitle(name: string) {
   return short;
 }
 
-export function stateHubDescription(name: string) {
-  const description = `${name} therapy and psychotherapy reimbursement rates by CPT code, from Parite. Planning ranges, not a guarantee of payment.`;
+export function stateHubDescription(name: string, includeAba = false) {
+  const description = includeAba
+    ? `${name} therapy, psychotherapy and ABA (97153) reimbursement rates by CPT code, from Parite. Planning ranges, not a guarantee of payment.`
+    : `${name} therapy and psychotherapy reimbursement rates by CPT code, from Parite. Planning ranges, not a guarantee of payment.`;
   if (description.length > 155) throw new Error(`State hub meta over 155 (${description.length}): ${description}`);
   return description;
+}
+
+export type PayerHub = {
+  slug: string;
+  payer: string;
+  title: string;
+  h1: string;
+  description: string;
+};
+
+/** Payer hubs. Slugs are routes; payer values match rates.json. */
+export const payerHubs: PayerHub[] = [
+  {
+    slug: 'medicare',
+    payer: 'medicare',
+    title: 'Medicare psychotherapy rates by state (2026)',
+    h1: 'Medicare psychotherapy rates by state (2026)',
+    description: 'Medicare psychotherapy rates by state for 2026, including the Medicare 90837 rate. Planning ranges from Parite, not a guarantee of payment.',
+  },
+  {
+    slug: 'uhc',
+    payer: 'uhc',
+    title: 'UnitedHealthcare therapy rates by state (2026)',
+    h1: 'UnitedHealthcare therapy rates by state (2026)',
+    description: 'UnitedHealthcare therapy rates by state for 2026, including the UnitedHealthcare 90837 rate. Planning ranges from Parite, not a guarantee of payment.',
+  },
+  {
+    slug: 'medicaid',
+    payer: 'medicaid-ffs',
+    title: 'Medicaid psychotherapy rates by state (2026)',
+    h1: 'Medicaid psychotherapy rates by state (2026)',
+    description: 'Medicaid psychotherapy rates by state for 2026, including the Medicaid 90837 rate. Planning ranges from Parite, not a guarantee of payment.',
+  },
+];
+
+export function payerHubBySlug(slug: string) {
+  return payerHubs.find((hub) => hub.slug === slug);
+}
+
+export function payerHubPath(payer?: string) {
+  const hub = payerHubs.find((item) => item.payer === payer);
+  return hub ? `/rates/payer/${hub.slug}` : undefined;
+}
+
+/** One payer's rows, low to high, then state and code. Only rows that exist. */
+export function rowsForPayer(payer: string) {
+  return rateRows
+    .filter((row) => row.payer === payer)
+    .sort((a, b) => a.low - b.low || a.high - b.high || stateName(a.state).localeCompare(stateName(b.state)) || a.code.localeCompare(b.code));
+}
+
+const faqPayerNames: Record<string, string> = {
+  medicare: 'Medicare',
+  'medicaid-ffs': 'Medicaid',
+  uhc: 'UnitedHealthcare',
+};
+
+/** One question per existing payer row. Missing payers are omitted. */
+export function rateFaqs(code: string, state: string, rows: RateRow[]) {
+  const name = stateName(state);
+  return rows.map((row) => {
+    const who = faqPayerNames[row.payer ?? ''] ?? shortPayerName(row.payer);
+    return {
+      q: `What is the ${who} reimbursement rate for ${code} in ${name}?`,
+      a: `The ${who} reimbursement rate for ${code} in ${name} is ${fmtRate(row.low)} to ${fmtRate(row.high)} per unit. These are planning ranges from Parite, not a guarantee of payment.`,
+    };
+  });
 }
 
 export function codeHubTitle(code: string) {
@@ -338,7 +407,8 @@ function assertRateSeo() {
   if (paths.size !== pairs.length) throw new Error(`Expected ${pairs.length} unique rate paths, got ${paths.size}`);
   for (const j of ratesByJurisdiction()) {
     const title = `${stateHubTitle(j.name)} | Anvil`;
-    const description = stateHubDescription(j.name);
+    const includeAba = j.pairs.some((pair) => pair.code === '97153');
+    const description = stateHubDescription(j.name, includeAba);
     if (title.length > 60) throw new Error(`State hub title over 60 (${title.length}): ${title}`);
     if (/[—–]/.test(title) || /[—–]/.test(description) || /[—–]/.test(stateHubH1(j.name))) throw new Error(`Dash in state hub SEO for ${j.state}`);
     const listed = new Set(j.pairs.map((p) => ratePath(p.state, p.code)));
@@ -352,6 +422,23 @@ function assertRateSeo() {
     const description = codeHubDescription(code);
     if (title.length > 60) throw new Error(`Code hub title over 60 (${title.length}): ${title}`);
     if (/[—–]/.test(title) || /[—–]/.test(description)) throw new Error(`Dash in code hub SEO for ${code}`);
+  }
+  for (const hub of payerHubs) {
+    const title = `${hub.title} | Anvil`;
+    const rows = rowsForPayer(hub.payer);
+    if (title.length > 60) throw new Error(`Payer hub title over 60 (${title.length}): ${title}`);
+    if (hub.description.length > 155) throw new Error(`Payer hub meta over 155 (${hub.description.length}): ${hub.description}`);
+    if (rows.length === 0) throw new Error(`Payer hub ${hub.slug} has no rates.json rows`);
+    if (!rows.some((row) => row.code === '90837')) throw new Error(`Payer hub ${hub.slug} has no 90837 row`);
+    if (/[—–]/.test(title) || /[—–]/.test(hub.h1) || /[—–]/.test(hub.description)) throw new Error(`Dash in payer hub SEO for ${hub.slug}`);
+  }
+  for (const pair of pairs) {
+    for (const faq of rateFaqs(pair.code, pair.state, pair.rows)) {
+      if (/[—–]/.test(faq.q) || /[—–]/.test(faq.a)) throw new Error(`Dash in rate FAQ for ${pair.state} ${pair.code}`);
+    }
+    if (rateFaqs(pair.code, pair.state, pair.rows).length !== pair.rows.length) {
+      throw new Error(`FAQ count does not match payer rows for ${pair.state} ${pair.code}`);
+    }
   }
 }
 

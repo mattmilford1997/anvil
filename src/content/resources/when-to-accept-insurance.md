@@ -60,6 +60,8 @@ Phase 1: go in-network where the lives are, fast. Pick the states and payers tha
 
 Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one.
 
+What to do first is [renting a PC to launch](/own-your-contracts#rent-or-build). If Phase 1 is already a vendor's network, the next move is [switching from a network rental vendor](/solutions/switching).
+
 ## Next step
 
 Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. When the signals are true, [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts).

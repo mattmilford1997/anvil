@@ -42,7 +42,8 @@ const rateLede = samePayers
   : `${name} therapy reimbursement rates by CPT code are Parite ranges from ${payerPhrase}. Payers vary by code: ${varyClause}.`;
 const title = stateHubTitle(name);
 const h1 = stateHubH1(name);
-const description = stateHubDescription(name);
+const includeAba = pairs.some((pair) => pair.code === '97153');
+const description = stateHubDescription(name, includeAba);
 const path = stateHubPath(state);
 const neighbors = nearbyHubs(state);
 const psychCodes = ['90791', '90834', '90837'];

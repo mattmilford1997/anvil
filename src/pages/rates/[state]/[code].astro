@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Section from '../../../components/Section.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import RateRelated from '../../../components/RateRelated.astro';
+import Faq from '../../../components/Faq.astro';
 import { breadcrumbJsonLd } from '../../../lib/seo';
 import {
   ratePairs,
@@ -20,6 +21,8 @@ import {
   stateHubPath,
   codeHubPath,
   nearbyPairs,
+  payerHubPath,
+  rateFaqs,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -53,6 +56,7 @@ const rangeSentence = fmtRate(blendLow) === fmtRate(blendHigh)
   ? `The ${code} reimbursement rate in ${name} (${service}) is ${fmtRate(blendLow)} per unit from ${payerList}, before patient responsibility.`
   : `The ${code} reimbursement rate in ${name} (${service}) ranges from ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit across ${payerList}, before patient responsibility.`;
 const intro = `${rangeSentence} These are Parite ranges for planning, not a guarantee of what you will be paid.`;
+const faqs = rateFaqs(code, stateUpper, rows);
 ---
 <BaseLayout
   title={title}
@@ -90,7 +94,7 @@ const intro = `${rangeSentence} These are Parite ranges for planning, not a guar
         <tbody>
           {rows.map((r) => (
             <tr>
-              <td>{payerLabel(r.payer)}</td>
+              <td>{payerHubPath(r.payer) ? <a href={payerHubPath(r.payer)}>{payerLabel(r.payer)}</a> : payerLabel(r.payer)}</td>
               <td>{fmtRate(r.low)}</td>
               <td>{fmtRate(r.high)}</td>
               <td>{r.median != null ? fmtRate(r.median) : 'n/a'}</td>
@@ -130,6 +134,8 @@ const intro = `${rangeSentence} These are Parite ranges for planning, not a guar
   <Section tight>
     <p class="lede">Rates are negotiated, not fixed. A rate your entity negotiated needs a contract in your entity's name, so see <a href="/platform/contracting">payer contracting for telehealth</a>, how to <a href="/own-your-contracts">own your payer contracts</a>{bhCodes.has(code) && <>, <a href="/solutions/behavioral-health">behavioral health payer contracting</a></>}, and <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a>. <a href="/rates#all-states">Same code in other states</a>.</p>
   </Section>
+
+  <Section tight><Faq items={faqs} /></Section>
 
   <RateRelated />
 

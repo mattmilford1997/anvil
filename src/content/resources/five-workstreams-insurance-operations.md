@@ -65,7 +65,7 @@ Here is the honest map.
 | Eligibility technology | Never build | It's an API problem someone has already solved. Build the UX around it. |
 | Claims and denials | Not early | Buy it until you have the volume to justify a team, and keep the data so you can move later. |
 
-The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second.
+The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the contracted entity is [rent a PC vs own a PC](/own-your-contracts#rent-or-build), papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc).
 
 See how the five workstreams run on the [platform](/platform), and how you [own your payer contracts](/own-your-contracts).
 
