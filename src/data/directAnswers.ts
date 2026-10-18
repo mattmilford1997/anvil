@@ -79,3 +79,11 @@ export const rcmCompanyAnswer =
 
 export const psychiatryCredentialingAnswer =
   "Roster-add psychiatry and therapy clinicians onto contracts that already exist, then file full enrollment under your own professional corporation. Roster-adds typically take weeks. Full enrollment is commonly 90 to 120 days per payer when unmanaged. Anvil tracks every file per clinician and per payer.";
+
+/** Hero and FAQ on /platform/rcm. Assembled from the prior short FAQ and the section lede. */
+export const rcmWhatIsAnswer =
+  "Telehealth revenue cycle management (virtual care RCM) is coding, claim submission, denial management, and accounts receivable for visits delivered over video or phone. Anvil runs that virtual care RCM under either entity and reports clean-claim rate monthly. Published ranges for the codes you bill are on the rates pages.";
+
+/** Hero and first FAQ on /solutions/behavioral-health. The section lede, without the link. */
+export const bhPayerContractingAnswer =
+  "Behavioral health payer contracting is the work of getting psychiatry, therapy, and ABA groups in-network across states. That means Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing. The same groups also need telehealth revenue cycle management once the claims start.";

@@ -68,7 +68,7 @@ The lessons are grouped under the six things we think a platform owes a care com
 
 *15. Hybrid care changes the billing.* In-person visits bring place-of-service, facility questions, and a different set of state rules. [Hybrid care billing](/resources/hybrid-in-person-care-insurance-billing) covers the differences.
 
-*16. Do not build this in-house unless it is your product.* Building the [five workstreams](/resources/five-workstreams-insurance-operations) internally is commonly cited at 12 to 24 months, and running them costs on the order of 20 to 25% of insured revenue. The [cost of in-house operations](/resources/cost-of-in-house-insurance-operations) post does the math. Expect first-year denial rates of 10% or more, falling toward about 5% as the process matures.
+*16. Do not build this in-house unless it is your product.* Building the [five workstreams](/resources/five-workstreams-insurance-operations) internally is commonly cited at 12 to 24 months, and running them costs on the order of 20 to 25% of insured revenue. The [cost of in-house operations](/resources/cost-of-in-house-insurance-operations) post does the math. Denials cost new programs a meaningful share of revenue while the process matures.
 
 ## Developer
 *17. Eligibility belongs in the booking flow, by API.* Not in a back office queue. A check at booking that returns plan active, service covered, clinician in-network in that state, and estimated cost, in one call, is the single change that moves an insured funnel most. Industry sources commonly cite a 2 to 5x lift. The [conversion post](/resources/eligibility-at-booking-conversion-lift) shows how to measure your own number instead of trusting anyone's.

@@ -34,6 +34,6 @@ Everything marked `TODO(launch)` in the code is listed here. Run `grep -rn "TODO
 - [x] Lighthouse 90+ mobile on Home, Platform, Own Your Contracts, Pricing, Contact, Company, Resources.
 - [ ] Contact form creates a Close lead with UTM and `go_slug`.
 - [ ] FAQ schema validates (Rich Results Test) on Home and one article.
-- [ ] Every page: one H1, meta title under 60 chars, description under 155.
+- [x] Every page: one H1, meta title under 60 chars, description under 155. seo-gates enforces this on every build.
 - [ ] Reduced-motion check: hero dots and marquee stop.
 - [ ] Keyboard nav through header dropdowns, FAQ accordions, coverage map.
