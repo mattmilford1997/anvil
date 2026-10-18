@@ -5,8 +5,9 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { breadcrumbJsonLd, showHeld, fmtDate } from '../../lib/seo';
-import { getPosts, getUpcomingOctoberPosts } from '../../lib/content';
+import { getPosts, getUpcomingOctoberPosts, getLivePost } from '../../lib/content';
 const posts = await getPosts();
+const auditPost = await getLivePost('health-plan-audits-virtual-care');
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
 const liveIds = new Set(posts.map((p) => p.id));
@@ -33,7 +34,7 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
       <li><a href="/compare/bridge">Bridge insurance billing alternative</a></li>
       <li><a href="/platform/compliance#cpom-telehealth">Corporate practice of medicine for telehealth</a></li>
       <li><a href="/rates/code/90837#telehealth-rates-by-state">CPT 90837 telehealth reimbursement rates by state</a></li>
-      <li><a href="/platform/rcm">Health plan audit risk for virtual care</a></li>
+      <li><a href={auditPost ? `/resources/${auditPost.id}` : '/platform/rcm#audit-risk'}>Health plan audit risk for virtual care</a></li>
       <li><a href="/solutions/switching#vendors-compared">Network rental vendors compared</a></li>
       <li><a href="/health-plans#provider-network">Telehealth provider network for health plans</a></li>
       <li><a href="/health-plans#rural-adequacy">Rural network adequacy</a></li>

@@ -32,6 +32,8 @@ const faqs = [
               <td class="muted">{w.hire}</td>
               <td>
                 {w.anvil}
+                {w.name === 'Payer contracting' && <p>Psychiatry, therapy, and ABA groups start with <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.</p>}
+                {w.name === 'RCM' && <p>Coding, claims, and denials are <a href="/platform/rcm">telehealth revenue cycle management</a>.</p>}
                 {w.name === 'Compliance' && <p>See whether to <a href="/own-your-contracts#rent-or-build">rent a PC or own one</a> and how <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a> applies.</p>}
               </td>
             </tr>

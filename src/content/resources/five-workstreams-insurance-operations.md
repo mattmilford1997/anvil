@@ -50,7 +50,7 @@ Every visit becomes a claim: CPT codes, modifiers, place of service, diagnosis c
 Talent: certified coders and billers, plus EHR-to-clearinghouse plumbing.
 
 ## 5. Denials and accounts receivable
-Some claims come back denied. A new operation runs a denial rate above 10% while it learns each payer's patterns; mature operations run around 5%. The gap is lost revenue and staff time on appeals. This work is pattern recognition by payer and discipline about timely filing.
+Some claims come back denied. Denials cost new programs a meaningful share of revenue while the team learns each payer's patterns. The gap is lost revenue and staff time on appeals. This work is pattern recognition by payer and discipline about timely filing.
 
 Talent: AR specialists with payer-specific experience.
 
@@ -64,6 +64,8 @@ Here is the honest map.
 | Credentialing and enrollment | Never build from scratch | Commodity work with real automation available. Buy throughput. |
 | Eligibility technology | Never build | It's an API problem someone has already solved. Build the UX around it. |
 | Claims and denials | Not early | Buy it until you have the volume to justify a team, and keep the data so you can move later. |
+
+Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management.
 
 The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc).
 

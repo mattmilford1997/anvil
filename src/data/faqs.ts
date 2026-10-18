@@ -1,4 +1,4 @@
-import { p02, p04, p06, p09, p14, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
+import { p04, p06, p09, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
 
 export type Faq = { q: string; a: string };
 
@@ -25,9 +25,7 @@ export const ownFaqs: Faq[] = [
   { q: 'Does the platform fee change?', a: 'Yes. It steps down as volume moves to your own contracts, because we are no longer carrying claims risk on that volume.' },
   { q: 'Is a friendly physician owner really mine?', a: 'The physician owns the PC under agreements that give your MSO the management rights and economics permitted in that state. Foundry PC has placed physician owners in these structures across the country.' },
   { q: 'Can we start with Build and add Scale later?', a: 'Yes. Most companies start on Build so the PC is forming while they launch, then move to Scale when they are ready to contract their entity.' },
-  { q: 'How do I own my payer contracts instead of renting a network as a telehealth company?', a: p02 },
   { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
-  { q: 'What is network rental in telehealth and what are the risks of renting a payer network?', a: p14 },
   { q: 'Who owns the payer contracts when you use a telehealth insurance billing vendor?', a: vendorOwnsAnswer },
 ];
 

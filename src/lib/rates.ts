@@ -334,6 +334,24 @@ export function payerHubPath(payer?: string) {
   return hub ? `/rates/payer/${hub.slug}` : undefined;
 }
 
+/** Anchor text for payer-hub links. Matches the /rates sentence. */
+export const payerHubLinkLabel: Record<string, string> = {
+  medicare: 'Medicare',
+  'medicaid-ffs': 'Medicaid',
+  uhc: 'UnitedHealthcare',
+};
+
+const payerHubLinkOrder = ['medicare', 'medicaid-ffs', 'uhc'];
+
+/** Payer hubs that have at least one of these rows. Skips a payer with no row. */
+export function payerHubsForRows(rows: { payer?: string }[]) {
+  const set = new Set(rows.map((row) => row.payer).filter((payer): payer is string => Boolean(payer)));
+  return payerHubLinkOrder
+    .filter((payer) => set.has(payer))
+    .map((payer) => payerHubs.find((hub) => hub.payer === payer))
+    .filter((hub): hub is PayerHub => Boolean(hub));
+}
+
 /** One payer's rows, low to high, then state and code. Only rows that exist. */
 export function rowsForPayer(payer: string) {
   return rateRows

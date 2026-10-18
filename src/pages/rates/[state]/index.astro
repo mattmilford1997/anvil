@@ -12,6 +12,9 @@ import {
   joinLabels,
   fmtRate,
   stateHubPath,
+  payerHubPath,
+  payerHubsForRows,
+  payerHubLinkLabel,
   stateHubTitle,
   stateHubH1,
   stateHubDescription,
@@ -46,6 +49,7 @@ const includeAba = pairs.some((pair) => pair.code === '97153');
 const description = stateHubDescription(name, includeAba);
 const path = stateHubPath(state);
 const neighbors = nearbyHubs(state);
+const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
 const psychCodes = ['90791', '90834', '90837'];
 const psychPairs = pairs.filter((p) => psychCodes.includes(p.code));
 const psychCodeList = joinLabels(psychPairs.map((p) => p.code));
@@ -71,6 +75,18 @@ const medicaid90837Range = medicaid90837
       <div class="eyebrow">Rates / {name}</div>
       <h1>{h1}</h1>
       <p class="lede">{rateLede} These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
+      {payerHubLinks.length > 0 && (
+        <p class="lede">
+          Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}
+          {payerHubLinks.map((hub, i) => (
+            <>
+              {i === 0 ? '' : i === payerHubLinks.length - 1 ? (payerHubLinks.length === 2 ? ' and ' : ', and ') : ', '}
+              <a href={payerHubPath(hub.payer)}>{payerHubLinkLabel[hub.payer]}</a>
+            </>
+          ))}
+          .
+        </p>
+      )}
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>
   </section>

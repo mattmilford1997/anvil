@@ -2,12 +2,12 @@
 import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import FeatureRow from '../../components/FeatureRow.astro';
-import { rcmCompanyAnswer } from '../../data/directAnswers';
+import { rcmCompanyAnswer, rcmWhatIsAnswer } from '../../data/directAnswers';
 const faqs = [
-  { q: 'What is telehealth revenue cycle management?', a: 'Telehealth revenue cycle management (virtual care RCM) is coding, claim submission, denial management, and AR for visits delivered over video or phone. Anvil runs it under either entity and reports clean-claim rate monthly.' },
+  { q: 'What is telehealth revenue cycle management?', a: rcmWhatIsAnswer },
   { q: 'Best revenue cycle management company for a telehealth startup?', a: rcmCompanyAnswer },
   { q: 'Who carries claims risk during the rental phase?', a: 'Anvil. Claims are billed under our PC. If a claim is denied and not recoverable, that is our problem, not yours. It is also why we care about coding and charting standards on day one.' },
-  { q: 'What denial rate should we expect?', a: 'First-year in-house programs commonly run 10% or more. Mature programs run around 5%. We report clean-claim and denial rates monthly by payer so you can see where you are.' },
+  { q: 'What denial rate should we expect?', a: 'Denials cost new programs a meaningful share of revenue. We report clean-claim and denial rates monthly by payer so you can see where you are.' },
   { q: 'Do you handle patient responsibility?', a: 'We calculate it and can collect it through your existing payment processor. Statements and reminders are configurable. No PHI crosses this website.' },
   { q: 'Which specialties do you code for?', a: 'Behavioral health in depth (psychotherapy, psychiatry, ABA, IOP and PHP, collaborative care), plus primary care and the E/M and chronic care codes most virtual care companies bill. Interventional psychiatry, in-home care, and school-based programs as well.' },
   { q: 'What do we see?', a: 'Collections by entity, payer, state, clinician, and code. Contracted rate and platform fee separated. AR aging by payer. Denials by reason. Exports and a reporting API.' },
@@ -18,14 +18,17 @@ const faqs = [
   title="Telehealth revenue cycle management: claims that get paid, and a report that shows why they didn't."
   description="Telehealth revenue cycle management: coding, claims, denial management, and AR. Clean-claim rate reported monthly. We carry claims risk during rental."
   eyebrow="Platform / RCM"
-  sub="Telehealth revenue cycle management is where insurance programs quietly lose 10% or more in year one. We run virtual care RCM every week, report it every month, and carry claims risk while you bill under our PC."
+  prompt="What is telehealth revenue cycle management?"
+  promptId="what-is-telehealth-rcm"
+  answer={rcmWhatIsAnswer}
+  sub="Telehealth revenue cycle management is where denials cost new programs a meaningful share of revenue in year one. We run virtual care RCM every week, report it every month, and carry claims risk while you bill under our PC."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'RCM', path: '/platform/rcm' }]}
   faqs={faqs}
   ctaTitle="See what a clean claim looks like on your codes."
   ctaBody="Send us your top ten codes and payers. We will tell you what we would flag before the first claim goes out."
 >
   <Section eyebrow="The work" title="What telehealth revenue cycle management covers">
-    <p class="lede">Telehealth revenue cycle management is coding, claim submission, denial management, and accounts receivable for visits over video or phone. Anvil runs that virtual care RCM under either entity. Published ranges for the codes you bill are on <a href="/rates">reimbursement rates by state and CPT code</a>.</p>
+    <p class="lede">Published ranges for the codes you bill are on <a href="/rates">reimbursement rates by state and CPT code</a>.</p>
     <p class="lede" style="margin-top:16px">The same work follows the entity. Read <a href="/own-your-contracts#rent-or-build">whether to rent a PC or build your own</a>, how an <a href="/platform/compliance#mso-pc">MSO-PC structure for telehealth</a> is papered, and <a href="/solutions/switching">switching from a network rental vendor</a> if you are already on one.</p>
   </Section>
   <Section>
@@ -37,12 +40,13 @@ const faqs = [
       'Monthly report: clean-claim rate, denial rate, days to pay, by payer',
     ]}>
       <p>Most of RCM is not clever. It is done every week or it is not done. We do it every week.</p>
+      <p>In behavioral health, <a href="/platform/credentialing">telehealth credentialing services</a> enroll the clinicians, and <a href="/solutions/behavioral-health">behavioral health payer contracting</a> covers the panels.</p>
     </FeatureRow>
   </Section>
   <Section eyebrow="What to look for" title="Best revenue cycle management company for a telehealth startup?">
     <p class="lede">{rcmCompanyAnswer}</p>
   </Section>
-  <Section eyebrow="Charting" title="Documentation that holds up" intro="Health plan audit risk for virtual care shows up in the chart." tight>
+  <Section id="audit-risk" eyebrow="Charting" title="Documentation that holds up" intro="Health plan audit risk for virtual care shows up in the chart." tight>
     <div class="grid grid-3">
       <div class="card"><h3>Time-based codes</h3><p class="muted">Start and stop times, total minutes, and the service description that matches the code billed. Templates per EHR.</p></div>
       <div class="card"><h3>Supervision and incident-to</h3><p class="muted">Which clinician can bill what, under whom, in which state. The rules differ and the audits find the gaps.</p></div>
