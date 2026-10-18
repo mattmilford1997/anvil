@@ -59,7 +59,7 @@ const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
       <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
       {payerHubLinks.length > 0 && (
         <p class="lede">
-          See the payer {payerHubLinks.length === 1 ? 'hub that includes' : 'hubs that include'} these rows:{' '}
+          Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}
           {payerHubLinks.map((hub, i) => (
             <>
               {i === 0 ? '' : i === payerHubLinks.length - 1 ? (payerHubLinks.length === 2 ? ' and ' : ', and ') : ', '}

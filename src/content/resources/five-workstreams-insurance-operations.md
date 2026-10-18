@@ -65,7 +65,7 @@ Here is the honest map.
 | Eligibility technology | Never build | It's an API problem someone has already solved. Build the UX around it. |
 | Claims and denials | Not early | Buy it until you have the volume to justify a team, and keep the data so you can move later. |
 
-Claims and denials are the row to buy early, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management until volume justifies a team.
+Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management.
 
 The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc).
 
