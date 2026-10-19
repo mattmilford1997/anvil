@@ -24,12 +24,9 @@ export const PAGE_LASTMOD = {
 };
 // Every URL under /rates/ (state hubs, code hubs, payer hubs, state+code pages).
 export const RATES_SUBPAGES_LASTMOD = '2026-10-18';
-// State hubs (/rates/{state}) and code hubs (/rates/code/{code}) whose H1 or title changed.
-export const RATE_HUB_LASTMOD = '2026-10-19';
 const FALLBACK_LASTMOD = '2026-10-17';
 export function lastmodFor(path) {
   if (PAGE_LASTMOD[path]) return PAGE_LASTMOD[path];
-  if (/^\/rates\/[a-z]{2}$/.test(path) || path.startsWith('/rates/code/')) return RATE_HUB_LASTMOD;
   if (path.startsWith('/rates/')) return RATES_SUBPAGES_LASTMOD;
   return FALLBACK_LASTMOD;
 }

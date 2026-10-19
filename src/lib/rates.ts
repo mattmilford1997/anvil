@@ -270,16 +270,12 @@ export function codeHubPath(code: string) {
 }
 
 export function stateHubH1(name: string) {
-  const phrase = `${name} therapy reimbursement rates by state and CPT code`;
-  if (phrase.length <= 60) return phrase;
   return `${name} therapy reimbursement rates by CPT code`;
 }
 
 /** Title stem. BaseLayout adds " | Anvil". Full H1 may be longer than 60. */
 export function stateHubTitle(name: string) {
-  const phrase = `${name} therapy reimbursement rates by state and CPT code`;
-  if (`${phrase} | Anvil`.length <= 60) return phrase;
-  const full = `${name} therapy reimbursement rates by CPT code`;
+  const full = stateHubH1(name);
   if (`${full} | Anvil`.length <= 60) return full;
   const mid = `${name} therapy reimbursement rates`;
   if (`${mid} | Anvil`.length <= 60) return mid;
@@ -385,15 +381,12 @@ export function rateFaqs(code: string, state: string, rows: RateRow[]) {
 }
 
 export function codeHubTitle(code: string) {
-  const phrase = `${code} reimbursement rates by state and CPT code`;
-  const stem = `${phrase} | Anvil`.length <= 60 ? phrase : `${code} reimbursement rates by state`;
+  const stem = `${code} reimbursement rates by state`;
   if (`${stem} | Anvil`.length > 60) throw new Error(`Code hub title over 60: ${stem}`);
   return stem;
 }
 
 export function codeHubH1(code: string) {
-  const phrase = `${code} reimbursement rates by state and CPT code`;
-  if (phrase.length <= 60) return phrase;
   return `${code} reimbursement rates by state`;
 }
 
