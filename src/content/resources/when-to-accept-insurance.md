@@ -31,6 +31,10 @@ calendarWeek: 1
 dataReview: "cleared"
 draft: false
 ---
+## When should a virtual care company accept insurance?
+
+When four or more of the seven signals are true: rising CAC, drop-off at the price step, patients asking if you take insurance, a competitor in-network, outcomes you can show a payer, a board TAM question, or turning away insured patients who need the care. Score the signals on the readiness checklist.
+
 Every cash-pay care company hits the same wall. Growth looks fine until it doesn't, and the reason it doesn't is that you have exhausted the patients who will pay $150 to $400 out of pocket for the thing you do. That population is real, it is loyal, and it is small.
 
 Accepting insurance is how you get to everyone else. The question is not whether to do it. The question is when, and most founders get the timing wrong in the same direction: late.
