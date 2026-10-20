@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/html-redirects.mjs && node scripts/seo-gates.mjs",
+    "build": "astro build && node scripts/html-redirects.mjs && node scripts/seo-gates.mjs && python3 scripts/verify-rates.py",
     "preview": "astro preview",
     "check": "astro check"
   },

@@ -133,6 +133,67 @@ export function fmtRate(n: number) {
   return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+/** "$X" when the published low and high match, otherwise "$X to $Y". */
+export function fmtRange(low: number, high: number) {
+  return low === high ? fmtRate(low) : `${fmtRate(low)} to ${fmtRate(high)}`;
+}
+
+const coveragePayerOrder = ['medicare', 'uhc', 'medicaid-ffs'] as const;
+
+function statesFor(payer: string, code?: string) {
+  const states = new Set<string>();
+  for (const row of rateRows) {
+    if (row.payer !== payer) continue;
+    if (code && row.code !== code) continue;
+    states.add(row.state);
+  }
+  return states;
+}
+
+/** Highest range is the highest high. Lowest range is the lowest high. Ties break on low, then state name. */
+export function payerCodeSpread(payer: string, code: string) {
+  const rows = rateRows.filter((row) => row.payer === payer && row.code === code);
+  if (rows.length === 0) return undefined;
+  const byName = (a: RateRow, b: RateRow) => stateName(a.state).localeCompare(stateName(b.state));
+  const highest = [...rows].sort((a, b) => b.high - a.high || b.low - a.low || byName(a, b))[0];
+  const lowest = [...rows].sort((a, b) => a.high - b.high || a.low - b.low || byName(a, b))[0];
+  return { n: rows.length, payerName: shortPayerName(payer), highest, lowest };
+}
+
+export function payer90837Sentence(payer: string) {
+  const spread = payerCodeSpread(payer, '90837');
+  if (!spread) return '';
+  const highAmount = fmtRange(spread.highest.low, spread.highest.high);
+  const lowAmount = fmtRange(spread.lowest.low, spread.lowest.high);
+  return `Among the ${spread.n} states Parite publishes ${spread.payerName} 90837 for, the highest range is in ${stateName(spread.highest.state)} (${highAmount}) and the lowest is in ${stateName(spread.lowest.state)} (${lowAmount}).`;
+}
+
+/** Code-hub sentence. Payers with no rows are omitted. The first payer is the one that says "states". */
+export function codePayerCoverageSentence(code: string) {
+  const parts = coveragePayerOrder.flatMap((payer) => {
+    const n = statesFor(payer, code).size;
+    return n > 0 ? [{ label: shortPayerName(payer), n }] : [];
+  });
+  if (parts.length === 0) return '';
+  const bits = parts.map((part, i) => (i === 0 ? `${part.label} in ${part.n} ${part.n === 1 ? 'state' : 'states'}` : `${part.label} in ${part.n}`));
+  const phrase = bits.length <= 1
+    ? (bits[0] ?? '')
+    : bits.length === 2
+      ? `${bits[0]} and ${bits[1]}`
+      : `${bits.slice(0, -1).join(', ')}, and ${bits[bits.length - 1]}`;
+  return `Parite publishes ${code} ranges for ${phrase}.`;
+}
+
+/** Rates-hub sentence. Distinct states per payer, worded apart from the code-hub sentence. */
+export function payerFileStateSentence() {
+  const parts = coveragePayerOrder.flatMap((payer) => {
+    const n = statesFor(payer).size;
+    return n > 0 ? [{ label: shortPayerName(payer), n }] : [];
+  });
+  const bits = parts.map((part) => `${part.label} is in ${part.n} ${part.n === 1 ? 'state' : 'states'}`);
+  return `Across the file, ${joinLabels(bits)}.`;
+}
+
 export function codesInData() {
   return [...new Set(rateRows.map((r) => r.code))].sort();
 }
@@ -452,7 +513,17 @@ function assertRateSeo() {
     if (rows.length === 0) throw new Error(`Payer hub ${hub.slug} has no rates.json rows`);
     if (!rows.some((row) => row.code === '90837')) throw new Error(`Payer hub ${hub.slug} has no 90837 row`);
     if (/[—–]/.test(title) || /[—–]/.test(hub.h1) || /[—–]/.test(hub.description)) throw new Error(`Dash in payer hub SEO for ${hub.slug}`);
+    const spreadSentence = payer90837Sentence(hub.payer);
+    if (!spreadSentence) throw new Error(`Payer hub ${hub.slug} has no 90837 spread sentence`);
+    if (/[—–]/.test(spreadSentence)) throw new Error(`Dash in 90837 spread for ${hub.slug}`);
   }
+  for (const code of codesInData()) {
+    const coverage = codePayerCoverageSentence(code);
+    if (!coverage) throw new Error(`Code hub ${code} has no payer coverage sentence`);
+    if (/[—–]/.test(coverage)) throw new Error(`Dash in code coverage for ${code}`);
+  }
+  const fileSentence = payerFileStateSentence();
+  if (/[—–]/.test(fileSentence)) throw new Error('Dash in payer file state sentence');
   for (const pair of pairs) {
     for (const faq of rateFaqs(pair.code, pair.state, pair.rows)) {
       if (/[—–]/.test(faq.q) || /[—–]/.test(faq.a)) throw new Error(`Dash in rate FAQ for ${pair.state} ${pair.code}`);

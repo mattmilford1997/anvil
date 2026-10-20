@@ -21,6 +21,7 @@ import {
   codeHubH1,
   codeHubDescription,
   fmtRate,
+  codePayerCoverageSentence,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -57,6 +58,7 @@ const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
       <div class="eyebrow">Rates / {code}</div>
       <h1>{h1}</h1>
       <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
+      <p class="lede" style="margin-top:16px">{codePayerCoverageSentence(code)}</p>
       {payerHubLinks.length > 0 && (
         <p class="lede">
           Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}
