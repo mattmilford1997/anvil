@@ -54,7 +54,7 @@ Accepting insurance is how you get to everyone else. The question is not whether
 
 7. **You are turning away the patients who need you most.** Chronic, complex, and behavioral health patients are disproportionately insured through commercial plans, Medicaid, and Medicare Advantage. If your clinical model works for them, the cash-pay gate is keeping them out.
 
-Panels for those behavioral health patients are filed as [behavioral health payer contracting](/solutions/behavioral-health).
+Getting in-network for those patients is <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.
 
 ## What waiting costs
 Each of these signals has a price. CAC inflation compounds. Funnel drop-off is a fixed tax on every marketing dollar. A competitor's head start in a payer's directory is months of search visibility you never recover. And every clinician on your roster who could be billing insured visits is a clinician producing a fraction of their capacity.

@@ -19,6 +19,7 @@ PAYER_NAMES = {
     'medicaid-ffs': 'Medicaid FFS',
 }
 PAYER_ORDER = ('medicare', 'uhc', 'medicaid-ffs')
+NON_STATE = {'DC', 'PR', 'VI'}
 PAYER_FILES = {
     'medicare': DIST / 'rates' / 'payer' / 'medicare.html',
     'uhc': DIST / 'rates' / 'payer' / 'uhc.html',
@@ -59,6 +60,16 @@ def states_for(payer, code=None):
     return {row['state'] for row in RATES if row['payer'] == payer and (code is None or row['code'] == code)}
 
 
+def place_noun(codes, n=None):
+    codes = list(codes)
+    if n is None:
+        n = len(set(codes))
+    has_non_state = any(code.upper() in NON_STATE for code in codes)
+    if has_non_state:
+        return 'jurisdiction' if n == 1 else 'jurisdictions'
+    return 'state' if n == 1 else 'states'
+
+
 def spread(payer, code):
     rows = [row for row in RATES if row['payer'] == payer and row['code'] == code]
     if not rows:
@@ -73,8 +84,9 @@ def spread_sentence(payer, code='90837'):
     if not found:
         return ''
     rows, highest, lowest = found
+    noun = place_noun((row['state'] for row in rows), len(rows))
     return (
-        f"Among the {len(rows)} states Parite publishes {PAYER_NAMES[payer]} {code} for, "
+        f"Among the {len(rows)} {noun} Parite publishes {PAYER_NAMES[payer]} {code} for, "
         f"the highest range is in {state_name(highest['state'])} ({amount(highest['low'], highest['high'])}) "
         f"and the lowest is in {state_name(lowest['state'])} ({amount(lowest['low'], lowest['high'])})."
     )
@@ -83,30 +95,34 @@ def spread_sentence(payer, code='90837'):
 def code_sentence(code):
     parts = []
     for payer in PAYER_ORDER:
-        n = len(states_for(payer, code))
+        places = states_for(payer, code)
+        n = len(places)
         if n:
-            parts.append((PAYER_NAMES[payer], n))
+            parts.append((PAYER_NAMES[payer], n, place_noun(places, n)))
     if not parts:
         return ''
     bits = []
-    for i, (label, n) in enumerate(parts):
-        bits.append(f'{label} in {n} {"state" if n == 1 else "states"}' if i == 0 else f'{label} in {n}')
+    for i, (label, n, noun) in enumerate(parts):
+        bits.append(f'{label} in {n} {noun}' if i == 0 else f'{label} in {n}')
     return f'Parite publishes {code} ranges for {join_labels(bits)}.'
 
 
 def file_sentence():
-    bits = []
+    parts = []
     for payer in PAYER_ORDER:
-        n = len(states_for(payer))
+        places = states_for(payer)
+        n = len(places)
         if n:
-            bits.append(f"{PAYER_NAMES[payer]} is in {n} {'state' if n == 1 else 'states'}")
-    if len(bits) <= 1:
-        phrase = bits[0] if bits else ''
-    elif len(bits) == 2:
-        phrase = f'{bits[0]} and {bits[1]}'
-    else:
-        phrase = ', '.join(bits[:-1]) + f' and {bits[-1]}'
-    return f'Across the file, {phrase}.'
+            parts.append((PAYER_NAMES[payer], n, place_noun(places, n)))
+    if not parts:
+        return ''
+    first, *rest = parts
+    if not rest:
+        return f'{first[0]} ranges cover {first[1]} {first[2]}.'
+    last = rest[-1]
+    middle = ', '.join(f'{label} {n}' for label, n, _noun in rest[:-1])
+    tail = f'{middle} and {last[0]} {last[1]}' if middle else f'{last[0]} {last[1]}'
+    return f'{first[0]} ranges cover {first[1]} {first[2]}, {tail}.'
 
 
 def visible(html):
@@ -120,16 +136,23 @@ def main():
     if not DIST.exists():
         fail('dist/ is missing. Run the site build first.')
 
+    # The expected sentences must be updated when rates.json is refreshed.
     expected = {
-        'medicaid-ffs': 'Among the 24 states Parite publishes Medicaid FFS 90837 for, the highest range is in Alaska ($323.68) and the lowest is in Kentucky ($93.67 to $94.13).',
-        '90837': 'Parite publishes 90837 ranges for Medicare in 53 states, UnitedHealthcare in 51, and Medicaid FFS in 24.',
-        '90791': 'Parite publishes 90791 ranges for Medicare in 53 states, UnitedHealthcare in 51, and Medicaid FFS in 24.',
-        '90834': 'Parite publishes 90834 ranges for Medicare in 53 states, UnitedHealthcare in 51, and Medicaid FFS in 24.',
+        'medicare': 'Among the 53 jurisdictions Parite publishes Medicare 90837 for, the highest range is in Alaska ($232.44) and the lowest is in Arkansas ($161.03).',
+        'uhc': 'Among the 51 jurisdictions Parite publishes UnitedHealthcare 90837 for, the highest range is in Wisconsin ($95.69 to $341.64) and the lowest is in Mississippi ($87.63 to $159.80).',
+        'medicaid-ffs': 'Among the 24 jurisdictions Parite publishes Medicaid FFS 90837 for, the highest range is in Alaska ($323.68) and the lowest is in Kentucky ($93.67 to $94.13).',
+        '90837': 'Parite publishes 90837 ranges for Medicare in 53 jurisdictions, UnitedHealthcare in 51, and Medicaid FFS in 24.',
+        '90791': 'Parite publishes 90791 ranges for Medicare in 53 jurisdictions, UnitedHealthcare in 51, and Medicaid FFS in 24.',
+        '90834': 'Parite publishes 90834 ranges for Medicare in 53 jurisdictions, UnitedHealthcare in 51, and Medicaid FFS in 24.',
         '97153': 'Parite publishes 97153 ranges for Medicaid FFS in 5 states.',
-        'file': 'Across the file, Medicare is in 53 states, UnitedHealthcare is in 51 states and Medicaid FFS is in 24 states.',
+        'file': 'Medicare ranges cover 53 jurisdictions, UnitedHealthcare 51 and Medicaid FFS 24.',
     }
-    if spread_sentence('medicaid-ffs') != expected['medicaid-ffs']:
-        fail(f"Medicaid 90837 sentence drifted: {spread_sentence('medicaid-ffs')}")
+    aba = states_for('medicaid-ffs', '97153')
+    if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
+        fail(f'97153 Medicaid should be 5 states with no DC, PR, or VI, got {sorted(aba)}')
+    for payer in ('medicare', 'uhc', 'medicaid-ffs'):
+        if spread_sentence(payer) != expected[payer]:
+            fail(f'{payer} 90837 sentence drifted: {spread_sentence(payer)}')
     for code in ('90837', '90791', '90834', '97153'):
         if code_sentence(code) != expected[code]:
             fail(f'{code} coverage sentence drifted: {code_sentence(code)}')

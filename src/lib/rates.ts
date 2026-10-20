@@ -139,6 +139,7 @@ export function fmtRange(low: number, high: number) {
 }
 
 const coveragePayerOrder = ['medicare', 'uhc', 'medicaid-ffs'] as const;
+const nonStateCodes = new Set(['DC', 'PR', 'VI']);
 
 function statesFor(payer: string, code?: string) {
   const states = new Set<string>();
@@ -150,6 +151,13 @@ function statesFor(payer: string, code?: string) {
   return states;
 }
 
+/** "jurisdictions" when the set includes DC, PR, or VI. "states" otherwise. */
+export function placeNoun(codes: Iterable<string>, n = [...codes].length) {
+  const hasNonState = [...codes].some((code) => nonStateCodes.has(code.toUpperCase()));
+  if (hasNonState) return n === 1 ? 'jurisdiction' : 'jurisdictions';
+  return n === 1 ? 'state' : 'states';
+}
+
 /** Highest range is the highest high. Lowest range is the lowest high. Ties break on low, then state name. */
 export function payerCodeSpread(payer: string, code: string) {
   const rows = rateRows.filter((row) => row.payer === payer && row.code === code);
@@ -157,7 +165,8 @@ export function payerCodeSpread(payer: string, code: string) {
   const byName = (a: RateRow, b: RateRow) => stateName(a.state).localeCompare(stateName(b.state));
   const highest = [...rows].sort((a, b) => b.high - a.high || b.low - a.low || byName(a, b))[0];
   const lowest = [...rows].sort((a, b) => a.high - b.high || a.low - b.low || byName(a, b))[0];
-  return { n: rows.length, payerName: shortPayerName(payer), highest, lowest };
+  const places = rows.map((row) => row.state);
+  return { n: rows.length, payerName: shortPayerName(payer), highest, lowest, noun: placeNoun(places, rows.length) };
 }
 
 export function payer90837Sentence(payer: string) {
@@ -165,17 +174,18 @@ export function payer90837Sentence(payer: string) {
   if (!spread) return '';
   const highAmount = fmtRange(spread.highest.low, spread.highest.high);
   const lowAmount = fmtRange(spread.lowest.low, spread.lowest.high);
-  return `Among the ${spread.n} states Parite publishes ${spread.payerName} 90837 for, the highest range is in ${stateName(spread.highest.state)} (${highAmount}) and the lowest is in ${stateName(spread.lowest.state)} (${lowAmount}).`;
+  return `Among the ${spread.n} ${spread.noun} Parite publishes ${spread.payerName} 90837 for, the highest range is in ${stateName(spread.highest.state)} (${highAmount}) and the lowest is in ${stateName(spread.lowest.state)} (${lowAmount}).`;
 }
 
-/** Code-hub sentence. Payers with no rows are omitted. The first payer is the one that says "states". */
+/** Code-hub sentence. Payers with no rows are omitted. Only the first payer names jurisdictions or states. */
 export function codePayerCoverageSentence(code: string) {
   const parts = coveragePayerOrder.flatMap((payer) => {
-    const n = statesFor(payer, code).size;
-    return n > 0 ? [{ label: shortPayerName(payer), n }] : [];
+    const places = statesFor(payer, code);
+    const n = places.size;
+    return n > 0 ? [{ label: shortPayerName(payer), n, noun: placeNoun(places, n) }] : [];
   });
   if (parts.length === 0) return '';
-  const bits = parts.map((part, i) => (i === 0 ? `${part.label} in ${part.n} ${part.n === 1 ? 'state' : 'states'}` : `${part.label} in ${part.n}`));
+  const bits = parts.map((part, i) => (i === 0 ? `${part.label} in ${part.n} ${part.noun}` : `${part.label} in ${part.n}`));
   const phrase = bits.length <= 1
     ? (bits[0] ?? '')
     : bits.length === 2
@@ -184,14 +194,20 @@ export function codePayerCoverageSentence(code: string) {
   return `Parite publishes ${code} ranges for ${phrase}.`;
 }
 
-/** Rates-hub sentence. Distinct states per payer, worded apart from the code-hub sentence. */
+/** Rates-hub sentence. The noun follows the first payer and is computed from that payer's places. */
 export function payerFileStateSentence() {
   const parts = coveragePayerOrder.flatMap((payer) => {
-    const n = statesFor(payer).size;
-    return n > 0 ? [{ label: shortPayerName(payer), n }] : [];
+    const places = statesFor(payer);
+    const n = places.size;
+    return n > 0 ? [{ label: shortPayerName(payer), n, noun: placeNoun(places, n) }] : [];
   });
-  const bits = parts.map((part) => `${part.label} is in ${part.n} ${part.n === 1 ? 'state' : 'states'}`);
-  return `Across the file, ${joinLabels(bits)}.`;
+  if (parts.length === 0) return '';
+  const [first, ...rest] = parts;
+  if (rest.length === 0) return `${first.label} ranges cover ${first.n} ${first.noun}.`;
+  const last = rest[rest.length - 1];
+  const middle = rest.slice(0, -1).map((part) => `${part.label} ${part.n}`).join(', ');
+  const tail = middle ? `${middle} and ${last.label} ${last.n}` : `${last.label} ${last.n}`;
+  return `${first.label} ranges cover ${first.n} ${first.noun}, ${tail}.`;
 }
 
 export function codesInData() {
