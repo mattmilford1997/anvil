@@ -9,8 +9,10 @@ import {
   rowsForPayer,
   stateName,
   fmtRate,
+  fmtRange,
   ratePath,
   shortPayerName,
+  payerCodeSpread,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -25,6 +27,7 @@ const who = shortPayerName(hub.payer);
 const payerName = hub.payer === 'medicaid-ffs' ? 'Medicaid' : who;
 const abaLine = hub.slug === 'medicaid' ? ' 97153 appears only where Parite publishes it.' : '';
 const intro = `${payerName} reimbursement rates by state and CPT code, from Parite, including the ${payerName} 90837 rate in every state Parite covers.${abaLine} These are planning ranges, not a guarantee of payment.`;
+const spread = payerCodeSpread(hub.payer, '90837');
 ---
 <BaseLayout
   title={hub.title}
@@ -40,6 +43,9 @@ const intro = `${payerName} reimbursement rates by state and CPT code, from Pari
       <div class="eyebrow">Rates / {who}</div>
       <h1>{hub.h1}</h1>
       <p class="lede">{intro}</p>
+      {spread && (
+        <p class="lede">Among the {spread.n} {spread.noun} Parite publishes {spread.payerName} 90837 for, the highest range is in <a href={ratePath(spread.highest.state, '90837')}>{stateName(spread.highest.state)}</a> ({fmtRange(spread.highest.low, spread.highest.high)}) and the lowest is in <a href={ratePath(spread.lowest.state, '90837')}>{stateName(spread.lowest.state)}</a> ({fmtRange(spread.lowest.low, spread.lowest.high)}).</p>
+      )}
       <p class="lede">Rates are negotiated, not fixed. A rate your entity negotiated needs a contract in your entity's name, so see <a href="/platform/contracting">payer contracting for telehealth</a>, how to <a href="/own-your-contracts">own your payer contracts</a>, and <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a>.</p>
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>

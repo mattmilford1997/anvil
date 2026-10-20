@@ -6,7 +6,7 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { absolute, breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath } from '../lib/rates';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath, payerFileStateSentence } from '../lib/rates';
 import WedgeRelated from '../components/WedgeRelated.astro';
 const jurisdictions = ratesByJurisdiction();
 const allStateHrefs = jurisdictions.flatMap((j) => j.pairs.map((p) => ratePath(p.state, p.code)));
@@ -61,6 +61,7 @@ const faqs = [
   </Section>
   <Section id="rates-by-payer" eyebrow="By payer" title="Telehealth reimbursement rates by payer">
     <p class="lede">Telehealth reimbursement rates by payer are the rows of the table on each state and CPT code page, for example <a href={ratePath('OH', '90837')}>90837 in Ohio</a>. Open <a href={payerHubPath('medicare')}>Medicare</a>, <a href={payerHubPath('medicaid-ffs')}>Medicaid</a>, and <a href={payerHubPath('uhc')}>UnitedHealthcare</a>.</p>
+    <p class="lede" style="margin-top:16px">{payerFileStateSentence()}</p>
   </Section>
   <Section tight>
     <RateLookup />
