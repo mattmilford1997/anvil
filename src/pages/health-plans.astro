@@ -3,23 +3,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Tiles from '../components/Tiles.astro';
+import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { breadcrumbJsonLd } from '../lib/seo';
+const providerNetwork = 'One contracted, credentialed group covers many care companies under one set of charting standards, so you contract once.';
+const ruralAdequacy = 'The same group covers rural and specialty gaps, and those visits are paid fee-for-service.';
+const ffsBilling = 'Bill each delivered visit at the contracted rate. Report by program, by state, and by outcome measure. Not a PEPM.';
+const faqs = [
+  { q: 'What is a telehealth provider network for health plans?', a: providerNetwork },
+  { q: 'What is rural network adequacy?', a: ruralAdequacy },
+  { q: 'How do you bill fee-for-service insurance for telehealth?', a: ffsBilling },
+];
 ---
 <BaseLayout title="Network adequacy behavioral health for health plans" description="Network adequacy behavioral health for health plans. A quality-governed telehealth provider network, including rural coverage, under fee-for-service." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
   <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." sub="Network adequacy behavioral health coverage from one contracted, credentialed group: many care companies, one set of charting standards. Rural and specialty gaps, under fee-for-service. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
   <Section tight class="hp-answers">
     <div class="hp-block" id="provider-network">
       <h2>Telehealth provider network for health plans</h2>
-      <p class="lede">One contracted, credentialed group covers many care companies under one set of charting standards, so you contract once. Behavioral health groups on that network join through <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. Read how a care company can <a href="/own-your-contracts">own your payer contracts</a>, under <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a>.</p>
+      <p class="lede">{providerNetwork} Behavioral health groups on that network join through <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. Read how a care company can <a href="/own-your-contracts">own your payer contracts</a>, under <a href="/platform/compliance#cpom-telehealth">corporate practice of medicine for telehealth</a>.</p>
     </div>
     <div class="hp-block" id="rural-adequacy">
       <h2>Rural network adequacy</h2>
-      <p class="lede">The same group covers rural and specialty gaps, and those visits are paid fee-for-service.</p>
+      <p class="lede">{ruralAdequacy}</p>
     </div>
     <div class="hp-block" id="ffs-billing">
       <h2>How to bill fee-for-service insurance telehealth</h2>
-      <p class="lede">Bill each delivered visit at the contracted rate. Report by program, by state, and by outcome measure. Not a PEPM.</p>
+      <p class="lede">{ffsBilling}</p>
     </div>
   </Section>
   <Section>
@@ -29,6 +38,7 @@ import { breadcrumbJsonLd } from '../lib/seo';
       { icon: 'chart', title: 'FFS, not PEPM', body: 'Pay for delivered visits at contracted rates. Reporting by program, by state, by outcome measure.' },
     ]} />
   </Section>
+  <Section tight><Faq items={faqs} /></Section>
   <CtaBand title="Tell us where adequacy is short." body="States, specialties, and the plan products. We will tell you what we can stand up and how fast." primary={{ label: 'Contact network development', href: '/contact?src=health-plans' }} secondary={undefined} />
 </BaseLayout>
 <style>

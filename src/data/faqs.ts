@@ -1,4 +1,4 @@
-import { p04, p06, p09, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
+import { p04, p06, p09, p14, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
 
 export type Faq = { q: string; a: string };
 
@@ -27,6 +27,7 @@ export const ownFaqs: Faq[] = [
   { q: 'Can we start with Build and add Scale later?', a: 'Yes. Most companies start on Build so the PC is forming while they launch, then move to Scale when they are ready to contract their entity.' },
   { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
   { q: 'Who owns the payer contracts when you use a telehealth insurance billing vendor?', a: vendorOwnsAnswer },
+  { q: 'What is network rental in telehealth, and what are the risks?', a: p14 },
 ];
 
 export const pricingFaqs: Faq[] = [

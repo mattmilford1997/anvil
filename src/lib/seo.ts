@@ -38,6 +38,7 @@ export function orgJsonLd() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
+    description: 'Anvil is insurance billing infrastructure for virtual care.',
     logo: absolute('/logo.svg'),
     ...(SITE.linkedin ? { sameAs: [SITE.linkedin] } : {}),
     contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: SITE.contactEmail }],
