@@ -57,6 +57,7 @@ const psychPayers = joinLabels(payerNamesInRows(psychPairs.flatMap((p) => p.rows
 const medicaid90837 = pairs.find((p) => p.code === '90837')?.rows.find((r) => r.payer === 'medicaid-ffs');
 const codeCount = pairs.length;
 const codeCountLabel = codeCount === 1 ? 'CPT code' : 'CPT codes';
+const inName = state === 'DC' ? `the ${name}` : name;
 const medicaid90837Range = medicaid90837
   ? (medicaid90837.low === medicaid90837.high
     ? fmtRate(medicaid90837.low)
@@ -77,7 +78,7 @@ const medicaid90837Range = medicaid90837
       <div class="eyebrow">Rates / {name}</div>
       <h1>{h1}</h1>
       <p class="lede">{rateLede} These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
-      <p class="lede" style="margin-top:16px">Parite publishes ranges for {codeCount} {codeCountLabel} in {name}.</p>
+      <p class="lede" style="margin-top:16px">Parite publishes ranges for {codeCount} {codeCountLabel} in {inName}.</p>
       {payerHubLinks.length > 0 && (
         <p class="lede">
           Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}
@@ -95,19 +96,19 @@ const medicaid90837Range = medicaid90837
   </section>
   {psychPairs.length > 0 && (
     <Section id="psychotherapy-rates" eyebrow="Psychotherapy" title={`${name} psychotherapy reimbursement rates`}>
-      <p class="lede">Parite published ranges for {psychCodeList} in {name}. They come from {psychPayers}.</p>
+      <p class="lede">Parite published ranges for {psychCodeList} in {inName}. They come from {psychPayers}.</p>
     </Section>
   )}
   {medicaid90837 && (
-    <Section id="medicaid-90837" eyebrow="Medicaid" title={`Medicaid 90837 range in ${name}`}>
-      <p class="lede">Parite lists Medicaid FFS for 90837 in {name} at {medicaid90837Range} per unit. See the <a href={ratePath(state, '90837')}>90837 reimbursement rate in {name} by payer</a>.</p>
+    <Section id="medicaid-90837" eyebrow="Medicaid" title={`Medicaid 90837 range in ${inName}`}>
+      <p class="lede">Parite lists Medicaid FFS for 90837 in {inName} at {medicaid90837Range} per unit. See the <a href={ratePath(state, '90837')}>90837 reimbursement rate in {inName} by payer</a>.</p>
     </Section>
   )}
-  <Section eyebrow="CPT codes" title={`CPT codes with published ranges in ${name}`} tight>
+  <Section eyebrow="CPT codes" title={`CPT codes with published ranges in ${inName}`} tight>
     <ul class="check-list">
       {pairs.map((p) => (
         <li>
-          <a href={ratePath(p.state, p.code)}>{p.code} reimbursement rate in {name} by payer (2026)</a>
+          <a href={ratePath(p.state, p.code)}>{p.code} reimbursement rate in {inName} by payer (2026)</a>
           <span class="muted">. {codeLabel(p.code)}. Also see <a href={codeHubPath(p.code)}>{p.code} reimbursement rates by state</a>.</span>
         </li>
       ))}

@@ -251,7 +251,8 @@ def main():
             fail(f'missing {path}')
         n = len(codes)
         label = 'CPT code' if n == 1 else 'CPT codes'
-        sentence = f'Parite publishes ranges for {n} {label} in {state_name(state)}.'
+        place = f'the {state_name(state)}' if state == 'DC' else state_name(state)
+        sentence = f'Parite publishes ranges for {n} {label} in {place}.'
         html = path.read_text()
         if sentence not in visible(html):
             fail(f'{path} is missing: {sentence}')
