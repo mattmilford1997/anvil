@@ -21,6 +21,8 @@ import {
   codeHubH1,
   codeHubDescription,
   fmtRate,
+  fmtRange,
+  payerCodeSpread,
   codePayerCoverageSentence,
 } from '../../../lib/rates';
 
@@ -43,6 +45,7 @@ const h1 = codeHubH1(code);
 const description = codeHubDescription(code);
 const path = codeHubPath(code);
 const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
+const medicareSpread = code === '90791' || code === '90834' ? payerCodeSpread('medicare', code) : undefined;
 ---
 <BaseLayout
   title={title}
@@ -59,6 +62,9 @@ const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
       <h1>{h1}</h1>
       <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
       <p class="lede" style="margin-top:16px">{codePayerCoverageSentence(code)}</p>
+      {medicareSpread && (
+        <p class="lede" style="margin-top:16px">Across the {medicareSpread.n} {medicareSpread.noun} with a published Medicare {code} range, the highest is in <a href={ratePath(medicareSpread.highest.state, code)}>{stateName(medicareSpread.highest.state)}</a> ({fmtRange(medicareSpread.highest.low, medicareSpread.highest.high)}) and the lowest in <a href={ratePath(medicareSpread.lowest.state, code)}>{stateName(medicareSpread.lowest.state)}</a> ({fmtRange(medicareSpread.lowest.low, medicareSpread.lowest.high)}).</p>
+      )}
       {payerHubLinks.length > 0 && (
         <p class="lede">
           Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}
