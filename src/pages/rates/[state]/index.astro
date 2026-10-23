@@ -55,6 +55,8 @@ const psychPairs = pairs.filter((p) => psychCodes.includes(p.code));
 const psychCodeList = joinLabels(psychPairs.map((p) => p.code));
 const psychPayers = joinLabels(payerNamesInRows(psychPairs.flatMap((p) => p.rows)));
 const medicaid90837 = pairs.find((p) => p.code === '90837')?.rows.find((r) => r.payer === 'medicaid-ffs');
+const codeCount = pairs.length;
+const codeCountLabel = codeCount === 1 ? 'CPT code' : 'CPT codes';
 const medicaid90837Range = medicaid90837
   ? (medicaid90837.low === medicaid90837.high
     ? fmtRate(medicaid90837.low)
@@ -75,6 +77,7 @@ const medicaid90837Range = medicaid90837
       <div class="eyebrow">Rates / {name}</div>
       <h1>{h1}</h1>
       <p class="lede">{rateLede} These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
+      <p class="lede" style="margin-top:16px">Parite publishes ranges for {codeCount} {codeCountLabel} in {name}.</p>
       {payerHubLinks.length > 0 && (
         <p class="lede">
           Payer {payerHubLinks.length === 1 ? 'hub' : 'hubs'}:{' '}

@@ -52,7 +52,7 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 *Renegotiate at the first renewal.* Your first contracts will be at rack rates. With twelve months of clean claims and outcomes, you have something to negotiate with. This only works if the contracts are yours.
 
 ## The mistakes
-Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. Each one is survivable. All four together is a year of lost growth.
+Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. If you already built on a rented entity, the fix is [switching from a network rental vendor](/solutions/switching). Each one is survivable. All four together is a year of lost growth.
 
 For the cash-pay switch, follow the [virtual care](/solutions/virtual-care) plan, then [own your payer contracts](/own-your-contracts) so they sit in your entity.
 

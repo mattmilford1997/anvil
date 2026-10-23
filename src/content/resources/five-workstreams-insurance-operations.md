@@ -67,7 +67,7 @@ Here is the honest map.
 
 Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management.
 
-The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc).
+The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc). If you launched on a rental vendor, read the [Bridge insurance billing alternative](/compare/bridge).
 
 See how the five workstreams run on the [platform](/platform), and how you [own your payer contracts](/own-your-contracts).
 

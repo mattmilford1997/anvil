@@ -107,6 +107,32 @@ def code_sentence(code):
     return f'Parite publishes {code} ranges for {join_labels(bits)}.'
 
 
+def medicare_spread_sentence(code):
+    found = spread('medicare', code)
+    if not found:
+        return ''
+    rows, highest, lowest = found
+    noun = place_noun((row['state'] for row in rows), len(rows))
+    return (
+        f"Across the {len(rows)} {noun} with a published Medicare {code} range, "
+        f"the highest is in {state_name(highest['state'])} ({amount(highest['low'], highest['high'])}) "
+        f"and the lowest in {state_name(lowest['state'])} ({amount(lowest['low'], lowest['high'])})."
+    )
+
+
+def uhc_90791_sentence():
+    found = spread('uhc', '90791')
+    if not found:
+        return ''
+    rows, highest, lowest = found
+    noun = place_noun((row['state'] for row in rows), len(rows))
+    return (
+        f"For 90791, the highest UnitedHealthcare range is in {state_name(highest['state'])} "
+        f"({amount(highest['low'], highest['high'])}) and the lowest is in {state_name(lowest['state'])} "
+        f"({amount(lowest['low'], lowest['high'])}), across {len(rows)} {noun}."
+    )
+
+
 def file_sentence():
     parts = []
     for payer in PAYER_ORDER:
@@ -146,6 +172,9 @@ def main():
         '90834': 'Parite publishes 90834 ranges for Medicare in 53 jurisdictions, UnitedHealthcare in 51, and Medicaid FFS in 24.',
         '97153': 'Parite publishes 97153 ranges for Medicaid FFS in 5 states.',
         'file': 'Medicare ranges cover 53 jurisdictions, UnitedHealthcare 51 and Medicaid FFS 24.',
+        '90791-medicare': 'Across the 53 jurisdictions with a published Medicare 90791 range, the highest is in Alaska ($240.07) and the lowest in Arkansas ($166.76).',
+        '90834-medicare': 'Across the 53 jurisdictions with a published Medicare 90834 range, the highest is in Alaska ($158.15) and the lowest in Arkansas ($109.66).',
+        'uhc-90791': 'For 90791, the highest UnitedHealthcare range is in Wisconsin ($112.56 to $373.38) and the lowest is in Mississippi ($108.16 to $200.85), across 51 jurisdictions.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -158,6 +187,12 @@ def main():
             fail(f'{code} coverage sentence drifted: {code_sentence(code)}')
     if file_sentence() != expected['file']:
         fail(f'payer file sentence drifted: {file_sentence()}')
+    for code in ('90791', '90834'):
+        key = f'{code}-medicare'
+        if medicare_spread_sentence(code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicare_spread_sentence(code)}')
+    if uhc_90791_sentence() != expected['uhc-90791']:
+        fail(f"UHC 90791 sentence drifted: {uhc_90791_sentence()}")
 
     for payer, path in PAYER_FILES.items():
         if not path.exists():
@@ -184,6 +219,45 @@ def main():
         paragraph = re.search(r'<p[^>]*>[^<]*Parite publishes ' + re.escape(code) + r' ranges for[^<]*</p>', html)
         if not paragraph:
             fail(f'{path} coverage sentence is not a link-free paragraph')
+        spread_text = medicare_spread_sentence(code) if code in ('90791', '90834') else ''
+        if spread_text:
+            if spread_text not in visible(html):
+                fail(f'{path} is missing: {spread_text}')
+            found = spread('medicare', code)
+            _, highest, lowest = found
+            for row in (highest, lowest):
+                href = f'/rates/{row["state"].lower()}/{code}'
+                if f'href="{href}"' not in html:
+                    fail(f'{path} does not link {href}')
+        elif 'Across the ' in visible(html):
+            fail(f'{path} should not include a Medicare spread sentence')
+
+    uhc_html = PAYER_FILES['uhc'].read_text()
+    if expected['uhc-90791'] not in visible(uhc_html):
+        fail(f"UHC hub is missing: {expected['uhc-90791']}")
+    for href in ('/rates/wi/90791', '/rates/ms/90791'):
+        if f'href="{href}"' not in uhc_html:
+            fail(f'UHC hub does not link {href}')
+    for payer in ('medicare', 'medicaid-ffs'):
+        if 'For 90791, the highest UnitedHealthcare range' in visible(PAYER_FILES[payer].read_text()):
+            fail(f'{payer} hub repeats the UnitedHealthcare 90791 sentence')
+
+    by_state = {}
+    for row in RATES:
+        by_state.setdefault(row['state'], set()).add(row['code'])
+    for state, codes in by_state.items():
+        path = DIST / 'rates' / f'{state.lower()}.html'
+        if not path.exists():
+            fail(f'missing {path}')
+        n = len(codes)
+        label = 'CPT code' if n == 1 else 'CPT codes'
+        sentence = f'Parite publishes ranges for {n} {label} in {state_name(state)}.'
+        html = path.read_text()
+        if sentence not in visible(html):
+            fail(f'{path} is missing: {sentence}')
+        paragraph = re.search(r'<p[^>]*>Parite publishes ranges for \d+ CPT codes? in [^<]+</p>', html)
+        if not paragraph:
+            fail(f'{path} code-count sentence is not a link-free paragraph')
 
     rates_html = (DIST / 'rates.html').read_text()
     if expected['file'] not in visible(rates_html):
@@ -192,7 +266,7 @@ def main():
     if 'Parite publishes 90837 ranges' in visible(rates_html):
         fail('rates hub repeats the code-hub coverage sentence')
 
-    print('verify-rates: payer spreads, code counts, and the rates-hub sentence match rates.json')
+    print('verify-rates: payer spreads, code counts, Medicare code spreads, the UHC 90791 sentence, state code counts, and the rates-hub sentence match rates.json')
 
 
 if __name__ == '__main__':
