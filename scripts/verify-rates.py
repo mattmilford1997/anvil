@@ -120,6 +120,32 @@ def medicare_spread_sentence(code):
     )
 
 
+def for_range_sentence(label, payer, code):
+    found = spread(payer, code)
+    if not found:
+        return ''
+    rows, highest, lowest = found
+    noun = place_noun((row['state'] for row in rows), len(rows))
+    return (
+        f"For {code}, the highest {label} range is in {state_name(highest['state'])} "
+        f"({amount(highest['low'], highest['high'])}) and the lowest is in {state_name(lowest['state'])} "
+        f"({amount(lowest['low'], lowest['high'])}), across {len(rows)} {noun}."
+    )
+
+
+def medicaid_code_spread_sentence(code):
+    found = spread('medicaid-ffs', code)
+    if not found:
+        return ''
+    rows, highest, lowest = found
+    noun = place_noun((row['state'] for row in rows), len(rows))
+    return (
+        f"Across the {len(rows)} {noun} with a published Medicaid FFS {code} range, "
+        f"the highest is in {state_name(highest['state'])} ({amount(highest['low'], highest['high'])}) "
+        f"and the lowest in {state_name(lowest['state'])} ({amount(lowest['low'], lowest['high'])})."
+    )
+
+
 def uhc_90791_sentence():
     found = spread('uhc', '90791')
     if not found:
@@ -175,6 +201,10 @@ def main():
         '90791-medicare': 'Across the 53 jurisdictions with a published Medicare 90791 range, the highest is in Alaska ($240.07) and the lowest in Arkansas ($166.76).',
         '90834-medicare': 'Across the 53 jurisdictions with a published Medicare 90834 range, the highest is in Alaska ($158.15) and the lowest in Arkansas ($109.66).',
         'uhc-90791': 'For 90791, the highest UnitedHealthcare range is in Wisconsin ($112.56 to $373.38) and the lowest is in Mississippi ($108.16 to $200.85), across 51 jurisdictions.',
+        'medicaid-90791': 'For 90791, the highest Medicaid range is in Alaska ($334.31) and the lowest is in Kentucky ($94.84 to $97.80), across 24 jurisdictions.',
+        'uhc-90834': 'For 90834, the highest UnitedHealthcare range is in Wisconsin ($75.18 to $204.30) and the lowest is in Arkansas ($71.63 to $117.90), across 51 jurisdictions.',
+        '97153-medicaid': 'Across the 5 states with a published Medicaid FFS 97153 range, the highest is in Missouri ($20.13) and the lowest in North Dakota ($10.81).',
+        '90834-medicaid': 'Across the 24 jurisdictions with a published Medicaid FFS 90834 range, the highest is in Alaska ($220.24) and the lowest in Kentucky ($62.66 to $62.90).',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -193,6 +223,14 @@ def main():
             fail(f'{key} sentence drifted: {medicare_spread_sentence(code)}')
     if uhc_90791_sentence() != expected['uhc-90791']:
         fail(f"UHC 90791 sentence drifted: {uhc_90791_sentence()}")
+    if for_range_sentence('Medicaid', 'medicaid-ffs', '90791') != expected['medicaid-90791']:
+        fail(f"Medicaid 90791 sentence drifted: {for_range_sentence('Medicaid', 'medicaid-ffs', '90791')}")
+    if for_range_sentence('UnitedHealthcare', 'uhc', '90834') != expected['uhc-90834']:
+        fail(f"UHC 90834 sentence drifted: {for_range_sentence('UnitedHealthcare', 'uhc', '90834')}")
+    for code in ('97153', '90834'):
+        key = f'{code}-medicaid'
+        if medicaid_code_spread_sentence(code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicaid_code_spread_sentence(code)}')
 
     for payer, path in PAYER_FILES.items():
         if not path.exists():
@@ -229,8 +267,20 @@ def main():
                 href = f'/rates/{row["state"].lower()}/{code}'
                 if f'href="{href}"' not in html:
                     fail(f'{path} does not link {href}')
-        elif 'Across the ' in visible(html):
+        elif code not in ('97153',) and 'Across the ' in visible(html):
             fail(f'{path} should not include a Medicare spread sentence')
+        medicaid_text = medicaid_code_spread_sentence(code) if code in ('97153', '90834') else ''
+        if medicaid_text:
+            if medicaid_text not in visible(html):
+                fail(f'{path} is missing: {medicaid_text}')
+            found = spread('medicaid-ffs', code)
+            _, highest, lowest = found
+            for row in (highest, lowest):
+                href = f'/rates/{row["state"].lower()}/{code}'
+                if f'href="{href}"' not in html:
+                    fail(f'{path} does not link {href}')
+        elif 'published Medicaid FFS' in visible(html):
+            fail(f'{path} should not include a Medicaid FFS spread sentence')
 
     uhc_html = PAYER_FILES['uhc'].read_text()
     if expected['uhc-90791'] not in visible(uhc_html):
@@ -241,6 +291,21 @@ def main():
     for payer in ('medicare', 'medicaid-ffs'):
         if 'For 90791, the highest UnitedHealthcare range' in visible(PAYER_FILES[payer].read_text()):
             fail(f'{payer} hub repeats the UnitedHealthcare 90791 sentence')
+    medicaid_html = PAYER_FILES['medicaid-ffs'].read_text()
+    if expected['medicaid-90791'] not in visible(medicaid_html):
+        fail(f"Medicaid hub is missing: {expected['medicaid-90791']}")
+    for href in ('/rates/ak/90791', '/rates/ky/90791'):
+        if f'href="{href}"' not in medicaid_html:
+            fail(f'Medicaid hub does not link {href}')
+    if expected['uhc-90834'] not in visible(uhc_html):
+        fail(f"UHC hub is missing: {expected['uhc-90834']}")
+    for href in ('/rates/wi/90834', '/rates/ar/90834'):
+        if f'href="{href}"' not in uhc_html:
+            fail(f'UHC hub does not link {href}')
+    if 'For 90834, the highest UnitedHealthcare range' in visible(medicaid_html):
+        fail('Medicaid hub repeats the UnitedHealthcare 90834 sentence')
+    if 'For 90791, the highest Medicaid range' in visible(uhc_html) or 'For 90791, the highest Medicaid range' in visible(PAYER_FILES['medicare'].read_text()):
+        fail('a non-Medicaid hub repeats the Medicaid 90791 sentence')
 
     by_state = {}
     for row in RATES:

@@ -46,6 +46,8 @@ const description = codeHubDescription(code);
 const path = codeHubPath(code);
 const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
 const medicareSpread = code === '90791' || code === '90834' ? payerCodeSpread('medicare', code) : undefined;
+const medicaid97153 = code === '97153' ? payerCodeSpread('medicaid-ffs', '97153') : undefined;
+const medicaid90834 = code === '90834' ? payerCodeSpread('medicaid-ffs', '90834') : undefined;
 ---
 <BaseLayout
   title={title}
@@ -64,6 +66,12 @@ const medicareSpread = code === '90791' || code === '90834' ? payerCodeSpread('m
       <p class="lede" style="margin-top:16px">{codePayerCoverageSentence(code)}</p>
       {medicareSpread && (
         <p class="lede" style="margin-top:16px">Across the {medicareSpread.n} {medicareSpread.noun} with a published Medicare {code} range, the highest is in <a href={ratePath(medicareSpread.highest.state, code)}>{stateName(medicareSpread.highest.state)}</a> ({fmtRange(medicareSpread.highest.low, medicareSpread.highest.high)}) and the lowest in <a href={ratePath(medicareSpread.lowest.state, code)}>{stateName(medicareSpread.lowest.state)}</a> ({fmtRange(medicareSpread.lowest.low, medicareSpread.lowest.high)}).</p>
+      )}
+      {medicaid97153 && (
+        <p class="lede" style="margin-top:16px">Across the {medicaid97153.n} {medicaid97153.noun} with a published Medicaid FFS 97153 range, the highest is in <a href={ratePath(medicaid97153.highest.state, '97153')}>{stateName(medicaid97153.highest.state)}</a> ({fmtRange(medicaid97153.highest.low, medicaid97153.highest.high)}) and the lowest in <a href={ratePath(medicaid97153.lowest.state, '97153')}>{stateName(medicaid97153.lowest.state)}</a> ({fmtRange(medicaid97153.lowest.low, medicaid97153.lowest.high)}).</p>
+      )}
+      {medicaid90834 && (
+        <p class="lede" style="margin-top:16px">Across the {medicaid90834.n} {medicaid90834.noun} with a published Medicaid FFS 90834 range, the highest is in <a href={ratePath(medicaid90834.highest.state, '90834')}>{stateName(medicaid90834.highest.state)}</a> ({fmtRange(medicaid90834.highest.low, medicaid90834.highest.high)}) and the lowest in <a href={ratePath(medicaid90834.lowest.state, '90834')}>{stateName(medicaid90834.lowest.state)}</a> ({fmtRange(medicaid90834.lowest.low, medicaid90834.lowest.high)}).</p>
       )}
       {payerHubLinks.length > 0 && (
         <p class="lede">
