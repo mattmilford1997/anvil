@@ -64,10 +64,10 @@ A rough worked example: a clinic with 12 clinicians doing 80 cash-pay visits a m
 ## The two-phase plan
 Phase 1: go in-network where the lives are, fast. Pick the states and payers that cover the most insured patients in your existing demand, get clinicians enrolled, turn on eligibility at booking so insured patients see their coverage before they see a price. Keep cash-pay live for everyone else. Nothing in your funnel breaks. The fast path for that phase is [renting a PC to launch](/own-your-contracts#rent-or-build).
 
-Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one. If Phase 1 is already a vendor's network, leaving it is [switching from a network rental vendor](/solutions/switching).
+Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one. If Phase 1 is already a vendor's network, leaving it is [switching from a network rental vendor](/solutions/switching). Weigh vendors on the [Bridge insurance billing alternative](/compare/bridge).
 
 ## Next step
 
-Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. Start with [reimbursement rates by state and CPT code](/rates). When the signals are true, [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts).
+Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. Start with [reimbursement rates by state and CPT code](/rates). When the signals are true, [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts). The entity that holds those relationships is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure).
 
 ---
