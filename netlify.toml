@@ -77,3 +77,9 @@
   from = "/og-default.png"
   to = "/og-default-v2.png"
   status = 301
+
+# /sitemap.xml is not generated. Astro writes sitemap-index.xml.
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
