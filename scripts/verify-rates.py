@@ -146,6 +146,48 @@ def medicaid_code_spread_sentence(code):
     )
 
 
+def payers_for_code(code):
+    return sorted({row['payer'] for row in RATES if row.get('code') == code and row.get('payer')})
+
+
+def cross_90837_alaska_sentence():
+    medicaid = spread('medicaid-ffs', '90837')
+    medicare = spread('medicare', '90837')
+    if not medicaid or not medicare:
+        return ''
+    _, med_high, _ = medicaid
+    _, mc_high, _ = medicare
+    if med_high['state'] != mc_high['state'] or not med_high['high'] > mc_high['high']:
+        return ''
+    return (
+        f"In {state_name(med_high['state'])}, the published 90837 range tops out higher on Medicaid FFS "
+        f"({money(med_high['high'])}) than on Medicare ({money(mc_high['high'])})."
+    )
+
+
+def top_90837_sentence():
+    winners = []
+    top_high = None
+    for payer in payers_for_code('90837'):
+        found = spread(payer, '90837')
+        if not found:
+            continue
+        _, highest, _ = found
+        if top_high is None or highest['high'] > top_high:
+            top_high = highest['high']
+            winners = [(payer, highest)]
+        elif highest['high'] == top_high:
+            winners.append((payer, highest))
+    if len(winners) != 1:
+        return ''
+    payer, highest = winners[0]
+    name = PAYER_NAMES.get(payer, payer)
+    return (
+        f"{name}'s top 90837 range reaches {money(highest['high'])} in {state_name(highest['state'])}, "
+        f"the highest published 90837 figure on these rate pages."
+    )
+
+
 def uhc_90791_sentence():
     found = spread('uhc', '90791')
     if not found:
@@ -184,6 +226,13 @@ def visible(html):
     return re.sub(r'\s+', ' ', text)
 
 
+def linked_text(html):
+    text = re.sub(r'<script[\s\S]*?</script>', ' ', html, flags=re.I)
+    text = re.sub(r'<style[\s\S]*?</style>', ' ', text, flags=re.I)
+    text = re.sub(r'<[^>]+>', '', text)
+    return re.sub(r'\s+', ' ', text)
+
+
 def main():
     if not DIST.exists():
         fail('dist/ is missing. Run the site build first.')
@@ -205,6 +254,8 @@ def main():
         'uhc-90834': 'For 90834, the highest UnitedHealthcare range is in Wisconsin ($75.18 to $204.30) and the lowest is in Arkansas ($71.63 to $117.90), across 51 jurisdictions.',
         '97153-medicaid': 'Across the 5 states with a published Medicaid FFS 97153 range, the highest is in Missouri ($20.13) and the lowest in North Dakota ($10.81).',
         '90834-medicaid': 'Across the 24 jurisdictions with a published Medicaid FFS 90834 range, the highest is in Alaska ($220.24) and the lowest in Kentucky ($62.66 to $62.90).',
+        '90837-alaska-cross': 'In Alaska, the published 90837 range tops out higher on Medicaid FFS ($323.68) than on Medicare ($232.44).',
+        '90837-top': "UnitedHealthcare's top 90837 range reaches $341.64 in Wisconsin, the highest published 90837 figure on these rate pages.",
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -231,6 +282,10 @@ def main():
         key = f'{code}-medicaid'
         if medicaid_code_spread_sentence(code) != expected[key]:
             fail(f'{key} sentence drifted: {medicaid_code_spread_sentence(code)}')
+    if cross_90837_alaska_sentence() != expected['90837-alaska-cross']:
+        fail(f"90837 Alaska cross sentence drifted: {cross_90837_alaska_sentence()}")
+    if top_90837_sentence() != expected['90837-top']:
+        fail(f"90837 top sentence drifted: {top_90837_sentence()}")
 
     for payer, path in PAYER_FILES.items():
         if not path.exists():
@@ -281,6 +336,19 @@ def main():
                     fail(f'{path} does not link {href}')
         elif 'published Medicaid FFS' in visible(html):
             fail(f'{path} should not include a Medicaid FFS spread sentence')
+        if code == '90837':
+            paragraphs = re.findall(r'<p[^>]*>.*?</p>', html)
+            for key, href, needle in (
+                ('90837-alaska-cross', '/rates/ak/90837', 'tops out higher on Medicaid FFS'),
+                ('90837-top', '/rates/wi/90837', 'the highest published 90837 figure'),
+            ):
+                paragraph = next((item for item in paragraphs if needle in item), '')
+                if expected[key] not in linked_text(paragraph):
+                    fail(f'{path} is missing: {expected[key]}')
+                if f'href="{href}"' not in paragraph:
+                    fail(f'{path} does not link {href} from the 90837 sentence')
+        elif 'tops out higher on Medicaid FFS' in linked_text(html) or 'the highest published 90837 figure' in linked_text(html):
+            fail(f'{path} repeats a 90837 cross-payer sentence')
 
     uhc_html = PAYER_FILES['uhc'].read_text()
     if expected['uhc-90791'] not in visible(uhc_html):
@@ -332,7 +400,7 @@ def main():
     if 'Parite publishes 90837 ranges' in visible(rates_html):
         fail('rates hub repeats the code-hub coverage sentence')
 
-    print('verify-rates: payer spreads, code counts, Medicare code spreads, the UHC 90791 sentence, state code counts, and the rates-hub sentence match rates.json')
+    print('verify-rates: payer spreads, code counts, Medicare code spreads, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
 
 
 if __name__ == '__main__':
