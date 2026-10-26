@@ -34,7 +34,7 @@ draft: false
 The fear behind every cash-pay founder's insurance hesitation is the same: "we'll break the funnel that works." Fair. Most companies that add insurance badly do break it. Here is how the ones that don't do it.
 
 ## Phase 1: Go live where the lives are (weeks 1 to 8)
-*Pick states by covered lives in your existing demand, not by map size.* Pull your last six months of bookings and refund requests by state, then overlay the three to five largest commercial payers and the Medicaid MCOs in each. The states where your demand and a small number of dominant payers overlap are your Phase 1 list. Usually it is three to six states. Resist the urge to go 50-state on day one if your demand is concentrated.
+*Pick states by covered lives in your existing demand, not by map size.* Pull your last six months of bookings and refund requests by state, then overlay the three to five largest commercial payers and the Medicaid MCOs in each. The states where your demand and a small number of dominant payers overlap are your Phase 1 list. Usually it is three to six states. Resist the urge to go 50-state on day one if your demand is concentrated. Check what those payers pay for your codes in [reimbursement rates by state and CPT code](/rates).
 
 *Get clinicians enrolled on contracts that already exist.* Building your own contracts in Phase 1 means waiting a year to bill. Enrolling your clinicians on an already-contracted entity means billing in weeks. Take the fast path here, but read Phase 2 first.
 
@@ -49,7 +49,7 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 
 *Start contracting your own entity.* This is the step most companies skip and regret. If all of your insured revenue runs through a vendor's contracted entity, you have insured revenue but no insured asset. Your next investor will ask about it. Form your own professional entity early, credential it, and start contracting with your top payers so that over time volume shifts from the shared entity to yours. Done in parallel, it never delays Phase 1.
 
-*Renegotiate at the first renewal.* Your first contracts will be at rack rates. With twelve months of clean claims and outcomes, you have something to negotiate with. This only works if the contracts are yours.
+*Renegotiate at the first renewal.* Your first contracts will be at rack rates. With twelve months of clean claims and outcomes, you have something to negotiate with. This only works if the contracts are yours. Those clean claims run through [telehealth revenue cycle management](/platform/rcm).
 
 ## The mistakes
 Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. Each one is survivable. All four together is a year of lost growth. If you already built on a rented entity, the fix is [switching from a network rental vendor](/solutions/switching).

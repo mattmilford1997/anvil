@@ -30,7 +30,7 @@ draft: false
 When a founder says "we need to figure out billing," they are describing five jobs. Each has its own talent pool, its own failure modes, and its own timeline. Treating them as one job is the most common reason in-house insurance operations underperform.
 
 ## 1. Health plan contracting
-Getting a contract with a payer means a negotiated agreement between a legal entity and the plan: rates by code, terms, credentialing requirements, timely filing windows, and renewal cycles. It is part legal, part sales, part data. A good contracting lead knows which payers in which states cover the lives you want, what the rate ladder looks like, and when a "we're not accepting new providers in your specialty" is real versus an opening position.
+Getting a contract with a payer means a negotiated agreement between a legal entity and the plan: rates by code, terms, credentialing requirements, timely filing windows, and renewal cycles. It is part legal, part sales, part data. A good contracting lead knows which payers in which states cover the lives you want, what the rate ladder looks like, and when a "we're not accepting new providers in your specialty" is real versus an opening position. The published side of that rate ladder is on [reimbursement rates by state and CPT code](/rates).
 
 Timeline for a competent internal hire to reach national density: one to three years. Talent: scarce, senior, expensive. Most people with this background did it for one health system in one region.
 

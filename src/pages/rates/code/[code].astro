@@ -48,6 +48,17 @@ const payerHubLinks = payerHubsForRows(pairs.flatMap((pair) => pair.rows));
 const medicareSpread = code === '90791' || code === '90834' ? payerCodeSpread('medicare', code) : undefined;
 const medicaid97153 = code === '97153' ? payerCodeSpread('medicaid-ffs', '97153') : undefined;
 const medicaid90834 = code === '90834' ? payerCodeSpread('medicaid-ffs', '90834') : undefined;
+const medicaid90837 = code === '90837' ? payerCodeSpread('medicaid-ffs', '90837') : undefined;
+const medicare90837 = code === '90837' ? payerCodeSpread('medicare', '90837') : undefined;
+const alaskaCross90837 = medicaid90837 && medicare90837 && medicaid90837.highest.state === medicare90837.highest.state && medicaid90837.highest.high > medicare90837.highest.high;
+const top90837Spreads = code === '90837'
+  ? [...new Set(pairs.flatMap((pair) => pair.rows.map((row) => row.payer)).filter((payer): payer is string => Boolean(payer)))]
+      .map((payer) => payerCodeSpread(payer, '90837'))
+      .filter((spread): spread is NonNullable<ReturnType<typeof payerCodeSpread>> => Boolean(spread))
+  : [];
+const top90837High = top90837Spreads.reduce((max, spread) => Math.max(max, spread.highest.high), 0);
+const top90837Winners = top90837Spreads.filter((spread) => spread.highest.high === top90837High);
+const top90837 = top90837Winners.length === 1 ? top90837Winners[0] : undefined;
 ---
 <BaseLayout
   title={title}
@@ -64,6 +75,12 @@ const medicaid90834 = code === '90834' ? payerCodeSpread('medicaid-ffs', '90834'
       <h1>{h1}</h1>
       <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
       <p class="lede" style="margin-top:16px">{codePayerCoverageSentence(code)}</p>
+      {alaskaCross90837 && medicaid90837 && medicare90837 && (
+        <p class="lede" style="margin-top:16px">In <a href={ratePath(medicaid90837.highest.state, '90837')}>{stateName(medicaid90837.highest.state)}</a>, the published 90837 range tops out higher on Medicaid FFS ({fmtRate(medicaid90837.highest.high)}) than on Medicare ({fmtRate(medicare90837.highest.high)}).</p>
+      )}
+      {top90837 && (
+        <p class="lede" style="margin-top:16px">{top90837.payerName}'s top 90837 range reaches {fmtRate(top90837.highest.high)} in <a href={ratePath(top90837.highest.state, '90837')}>{stateName(top90837.highest.state)}</a>, the highest published 90837 figure on these rate pages.</p>
+      )}
       {medicareSpread && (
         <p class="lede" style="margin-top:16px">Across the {medicareSpread.n} {medicareSpread.noun} with a published Medicare {code} range, the highest is in <a href={ratePath(medicareSpread.highest.state, code)}>{stateName(medicareSpread.highest.state)}</a> ({fmtRange(medicareSpread.highest.low, medicareSpread.highest.high)}) and the lowest in <a href={ratePath(medicareSpread.lowest.state, code)}>{stateName(medicareSpread.lowest.state)}</a> ({fmtRange(medicareSpread.lowest.low, medicareSpread.lowest.high)}).</p>
       )}
