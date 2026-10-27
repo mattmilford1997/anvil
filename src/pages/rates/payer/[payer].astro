@@ -28,8 +28,12 @@ const payerName = hub.payer === 'medicaid-ffs' ? 'Medicaid' : who;
 const abaLine = hub.slug === 'medicaid' ? ' 97153 appears only where Parite publishes it.' : '';
 const intro = `${payerName} reimbursement rates by state and CPT code, from Parite, including the ${payerName} 90837 rate in every state Parite covers.${abaLine} These are planning ranges, not a guarantee of payment.`;
 const spread = payerCodeSpread(hub.payer, '90837');
+const medicare90791 = hub.payer === 'medicare' ? payerCodeSpread('medicare', '90791') : undefined;
+const medicare90834 = hub.payer === 'medicare' ? payerCodeSpread('medicare', '90834') : undefined;
 const uhc90791 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90791') : undefined;
 const medicaid90791 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-ffs', '90791') : undefined;
+const medicaid90834 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-ffs', '90834') : undefined;
+const medicaid97153 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-ffs', '97153') : undefined;
 const uhc90834 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90834') : undefined;
 ---
 <BaseLayout
@@ -49,8 +53,20 @@ const uhc90834 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90834') : undefin
       {spread && (
         <p class="lede">Among the {spread.n} {spread.noun} Parite publishes {spread.payerName} 90837 for, the highest range is in <a href={ratePath(spread.highest.state, '90837')}>{stateName(spread.highest.state)}</a> ({fmtRange(spread.highest.low, spread.highest.high)}) and the lowest is in <a href={ratePath(spread.lowest.state, '90837')}>{stateName(spread.lowest.state)}</a> ({fmtRange(spread.lowest.low, spread.lowest.high)}).</p>
       )}
+      {medicare90791 && (
+        <p class="lede" style="margin-top:16px">For 90791, the highest Medicare range is in <a href={ratePath(medicare90791.highest.state, '90791')}>{stateName(medicare90791.highest.state)}</a> ({fmtRange(medicare90791.highest.low, medicare90791.highest.high)}) and the lowest is in <a href={ratePath(medicare90791.lowest.state, '90791')}>{stateName(medicare90791.lowest.state)}</a> ({fmtRange(medicare90791.lowest.low, medicare90791.lowest.high)}), across {medicare90791.n} {medicare90791.noun}.</p>
+      )}
+      {medicare90834 && (
+        <p class="lede" style="margin-top:16px">For 90834, the highest Medicare range is in <a href={ratePath(medicare90834.highest.state, '90834')}>{stateName(medicare90834.highest.state)}</a> ({fmtRange(medicare90834.highest.low, medicare90834.highest.high)}) and the lowest is in <a href={ratePath(medicare90834.lowest.state, '90834')}>{stateName(medicare90834.lowest.state)}</a> ({fmtRange(medicare90834.lowest.low, medicare90834.lowest.high)}), across {medicare90834.n} {medicare90834.noun}.</p>
+      )}
       {medicaid90791 && (
         <p class="lede" style="margin-top:16px">For 90791, the highest Medicaid range is in <a href={ratePath(medicaid90791.highest.state, '90791')}>{stateName(medicaid90791.highest.state)}</a> ({fmtRange(medicaid90791.highest.low, medicaid90791.highest.high)}) and the lowest is in <a href={ratePath(medicaid90791.lowest.state, '90791')}>{stateName(medicaid90791.lowest.state)}</a> ({fmtRange(medicaid90791.lowest.low, medicaid90791.lowest.high)}), across {medicaid90791.n} {medicaid90791.noun}.</p>
+      )}
+      {medicaid90834 && (
+        <p class="lede" style="margin-top:16px">For 90834, the highest Medicaid range is in <a href={ratePath(medicaid90834.highest.state, '90834')}>{stateName(medicaid90834.highest.state)}</a> ({fmtRange(medicaid90834.highest.low, medicaid90834.highest.high)}) and the lowest is in <a href={ratePath(medicaid90834.lowest.state, '90834')}>{stateName(medicaid90834.lowest.state)}</a> ({fmtRange(medicaid90834.lowest.low, medicaid90834.lowest.high)}), across {medicaid90834.n} {medicaid90834.noun}.</p>
+      )}
+      {medicaid97153 && (
+        <p class="lede" style="margin-top:16px">For 97153, the highest Medicaid range is in <a href={ratePath(medicaid97153.highest.state, '97153')}>{stateName(medicaid97153.highest.state)}</a> ({fmtRange(medicaid97153.highest.low, medicaid97153.highest.high)}) and the lowest is in <a href={ratePath(medicaid97153.lowest.state, '97153')}>{stateName(medicaid97153.lowest.state)}</a> ({fmtRange(medicaid97153.lowest.low, medicaid97153.lowest.high)}), across {medicaid97153.n} {medicaid97153.noun}.</p>
       )}
       {uhc90791 && (
         <p class="lede" style="margin-top:16px">For 90791, the highest UnitedHealthcare range is in <a href={ratePath(uhc90791.highest.state, '90791')}>{stateName(uhc90791.highest.state)}</a> ({fmtRange(uhc90791.highest.low, uhc90791.highest.high)}) and the lowest is in <a href={ratePath(uhc90791.lowest.state, '90791')}>{stateName(uhc90791.lowest.state)}</a> ({fmtRange(uhc90791.lowest.low, uhc90791.lowest.high)}), across {uhc90791.n} {uhc90791.noun}.</p>

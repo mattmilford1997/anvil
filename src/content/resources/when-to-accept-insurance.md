@@ -46,7 +46,7 @@ Accepting insurance is how you get to everyone else. The question is not whether
 
 3. **Your support inbox asks "do you take my insurance?" more than any other question.** Count it for a week. Most cash-pay companies find it is the number one pre-booking question and the number one reason for refunds.
 
-4. **A competitor in your specialty now accepts insurance.** Once someone in your category is in-network, patients search for "covered by Aetna" and you disappear from the consideration set. You can wait for this or get ahead of it.
+4. **A competitor in your specialty now accepts insurance.** Once someone in your category is in-network, patients search for "covered by Aetna" and you disappear from the consideration set. You can wait for this or get ahead of it. Before you sign with a vendor, read [what in-network nationally means](/resources/what-in-network-nationally-means).
 
 5. **You have clinical outcomes you can show a payer.** Payers do not need you to be a research institution. They need a consistent care model, defined scope, and a chart that survives an audit. If you have that, you have something to contract on.
 

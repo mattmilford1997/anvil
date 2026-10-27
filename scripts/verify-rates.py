@@ -256,6 +256,10 @@ def main():
         '90834-medicaid': 'Across the 24 jurisdictions with a published Medicaid FFS 90834 range, the highest is in Alaska ($220.24) and the lowest in Kentucky ($62.66 to $62.90).',
         '90837-alaska-cross': 'In Alaska, the published 90837 range tops out higher on Medicaid FFS ($323.68) than on Medicare ($232.44).',
         '90837-top': "UnitedHealthcare's top 90837 range reaches $341.64 in Wisconsin, the highest published 90837 figure on these rate pages.",
+        'medicare-90791-for': 'For 90791, the highest Medicare range is in Alaska ($240.07) and the lowest is in Arkansas ($166.76), across 53 jurisdictions.',
+        'medicare-90834-for': 'For 90834, the highest Medicare range is in Alaska ($158.15) and the lowest is in Arkansas ($109.66), across 53 jurisdictions.',
+        'medicaid-90834-for': 'For 90834, the highest Medicaid range is in Alaska ($220.24) and the lowest is in Kentucky ($62.66 to $62.90), across 24 jurisdictions.',
+        'medicaid-97153-for': 'For 97153, the highest Medicaid range is in Missouri ($20.13) and the lowest is in North Dakota ($10.81), across 5 states.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -286,6 +290,15 @@ def main():
         fail(f"90837 Alaska cross sentence drifted: {cross_90837_alaska_sentence()}")
     if top_90837_sentence() != expected['90837-top']:
         fail(f"90837 top sentence drifted: {top_90837_sentence()}")
+    for label, payer, code, key in (
+        ('Medicare', 'medicare', '90791', 'medicare-90791-for'),
+        ('Medicare', 'medicare', '90834', 'medicare-90834-for'),
+        ('Medicaid', 'medicaid-ffs', '90834', 'medicaid-90834-for'),
+        ('Medicaid', 'medicaid-ffs', '97153', 'medicaid-97153-for'),
+    ):
+        got = for_range_sentence(label, payer, code)
+        if got != expected[key]:
+            fail(f'{key} sentence drifted: {got}')
 
     for payer, path in PAYER_FILES.items():
         if not path.exists():
@@ -374,6 +387,28 @@ def main():
         fail('Medicaid hub repeats the UnitedHealthcare 90834 sentence')
     if 'For 90791, the highest Medicaid range' in visible(uhc_html) or 'For 90791, the highest Medicaid range' in visible(PAYER_FILES['medicare'].read_text()):
         fail('a non-Medicaid hub repeats the Medicaid 90791 sentence')
+    medicare_html = PAYER_FILES['medicare'].read_text()
+    hub_for_sentences = (
+        ('medicare', medicare_html, 'medicare-90791-for', ('/rates/ak/90791', '/rates/ar/90791')),
+        ('medicare', medicare_html, 'medicare-90834-for', ('/rates/ak/90834', '/rates/ar/90834')),
+        ('medicaid-ffs', medicaid_html, 'medicaid-90834-for', ('/rates/ak/90834', '/rates/ky/90834')),
+        ('medicaid-ffs', medicaid_html, 'medicaid-97153-for', ('/rates/mo/97153', '/rates/nd/97153')),
+    )
+    for payer, html, key, hrefs in hub_for_sentences:
+        if expected[key] not in visible(html):
+            fail(f'{payer} hub is missing: {expected[key]}')
+        needle = expected[key].split(' is in ')[0]
+        paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if needle in item), '')
+        for href in hrefs:
+            if f'href="{href}"' not in paragraph:
+                fail(f'{payer} hub does not link {href} from: {expected[key]}')
+    if expected['medicaid-90834-for'] in visible(medicare_html) or expected['medicaid-97153-for'] in visible(medicare_html):
+        fail('Medicare hub repeats a Medicaid For-sentence')
+    if expected['medicare-90791-for'] in visible(medicaid_html) or expected['medicare-90834-for'] in visible(medicaid_html):
+        fail('Medicaid hub repeats a Medicare For-sentence')
+    for key in ('medicare-90791-for', 'medicare-90834-for', 'medicaid-90834-for', 'medicaid-97153-for'):
+        if expected[key] in visible(uhc_html):
+            fail(f'UHC hub repeats: {expected[key]}')
 
     by_state = {}
     for row in RATES:
@@ -400,7 +435,7 @@ def main():
     if 'Parite publishes 90837 ranges' in visible(rates_html):
         fail('rates hub repeats the code-hub coverage sentence')
 
-    print('verify-rates: payer spreads, code counts, Medicare code spreads, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
+    print('verify-rates: payer spreads, code counts, Medicare and Medicaid For-sentences, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
 
 
 if __name__ == '__main__':
