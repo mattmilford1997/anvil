@@ -36,7 +36,7 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 ## Phase 1: Go live where the lives are (weeks 1 to 8)
 *Pick states by covered lives in your existing demand, not by map size.* Pull your last six months of bookings and refund requests by state, then overlay the three to five largest commercial payers and the Medicaid MCOs in each. The states where your demand and a small number of dominant payers overlap are your Phase 1 list. Usually it is three to six states. Resist the urge to go 50-state on day one if your demand is concentrated. Check what those payers pay for your codes in [reimbursement rates by state and CPT code](/rates).
 
-*Get clinicians enrolled on contracts that already exist.* Building your own contracts in Phase 1 means waiting a year to bill. Enrolling your clinicians on an already-contracted entity means billing in weeks. Take the fast path here, but read Phase 2 first.
+*Get clinicians enrolled on contracts that already exist.* Building your own contracts in Phase 1 means waiting a year to bill. Enrolling your clinicians on an already-contracted entity means billing in weeks. Take the fast path here, but read Phase 2 first. If a vendor promises in-network in weeks, check [what in-network nationally means](/resources/what-in-network-nationally-means).
 
 *Put eligibility before the price.* This is the single change that protects conversion. Today your funnel says: choose a service, see the price, enter payment. The insurance version says: enter your insurance, we check it in real time, you see your actual copay, then you book. Insured patients never see a $250 number. Uninsured patients see the cash price as before. Nobody gets a worse experience than they have today.
 
