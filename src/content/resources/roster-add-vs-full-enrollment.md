@@ -17,7 +17,7 @@ tool: "none"
 faq:
   - q: "What is roster-add vs full enrollment?"
     a: "Roster-add puts a clinician on an existing entity's payer contract, usually in weeks. Full enrollment credentials your entity and your clinicians with each payer, usually in months, and the contract is yours. Delegated credentialing is the payer arrangement that makes the fastest roster-adds possible."
-  - q: "What is delegated credentialing?"
+  - q: "Which entities can get delegated credentialing from a payer?"
     a: "A formal agreement in which a payer authorizes a trusted entity to credential clinicians on the payer's behalf and submit rosters. It is the mechanism behind the fastest roster-add timelines and is granted only to entities with an audited credentialing program."
   - q: "Is roster-add the same as being in-network?"
     a: "For the patient, yes: the clinician's visit is covered at in-network rates. For the company, the contract belongs to the entity holding the roster."

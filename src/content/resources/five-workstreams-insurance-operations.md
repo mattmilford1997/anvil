@@ -35,7 +35,7 @@ Getting a contract with a payer means a negotiated agreement between a legal ent
 Timeline for a competent internal hire to reach national density: one to three years. Talent: scarce, senior, expensive. Most people with this background did it for one health system in one region.
 
 ## 2. Credentialing and enrollment
-Once the entity has a contract, each clinician has to be credentialed (primary source verification of license, education, board status, malpractice history) and enrolled (added to the payer's roster under that contract). Credentialing is document-heavy and combinatorial. Ten clinicians, eight states, four payers is 320 enrollments, each with its own portal, form, and follow-up cadence.
+Once the entity has a contract, each clinician has to be credentialed (primary source verification of license, education, board status, malpractice history) and enrolled (added to the payer's roster under that contract). Credentialing is document-heavy and combinatorial. Ten clinicians, eight states, four payers is 320 enrollments, each with its own portal, form, and follow-up cadence. The difference between a contract and a roster is covered in [what in-network nationally means](/resources/what-in-network-nationally-means).
 
 Timeline: 90 to 120 days per clinician per payer on average, longer when applications bounce. Talent: credentialing specialists, roughly one per 40 to 50 clinicians, plus someone who knows how to automate the repetitive parts.
 
