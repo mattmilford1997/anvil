@@ -55,6 +55,7 @@ const psychPairs = pairs.filter((p) => psychCodes.includes(p.code));
 const psychCodeList = joinLabels(psychPairs.map((p) => p.code));
 const psychPayers = joinLabels(payerNamesInRows(psychPairs.flatMap((p) => p.rows)));
 const medicaid90837 = pairs.find((p) => p.code === '90837')?.rows.find((r) => r.payer === 'medicaid-ffs');
+const medicare90837 = pairs.find((p) => p.code === '90837')?.rows.find((r) => r.payer === 'medicare');
 const codeCount = pairs.length;
 const codeCountLabel = codeCount === 1 ? 'CPT code' : 'CPT codes';
 const inName = state === 'DC' ? `the ${name}` : name;
@@ -101,7 +102,7 @@ const medicaid90837Range = medicaid90837
   )}
   {medicaid90837 && (
     <Section id="medicaid-90837" eyebrow="Medicaid" title={`Medicaid 90837 range in ${inName}`}>
-      <p class="lede">Parite lists Medicaid FFS for 90837 in {inName} at {medicaid90837Range} per unit. See the <a href={ratePath(state, '90837')}>90837 reimbursement rate in {inName} by payer</a>.</p>
+      <p class="lede">Parite lists Medicaid FFS for 90837 in {inName} at {medicaid90837Range} per unit. See the <a href={ratePath(state, '90837')}>90837 reimbursement rate in {inName} by payer</a>.{medicare90837 && <> In {inName}, the top of the published 90837 range is {fmtRate(medicaid90837.high)} on Medicaid FFS and {fmtRate(medicare90837.high)} on Medicare.</>}</p>
     </Section>
   )}
   <Section eyebrow="CPT codes" title={`CPT codes with published ranges in ${inName}`} tight>

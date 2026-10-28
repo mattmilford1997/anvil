@@ -24,6 +24,7 @@ import {
   fmtRange,
   payerCodeSpread,
   codePayerCoverageSentence,
+  medicaidAboveMedicare,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -59,6 +60,7 @@ const top90837Spreads = code === '90837'
 const top90837High = top90837Spreads.reduce((max, spread) => Math.max(max, spread.highest.high), 0);
 const top90837Winners = top90837Spreads.filter((spread) => spread.highest.high === top90837High);
 const top90837 = top90837Winners.length === 1 ? top90837Winners[0] : undefined;
+const medicaidAbove = medicaidAboveMedicare(code);
 ---
 <BaseLayout
   title={title}
@@ -75,6 +77,9 @@ const top90837 = top90837Winners.length === 1 ? top90837Winners[0] : undefined;
       <h1>{h1}</h1>
       <p class="lede">{code} ({codeServiceName(code)}) reimbursement rates by state are {payerPhrase} ranges from Parite, for the payers published in each state. These are planning ranges, not a guarantee of what you will be paid. Use them when you <a href="/own-your-contracts">own your payer contracts</a>.</p>
       <p class="lede" style="margin-top:16px">{codePayerCoverageSentence(code)}</p>
+      {medicaidAbove.n > 0 && (
+        <p class="lede" style="margin-top:16px">In {medicaidAbove.above} of the {medicaidAbove.n} {medicaidAbove.noun} with both a Medicare and a Medicaid FFS {code} range, the Medicaid FFS high is above the Medicare high.</p>
+      )}
       {alaskaCross90837 && medicaid90837 && medicare90837 && (
         <p class="lede" style="margin-top:16px">In <a href={ratePath(medicaid90837.highest.state, '90837')}>{stateName(medicaid90837.highest.state)}</a>, the published 90837 range tops out higher on Medicaid FFS ({fmtRate(medicaid90837.highest.high)}) than on Medicare ({fmtRate(medicare90837.highest.high)}).</p>
       )}

@@ -188,6 +188,55 @@ def top_90837_sentence():
     )
 
 
+def row_for(payer, code, state):
+    hits = [row for row in RATES if row['payer'] == payer and row['code'] == code and row['state'] == state]
+    return hits[0] if len(hits) == 1 else None
+
+
+def medicaid_above_sentence(code):
+    both = states_for('medicare', code) & states_for('medicaid-ffs', code)
+    if not both:
+        return ''
+    above = 0
+    for state in both:
+        medicaid = row_for('medicaid-ffs', code, state)
+        medicare = row_for('medicare', code, state)
+        if medicaid['high'] > medicare['high']:
+            above += 1
+    noun = place_noun(both, len(both))
+    return (
+        f"In {above} of the {len(both)} {noun} with both a Medicare and a Medicaid FFS {code} range, "
+        f"the Medicaid FFS high is above the Medicare high."
+    )
+
+
+def state_90837_top_sentence(state):
+    medicaid = row_for('medicaid-ffs', '90837', state)
+    medicare = row_for('medicare', '90837', state)
+    if not medicaid or not medicare:
+        return ''
+    place = f"the {state_name(state)}" if state == 'DC' else state_name(state)
+    return (
+        f"In {place}, the top of the published 90837 range is {money(medicaid['high'])} on Medicaid FFS "
+        f"and {money(medicare['high'])} on Medicare."
+    )
+
+
+def triple_payer_sentence():
+    codes = ('90791', '90834', '90837')
+    sets = []
+    for code in codes:
+        sets.append(states_for('medicare', code) & states_for('medicaid-ffs', code) & states_for('uhc', code))
+    if any(places != sets[0] for places in sets) or not sets[0]:
+        return ''
+    places = sets[0]
+    noun = place_noun(places, len(places))
+    return (
+        f"Medicare, Medicaid FFS and UHC ranges are all published for 90791, 90834 and 90837 "
+        f"in {len(places)} {noun}."
+    )
+
+
 def uhc_90791_sentence():
     found = spread('uhc', '90791')
     if not found:
@@ -260,6 +309,13 @@ def main():
         'medicare-90834-for': 'For 90834, the highest Medicare range is in Alaska ($158.15) and the lowest is in Arkansas ($109.66), across 53 jurisdictions.',
         'medicaid-90834-for': 'For 90834, the highest Medicaid range is in Alaska ($220.24) and the lowest is in Kentucky ($62.66 to $62.90), across 24 jurisdictions.',
         'medicaid-97153-for': 'For 97153, the highest Medicaid range is in Missouri ($20.13) and the lowest is in North Dakota ($10.81), across 5 states.',
+        '90791-above': 'In 7 of the 24 jurisdictions with both a Medicare and a Medicaid FFS 90791 range, the Medicaid FFS high is above the Medicare high.',
+        '90834-above': 'In 7 of the 24 jurisdictions with both a Medicare and a Medicaid FFS 90834 range, the Medicaid FFS high is above the Medicare high.',
+        '90837-above': 'In 7 of the 24 jurisdictions with both a Medicare and a Medicaid FFS 90837 range, the Medicaid FFS high is above the Medicare high.',
+        'triple': 'Medicare, Medicaid FFS and UHC ranges are all published for 90791, 90834 and 90837 in 24 jurisdictions.',
+        'OH-top': 'In Ohio, the top of the published 90837 range is $108.57 on Medicaid FFS and $163.52 on Medicare.',
+        'AK-top': 'In Alaska, the top of the published 90837 range is $323.68 on Medicaid FFS and $232.44 on Medicare.',
+        'IL-top': 'In Illinois, the top of the published 90837 range is $183.16 on Medicaid FFS and $169.49 on Medicare.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -299,6 +355,17 @@ def main():
         got = for_range_sentence(label, payer, code)
         if got != expected[key]:
             fail(f'{key} sentence drifted: {got}')
+    for code in ('90791', '90834', '90837'):
+        key = f'{code}-above'
+        if medicaid_above_sentence(code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicaid_above_sentence(code)}')
+    if medicaid_above_sentence('97153'):
+        fail(f"97153 should not have a Medicare comparison: {medicaid_above_sentence('97153')}")
+    if triple_payer_sentence() != expected['triple']:
+        fail(f"triple payer sentence drifted: {triple_payer_sentence()}")
+    for state, key in (('OH', 'OH-top'), ('AK', 'AK-top'), ('IL', 'IL-top')):
+        if state_90837_top_sentence(state) != expected[key]:
+            fail(f'{key} sentence drifted: {state_90837_top_sentence(state)}')
 
     for payer, path in PAYER_FILES.items():
         if not path.exists():
@@ -362,6 +429,15 @@ def main():
                     fail(f'{path} does not link {href} from the 90837 sentence')
         elif 'tops out higher on Medicaid FFS' in linked_text(html) or 'the highest published 90837 figure' in linked_text(html):
             fail(f'{path} repeats a 90837 cross-payer sentence')
+        above_text = medicaid_above_sentence(code)
+        if above_text:
+            if above_text not in visible(html):
+                fail(f'{path} is missing: {above_text}')
+            paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if 'with both a Medicare and a Medicaid FFS' in item), '')
+            if 'href=' in paragraph:
+                fail(f'{path} Medicaid-above sentence should not contain a link')
+        elif 'with both a Medicare and a Medicaid FFS' in visible(html):
+            fail(f'{path} should not include a Medicare and Medicaid comparison')
 
     uhc_html = PAYER_FILES['uhc'].read_text()
     if expected['uhc-90791'] not in visible(uhc_html):
@@ -424,6 +500,12 @@ def main():
         html = path.read_text()
         if sentence not in visible(html):
             fail(f'{path} is missing: {sentence}')
+        top = state_90837_top_sentence(state)
+        if top:
+            if top not in visible(html):
+                fail(f'{path} is missing: {top}')
+        elif 'the top of the published 90837 range' in visible(html):
+            fail(f'{path} should not include a 90837 Medicare comparison')
         paragraph = re.search(r'<p[^>]*>Parite publishes ranges for \d+ CPT codes? in [^<]+</p>', html)
         if not paragraph:
             fail(f'{path} code-count sentence is not a link-free paragraph')
@@ -434,8 +516,13 @@ def main():
     # The count sentence must not repeat the code-hub wording.
     if 'Parite publishes 90837 ranges' in visible(rates_html):
         fail('rates hub repeats the code-hub coverage sentence')
+    if expected['triple'] not in visible(rates_html):
+        fail(f"rates hub is missing: {expected['triple']}")
+    triple_paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', rates_html) if 'UHC ranges are all published' in item), '')
+    if 'href=' in triple_paragraph:
+        fail('rates hub triple-payer sentence should not contain a link')
 
-    print('verify-rates: payer spreads, code counts, Medicare and Medicaid For-sentences, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
+    print('verify-rates: payer spreads, code counts, Medicare and Medicaid comparisons, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
 
 
 if __name__ == '__main__':

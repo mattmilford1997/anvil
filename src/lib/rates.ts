@@ -158,6 +158,20 @@ export function placeNoun(codes: Iterable<string>, n = [...codes].length) {
   return n === 1 ? 'state' : 'states';
 }
 
+/** Jurisdictions with both a Medicare and a Medicaid FFS row. above counts strict > on high. */
+export function medicaidAboveMedicare(code: string) {
+  const medicare = new Map<string, number>();
+  const medicaid = new Map<string, number>();
+  for (const row of rateRows) {
+    if (row.code !== code) continue;
+    if (row.payer === 'medicare') medicare.set(row.state, row.high);
+    if (row.payer === 'medicaid-ffs') medicaid.set(row.state, row.high);
+  }
+  const both = [...medicaid.keys()].filter((state) => medicare.has(state));
+  const above = both.filter((state) => (medicaid.get(state) ?? 0) > (medicare.get(state) ?? 0)).length;
+  return { n: both.length, above, noun: placeNoun(both, both.length) };
+}
+
 /** Highest range is the highest high. Lowest range is the lowest high. Ties break on low, then state name. */
 export function payerCodeSpread(payer: string, code: string) {
   const rows = rateRows.filter((row) => row.payer === payer && row.code === code);
@@ -208,6 +222,20 @@ export function payerFileStateSentence() {
   const middle = rest.slice(0, -1).map((part) => `${part.label} ${part.n}`).join(', ');
   const tail = middle ? `${middle} and ${last.label} ${last.n}` : `${last.label} ${last.n}`;
   return `${first.label} ranges cover ${first.n} ${first.noun}, ${tail}.`;
+}
+
+/** Same jurisdiction set for 90791, 90834, and 90837, or empty when the sets differ. */
+export function allThreePayerCodeSentence() {
+  const codes = ['90791', '90834', '90837'];
+  const sets = codes.map((code) => {
+    const places = ['medicare', 'medicaid-ffs', 'uhc'].map((payer) => statesFor(payer, code));
+    const [first, ...rest] = places;
+    return new Set([...first].filter((state) => rest.every((set) => set.has(state))));
+  });
+  const [first, ...rest] = sets;
+  const same = rest.every((set) => set.size === first.size && [...first].every((state) => set.has(state)));
+  if (!same || first.size === 0) return '';
+  return `Medicare, Medicaid FFS and UHC ranges are all published for 90791, 90834 and 90837 in ${first.size} ${placeNoun(first, first.size)}.`;
 }
 
 export function codesInData() {

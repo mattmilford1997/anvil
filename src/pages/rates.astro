@@ -6,7 +6,7 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { absolute, breadcrumbJsonLd } from '../lib/seo';
-import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath, payerFileStateSentence } from '../lib/rates';
+import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath, payerFileStateSentence, allThreePayerCodeSentence } from '../lib/rates';
 import WedgeRelated from '../components/WedgeRelated.astro';
 const jurisdictions = ratesByJurisdiction();
 const allStateHrefs = jurisdictions.flatMap((j) => j.pairs.map((p) => ratePath(p.state, p.code)));
@@ -39,6 +39,7 @@ const datasetJsonLd = {
   },
   isBasedOn: { '@type': 'CreativeWork', name: 'Parite' },
 };
+const threePayerCodes = allThreePayerCodeSentence();
 const faqs = [
   { q: 'Where can I find reimbursement rates by state and CPT code?', a: 'Use the lookup, or open a page such as 90837 in Ohio. Ranges come from Parite. They are not a guarantee of what you will be paid.' },
   { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, in states where Parite has a Medicaid FFS figure. Ohio 90837 and California 90837 are examples. If Medicaid FFS is missing for a state, that row stays blank until Parite has it.' },
@@ -62,6 +63,7 @@ const faqs = [
   <Section id="rates-by-payer" eyebrow="By payer" title="Telehealth reimbursement rates by payer">
     <p class="lede">Telehealth reimbursement rates by payer are the rows of the table on each state and CPT code page, for example <a href={ratePath('OH', '90837')}>90837 in Ohio</a>. Open <a href={payerHubPath('medicare')}>Medicare</a>, <a href={payerHubPath('medicaid-ffs')}>Medicaid</a>, and <a href={payerHubPath('uhc')}>UnitedHealthcare</a>.</p>
     <p class="lede" style="margin-top:16px">{payerFileStateSentence()}</p>
+    {threePayerCodes && <p class="lede" style="margin-top:16px">{threePayerCodes}</p>}
   </Section>
   <Section tight>
     <RateLookup />

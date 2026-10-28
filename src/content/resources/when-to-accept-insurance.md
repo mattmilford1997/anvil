@@ -68,6 +68,6 @@ Phase 2: expand coverage and move toward owning your payer relationships. More s
 
 ## Next step
 
-Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. Start with [reimbursement rates by state and CPT code](/rates). When the signals are true, [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts). The entity that holds those relationships is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure).
+Download the Insurance Readiness Checklist, then look up what payers pay for your codes in your states. Start with [reimbursement rates by state and CPT code](/rates). When the signals are true, [accept insurance as a virtual care company](/solutions/virtual-care). Phase 2, owning the payer relationships, is [own your payer contracts](/own-your-contracts). The entity that holds those relationships is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure). That structure exists because of [corporate practice of medicine for telehealth](/platform/compliance#cpom-telehealth).
 
 ---
