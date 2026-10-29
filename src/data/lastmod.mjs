@@ -4,29 +4,29 @@ export const PAGE_LASTMOD = {
   '/': '2026-10-20',
   '/platform': '2026-10-20',
   '/platform/rcm': '2026-10-26',
-  '/platform/compliance': '2026-10-19',
+  '/platform/compliance': '2026-10-29',
   '/platform/contracting': '2026-10-28',
   '/platform/credentialing': '2026-10-27',
   '/platform/eligibility': '2026-10-17',
-  '/own-your-contracts': '2026-10-27',
+  '/own-your-contracts': '2026-10-29',
   '/pricing': '2026-10-20',
-  '/rates': '2026-10-28',
+  '/rates': '2026-10-29',
   '/rates/payer/medicare': '2026-10-27',
   '/rates/payer/uhc': '2026-10-25',
   '/rates/payer/medicaid': '2026-10-27',
-  '/rates/code/90791': '2026-10-28',
-  '/rates/code/90834': '2026-10-28',
-  '/rates/code/90837': '2026-10-28',
+  '/rates/code/90791': '2026-10-29',
+  '/rates/code/90834': '2026-10-29',
+  '/rates/code/90837': '2026-10-29',
   '/rates/code/97153': '2026-10-25',
   '/solutions/behavioral-health': '2026-10-27',
-  '/solutions/switching': '2026-10-28',
+  '/solutions/switching': '2026-10-29',
   '/solutions/virtual-care': '2026-10-27',
   '/solutions/hybrid-care': '2026-10-20',
-  '/compare/bridge': '2026-10-28',
+  '/compare/bridge': '2026-10-29',
   '/health-plans': '2026-10-26',
   '/resources': '2026-10-20',
   '/resources/cash-pay-to-insurance-two-phase-plan': '2026-10-28',
-  '/resources/what-in-network-nationally-means': '2026-10-28',
+  '/resources/what-in-network-nationally-means': '2026-10-29',
   '/resources/five-workstreams-insurance-operations': '2026-10-28',
   '/resources/six-months-of-data': '2026-10-18',
   '/resources/when-to-accept-insurance': '2026-10-28',
@@ -60,10 +60,13 @@ export const PAGE_LASTMOD = {
 const STATE_HUB_LASTMOD = '2026-10-23';
 // State and code pages, and any other /rates/ URL without its own date.
 export const RATES_SUBPAGES_LASTMOD = '2026-10-18';
+// 90791, 90834, and 90837 leaf pages. 97153 leaves stay on RATES_SUBPAGES_LASTMOD.
+const PSYCH_LEAF_LASTMOD = '2026-10-29';
 const FALLBACK_LASTMOD = '2026-10-17';
 export function lastmodFor(path) {
   if (PAGE_LASTMOD[path]) return PAGE_LASTMOD[path];
   if (/^\/rates\/[a-z]{2}$/.test(path)) return STATE_HUB_LASTMOD;
+  if (/^\/rates\/[a-z]{2}\/(90791|90834|90837)$/.test(path)) return PSYCH_LEAF_LASTMOD;
   if (path.startsWith('/rates/')) return RATES_SUBPAGES_LASTMOD;
   return FALLBACK_LASTMOD;
 }

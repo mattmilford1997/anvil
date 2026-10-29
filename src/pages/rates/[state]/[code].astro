@@ -23,6 +23,7 @@ import {
   nearbyPairs,
   payerHubPath,
   rateFaqs,
+  medicarePeerRank,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -57,6 +58,11 @@ const rangeSentence = fmtRate(blendLow) === fmtRate(blendHigh)
   : `The ${code} reimbursement rate in ${name} (${service}) ranges from ${fmtRate(blendLow)} to ${fmtRate(blendHigh)} per unit across ${payerList}, before patient responsibility.`;
 const intro = `${rangeSentence} These are Parite ranges for planning, not a guarantee of what you will be paid.`;
 const faqs = rateFaqs(code, stateUpper, rows);
+const inName = stateUpper === 'DC' ? `the ${name}` : name;
+const medicareRank = medicarePeerRank(stateUpper, code);
+const medicaidRow = rows.find((row) => row.payer === 'medicaid-ffs');
+const medicareRow = rows.find((row) => row.payer === 'medicare');
+const showMediMedi = (code === '90791' || code === '90834') && medicaidRow && medicareRow;
 ---
 <BaseLayout
   title={title}
@@ -75,6 +81,9 @@ const faqs = rateFaqs(code, stateUpper, rows);
       <h1>{h1}</h1>
       <p class="lede">{intro}</p>
       <p class="small muted"><a href={stateHubPath(stateUpper)}>{name} therapy reimbursement rates by CPT code</a>. <a href={codeHubPath(code)}>{code} reimbursement rates by state</a>. <a href="/rates">All reimbursement rates by state and CPT code</a>.</p>
+      {medicareRank && medicareRank.m > 0 && (
+        <p class="lede" style="margin-top:16px">In {inName}, the Medicare {code} high of {fmtRate(medicareRank.high)} is above the Medicare high in {medicareRank.m} of the other {medicareRank.n} {medicareRank.noun} Parite publishes.</p>
+      )}
     </div>
   </section>
 
@@ -109,6 +118,9 @@ const faqs = rateFaqs(code, stateUpper, rows);
       {sources.length > 0 && <> Labels as Parite provides them: {sources.join('; ')}.</>}
       {' '}Not a contracted rate for your entity and not a guarantee.
     </p>
+    {showMediMedi && medicaidRow && medicareRow && (
+      <p class="lede" style="margin-top:16px">For {code} in {inName}, the published Medicaid FFS range tops out at {fmtRate(medicaidRow.high)} and the Medicare range at {fmtRate(medicareRow.high)}.</p>
+    )}
   </Section>
 
   {nearby.length > 0 && (
