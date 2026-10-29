@@ -172,6 +172,35 @@ export function medicaidAboveMedicare(code: string) {
   return { n: both.length, above, noun: placeNoun(both, both.length) };
 }
 
+/** Jurisdictions with both a Medicare and a UHC row. above counts strict > on high. */
+export function uhcAboveMedicare(code: string) {
+  const medicare = new Map<string, number>();
+  const uhc = new Map<string, number>();
+  for (const row of rateRows) {
+    if (row.code !== code) continue;
+    if (row.payer === 'medicare') medicare.set(row.state, row.high);
+    if (row.payer === 'uhc') uhc.set(row.state, row.high);
+  }
+  const both = [...uhc.keys()].filter((state) => medicare.has(state));
+  const above = both.filter((state) => (uhc.get(state) ?? 0) > (medicare.get(state) ?? 0)).length;
+  return { n: both.length, above, noun: placeNoun(both, both.length) };
+}
+
+/** This jurisdiction's Medicare high against the other Medicare jurisdictions for the same code. */
+export function medicarePeerRank(state: string, code: string) {
+  const st = state.toUpperCase();
+  const highs = new Map<string, number>();
+  for (const row of rateRows) {
+    if (row.payer !== 'medicare' || row.code !== code) continue;
+    highs.set(row.state, row.high);
+  }
+  const high = highs.get(st);
+  if (high == null) return undefined;
+  const others = [...highs.keys()].filter((place) => place !== st);
+  const m = others.filter((place) => high > (highs.get(place) ?? 0)).length;
+  return { high, m, n: others.length, noun: placeNoun(others, others.length) };
+}
+
 /** Highest range is the highest high. Lowest range is the lowest high. Ties break on low, then state name. */
 export function payerCodeSpread(payer: string, code: string) {
   const rows = rateRows.filter((row) => row.payer === payer && row.code === code);
@@ -301,6 +330,13 @@ export function ratesByJurisdiction(): RateJurisdiction[] {
       pairs: [...pairs].sort((a, b) => a.code.localeCompare(b.code)),
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function ratePageCountSentence() {
+  const pairs = ratePairs();
+  const places = ratesByJurisdiction().map((jurisdiction) => jurisdiction.state);
+  if (pairs.length === 0 || places.length === 0) return '';
+  return `There are ${pairs.length} state and CPT code rate pages across ${places.length} ${placeNoun(places, places.length)}.`;
 }
 
 /** States that share a border. Used only to link a code page to the same code nearby. */

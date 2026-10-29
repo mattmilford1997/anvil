@@ -210,6 +210,63 @@ def medicaid_above_sentence(code):
     )
 
 
+def uhc_above_sentence(code):
+    both = states_for('uhc', code) & states_for('medicare', code)
+    if not both:
+        return ''
+    above = 0
+    for state in both:
+        uhc = row_for('uhc', code, state)
+        medicare = row_for('medicare', code, state)
+        if uhc['high'] == medicare['high']:
+            fail(f'{code} {state} ties on UHC and Medicare high')
+        if uhc['high'] > medicare['high']:
+            above += 1
+    noun = place_noun(both, len(both))
+    return (
+        f"In {above} of the {len(both)} {noun} with both a Medicare and a UHC {code} range, "
+        f"the UHC high is above the Medicare high."
+    )
+
+
+def medicare_peer_sentence(state, code):
+    rows = [row for row in RATES if row['payer'] == 'medicare' and row['code'] == code]
+    mine = next((row for row in rows if row['state'] == state), None)
+    if not mine:
+        return ''
+    others = [row for row in rows if row['state'] != state]
+    m = sum(1 for row in others if mine['high'] > row['high'])
+    if m == 0:
+        return ''
+    noun = place_noun((row['state'] for row in others), len(others))
+    place = f"the {state_name(state)}" if state == 'DC' else state_name(state)
+    return (
+        f"In {place}, the Medicare {code} high of {money(mine['high'])} is above the Medicare high "
+        f"in {m} of the other {len(others)} {noun} Parite publishes."
+    )
+
+
+def medicaid_medicare_top_sentence(state, code):
+    if code not in ('90791', '90834'):
+        return ''
+    medicaid = row_for('medicaid-ffs', code, state)
+    medicare = row_for('medicare', code, state)
+    if not medicaid or not medicare:
+        return ''
+    place = f"the {state_name(state)}" if state == 'DC' else state_name(state)
+    return (
+        f"For {code} in {place}, the published Medicaid FFS range tops out at {money(medicaid['high'])} "
+        f"and the Medicare range at {money(medicare['high'])}."
+    )
+
+
+def rate_page_count_sentence():
+    pairs = {(row['state'], row['code']) for row in RATES}
+    places = {row['state'] for row in RATES}
+    noun = place_noun(places, len(places))
+    return f"There are {len(pairs)} state and CPT code rate pages across {len(places)} {noun}."
+
+
 def state_90837_top_sentence(state):
     medicaid = row_for('medicaid-ffs', '90837', state)
     medicare = row_for('medicare', '90837', state)
@@ -316,6 +373,18 @@ def main():
         'OH-top': 'In Ohio, the top of the published 90837 range is $108.57 on Medicaid FFS and $163.52 on Medicare.',
         'AK-top': 'In Alaska, the top of the published 90837 range is $323.68 on Medicaid FFS and $232.44 on Medicare.',
         'IL-top': 'In Illinois, the top of the published 90837 range is $183.16 on Medicaid FFS and $169.49 on Medicare.',
+        '90791-uhc-above': 'In 51 of the 51 jurisdictions with both a Medicare and a UHC 90791 range, the UHC high is above the Medicare high.',
+        '90834-uhc-above': 'In 51 of the 51 jurisdictions with both a Medicare and a UHC 90834 range, the UHC high is above the Medicare high.',
+        '90837-uhc-above': 'In 50 of the 51 jurisdictions with both a Medicare and a UHC 90837 range, the UHC high is above the Medicare high.',
+        'OH-90837-peer': 'In Ohio, the Medicare 90837 high of $163.52 is above the Medicare high in 11 of the other 52 jurisdictions Parite publishes.',
+        'AK-90837-peer': 'In Alaska, the Medicare 90837 high of $232.44 is above the Medicare high in 52 of the other 52 jurisdictions Parite publishes.',
+        'TX-90834-peer': 'In Texas, the Medicare 90834 high of $115.60 is above the Medicare high in 36 of the other 52 jurisdictions Parite publishes.',
+        'CA-90791-peer': 'In California, the Medicare 90791 high of $206.78 is above the Medicare high in 51 of the other 52 jurisdictions Parite publishes.',
+        'DC-90837-peer': 'In the District of Columbia, the Medicare 90837 high of $181.03 is above the Medicare high in 47 of the other 52 jurisdictions Parite publishes.',
+        'TX-90834-medi': 'For 90834 in Texas, the published Medicaid FFS range tops out at $86.07 and the Medicare range at $115.60.',
+        'CA-90791-medi': 'For 90791 in California, the published Medicaid FFS range tops out at $128.08 and the Medicare range at $206.78.',
+        'OH-90834-medi': 'For 90834 in Ohio, the published Medicaid FFS range tops out at $74.01 and the Medicare range at $111.49.',
+        'rate-pages': 'There are 164 state and CPT code rate pages across 53 jurisdictions.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -363,6 +432,30 @@ def main():
         fail(f"97153 should not have a Medicare comparison: {medicaid_above_sentence('97153')}")
     if triple_payer_sentence() != expected['triple']:
         fail(f"triple payer sentence drifted: {triple_payer_sentence()}")
+    for code in ('90791', '90834', '90837'):
+        key = f'{code}-uhc-above'
+        if uhc_above_sentence(code) != expected[key]:
+            fail(f'{key} sentence drifted: {uhc_above_sentence(code)}')
+    if uhc_above_sentence('97153'):
+        fail(f"97153 should not have a UHC comparison: {uhc_above_sentence('97153')}")
+    for state, code, key in (
+        ('OH', '90837', 'OH-90837-peer'),
+        ('AK', '90837', 'AK-90837-peer'),
+        ('TX', '90834', 'TX-90834-peer'),
+        ('CA', '90791', 'CA-90791-peer'),
+        ('DC', '90837', 'DC-90837-peer'),
+    ):
+        if medicare_peer_sentence(state, code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicare_peer_sentence(state, code)}')
+    for state, code, key in (
+        ('TX', '90834', 'TX-90834-medi'),
+        ('CA', '90791', 'CA-90791-medi'),
+        ('OH', '90834', 'OH-90834-medi'),
+    ):
+        if medicaid_medicare_top_sentence(state, code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicaid_medicare_top_sentence(state, code)}')
+    if rate_page_count_sentence() != expected['rate-pages']:
+        fail(f"rate page count sentence drifted: {rate_page_count_sentence()}")
     for state, key in (('OH', 'OH-top'), ('AK', 'AK-top'), ('IL', 'IL-top')):
         if state_90837_top_sentence(state) != expected[key]:
             fail(f'{key} sentence drifted: {state_90837_top_sentence(state)}')
@@ -438,6 +531,15 @@ def main():
                 fail(f'{path} Medicaid-above sentence should not contain a link')
         elif 'with both a Medicare and a Medicaid FFS' in visible(html):
             fail(f'{path} should not include a Medicare and Medicaid comparison')
+        uhc_text = uhc_above_sentence(code)
+        if uhc_text:
+            if uhc_text not in visible(html):
+                fail(f'{path} is missing: {uhc_text}')
+            paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if 'with both a Medicare and a UHC' in item), '')
+            if 'href=' in paragraph:
+                fail(f'{path} UHC-above sentence should not contain a link')
+        elif 'with both a Medicare and a UHC' in visible(html):
+            fail(f'{path} should not include a Medicare and UHC comparison')
 
     uhc_html = PAYER_FILES['uhc'].read_text()
     if expected['uhc-90791'] not in visible(uhc_html):
@@ -521,8 +623,56 @@ def main():
     triple_paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', rates_html) if 'UHC ranges are all published' in item), '')
     if 'href=' in triple_paragraph:
         fail('rates hub triple-payer sentence should not contain a link')
+    if expected['rate-pages'] not in visible(rates_html):
+        fail(f"rates hub is missing: {expected['rate-pages']}")
+    count_paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', rates_html) if 'state and CPT code rate pages' in item), '')
+    if 'href=' in count_paragraph:
+        fail('rates hub page-count sentence should not contain a link')
 
-    print('verify-rates: payer spreads, code counts, Medicare and Medicaid comparisons, the UHC 90791 sentence, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
+    peer_rendered = 0
+    medicare_leaves = sum(len(states_for('medicare', code)) for code in ('90791', '90834', '90837'))
+    if medicare_leaves != 159:
+        fail(f'expected 159 Medicare psych leaves, got {medicare_leaves}')
+    for code in ('90791', '90834', '90837'):
+        for state in sorted(states_for('medicare', code)):
+            path = DIST / 'rates' / state.lower() / f'{code}.html'
+            if not path.exists():
+                fail(f'missing {path}')
+            html = path.read_text()
+            sentence = medicare_peer_sentence(state, code)
+            if sentence:
+                peer_rendered += 1
+                if sentence not in visible(html):
+                    fail(f'{path} is missing: {sentence}')
+                paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if 'is above the Medicare high in' in item), '')
+                if 'href=' in paragraph:
+                    fail(f'{path} Medicare peer sentence should not contain a link')
+            elif 'is above the Medicare high in' in visible(html):
+                fail(f'{path} should not include a Medicare peer sentence')
+    if peer_rendered > 159:
+        fail(f'expected at most 159 Medicare peer sentences, got {peer_rendered}')
+
+    medi_rendered = 0
+    for code in ('90791', '90834'):
+        both = states_for('medicare', code) & states_for('medicaid-ffs', code)
+        for state in sorted(both):
+            path = DIST / 'rates' / state.lower() / f'{code}.html'
+            sentence = medicaid_medicare_top_sentence(state, code)
+            html = path.read_text()
+            if sentence not in visible(html):
+                fail(f'{path} is missing: {sentence}')
+            paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if 'published Medicaid FFS range tops out' in item), '')
+            if 'href=' in paragraph:
+                fail(f'{path} Medicaid and Medicare top sentence should not contain a link')
+            medi_rendered += 1
+    if medi_rendered != 48:
+        fail(f'expected 48 Medicaid and Medicare leaf sentences, got {medi_rendered}')
+    for state in states_for('medicare', '90837') | states_for('medicaid-ffs', '90837'):
+        path = DIST / 'rates' / state.lower() / '90837.html'
+        if path.exists() and 'the published Medicaid FFS range tops out' in visible(path.read_text()):
+            fail(f'{path} should not repeat the 90791 and 90834 Medicaid top sentence')
+
+    print('verify-rates: payer spreads, code counts, Medicare, Medicaid and UHC comparisons, leaf rank sentences, the 90837 cross-payer sentences, state code counts, and the rates-hub sentence match rates.json')
 
 
 if __name__ == '__main__':

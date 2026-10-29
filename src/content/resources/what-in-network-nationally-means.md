@@ -34,13 +34,13 @@ draft: false
 Every founder hears the phrase "in-network nationally" and pictures one thing: my patients, anywhere, covered. The phrase actually describes a stack of four objects, and which ones you hold changes what you own.
 
 ## Layer 1: The contract
-A participation agreement between a payer and a legal entity (a professional corporation, a group practice, an IPA). It sets rates, terms, and which specialties and services are covered. Clinicians do not hold contracts. Entities do. With Anvil, the entity you end up owning is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure).
+A participation agreement between a payer and a legal entity (a professional corporation, a group practice, an IPA). It sets rates, terms, and which specialties and services are covered. Clinicians do not hold contracts. Entities do. With Anvil, the entity you end up owning is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure). Who may own that entity is set by [corporate practice of medicine for telehealth](/platform/compliance#cpom-telehealth).
 
 ## Layer 2: The panel
 Whether the payer is accepting new providers in a given specialty and geography. A closed panel means the payer will not add clinicians even if you have a contract. Panels open and close by state and specialty, and knowing where they are open is real expertise.
 
 ## Layer 3: The roster
-The list of clinicians the payer recognizes as billing under a given contract. Adding a clinician to an existing roster is a lighter process than winning a new contract. This is why an entity that already has contracts can get a new clinician billing in weeks.
+The list of clinicians the payer recognizes as billing under a given contract. Adding a clinician to an existing roster is a lighter process than winning a new contract. This is why an entity that already has contracts can get a new clinician billing in weeks. Whether to stay on that roster or build your own entity is the choice in [rent a PC vs own a PC](/own-your-contracts#rent-or-build).
 
 ## Layer 4: Credentialing
 The verification that each clinician is who they say they are. Payers do it themselves unless they have delegated it to an entity they trust, which is a formal status that takes years to earn.
@@ -55,7 +55,7 @@ Three moments make it concrete.
 
 *Your Series A or B.* Diligence asks: what are your payer contracts, what are your rates, and what happens to insured revenue if the vendor relationship ends? "They're the vendor's" is an answer that gets written into the risk section.
 
-*Your first rate negotiation.* You cannot negotiate a contract you are not party to. If your rates are set inside a vendor's agreement, your leverage is limited to renegotiating your fee with the vendor.
+*Your first rate negotiation.* You cannot negotiate a contract you are not party to. If your rates are set inside a vendor's agreement, your leverage is limited to renegotiating your fee with the vendor. Published ranges to plan against are on [reimbursement rates by state and CPT code](/rates).
 
 *The day you want to leave.* Enrollment on someone else's roster does not transfer. You start Layer 1 from zero, and Layer 3 restarts with it. Leaving without a revenue gap is the subject of [switching from a network rental vendor without losing revenue](/solutions/switching).
 
