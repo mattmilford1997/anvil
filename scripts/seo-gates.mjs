@@ -79,6 +79,33 @@ function checkFaqPage(value, rel, errors) {
   }
 }
 
+const feedPath = path.join(dist, 'feed.json');
+let feed;
+try {
+  feed = JSON.parse(await readFile(feedPath, 'utf8'));
+} catch (err) {
+  errors.push(`feed.json: ${err instanceof Error ? err.message : 'unreadable'}`);
+  feed = null;
+}
+if (feed) {
+  const sitemapText = [];
+  const entries = await readdir(dist, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.startsWith('sitemap') && entry.name.endsWith('.xml')) {
+      sitemapText.push(await readFile(path.join(dist, entry.name), 'utf8'));
+    }
+  }
+  const locs = [...sitemapText.join('\n').matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const livePosts = locs.filter((url) => /\/resources\/[^/]+$/.test(new URL(url).pathname));
+  const items = Array.isArray(feed.items) ? feed.items : [];
+  if (items.length !== livePosts.length) {
+    errors.push(`feed.json: ${items.length} items, live posts in sitemap: ${livePosts.length}`);
+  }
+  for (const item of items) {
+    if (!livePosts.includes(item.url)) errors.push(`feed.json: ${item.url} is not in the sitemap`);
+  }
+}
+
 if (errors.length > 0) {
   console.error(`SEO gate failed on ${errors.length} page check${errors.length === 1 ? '' : 's'}:`);
   for (const error of errors) console.error(`  ${error}`);

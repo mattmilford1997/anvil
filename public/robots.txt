@@ -3,4 +3,16 @@ Allow: /
 Allow: /rates
 Allow: /compare
 Disallow: /contact/success
+
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+Disallow: /contact/success
+
 Sitemap: https://www.anvilcontracts.com/sitemap-index.xml

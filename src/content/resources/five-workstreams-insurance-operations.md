@@ -3,6 +3,7 @@ title: "Cost of Building Insurance Operations In-House: Build vs Buy"
 metaTitle: "Cost of building insurance operations in-house"
 excerpt: "Cost of building insurance operations in-house: five workstreams, who to hire, and when build vs buy is the better call."
 lede: "Insurance billing is five separate jobs: contracting, credentialing, eligibility, claims, and denials. Here's what each one actually involves, who you'd have to hire, and which ones make sense to own."
+quickAnswer: "Industry ranges put fully loaded in-house operations around 20 to 25 percent of insured revenue at steady state, once contracting talent, compliance, and integration engineering are counted. The five workstreams are contracting, credentialing, eligibility, claims, and denials. Model your own case on the pricing calculator."
 summary:
   - "\"Billing\" is five distinct workstreams with five distinct skill sets. Founders who staff it as one job get five half-jobs."
   - "Two of the five (eligibility technology and claims/denials operations) are commodity work that should never be built from scratch."

@@ -139,3 +139,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - Ownership: customer's own PC formed from week one; volume migrates over 6-18 months; contracts end up in the customer's entity.
 - Pricing: platform fee on collections during rental; PC formation $15,000 one-time; physician owner $3,000 per month (via Foundry PC).
 - Compliance: rental phase structured to align with the AKS personal services and management contracts safe harbor; state CPOM structuring for the customer's own PC. No OIG advisory opinion is claimed. HIPAA in place; SOC 2 Type II in progress.
+
+## Feed
+- [Resources feed (JSON Feed 1.1)](https://www.anvilcontracts.com/feed.json): live guides with title, summary and last modified date
+

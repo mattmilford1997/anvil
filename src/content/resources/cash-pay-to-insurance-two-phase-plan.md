@@ -3,6 +3,7 @@ title: "Cash-Pay to Insurance Transition Telehealth: The Two-Phase Plan"
 metaTitle: "Cash-pay to insurance transition telehealth"
 excerpt: "Cash-pay to insurance transition for telehealth: a two-phase plan, DTC to in-network, and conversion on insurance vs cash-pay."
 lede: "A two-phase operating plan for moving a cash-pay care company onto insurance: which states and payers to start with, how to keep the cash-pay funnel intact, and how to make the insurance step convert instead of leak."
+quickAnswer: "A two-phase move: go in-network where your existing demand already is, with eligibility before the price screen, then expand coverage and contract your own entity. Cash-pay stays as the fallback. Conversion holds when insured patients see a copay instead of the cash price."
 summary:
   - "The switch fails when insurance is bolted onto a cash-pay funnel as an afterthought. It succeeds when eligibility runs before the price screen."
   - "Phase 1 is about lives per state, not number of states. Three states with the right payers beat ten states with the wrong ones."

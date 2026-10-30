@@ -3,6 +3,7 @@ title: "When Should a Virtual Care Company Accept Insurance? Seven Signals"
 metaTitle: "When should a virtual care company accept insurance?"
 excerpt: "When should a virtual care company accept insurance? Seven signals and a readiness framework for making the switch."
 lede: "Seven concrete signals that a cash-pay care company is ready to accept insurance, what each one costs you if you ignore it, and the two-phase plan for making the switch without losing your funnel."
+quickAnswer: "When four or more of the seven signals are true: rising CAC, drop-off at the price step, patients asking if you take insurance, a competitor in-network, outcomes you can show a payer, a board TAM question, or turning away insured patients who need the care. Score the signals on the readiness checklist."
 summary:
   - "Most founders switch to insurance six to twelve months too late, because cash-pay revenue hides the ceiling until CAC starts climbing."
   - "There are seven observable signals. Three of them (CAC trend, drop-off at the price step, and competitor coverage) show up in your own dashboards."

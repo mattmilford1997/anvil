@@ -85,5 +85,11 @@ export const rcmWhatIsAnswer =
   "Telehealth revenue cycle management (virtual care RCM) is coding, claim submission, denial management, and accounts receivable for visits delivered over video or phone. Anvil runs that virtual care RCM under either entity and reports clean-claim rate monthly.";
 
 /** Hero and first FAQ on /solutions/behavioral-health. The RCM sentence stays in the section, with its link. */
+export const platformWhatIsAnswer =
+  "The five workstreams in one place: payer contracting, credentialing, RCM, eligibility, and compliance. Anvil runs them first under our entity so you can launch, then under yours so you own the contracts.";
+
+export const hybridBillingAnswer =
+  "Billing visits delivered in a home, clinic, or school under the correct place of service, with site enrollment where the payer requires it. Telehealth-only vendors often refuse the model. Anvil bills it: place of service, site enrollment, interventional psychiatry, and school-based programs.";
+
 export const bhPayerContractingAnswer =
   "Behavioral health payer contracting is the work of getting psychiatry, therapy, and ABA groups in-network across states. That means Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing.";

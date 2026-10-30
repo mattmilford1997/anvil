@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // /docs and /customers are placeholders until an API reference and signed-off case studies exist.
-      filter: (page) => !page.includes('/contact/success') && !page.includes('/legal/') && !page.includes('/docs') && !page.includes('/customers'),
+      filter: (page) => !page.includes('/contact/success') && !page.includes('/legal/') && !page.includes('/docs') && !page.includes('/customers') && !page.includes('/feed.json'),
       serialize(item) {
         const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
         const d = lastmodFor(path);

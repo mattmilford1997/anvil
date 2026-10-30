@@ -1,5 +1,7 @@
 ---
 import ProductMock from './ProductMock.astro';
+import { cleanPath } from '../lib/seo';
+import { lastmodFor } from '../data/lastmod.mjs';
 interface Props {
   eyebrow?: string;
   title: string;
@@ -20,8 +22,13 @@ interface Props {
   ctaFirst?: boolean;
   /** On small screens, tighten the hero and place the primary button above the long answer. */
   foldCta?: boolean;
+  /** Visible Updated line from the page lastmod, placed under the answer. */
+  updated?: boolean;
 }
-const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore, ctaFirst = false, foldCta = false } = Astro.props;
+const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' }, secondary, secondaryAs = 'button', mock = false, compact = false, prompt, promptId, answer, subMore, ctaFirst = false, foldCta = false, updated = false } = Astro.props;
+const updatedLabel = updated
+  ? new Date(`${lastmodFor(cleanPath(Astro.url.pathname))}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  : '';
 ---
 <section class:list={['hero', { compact, 'has-mock': mock, 'cta-first': ctaFirst, 'fold-cta': foldCta }]}>
   <canvas class="dots" aria-hidden="true"></canvas>
@@ -31,6 +38,7 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
       <h1 set:html={title} />
       {prompt && <h2 id={promptId} class="hero-q">{prompt}</h2>}
       {answer && <p class="lede direct-answer">{answer}</p>}
+      {updated && <p class="small muted updated">Updated {updatedLabel}</p>}
       <p class="lede">{sub}{subMore && !ctaFirst && <> <span class="hero-more">{subMore}</span></>}</p>
       <div class="btn-group">
         <a href={primary.href} class="btn btn-primary btn-lg">{primary.label}</a>
@@ -71,6 +79,7 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
     .hero.compact.fold-cta .btn-group { order: 3; }
     .hero.compact.fold-cta .hero-alt { order: 4; margin-top: 10px; }
     .hero.compact.fold-cta .direct-answer { order: 5; margin-top: 16px; margin-bottom: 0; }
+    .hero.compact.fold-cta .updated { order: 6; margin: 8px 0 0; }
     .hero:not(.compact) { padding: 24px 0 28px; }
     .hero:not(.compact) .hero-copy { display: flex; flex-direction: column; }
     .hero:not(.compact) .hero-q { order: 1; margin-bottom: 8px; }
@@ -78,13 +87,15 @@ const { eyebrow, title, sub, primary = { label: 'Get started', href: '/contact' 
     .hero:not(.compact) .btn-group { order: 3; }
     .hero:not(.compact) .hero-alt { order: 4; margin-top: 12px; }
     .hero:not(.compact) .direct-answer { order: 5; margin-top: 20px; margin-bottom: 0; }
+    .hero:not(.compact) .updated { order: 6; margin: 8px 0 0; }
     .hero:not(.compact) .hero-more { display: none; }
     .hero:not(.compact) .hero-more-block { display: none; }
   }
   @media (min-width: 481px) {
     .hero.cta-first .hero-copy { display: flex; flex-direction: column; }
     .hero.cta-first .direct-answer { order: 5; margin-top: 24px; }
-    .hero.cta-first .hero-more-block { order: 6; margin-bottom: 0; }
+    .hero.cta-first .updated { order: 6; margin: 8px 0 0; }
+    .hero.cta-first .hero-more-block { order: 7; margin-bottom: 0; }
     .hero.cta-first .lede:not(.direct-answer):not(.hero-more-block) { margin-bottom: 20px; }
   }
 </style>
