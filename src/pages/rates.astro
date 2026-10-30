@@ -6,6 +6,7 @@ import RateLookup from '../components/RateLookup.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import { absolute, breadcrumbJsonLd } from '../lib/seo';
+import { lastmodFor } from '../data/lastmod.mjs';
 import { samplePairs, longTail90837Pairs, ratePath, stateName, codeLabel, codeAnchorName, ratesFile, codesInData, ratesByJurisdiction, ratePairs, stateHubPath, codeHubPath, payerHubPath, payerFileStateSentence, allThreePayerCodeSentence, ratePageCountSentence } from '../lib/rates';
 import WedgeRelated from '../components/WedgeRelated.astro';
 const jurisdictions = ratesByJurisdiction();
@@ -24,7 +25,7 @@ const datasetJsonLd = {
   description: 'Planning ranges for telehealth reimbursement rates by payer, state, and CPT code. Source: Parite. Not a guarantee of payment.',
   url: absolute('/rates'),
   creator: { '@type': 'Organization', name: 'Anvil' },
-  dateModified: '2026-09-17',
+  dateModified: lastmodFor('/rates'),
   spatialCoverage: { '@type': 'Place', name: 'United States' },
   variableMeasured: [
     { '@type': 'PropertyValue', name: 'CPT code' },
@@ -41,8 +42,9 @@ const datasetJsonLd = {
 };
 const threePayerCodes = allThreePayerCodeSentence();
 const ratePageCount = ratePageCountSentence();
+const ratesLookupAnswer = 'Use the lookup, or open a page such as 90837 in Ohio. Ranges come from Parite. They are not a guarantee of what you will be paid.';
 const faqs = [
-  { q: 'Where can I find reimbursement rates by state and CPT code?', a: 'Use the lookup, or open a page such as 90837 in Ohio. Ranges come from Parite. They are not a guarantee of what you will be paid.' },
+  { q: 'Where can I find reimbursement rates by state and CPT code?', a: ratesLookupAnswer },
   { q: 'Do you publish a Medicaid reimbursement rate for 90837?', a: 'Yes, as a range, in states where Parite has a Medicaid FFS figure. Ohio 90837 and California 90837 are examples. If Medicaid FFS is missing for a state, that row stays blank until Parite has it.' },
   { q: 'Where can I find telehealth reimbursement rates by payer?', a: 'Use the lookup or open a state and code pair. Each pair is a table of telehealth reimbursement rates by payer for that CPT code (Medicare PFS, Medicaid FFS, and UHC TiC where Parite has the number). The lookup has the same payer filter.' },
   { q: 'Will you publish psychotherapy reimbursement rates by state?', a: 'Yes. 90837, 90834, and 90791 have a page per state. 97153 appears in states where Parite has Medicaid FFS. We add codes when Parite has them.' },
@@ -53,7 +55,7 @@ const faqs = [
 ];
 ---
 <BaseLayout title="Reimbursement rates by state and CPT code" description="Reimbursement rates by state and CPT code, including the Medicaid rate for 90837 and telehealth reimbursement by payer. Built from Parite data." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Rates', path: '/rates' }]), datasetJsonLd]}>
-  <Hero compact eyebrow="Rates" title="Reimbursement rates by state and CPT code: what payers actually pay." sub="Look up reimbursement rates by state and CPT code, then filter telehealth reimbursement by payer, before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state are in the lookup and on per-state pages built from Parite." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
+  <Hero compact eyebrow="Rates" title="Reimbursement rates by state and CPT code: what payers actually pay." answer={ratesLookupAnswer} updated sub="Look up reimbursement rates by state and CPT code, then filter telehealth reimbursement by payer, before you sign with anyone, including us. Medicaid reimbursement rate for 90837, telehealth reimbursement by payer, and psychotherapy reimbursement rates by state are in the lookup and on per-state pages built from Parite." primary={{ label: 'Get a contracting plan', href: '/contact?src=rates' }} />
   <Section eyebrow="The hub" title="Reimbursement rates by state and CPT code" intro={`Look up telehealth reimbursement rates by payer for ${codeList} by state. The numbers come from Parite. They are published ranges for planning, not a guarantee of what you will be paid. Each state and code pair is a payer table.`}>
     <div class="grid grid-2">
       <div class="card"><h3>Medicaid reimbursement rate for 90837</h3><p class="muted">Psychotherapy, 60 minutes, is the code most behavioral health companies model first. Start with <a href={ratePath('OH', '90837')}>90837 reimbursement rate in Ohio by payer (2026)</a>, then use the lookup for your state.</p></div>

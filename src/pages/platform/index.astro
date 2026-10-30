@@ -5,6 +5,7 @@ import Section from '../../components/Section.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
+import { platformWhatIsAnswer } from '../../data/directAnswers';
 
 const workstreams = [
   { name: 'Payer contracting', hire: 'Contracting lead with payer relationships in each state, plus counsel for contract review.', anvil: 'Rent: you bill under our existing contracts. Own: we contract your entity with commercial, Medicaid, and MA payers, and you see the rate ladder.', href: '/platform/contracting' },
@@ -15,11 +16,11 @@ const workstreams = [
 ];
 
 const faqs = [
-  { q: 'What is an insurance operations platform for care companies?', a: 'The five workstreams in one place: payer contracting, credentialing, RCM, eligibility, and compliance. Anvil runs them first under our entity so you can launch, then under yours so you own the contracts.' },
+  { q: 'What is an insurance operations platform for care companies?', a: platformWhatIsAnswer },
 ];
 ---
 <BaseLayout title="Insurance operations platform for care companies" description="Insurance operations platform for care companies. Payer contracting, credentialing, RCM, eligibility, and compliance. Rent, then own." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }])]}>
-  <Hero compact eyebrow="Platform" title="Insurance operations platform for care companies. Rent, then own." sub="Anvil is an insurance operations platform for care companies. The five workstreams are payer contracting, credentialing, RCM, eligibility, and compliance. We run them first under our entity so you can launch, then under yours so you keep the asset." secondary={{ label: 'See pricing', href: '/pricing' }} />
+  <Hero compact eyebrow="Platform" title="Insurance operations platform for care companies. Rent, then own." answer={platformWhatIsAnswer} updated sub="Anvil is an insurance operations platform for care companies. The five workstreams are payer contracting, credentialing, RCM, eligibility, and compliance. We run them first under our entity so you can launch, then under yours so you keep the asset." secondary={{ label: 'See pricing', href: '/pricing' }} />
 
   <Section eyebrow="The five workstreams" title="Payer contracting, credentialing, RCM, eligibility, and compliance" intro="What you would have to hire for each workstream, and what Anvil runs instead.">
     <p class="lede">What hiring for each one costs is in the <a href="/resources/five-workstreams-insurance-operations">five workstreams of insurance operations</a>.</p>

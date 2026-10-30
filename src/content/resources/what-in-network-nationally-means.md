@@ -3,6 +3,7 @@ title: "What Does In-Network Nationally Mean? Contracts, Panels, Rosters"
 metaTitle: "What does in-network nationally mean?"
 excerpt: "What does in-network nationally mean? Payer contract vs panel vs roster, and what credentialed in all 50 states actually is."
 lede: "\"In-network in all 50 states\" can mean four different things. Here's the vocabulary (contracts, panels, rosters, delegated credentialing), what each one gets you, and the one question to ask any vendor who says it."
+quickAnswer: "It can mean a payer contract, an open panel, a clinician roster, or credentialing, and those are not the same thing. Ask whose entity holds the contracts, and whether you are credentialed in all 50 states or added to someone else's roster. If you leave and the contracts stay with the vendor, you were renting."
 summary:
   - "A payer contract belongs to a legal entity, not a clinician. Everything downstream (panels, rosters, enrollment) hangs off whose entity that is."
   - "\"We'll get you in-network in weeks\" almost always means \"we'll add your clinicians to our entity's contracts.\" Fast, real, and not yours."

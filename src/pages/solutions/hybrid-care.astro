@@ -2,8 +2,9 @@
 import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
+import { hybridBillingAnswer } from '../../data/directAnswers';
 const faqs = [
-  { q: 'What is in-home care insurance billing?', a: 'Billing visits delivered in a home, clinic, or school under the correct place of service, with site enrollment where the payer requires it. Telehealth-only vendors often refuse the model. Anvil bills it: place of service, site enrollment, interventional psychiatry, and school-based programs.' },
+  { q: 'What is in-home care insurance billing?', a: hybridBillingAnswer },
   { q: 'Telehealth-only vendors turned us down. Why can you take us?', a: 'Because the platform was built for these models from the start. Place of service, facility components, travel, and site-specific enrollment are part of how we bill, not exceptions to it.' },
   { q: 'Does the rented PC work for in-person care?', a: 'Yes, where the state and payer allow the structure and the site is enrolled. Some in-person programs need site-level enrollment under your own PC sooner, and we sequence that first.' },
   { q: 'How does interventional psychiatry billing work?', a: 'TMS, ketamine and esketamine, plus the authorization and documentation those codes require. Facility and professional components can be two claims on one visit.' },
@@ -16,6 +17,8 @@ const faqs = [
   description="In-home care insurance billing for hybrid programs: place of service billing, site enrollment, interventional psychiatry, and school-based billing."
   eyebrow="Solutions / Hybrid and in-person"
   sub="In-home care insurance billing is what telehealth-only vendors refuse. If you deliver care in a clinic, a home, or a school, we bill it: place of service, site enrollment, interventional psychiatry, school-based programs."
+  answer={hybridBillingAnswer}
+  updated
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/hybrid-care' }, { name: 'Hybrid and in-person', path: '/solutions/hybrid-care' }]}
   faqs={faqs}
   ctaTitle="Describe your care model. We will tell you how it bills."

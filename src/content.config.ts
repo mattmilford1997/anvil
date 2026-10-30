@@ -11,6 +11,7 @@ const resources = defineCollection({
     metaTitle: z.string().optional(),
     excerpt: z.string().max(160), // meta description
     lede: z.string().optional(),   // longer intro shown under the title
+    quickAnswer: z.string().optional(), // visible answer under the lede; same words as the first FAQ
     summary: z.array(z.string()).default([]),
     author: z.string().default('matt-milford'),
     publishDate: z.coerce.date(),
