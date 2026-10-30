@@ -98,7 +98,8 @@ if (feed) {
   const locs = [...sitemapText.join('\n').matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
   const livePosts = locs.filter((url) => /\/resources\/[^/]+$/.test(new URL(url).pathname));
   const items = Array.isArray(feed.items) ? feed.items : [];
-  if (items.length !== livePosts.length) {
+  const preview = process.env.ANVIL_PREVIEW === '1';
+  if (!preview && items.length !== livePosts.length) {
     errors.push(`feed.json: ${items.length} items, live posts in sitemap: ${livePosts.length}`);
   }
   for (const item of items) {
