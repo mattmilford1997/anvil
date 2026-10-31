@@ -10,6 +10,7 @@ summary:
   - "Phase 2 is about ownership. Plan it before Phase 1 starts or you'll be renting your contracts in year three."
 author: "matt-milford"
 publishDate: 2026-10-20
+updatedDate: 2026-10-31
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
@@ -48,7 +49,7 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 ## Phase 2: Expand and own (months 3 to 18)
 *Add states and payers in order of marginal lives.* Now that you have data on which payers actually show up in your funnel, expand along that curve.
 
-*Start contracting your own entity.* This is the step most companies skip and regret. If all of your insured revenue runs through a vendor's contracted entity, you have insured revenue but no insured asset. Your next investor will ask about it. Form your own professional entity early, credential it, and start contracting with your top payers so that over time volume shifts from the shared entity to yours. Done in parallel, it never delays Phase 1.
+*Start contracting your own entity.* This is the step most companies skip and regret. If all of your insured revenue runs through a vendor's contracted entity, you have insured revenue but no insured asset. Your next investor will ask about it. Form your own professional entity early, credential it, and start contracting with your top payers so that over time volume shifts from the shared entity to yours. First compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build). Done in parallel, it never delays Phase 1.
 
 *Renegotiate at the first renewal.* Your first contracts will be at rack rates. With twelve months of clean claims and outcomes, you have something to negotiate with. This only works if the contracts are yours. Those clean claims run through [telehealth revenue cycle management](/platform/rcm).
 

@@ -13,6 +13,10 @@ import {
   ratePath,
   shortPayerName,
   payerCodeSpread,
+  placeNoun,
+  codeHubH1,
+  codeHubPath,
+  medicaidAboveUhc,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -35,6 +39,12 @@ const medicaid90791 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-f
 const medicaid90834 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-ffs', '90834') : undefined;
 const medicaid97153 = hub.payer === 'medicaid-ffs' ? payerCodeSpread('medicaid-ffs', '97153') : undefined;
 const uhc90834 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90834') : undefined;
+const places = [...new Set(rows.map((row) => row.state))];
+const codeCount = new Set(rows.map((row) => row.code)).size;
+const codeHubCodes = hub.payer === 'medicaid-ffs' ? ['90837', '90834', '90791', '97153'] : ['90837', '90834', '90791'];
+const mediUhc90791 = medicaidAboveUhc('90791');
+const mediUhc90834 = medicaidAboveUhc('90834');
+const mediUhc90837 = medicaidAboveUhc('90837');
 ---
 <BaseLayout
   title={hub.title}
@@ -50,6 +60,7 @@ const uhc90834 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90834') : undefin
       <div class="eyebrow">Rates / {who}</div>
       <h1>{hub.h1}</h1>
       <p class="lede">{intro}</p>
+      <p class="lede" style="margin-top:16px">This table has {rows.length} {who} ranges across {places.length} {placeNoun(places, places.length)} and {codeCount} CPT codes.</p>
       {spread && (
         <p class="lede">Among the {spread.n} {spread.noun} Parite publishes {spread.payerName} 90837 for, the highest range is in <a href={ratePath(spread.highest.state, '90837')}>{stateName(spread.highest.state)}</a> ({fmtRange(spread.highest.low, spread.highest.high)}) and the lowest is in <a href={ratePath(spread.lowest.state, '90837')}>{stateName(spread.lowest.state)}</a> ({fmtRange(spread.lowest.low, spread.lowest.high)}).</p>
       )}
@@ -74,7 +85,14 @@ const uhc90834 = hub.payer === 'uhc' ? payerCodeSpread('uhc', '90834') : undefin
       {uhc90834 && (
         <p class="lede" style="margin-top:16px">For 90834, the highest UnitedHealthcare range is in <a href={ratePath(uhc90834.highest.state, '90834')}>{stateName(uhc90834.highest.state)}</a> ({fmtRange(uhc90834.highest.low, uhc90834.highest.high)}) and the lowest is in <a href={ratePath(uhc90834.lowest.state, '90834')}>{stateName(uhc90834.lowest.state)}</a> ({fmtRange(uhc90834.lowest.low, uhc90834.lowest.high)}), across {uhc90834.n} {uhc90834.noun}.</p>
       )}
+      {hub.payer === 'medicaid-ffs' && (
+        <p class="lede" style="margin-top:16px">Among the {mediUhc90791.n} {mediUhc90791.noun} with both a Medicaid FFS and a UnitedHealthcare range, the Medicaid high is above the UnitedHealthcare high in {mediUhc90791.above} for 90791, {mediUhc90834.above} for 90834 and {mediUhc90837.above} for 90837.</p>
+      )}
+      {hub.payer === 'uhc' && (
+        <p class="lede" style="margin-top:16px">Among the {mediUhc90791.n} {mediUhc90791.noun} with both a UnitedHealthcare and a Medicaid FFS range, the UnitedHealthcare high is above the Medicaid high in {mediUhc90791.n - mediUhc90791.above} for 90791, {mediUhc90834.n - mediUhc90834.above} for 90834 and {mediUhc90837.n - mediUhc90837.above} for 90837.</p>
+      )}
       <p class="lede">Rates are negotiated, not fixed. A rate your entity negotiated needs a contract in your entity's name, so see <a href="/platform/contracting">payer contracting for telehealth</a>, how to <a href="/own-your-contracts">own your payer contracts</a>, and <a href="/own-your-contracts#rent-or-build">rent a PC vs build your own professional corporation</a>.</p>
+      <p class="lede">Every payer for one code: {codeHubCodes.map((code, i) => <>{i > 0 ? ', ' : ''}<a href={codeHubPath(code)}>{codeHubH1(code)}</a></>)}.</p>
       <p class="small muted"><a href="/rates">All reimbursement rates by state and CPT code</a></p>
     </div>
   </section>

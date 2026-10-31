@@ -172,6 +172,20 @@ export function medicaidAboveMedicare(code: string) {
   return { n: both.length, above, noun: placeNoun(both, both.length) };
 }
 
+/** Jurisdictions with both a Medicaid FFS and a UHC row. above counts strict > on high. */
+export function medicaidAboveUhc(code: string) {
+  const medicaid = new Map<string, number>();
+  const uhc = new Map<string, number>();
+  for (const row of rateRows) {
+    if (row.code !== code) continue;
+    if (row.payer === 'medicaid-ffs') medicaid.set(row.state, row.high);
+    if (row.payer === 'uhc') uhc.set(row.state, row.high);
+  }
+  const both = [...medicaid.keys()].filter((state) => uhc.has(state));
+  const above = both.filter((state) => (medicaid.get(state) ?? 0) > (uhc.get(state) ?? 0)).length;
+  return { n: both.length, above, noun: placeNoun(both, both.length) };
+}
+
 /** Jurisdictions with both a Medicare and a UHC row. above counts strict > on high. */
 export function uhcAboveMedicare(code: string) {
   const medicare = new Map<string, number>();
