@@ -210,6 +210,66 @@ def medicaid_above_sentence(code):
     )
 
 
+def medicaid_uhc_counts(code):
+    both = states_for('medicaid-ffs', code) & states_for('uhc', code)
+    medicaid_above = 0
+    uhc_above = 0
+    for state in both:
+        medicaid = row_for('medicaid-ffs', code, state)
+        uhc = row_for('uhc', code, state)
+        if medicaid['high'] == uhc['high']:
+            fail(f'{code} {state} ties on Medicaid FFS and UnitedHealthcare high')
+        elif medicaid['high'] > uhc['high']:
+            medicaid_above += 1
+        else:
+            uhc_above += 1
+    noun = place_noun(both, len(both))
+    return len(both), medicaid_above, uhc_above, noun
+
+
+def payer_coverage_sentence(payer):
+    rows = [row for row in RATES if row['payer'] == payer]
+    places = {row['state'] for row in rows}
+    codes = {row['code'] for row in rows}
+    noun = place_noun(places, len(places))
+    return (
+        f"This table has {len(rows)} {PAYER_NAMES[payer]} ranges across {len(places)} {noun} "
+        f"and {len(codes)} CPT codes."
+    )
+
+
+def medicaid_uhc_sentence():
+    parts = []
+    n = None
+    noun = None
+    for code in ('90791', '90834', '90837'):
+        count, above, _uhc_above, code_noun = medicaid_uhc_counts(code)
+        if n is None:
+            n, noun = count, code_noun
+        elif count != n or code_noun != noun:
+            fail(f'{code} Medicaid and UHC set is {count} {code_noun}, expected {n} {noun}')
+        parts.append(f'{above} for {code}')
+    return (
+        f"Among the {n} {noun} with both a Medicaid FFS and a UnitedHealthcare range, "
+        f"the Medicaid high is above the UnitedHealthcare high in {parts[0]}, {parts[1]} and {parts[2]}."
+    )
+
+
+def uhc_medicaid_sentence():
+    parts = []
+    n = None
+    noun = None
+    for code in ('90791', '90834', '90837'):
+        count, _medicaid_above, above, code_noun = medicaid_uhc_counts(code)
+        if n is None:
+            n, noun = count, code_noun
+        parts.append(f'{above} for {code}')
+    return (
+        f"Among the {n} {noun} with both a UnitedHealthcare and a Medicaid FFS range, "
+        f"the UnitedHealthcare high is above the Medicaid high in {parts[0]}, {parts[1]} and {parts[2]}."
+    )
+
+
 def uhc_above_sentence(code):
     both = states_for('uhc', code) & states_for('medicare', code)
     if not both:
@@ -385,6 +445,11 @@ def main():
         'CA-90791-medi': 'For 90791 in California, the published Medicaid FFS range tops out at $128.08 and the Medicare range at $206.78.',
         'OH-90834-medi': 'For 90834 in Ohio, the published Medicaid FFS range tops out at $74.01 and the Medicare range at $111.49.',
         'rate-pages': 'There are 164 state and CPT code rate pages across 53 jurisdictions.',
+        'medicare-coverage': 'This table has 159 Medicare ranges across 53 jurisdictions and 3 CPT codes.',
+        'uhc-coverage': 'This table has 153 UnitedHealthcare ranges across 51 jurisdictions and 3 CPT codes.',
+        'medicaid-coverage': 'This table has 77 Medicaid FFS ranges across 24 jurisdictions and 4 CPT codes.',
+        'medicaid-uhc': 'Among the 24 jurisdictions with both a Medicaid FFS and a UnitedHealthcare range, the Medicaid high is above the UnitedHealthcare high in 1 for 90791, 3 for 90834 and 4 for 90837.',
+        'uhc-medicaid': 'Among the 24 jurisdictions with both a UnitedHealthcare and a Medicaid FFS range, the UnitedHealthcare high is above the Medicaid high in 23 for 90791, 21 for 90834 and 20 for 90837.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -456,6 +521,17 @@ def main():
             fail(f'{key} sentence drifted: {medicaid_medicare_top_sentence(state, code)}')
     if rate_page_count_sentence() != expected['rate-pages']:
         fail(f"rate page count sentence drifted: {rate_page_count_sentence()}")
+    for payer, key in (
+        ('medicare', 'medicare-coverage'),
+        ('uhc', 'uhc-coverage'),
+        ('medicaid-ffs', 'medicaid-coverage'),
+    ):
+        if payer_coverage_sentence(payer) != expected[key]:
+            fail(f'{key} sentence drifted: {payer_coverage_sentence(payer)}')
+    if medicaid_uhc_sentence() != expected['medicaid-uhc']:
+        fail(f"Medicaid vs UHC sentence drifted: {medicaid_uhc_sentence()}")
+    if uhc_medicaid_sentence() != expected['uhc-medicaid']:
+        fail(f"UHC vs Medicaid sentence drifted: {uhc_medicaid_sentence()}")
     for state, key in (('OH', 'OH-top'), ('AK', 'AK-top'), ('IL', 'IL-top')):
         if state_90837_top_sentence(state) != expected[key]:
             fail(f'{key} sentence drifted: {state_90837_top_sentence(state)}')
@@ -587,6 +663,34 @@ def main():
     for key in ('medicare-90791-for', 'medicare-90834-for', 'medicaid-90834-for', 'medicaid-97153-for'):
         if expected[key] in visible(uhc_html):
             fail(f'UHC hub repeats: {expected[key]}')
+    for payer, key in (
+        ('medicare', 'medicare-coverage'),
+        ('uhc', 'uhc-coverage'),
+        ('medicaid-ffs', 'medicaid-coverage'),
+    ):
+        html = PAYER_FILES[payer].read_text()
+        if expected[key] not in visible(html):
+            fail(f'{payer} hub is missing: {expected[key]}')
+        for other in ('medicare-coverage', 'uhc-coverage', 'medicaid-coverage'):
+            if other != key and expected[other] in visible(html):
+                fail(f'{payer} hub repeats: {expected[other]}')
+        for href in ('/rates/code/90837', '/rates/code/90834', '/rates/code/90791'):
+            if f'href="{href}"' not in html:
+                fail(f'{payer} hub does not link {href}')
+    medicaid_hub = PAYER_FILES['medicaid-ffs'].read_text()
+    if expected['medicaid-uhc'] not in visible(medicaid_hub):
+        fail(f"Medicaid hub is missing: {expected['medicaid-uhc']}")
+    if 'href="/rates/code/97153"' not in medicaid_hub:
+        fail('Medicaid hub does not link /rates/code/97153')
+    if expected['uhc-medicaid'] not in visible(uhc_html):
+        fail(f"UHC hub is missing: {expected['uhc-medicaid']}")
+    if expected['medicaid-uhc'] in visible(uhc_html) or expected['medicaid-uhc'] in visible(medicare_html):
+        fail('a non-Medicaid hub repeats the Medicaid vs UHC sentence')
+    if expected['uhc-medicaid'] in visible(medicaid_hub) or expected['uhc-medicaid'] in visible(medicare_html):
+        fail('a non-UHC hub repeats the UHC vs Medicaid sentence')
+    for payer in ('medicare', 'uhc'):
+        if 'href="/rates/code/97153"' in PAYER_FILES[payer].read_text():
+            fail(f'{payer} hub links the 97153 code hub')
 
     by_state = {}
     for row in RATES:
