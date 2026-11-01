@@ -73,7 +73,7 @@ The product pages that sit with this article:
 
 - [Own your payer contracts](/own-your-contracts): network rental vs owning, month by month.
 - [Rent a PC or build your own](/own-your-contracts#rent-or-build): the sequence, not a fork.
-- [MSO-PC structure for telehealth](/platform/compliance#mso-pc): how the two entities are papered.
+- [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure): how the two entities are papered.
 - [Corporate practice of medicine for telehealth](/platform/compliance#cpom-aks-structure): state rules on who may own the PC.
 - [Switching from a network rental vendor](/solutions/switching): leave rental without a revenue gap.
 - [Bridge alternative fact table](/compare/bridge): what Bridge's homepage states, and what it does not.
