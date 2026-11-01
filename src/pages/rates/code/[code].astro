@@ -26,6 +26,7 @@ import {
   codePayerCoverageSentence,
   medicaidAboveMedicare,
   uhcAboveMedicare,
+  medicaidAboveUhc,
 } from '../../../lib/rates';
 
 export function getStaticPaths() {
@@ -63,6 +64,7 @@ const top90837Winners = top90837Spreads.filter((spread) => spread.highest.high =
 const top90837 = top90837Winners.length === 1 ? top90837Winners[0] : undefined;
 const medicaidAbove = medicaidAboveMedicare(code);
 const uhcAbove = uhcAboveMedicare(code);
+const medicaidUhc = medicaidAboveUhc(code);
 ---
 <BaseLayout
   title={title}
@@ -84,6 +86,9 @@ const uhcAbove = uhcAboveMedicare(code);
       )}
       {uhcAbove.n > 0 && (
         <p class="lede" style="margin-top:16px">In {uhcAbove.above} of the {uhcAbove.n} {uhcAbove.noun} with both a Medicare and a UHC {code} range, the UHC high is above the Medicare high.</p>
+      )}
+      {medicaidUhc.n > 0 && (
+        <p class="lede" style="margin-top:16px">In {medicaidUhc.above} of the {medicaidUhc.n} {medicaidUhc.noun} with both a Medicaid FFS and a UHC {code} range, the Medicaid FFS high is above the UHC high.</p>
       )}
       {alaskaCross90837 && medicaid90837 && medicare90837 && (
         <p class="lede" style="margin-top:16px">In <a href={ratePath(medicaid90837.highest.state, '90837')}>{stateName(medicaid90837.highest.state)}</a>, the published 90837 range tops out higher on Medicaid FFS ({fmtRate(medicaid90837.highest.high)}) than on Medicare ({fmtRate(medicare90837.highest.high)}).</p>
@@ -148,7 +153,7 @@ const uhcAbove = uhcAboveMedicare(code);
       ))}
     </ul>
   </Section>
-  <RateRelated />
+  <RateRelated fixed />
   <CtaBand
     title="Know the rate. Then get the contract."
     body="Send us your codes and states. We come back with payer order, timelines, and the ranges to plan on."

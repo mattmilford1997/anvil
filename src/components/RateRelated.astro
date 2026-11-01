@@ -1,10 +1,12 @@
 ---
 import Section from './Section.astro';
 
+interface Props { fixed?: boolean }
+const { fixed = false } = Astro.props;
 const links = [
   { href: '/compare/bridge', label: 'Bridge insurance billing alternative' },
-  { href: '/solutions/switching', label: 'Switch from a network rental vendor' },
-  { href: '/platform/compliance#mso-pc', label: 'MSO-PC structure for telehealth' },
+  { href: '/solutions/switching', label: fixed ? 'Switching from a network rental vendor' : 'Switch from a network rental vendor' },
+  { href: fixed ? '/platform/compliance#mso-pc-structure' : '/platform/compliance#mso-pc', label: 'MSO-PC structure for telehealth' },
   { href: '/platform/rcm', label: 'Telehealth revenue cycle management' },
   { href: '/platform/credentialing', label: 'Telehealth credentialing services' },
 ];

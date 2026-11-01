@@ -270,6 +270,16 @@ def uhc_medicaid_sentence():
     )
 
 
+def medicaid_uhc_code_sentence(code):
+    n, above, _uhc_above, noun = medicaid_uhc_counts(code)
+    if n == 0:
+        return ''
+    return (
+        f"In {above} of the {n} {noun} with both a Medicaid FFS and a UHC {code} range, "
+        f"the Medicaid FFS high is above the UHC high."
+    )
+
+
 def uhc_above_sentence(code):
     both = states_for('uhc', code) & states_for('medicare', code)
     if not both:
@@ -450,6 +460,9 @@ def main():
         'medicaid-coverage': 'This table has 77 Medicaid FFS ranges across 24 jurisdictions and 4 CPT codes.',
         'medicaid-uhc': 'Among the 24 jurisdictions with both a Medicaid FFS and a UnitedHealthcare range, the Medicaid high is above the UnitedHealthcare high in 1 for 90791, 3 for 90834 and 4 for 90837.',
         'uhc-medicaid': 'Among the 24 jurisdictions with both a UnitedHealthcare and a Medicaid FFS range, the UnitedHealthcare high is above the Medicaid high in 23 for 90791, 21 for 90834 and 20 for 90837.',
+        '90791-medicaid-uhc': 'In 1 of the 24 jurisdictions with both a Medicaid FFS and a UHC 90791 range, the Medicaid FFS high is above the UHC high.',
+        '90834-medicaid-uhc': 'In 3 of the 24 jurisdictions with both a Medicaid FFS and a UHC 90834 range, the Medicaid FFS high is above the UHC high.',
+        '90837-medicaid-uhc': 'In 4 of the 24 jurisdictions with both a Medicaid FFS and a UHC 90837 range, the Medicaid FFS high is above the UHC high.',
     }
     aba = states_for('medicaid-ffs', '97153')
     if aba & NON_STATE or len(aba) != 5 or place_noun(aba) != 'states':
@@ -532,6 +545,12 @@ def main():
         fail(f"Medicaid vs UHC sentence drifted: {medicaid_uhc_sentence()}")
     if uhc_medicaid_sentence() != expected['uhc-medicaid']:
         fail(f"UHC vs Medicaid sentence drifted: {uhc_medicaid_sentence()}")
+    for code in ('90791', '90834', '90837'):
+        key = f'{code}-medicaid-uhc'
+        if medicaid_uhc_code_sentence(code) != expected[key]:
+            fail(f'{key} sentence drifted: {medicaid_uhc_code_sentence(code)}')
+    if medicaid_uhc_code_sentence('97153'):
+        fail(f"97153 should not have a Medicaid vs UHC sentence: {medicaid_uhc_code_sentence('97153')}")
     for state, key in (('OH', 'OH-top'), ('AK', 'AK-top'), ('IL', 'IL-top')):
         if state_90837_top_sentence(state) != expected[key]:
             fail(f'{key} sentence drifted: {state_90837_top_sentence(state)}')
@@ -616,6 +635,15 @@ def main():
                 fail(f'{path} UHC-above sentence should not contain a link')
         elif 'with both a Medicare and a UHC' in visible(html):
             fail(f'{path} should not include a Medicare and UHC comparison')
+        medicaid_uhc_text = medicaid_uhc_code_sentence(code)
+        if medicaid_uhc_text:
+            if medicaid_uhc_text not in visible(html):
+                fail(f'{path} is missing: {medicaid_uhc_text}')
+            paragraph = next((item for item in re.findall(r'<p[^>]*>.*?</p>', html) if 'with both a Medicaid FFS and a UHC' in item), '')
+            if 'href=' in paragraph:
+                fail(f'{path} Medicaid vs UHC sentence should not contain a link')
+        elif 'with both a Medicaid FFS and a UHC' in visible(html):
+            fail(f'{path} should not include a Medicaid and UHC comparison')
 
     uhc_html = PAYER_FILES['uhc'].read_text()
     if expected['uhc-90791'] not in visible(uhc_html):

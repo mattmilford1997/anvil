@@ -10,6 +10,7 @@ summary:
   - "Two of the five (contracting and the entity that holds contracts) are strategic assets you should own eventually, even if someone else does the work."
 author: "matt-milford"
 publishDate: 2026-10-13
+updatedDate: 2026-11-01
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"
@@ -68,7 +69,7 @@ Here is the honest map.
 
 Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management.
 
-The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc). If you launched on a rental vendor, read the [Bridge insurance billing alternative](/compare/bridge).
+The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build), and see how your own PC is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure). If you launched on a rental vendor, read the [Bridge insurance billing alternative](/compare/bridge).
 
 See how the five workstreams run on the [platform](/platform), and how you [own your payer contracts](/own-your-contracts). If you are on a vendor now, that move is [switching from a network rental vendor](/solutions/switching).
 
