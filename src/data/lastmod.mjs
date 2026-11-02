@@ -24,7 +24,7 @@ export const PAGE_LASTMOD = {
   '/solutions/hybrid-care': '2026-11-02',
   '/compare/bridge': '2026-11-02',
   '/health-plans': '2026-11-02',
-  '/resources': '2026-10-20',
+  '/resources': '2026-11-02',
   '/resources/cash-pay-to-insurance-two-phase-plan': '2026-11-02',
   '/resources/what-in-network-nationally-means': '2026-11-02',
   '/resources/five-workstreams-insurance-operations': '2026-11-02',
