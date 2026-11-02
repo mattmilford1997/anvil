@@ -27,11 +27,13 @@ const faqs = [
   updated
   sub="Payer contracting for telehealth puts commercial and Medicaid enrollment in your name. You should never bill under a contract whose rate you cannot see. We show the range before you sign, the executed rate after, and our fee as a separate line."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Contracting', path: '/platform/contracting' }]}
+  showCrumbs
   faqs={faqs}
   ctaTitle="Get a contracting plan for your codes and states."
   ctaBody="Tell us what you bill and where. We come back with payer order, expected timelines, and the rate ranges to plan on."
 >
   <Section>
+    <p class="lede">Part of Anvil's <a href="/platform">insurance operations platform for care companies</a>, with the other four workstreams.</p>
     <FeatureRow eyebrow="How we contract" title="Rollout order by covered lives, not by whoever answers first" bullets={[
       'Top 3 to 5 payers per state cover most commercial lives. We start there.',
       'Medicaid MCO panels worked state by state, with the closed-panel exception path.',
