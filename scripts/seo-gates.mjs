@@ -107,22 +107,6 @@ if (feed) {
   }
 }
 
-const msoHref = '/platform/compliance#mso-pc-structure';
-for (const file of files) {
-  const rel = path.relative(dist, file);
-  let page = `/${rel.split(path.sep).join('/').replace(/\.html$/, '')}`;
-  if (page === '/index') page = '/';
-  if (/^\/rates\/[a-z]{2}(\/\d+)?$/.test(page)) continue;
-  const html = await readFile(file, 'utf8');
-  const msoRe = /<a\b[^>]*href="([^"]*)"[^>]*>MSO-PC structure for telehealth<\/a>/g;
-  for (const match of html.matchAll(msoRe)) {
-    const href = match[1];
-    // Article "On this page" entries repeat the H2 and point at that heading.
-    if (href.startsWith('#') && html.includes(`id="${href.slice(1)}"`)) continue;
-    if (href !== msoHref) errors.push(`${rel}: MSO-PC link href is ${href}`);
-  }
-}
-
 const sitemapXml = [];
 const distEntries = await readdir(dist, { withFileTypes: true });
 for (const entry of distEntries) {

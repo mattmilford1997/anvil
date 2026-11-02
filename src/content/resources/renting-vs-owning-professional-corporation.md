@@ -38,7 +38,7 @@ Ask a founder "who employs your clinicians?" and the honest answer, at most comp
 ## MSO-PC structure for telehealth
 Most states restrict who can own a medical or behavioral health practice. The corporate practice of medicine doctrine, in its various state forms, says the entity delivering care must be owned by licensed professionals. A venture-backed company owned by investors cannot be that entity. So the industry uses a two-entity structure: a professional corporation, owned by a licensed physician or other clinician, that employs clinicians and holds payer contracts, and a management services organization (your company) that provides everything non-clinical under a management agreement.
 
-Every telehealth company at scale runs on some version of this. The variable is who owns the PC. See [CPOM and AKS compliance](/platform/compliance) for how the MSO-PC structure is papered.
+Every telehealth company at scale runs on some version of this. The variable is who owns the PC.
 
 ## Professional corporation rental and the network rental model
 When you launch on a vendor's platform and your clinicians bill under the vendor's contracted PC, you are renting. That professional corporation rental is the network rental model: the vendor's PC holds the payer contracts, employs or leases your clinicians for insured visits, bills, collects, and pays your company a fee. The regulatory structure is theirs. The compliance posture is theirs. The contracts are theirs.
@@ -73,8 +73,6 @@ The product pages that sit with this article:
 
 - [Own your payer contracts](/own-your-contracts): network rental vs owning, month by month.
 - [Rent a PC or build your own](/own-your-contracts#rent-or-build): the sequence, not a fork.
-- [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure): how the two entities are papered.
-- [Corporate practice of medicine for telehealth](/platform/compliance#cpom-aks-structure): state rules on who may own the PC.
 - [Switching from a network rental vendor](/solutions/switching): leave rental without a revenue gap.
 - [Bridge alternative fact table](/compare/bridge): what Bridge's homepage states, and what it does not.
 - [90837 reimbursement rates by state](/rates/code/90837): published Parite ranges for 90837.
