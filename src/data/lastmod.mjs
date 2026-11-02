@@ -63,7 +63,10 @@ export const RATES_SUBPAGES_LASTMOD = '2026-10-18';
 // 90791, 90834, and 90837 leaf pages. 97153 leaves stay on RATES_SUBPAGES_LASTMOD.
 const PSYCH_LEAF_LASTMOD = '2026-10-29';
 const FALLBACK_LASTMOD = '2026-10-17';
+// State hubs and leaves: related list changed (MSO-PC item removed).
+const RATE_RELATED_LASTMOD = '2026-11-02';
 export function lastmodFor(path) {
+  if (/^\/rates\/[a-z]{2}(\/\d+)?$/.test(path)) return RATE_RELATED_LASTMOD;
   if (PAGE_LASTMOD[path]) return PAGE_LASTMOD[path];
   if (/^\/rates\/[a-z]{2}$/.test(path)) return STATE_HUB_LASTMOD;
   if (/^\/rates\/[a-z]{2}\/(90791|90834|90837)$/.test(path)) return PSYCH_LEAF_LASTMOD;
