@@ -1,7 +1,6 @@
 /**
  * Published pricing. Publishing real numbers is a deliberate differentiator.
- * Foundry PC numbers are real (formation $15,000 one-time; physician owner $3,000/mo).
- * TODO(launch): confirm platform fee percentages and state-count tiers with the Foundry/Homefront rate cards.
+ * TODO(launch): confirm platform fee percentages and state-count tiers with the Homefront rate cards.
  */
 export type Tier = {
   key: 'launch' | 'build' | 'scale';
@@ -43,7 +42,7 @@ export const tiers: Tier[] = [
     oneTime: 15000,
     includes: [
       'Everything in Launch',
-      'Your own PC formed in your launch states (Foundry PC)',
+      'Your own PC formed in your launch states',
       'Friendly physician owner placed and matched ($3,000/mo)',
       'MSO and PC document suite, CPOM structuring by state',
       'Credentialing files built under your own entity',
