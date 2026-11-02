@@ -36,7 +36,7 @@ draft: false
 Every founder hears the phrase "in-network nationally" and pictures one thing: my patients, anywhere, covered. The phrase actually describes a stack of four objects, and which ones you hold changes what you own.
 
 ## Layer 1: The contract
-A participation agreement between a payer and a legal entity (a professional corporation, a group practice, an IPA). It sets rates, terms, and which specialties and services are covered. Clinicians do not hold contracts. Entities do. With Anvil, the entity you end up owning is an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure). Who may own that entity is set by [corporate practice of medicine for telehealth](/platform/compliance#cpom-telehealth).
+A participation agreement between a payer and a legal entity (a professional corporation, a group practice, an IPA). It sets rates, terms, and which specialties and services are covered. Clinicians do not hold contracts. Entities do.
 
 ## Layer 2: The panel
 Whether the payer is accepting new providers in a given specialty and geography. A closed panel means the payer will not add clinicians even if you have a contract. Panels open and close by state and specialty, and knowing where they are open is real expertise.

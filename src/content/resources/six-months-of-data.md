@@ -23,7 +23,7 @@ faq:
     a: "Reimbursement ranges by state and code in the rate lookup, pricing with a calculator, and the contracted rate and platform fee as separate lines on every claim."
   - q: "Where should a founder start?"
     a: "With the when-to-accept-insurance post, then the five workstreams post, then the rate lookup for your first two states."
-related: ["oig-advisory-opinion-25-03-and-state-cpom", "state-cpom-telehealth-billing-map-2027", "health-plan-audits-virtual-care"]
+related: ["what-in-network-nationally-means", "when-to-accept-insurance", "health-plan-audits-virtual-care"]
 sourceFile: "06_March_Compliance_Structure.md"
 calendarWeek: 26
 dataReview: "cleared"
@@ -55,7 +55,7 @@ The lessons are grouped under the six things we think a platform owes a care com
 *9. Rate is a rollout input.* Pick first states on three inputs: where demand is, what the core codes pay, and how long the largest payers take to credential. The [largest payers by state](/resources/largest-payers-by-state-rollout-order) post covers the ordering.
 
 ## Risk
-*10. Get the structure right for each state.* Corporate practice of medicine rules differ by state, and telehealth does not exempt you. The [CPOM map](/resources/state-cpom-telehealth-billing-map-2027) and the [OIG advisory opinion post](/resources/oig-advisory-opinion-25-03-and-state-cpom) cover what the structure has to look like and what the published guidance says about it.
+*10. Get the structure right for each state.* Corporate practice of medicine rules differ by state, and telehealth does not exempt you.
 
 *11. Assume you will be audited.* Health plans audit virtual care programs, and the ones that pass are the ones with documentation built into the workflow rather than reconstructed later. The [audit post](/resources/health-plan-audits-virtual-care) lists what they ask for.
 
@@ -81,7 +81,7 @@ The lessons are grouped under the six things we think a platform owes a care com
 | Speed | Start roster-add and own-entity enrollment the same day | [Roster-add vs full enrollment](/resources/roster-add-vs-full-enrollment) |
 | Ownership | Form your PC at signature and plan the migration | [Migrating to your own contracts](/resources/migrating-from-rented-pc-to-own-contracts) |
 | Transparency | Know the rate before you sign; see two lines on every claim | [How to read reimbursement by state](/resources/behavioral-health-reimbursement-rates-by-state-q1-2027) |
-| Risk | Structure by state, document for audit, handle outages as a state | [State CPOM map](/resources/state-cpom-telehealth-billing-map-2027) |
+| Risk | Structure by state, document for audit, handle outages as a state | [Credentialing and contract compliance for telehealth](/platform/compliance) |
 | Depth | Medicaid, ABA, and hybrid each need their own playbook | [Medicaid credentialing by state](/resources/medicaid-credentialing-behavioral-health-by-state) |
 | Developer | Eligibility at booking, by API, with a distinct outage status | [Eligibility at booking](/resources/eligibility-at-booking-conversion-lift) |
 
