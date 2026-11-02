@@ -7,15 +7,15 @@ import CtaBand from '../components/CtaBand.astro';
 import { team } from '../data/team';
 import { breadcrumbJsonLd } from '../lib/seo';
 ---
-<BaseLayout title="Insurance infrastructure for care companies" description="Anvil is insurance infrastructure for care companies. Built by Arche Studios, the team behind Foundry PC and Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
-  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is insurance infrastructure for care companies: the platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Foundry PC and Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+<BaseLayout title="Insurance infrastructure for care companies" description="Anvil is insurance infrastructure for care companies. Built by Arche Studios, the team behind Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
+  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is insurance infrastructure for care companies: the platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
   <Section eyebrow="Mission" tight>
     <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
     <p class="lede">The operating path is to <a href="/own-your-contracts">own your payer contracts</a>, or start from <a href="/solutions/switching">switching from a network rental vendor</a> if a vendor already holds them.</p>
   </Section>
   <Section eyebrow="Why we built this" title="Operators first, vendors second">
     <div class="grid grid-2">
-      <div><p>The people behind Anvil have launched and run care companies across virtual, hybrid, in-home, and in-person models. Every one needed the same five things: payer contracts, credentialing, eligibility, claims, and denials. Every time, the choice was to build a team or rent a network that kept the contracts.</p><p>We built Foundry PC to form professional corporations and place physician owners. We built Homefront to credential and bill. Anvil puts them behind one platform with a rented 50-state PC in front, so a new company launches in weeks and ends year one owning its contracts.</p><p>We built Anvil to be the third option: launch on a rented network, own the contracts by year one, and never rebuild the same five teams again.</p></div>
+      <div><p>The people behind Anvil have launched and run care companies across virtual, hybrid, in-home, and in-person models. Every one needed the same five things: payer contracts, credentialing, eligibility, claims, and denials. Every time, the choice was to build a team or rent a network that kept the contracts.</p><p>We built Anvil to be the third option: launch on a rented network, own the contracts by year one, and never rebuild the same five teams again.</p></div>
       <Tiles cols={2} items={[
         { title: 'Numbers before adjectives', body: 'If we cannot put a number on it, we do not put it on the site.' },
         { title: 'Own the asset', body: 'A care company should hold its own payer relationships. We structure everything toward that.' },
@@ -33,9 +33,8 @@ import { breadcrumbJsonLd } from '../lib/seo';
     </div>
     <p class="small muted" style="margin-top:20px">Leadership profiles publish as the team page is filled out.</p>
   </Section>
-  <Section eyebrow="Built on" title="Three companies, one platform" tight>
-    <div class="grid grid-3">
-      <div class="card"><h3>Foundry PC</h3><p class="muted">Forms the professional corporation, matches the physician owner, and structures for each state's corporate practice of medicine rules. <a href="https://foundry-pc.com" rel="noopener">foundry-pc.com</a></p></div>
+  <Section eyebrow="Built on" title="Two companies, one platform" tight>
+    <div class="grid grid-2">
       <div class="card"><h3>Homefront</h3><p class="muted">Credentialing automation and revenue cycle. Roster-adds, full enrollment, coding, claims, denials, AR.</p></div>
       <div class="card"><h3>Parite</h3><p class="muted">Reimbursement data by state, payer, and code. The source for the rate lookup and for rate proposals in your name.</p></div>
     </div>

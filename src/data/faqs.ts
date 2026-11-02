@@ -23,7 +23,6 @@ export const ownFaqs: Faq[] = [
   { q: 'What if we leave Anvil after migration?', a: 'The contracts stay with your PC. Your MSO agreement with your PC stays in place. You would need an RCM and credentialing vendor, which is a normal vendor switch, not a relaunch.' },
   { q: 'What will investors ask?', a: 'Whether insured revenue runs through an entity you control, whether payer contracts are assignable or would need to be re-signed in a sale, and whether a single vendor could terminate your network access. Owning your PC answers all three.' },
   { q: 'Does the platform fee change?', a: 'Yes. It steps down as volume moves to your own contracts, because we are no longer carrying claims risk on that volume.' },
-  { q: 'Is a friendly physician owner really mine?', a: 'The physician owns the PC under agreements that give your MSO the management rights and economics permitted in that state. Foundry PC has placed physician owners in these structures across the country.' },
   { q: 'Can we start with Build and add Scale later?', a: 'Yes. Most companies start on Build so the PC is forming while they launch, then move to Scale when they are ready to contract their entity.' },
   { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
   { q: 'Who owns the payer contracts when you use a telehealth insurance billing vendor?', a: vendorOwnsAnswer },
@@ -36,7 +35,7 @@ export const pricingFaqs: Faq[] = [
   { q: 'What is telehealth billing platform pricing?', a: 'On Anvil it is a published platform fee on collections during rental, plus fixed fees for your own PC and physician owner. Payer contracting cost and credentialing cost per clinician are included in the tiers, not billed as surprise line items. The rental PC fee is the platform fee while you bill under our PC.' },
   { q: 'Why publish pricing?', a: 'Because you should be able to model this without a sales call. Most vendors in this category do not publish, which usually means the number depends on who is asking.' },
   { q: 'What is the platform fee charged on?', a: 'Collections, not billed charges. If a claim is not paid, there is no fee on it.' },
-  { q: 'What does the physician owner fee cover?', a: 'A licensed physician who owns your PC under the friendly-PC structure, matched by Foundry PC, with the agreements and ongoing obligations that structure requires. $3,000 per month, 12-month minimum.' },
+  { q: 'What does the physician owner fee cover?', a: 'A licensed physician who owns your PC under the friendly-PC structure, with the agreements and ongoing obligations that structure requires. $3,000 per month, 12-month minimum.' },
   { q: 'Are there per-clinician credentialing fees?', a: 'Roster-adds under our PC are included in the platform fee. Credentialing under your own entity is included in Build and Scale.' },
   { q: 'What is not included?', a: 'State filing, publication, and registered agent fees, which pass through at cost. Clearinghouse fees above our included volume. Legal work outside the standard document suite.' },
 ];
