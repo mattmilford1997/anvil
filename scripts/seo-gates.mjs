@@ -123,6 +123,48 @@ for (const file of files) {
   }
 }
 
+const sitemapXml = [];
+const distEntries = await readdir(dist, { withFileTypes: true });
+for (const entry of distEntries) {
+  if (entry.isFile() && entry.name.startsWith('sitemap') && entry.name.endsWith('.xml')) {
+    sitemapXml.push(await readFile(path.join(dist, entry.name), 'utf8'));
+  }
+}
+const indexed = new Set(
+  [...sitemapXml.join('\n').matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname),
+);
+
+function pagePath(rel) {
+  let page = `/${rel.split(path.sep).join('/').replace(/\.html$/, '')}`;
+  if (page === '/index') page = '/';
+  return page;
+}
+
+let platformInbound = 0;
+const platformChildren = ['/platform/credentialing', '/platform/contracting', '/platform/eligibility', '/platform/rcm', '/platform/compliance'];
+const childrenWithPlatform = new Set();
+for (const file of files) {
+  const rel = path.relative(dist, file);
+  const page = pagePath(rel);
+  const html = await readFile(file, 'utf8');
+  const mainMatch = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+  const main = mainMatch ? mainMatch[1] : '';
+  const linkRe = /<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi;
+  let link;
+  while ((link = linkRe.exec(main))) {
+    const hrefPath = link[1].split('#')[0].split('?')[0];
+    if (hrefPath !== '/platform') continue;
+    const text = decode(link[2].replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+    if (text === 'How it works') errors.push(`${rel}: in-body /platform link uses anchor "How it works"`);
+    if (page !== '/platform' && indexed.has(page)) platformInbound += 1;
+    if (platformChildren.includes(page)) childrenWithPlatform.add(page);
+  }
+}
+if (platformInbound < 15) errors.push(`in-body links to /platform from indexed pages: ${platformInbound}, need at least 15`);
+for (const child of platformChildren) {
+  if (!childrenWithPlatform.has(child)) errors.push(`${child}: no <main> link to /platform`);
+}
+
 if (errors.length > 0) {
   console.error(`SEO gate failed on ${errors.length} page check${errors.length === 1 ? '' : 's'}:`);
   for (const error of errors) console.error(`  ${error}`);

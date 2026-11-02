@@ -10,6 +10,7 @@ summary:
   - "The question that separates vendors: when you leave, which contracts come with you?"
 author: "matt-milford"
 publishDate: 2026-10-27
+updatedDate: 2026-11-02
 category: "Blog"
 icp: ["A", "B", "C"]
 pillar: "ownership"
@@ -64,6 +65,8 @@ Three moments make it concrete.
 Launch on an existing contracted entity's roster so you are billing in weeks. In parallel, form your own professional entity, credential it, and contract it with the payers that matter most in your top states. Over 6 to 18 months, move volume from the shared entity to yours. You keep the speed of Layer 3 and end up owning Layer 1.
 
 That parallel path is the single biggest difference between vendors in this category. Ask for it by name. That path is laid out in [own your payer contracts vs network rental](/own-your-contracts).
+
+That parallel path runs on the [insurance operations platform for care companies](/platform).
 
 ## The question to ask
 "When we leave, which payer contracts come with us?" If the answer is a list, you are building an asset. If the answer is "none, but you'd stay on our platform," you are renting one.

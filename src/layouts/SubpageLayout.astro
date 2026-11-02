@@ -15,10 +15,23 @@ interface Props {
   promptId?: string;
   answer?: string;
   updated?: boolean;
+  showCrumbs?: boolean;
 }
-const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary, prompt, promptId, answer, updated = false } = Astro.props;
+const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary, prompt, promptId, answer, updated = false, showCrumbs = false } = Astro.props;
 ---
 <BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs)]}>
+  {showCrumbs && (
+    <nav class="bridge-crumbs" aria-label="Breadcrumb">
+      <div class="container">
+        {crumbs.map((c, i) => (
+          <span>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.path}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+          </span>
+        ))}
+      </div>
+    </nav>
+  )}
   <Hero compact eyebrow={eyebrow} title={title} sub={sub} prompt={prompt} promptId={promptId} answer={answer} updated={updated} secondary={{ label: 'See pricing', href: '/pricing' }} />
   <slot />
   {faqs.length > 0 && <Section id="questions" tight><Faq items={faqs} /></Section>}

@@ -10,6 +10,7 @@ summary:
   - "The switch does not have to be a cliff. A two-phase plan keeps cash-pay running while in-network volume ramps."
 author: "matt-milford"
 publishDate: 2026-10-06
+updatedDate: 2026-11-02
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
@@ -66,6 +67,8 @@ A rough worked example: a clinic with 12 clinicians doing 80 cash-pay visits a m
 Phase 1: go in-network where the lives are, fast. Pick the states and payers that cover the most insured patients in your existing demand, get clinicians enrolled, turn on eligibility at booking so insured patients see their coverage before they see a price. Keep cash-pay live for everyone else. Nothing in your funnel breaks. The fast path for that phase is [renting a PC to launch](/own-your-contracts#rent-or-build).
 
 Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one. If Phase 1 is already a vendor's network, leaving it is [switching from a network rental vendor](/solutions/switching). Weigh vendors on the [Bridge insurance billing alternative](/compare/bridge).
+
+Phase 1 and Phase 2 run on the [insurance operations platform for care companies](/platform).
 
 ## Next step
 

@@ -10,7 +10,7 @@ summary:
   - "Phase 2 is about ownership. Plan it before Phase 1 starts or you'll be renting your contracts in year three."
 author: "matt-milford"
 publishDate: 2026-10-20
-updatedDate: 2026-10-31
+updatedDate: 2026-11-02
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
@@ -57,6 +57,8 @@ The fear behind every cash-pay founder's insurance hesitation is the same: "we'l
 Going 50-state before you know where your patients are. Putting insurance after the price screen. Shutting off cash-pay. Building on a rented entity with no plan to own. Each one is survivable. All four together is a year of lost growth. If you already built on a rented entity, the fix is [switching from a network rental vendor](/solutions/switching).
 
 For the cash-pay switch, follow the [virtual care](/solutions/virtual-care) plan, then [own your payer contracts](/own-your-contracts) so they sit in your entity. That entity is papered as an [MSO-PC structure for telehealth](/platform/compliance#mso-pc-structure). The papering follows [corporate practice of medicine for telehealth](/platform/compliance#cpom-telehealth).
+
+Phase 1 enrollment and Phase 2 contracting run on the [insurance operations platform for care companies](/platform).
 
 ## Next step
 

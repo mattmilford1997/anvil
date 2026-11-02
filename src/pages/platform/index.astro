@@ -5,7 +5,7 @@ import Section from '../../components/Section.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
-import { platformWhatIsAnswer } from '../../data/directAnswers';
+import { platformWhatIsAnswer, p04, p05, switchWithoutGapAnswer } from '../../data/directAnswers';
 
 const workstreams = [
   { name: 'Payer contracting', hire: 'Contracting lead with payer relationships in each state, plus counsel for contract review.', anvil: 'Rent: you bill under our existing contracts. Own: we contract your entity with commercial, Medicaid, and MA payers, and you see the rate ladder.', href: '/platform/contracting' },
@@ -17,6 +17,9 @@ const workstreams = [
 
 const faqs = [
   { q: 'What is an insurance operations platform for care companies?', a: platformWhatIsAnswer },
+  { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
+  { q: 'What is an MSO-PC structure and does my telehealth startup need one?', a: p05 },
+  { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
 ];
 ---
 <BaseLayout title="Insurance operations platform for care companies" description="Insurance operations platform for care companies. Payer contracting, credentialing, RCM, eligibility, and compliance. Rent, then own." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }])]}>
@@ -45,6 +48,16 @@ const faqs = [
     </div>
   </Section>
 
+  <Section id="which-workstream" eyebrow="Where to start" title="Which workstream first?">
+    <ul class="check-list">
+      <li><a href="/platform/eligibility">Eligibility</a>: eligibility verification at booking.</li>
+      <li><a href="/platform/credentialing">Credentialing</a>: roster-adds under our PC in weeks.</li>
+      <li><a href="/platform/contracting">Payer contracting</a>: commercial contracts for a new PC commonly land in 4 to 8 months.</li>
+      <li><a href="/platform/rcm">RCM</a>: clean-claim rate reported monthly, with claims risk on Anvil during rental.</li>
+      <li><a href="/platform/compliance">Compliance</a>: rental structured for the AKS personal services safe harbor, and your PC structured for CPOM by state.</li>
+    </ul>
+  </Section>
+
   <Section eyebrow="Rent, then own" title="Two entities. Volume moves from ours to yours." intro="This is the diagram to send your co-founder.">
     <div class="diagram reveal" aria-label="Diagram: your MSO works with Anvil's PC during rental and with your own PC after migration">
       <div class="node mso"><span class="nl">Your company (MSO)</span><span class="nd">Brand, product, clinicians, growth</span></div>
@@ -60,6 +73,10 @@ const faqs = [
     </div>
     <p class="lede" style="margin-top:24px">The second entity is the point: it is how you <a href="/own-your-contracts">own your payer contracts</a> instead of renting them, and it is papered under the <a href="/platform/compliance#mso-pc-structure">MSO-PC structure for telehealth</a>. Already on another vendor? See <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
     <p class="lede" style="margin-top:16px">Comparing vendors? Read the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
+  </Section>
+
+  <Section id="rent-then-own-timeline" eyebrow="The dates" title="Rent, then own: the timeline">
+    <p class="lede">The Anvil PC bills on day 30. Your PC forms in week 1. Contracts are in your name by month 6. Claims risk is on Anvil during rental, and the clean-claim rate is reported monthly.</p>
   </Section>
 
   <Section eyebrow="Integrations" title="Fits the stack you already have" tight>
