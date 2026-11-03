@@ -10,7 +10,7 @@ summary:
   - "Two of the five (contracting and the entity that holds contracts) are strategic assets you should own eventually, even if someone else does the work."
 author: "matt-milford"
 publishDate: 2026-10-13
-updatedDate: 2026-11-02
+updatedDate: 2026-11-03
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"
@@ -57,7 +57,6 @@ Some claims come back denied. Denials cost new programs a meaningful share of re
 Talent: AR specialists with payer-specific experience.
 
 ## Which ones to build
-Here is the honest map.
 
 | Workstream | Build it? | Why |
 |---|---|---|
