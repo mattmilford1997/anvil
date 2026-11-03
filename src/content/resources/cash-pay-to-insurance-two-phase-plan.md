@@ -10,7 +10,7 @@ summary:
   - "Phase 2 is about ownership. Plan it before Phase 1 starts or you'll be renting your contracts in year three."
 author: "matt-milford"
 publishDate: 2026-10-20
-updatedDate: 2026-11-02
+updatedDate: 2026-11-03
 category: "Blog"
 icp: ["A"]
 pillar: "speed"

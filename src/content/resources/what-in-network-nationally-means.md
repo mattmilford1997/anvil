@@ -10,7 +10,7 @@ summary:
   - "The question that separates vendors: when you leave, which contracts come with you?"
 author: "matt-milford"
 publishDate: 2026-10-27
-updatedDate: 2026-11-02
+updatedDate: 2026-11-03
 category: "Blog"
 icp: ["A", "B", "C"]
 pillar: "ownership"
