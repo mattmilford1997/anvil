@@ -4,7 +4,7 @@ export const PAGE_LASTMOD = {
   '/': '2026-11-02',
   '/platform': '2026-11-02',
   '/platform/rcm': '2026-11-02',
-  '/platform/compliance': '2026-11-02',
+  '/platform/compliance': '2026-11-03',
   '/platform/contracting': '2026-11-03',
   '/platform/credentialing': '2026-11-02',
   '/platform/eligibility': '2026-11-02',
