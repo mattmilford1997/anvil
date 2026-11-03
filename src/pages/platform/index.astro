@@ -5,7 +5,7 @@ import Section from '../../components/Section.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
 import { breadcrumbJsonLd } from '../../lib/seo';
-import { platformWhatIsAnswer, p04, p05, switchWithoutGapAnswer } from '../../data/directAnswers';
+import { platformWhatIsAnswer, p04, switchWithoutGapAnswer } from '../../data/directAnswers';
 
 const workstreams = [
   { name: 'Payer contracting', hire: 'Contracting lead with payer relationships in each state, plus counsel for contract review.', anvil: 'Rent: you bill under our existing contracts. Own: we contract your entity with commercial, Medicaid, and MA payers, and you see the rate ladder.', href: '/platform/contracting' },
@@ -18,7 +18,6 @@ const workstreams = [
 const faqs = [
   { q: 'What is an insurance operations platform for care companies?', a: platformWhatIsAnswer },
   { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
-  { q: 'What is an MSO-PC structure and does my telehealth startup need one?', a: p05 },
   { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
 ];
 ---
@@ -48,13 +47,13 @@ const faqs = [
     </div>
   </Section>
 
-  <Section id="which-workstream" eyebrow="Where to start" title="Which workstream first?">
+  <Section id="which-workstream" eyebrow="At a glance" title="What each workstream does">
     <ul class="check-list">
       <li><a href="/platform/eligibility">Eligibility</a>: eligibility verification at booking.</li>
       <li><a href="/platform/credentialing">Credentialing</a>: roster-adds under our PC in weeks.</li>
       <li><a href="/platform/contracting">Payer contracting</a>: commercial contracts for a new PC commonly land in 4 to 8 months.</li>
       <li><a href="/platform/rcm">RCM</a>: clean-claim rate reported monthly, with claims risk on Anvil during rental.</li>
-      <li><a href="/platform/compliance">Compliance</a>: rental structured for the AKS personal services safe harbor, and your PC structured for CPOM by state.</li>
+      <li><a href="/platform/compliance">Compliance</a>: rental structured for the AKS personal services safe harbor.</li>
     </ul>
   </Section>
 
