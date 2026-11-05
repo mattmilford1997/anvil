@@ -2,14 +2,15 @@
 // Every sitemap URL gets a date. Unlisted paths use the fallback.
 export const PAGE_LASTMOD = {
   '/': '2026-11-04',
-  '/platform': '2026-11-03',
+  '/platform': '2026-11-05',
   '/platform/rcm': '2026-11-05',
   '/platform/compliance': '2026-11-03',
   '/platform/contracting': '2026-11-03',
   '/platform/credentialing': '2026-11-03',
   '/platform/eligibility': '2026-11-05',
   '/own-your-contracts': '2026-11-04',
-  '/pricing': '2026-11-04',
+  '/pricing': '2026-11-05',
+  '/contact': '2026-11-05',
   '/company': '2026-11-02',
   '/rates': '2026-11-03',
   '/rates/payer/medicare': '2026-10-31',

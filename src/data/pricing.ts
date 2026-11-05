@@ -44,7 +44,6 @@ export const tiers: Tier[] = [
       'Everything in Launch',
       'Your own PC formed in your launch states',
       'Friendly physician owner placed and matched ($3,000/mo)',
-      'MSO and PC document suite, CPOM structuring by state',
       'Credentialing files built under your own entity',
     ],
     bestFor: 'Companies that want the asset on their balance sheet',
