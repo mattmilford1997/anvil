@@ -103,6 +103,9 @@ const articleLd = {
   .summary { margin-bottom: 32px; background: var(--surface-2); border-color: transparent; }
   .summary ul { margin: 0; padding-left: 1.2em; }
   .summary li { margin-bottom: 6px; }
+  /* Wide markdown tables scroll inside the article column instead of widening the grid (and the summary card) past the viewport. */
+  .art-main { min-width: 0; }
+  .art-main .prose :global(table) { display: block; max-width: 100%; overflow-x: auto; }
   .tool-cta { margin-top: 40px; }
   .tool-cta h3 { margin-top: 6px; }
   .art-side { position: sticky; top: 90px; display: grid; gap: 16px; }
