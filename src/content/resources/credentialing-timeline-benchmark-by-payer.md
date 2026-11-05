@@ -81,6 +81,8 @@ Most credentialing trackers are spreadsheets with a "submitted" date and a "stat
 
 ## Next step
 
+The fastest path is a roster add under an entity that already holds the contract. How rosters hang off a payer contract is covered in [What Does In-Network Nationally Mean?](/resources/what-in-network-nationally-means) To make that entity yours, see how to [own your payer contracts](/own-your-contracts), or start with [switching from a network rental vendor](/solutions/switching) if you rent today.
+
 Get the enrollment stage checklist: the five stages, the fields that cause most bounces, and the follow-up cadence, on one page. Then see how [Anvil runs credentialing](/platform/credentialing) or [talk to us](/contact) about your rollout order.
 
 ---

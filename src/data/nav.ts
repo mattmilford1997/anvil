@@ -9,7 +9,7 @@ export const platformItems: NavLink[] = [
   { label: 'Credentialing', href: '/platform/credentialing', desc: 'Enrollment under our contracts, then yours.' },
   { label: 'Contracting', href: '/platform/contracting', desc: 'Payer contracts for your entity. Rates you can see.' },
   { label: 'RCM', href: '/platform/rcm', desc: 'Coding, claims, denials, AR.' },
-  { label: 'Compliance', href: '/platform/compliance', desc: 'Structure, CPOM, safe harbor, security.' },
+  { label: 'Compliance', href: '/platform/compliance', desc: 'Credentialing, contract compliance, security.' },
 ];
 
 export const solutionItems: NavLink[] = [
