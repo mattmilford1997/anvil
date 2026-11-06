@@ -144,13 +144,25 @@ const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
         const debugValue = new URLSearchParams(location.search).get('debug_mode');
         const debugMode = new URLSearchParams(location.search).has('debug_mode') && debugValue !== '0' && debugValue !== 'false';
         try {
-          sessionStorage.setItem('anvil_lead_pending', JSON.stringify({
+          const pending: Record<string, unknown> = {
             form_name: formNames[netlifyName] || netlifyName,
             page_path: path,
             form_location: formLocation,
             debug_mode: debugMode,
             at: Date.now(),
-          }));
+          };
+          // Inquiry form: send UTM/referrer/landing/go_slug to GA4 only, not as Netlify fields.
+          if (netlifyName === 'anvil-leads') {
+            try {
+              const a = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
+              for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landing']) {
+                if (a[k]) pending[k] = a[k];
+              }
+              const slug = a.src || new URLSearchParams(location.search).get('src');
+              if (slug) pending.go_slug = slug;
+            } catch {}
+          }
+          sessionStorage.setItem('anvil_lead_pending', JSON.stringify(pending));
         } catch (err) {}
       });
     </script>

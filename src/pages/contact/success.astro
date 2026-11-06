@@ -35,6 +35,9 @@ import { SITE } from '../../../site.config.mjs';
           form_page_path: data.page_path,
           form_location: data.form_location,
         };
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landing', 'go_slug'].forEach(function (k) {
+          if (data[k]) params[k] = data[k];
+        });
         var debugValue = new URLSearchParams(location.search).get('debug_mode');
         var debugOn = data.debug_mode || (new URLSearchParams(location.search).has('debug_mode') && debugValue !== '0' && debugValue !== 'false');
         if (debugOn) params.debug_mode = true;
