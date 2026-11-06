@@ -6,26 +6,26 @@ export const PAGE_LASTMOD = {
   '/platform/rcm': '2026-11-05',
   '/platform/compliance': '2026-11-03',
   '/platform/contracting': '2026-11-03',
-  '/platform/credentialing': '2026-11-03',
+  '/platform/credentialing': '2026-11-06',
   '/platform/eligibility': '2026-11-05',
   '/own-your-contracts': '2026-11-04',
-  '/pricing': '2026-11-05',
+  '/pricing': '2026-11-06',
   '/contact': '2026-11-05',
   '/company': '2026-11-02',
-  '/rates': '2026-11-03',
-  '/rates/payer/medicare': '2026-10-31',
-  '/rates/payer/uhc': '2026-10-31',
-  '/rates/payer/medicaid': '2026-10-31',
-  '/rates/code/90791': '2026-11-02',
-  '/rates/code/90834': '2026-11-02',
-  '/rates/code/90837': '2026-11-02',
-  '/rates/code/97153': '2026-11-02',
+  '/rates': '2026-11-06',
+  '/rates/payer/medicare': '2026-11-06',
+  '/rates/payer/uhc': '2026-11-06',
+  '/rates/payer/medicaid': '2026-11-06',
+  '/rates/code/90791': '2026-11-06',
+  '/rates/code/90834': '2026-11-06',
+  '/rates/code/90837': '2026-11-06',
+  '/rates/code/97153': '2026-11-06',
   '/solutions/behavioral-health': '2026-11-04',
-  '/solutions/switching': '2026-11-05',
-  '/solutions/virtual-care': '2026-11-04',
+  '/solutions/switching': '2026-11-06',
+  '/solutions/virtual-care': '2026-11-06',
   '/solutions/hybrid-care': '2026-11-05',
-  '/compare/bridge': '2026-11-05',
-  '/health-plans': '2026-11-02',
+  '/compare/bridge': '2026-11-06',
+  '/health-plans': '2026-11-06',
   '/resources': '2026-11-03',
   '/resources/cash-pay-to-insurance-two-phase-plan': '2026-11-03',
   '/resources/what-in-network-nationally-means': '2026-11-03',
@@ -67,7 +67,7 @@ export const RATES_SUBPAGES_LASTMOD = '2026-10-18';
 const PSYCH_LEAF_LASTMOD = '2026-10-29';
 const FALLBACK_LASTMOD = '2026-10-17';
 // State hubs and leaves: related list changed (MSO-PC item removed).
-const RATE_RELATED_LASTMOD = '2026-11-02';
+const RATE_RELATED_LASTMOD = '2026-11-06';
 export function lastmodFor(path) {
   if (/^\/rates\/[a-z]{2}(\/\d+)?$/.test(path)) return RATE_RELATED_LASTMOD;
   if (PAGE_LASTMOD[path]) return PAGE_LASTMOD[path];
