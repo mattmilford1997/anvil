@@ -1,13 +1,11 @@
 ---
 // Inquiry form v2. Netlify Form "anvil-leads". Netlify detects it from built HTML at deploy time.
+// Attribution (UTM, referrer, landing, go slug) stays in sessionStorage and is sent to GA4 on
+// /contact/success, not as named Netlify fields, so those values do not appear in lead emails.
 ---
 <form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form" aria-describedby="cf-privacy">
   <input type="hidden" name="form-name" value="anvil-leads" />
   <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-  <input type="hidden" name="form_started" value="" />
-  <!-- Attribution, filled client-side from sessionStorage -->
-  <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" />
-  <input type="hidden" name="referrer" /><input type="hidden" name="landing" /><input type="hidden" name="go_slug" />
 
   <div class="field-row">
     <div class="field">
@@ -76,22 +74,13 @@
 <script>
   const f = document.getElementById('contact-form') as HTMLFormElement | null;
   if (f) {
-    try {
-      const a = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
-      const set = (n: string, v?: string) => { const i = f.querySelector<HTMLInputElement>(`[name=${n}]`); if (i && v) i.value = v; };
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'landing'].forEach((k) => set(k, a[k]));
-      set('go_slug', a.src || new URLSearchParams(location.search).get('src') || undefined);
-    } catch {}
     const started = Date.now();
-    const ts = f.querySelector<HTMLInputElement>('[name=form_started]');
     const status = document.getElementById('cf-status');
-    if (ts) ts.value = String(started);
     // Light client-side guard: block submits under 2s from load, then one submit per 10s. Tell the person why.
     let last = 0;
     f.addEventListener('submit', (e) => {
       const now = Date.now();
-      const startAt = Number(ts?.value || started);
-      if (now - startAt < 2000) { e.preventDefault(); if (status) status.textContent = 'One moment, then press Send inquiry again.'; return; }
+      if (now - started < 2000) { e.preventDefault(); if (status) status.textContent = 'One moment, then press Send inquiry again.'; return; }
       if (now - last < 10000) { e.preventDefault(); if (status) status.textContent = 'Sending. Please wait a few seconds.'; return; }
       last = now;
     });
