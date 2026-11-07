@@ -10,7 +10,7 @@ summary:
   - "Phase 2 is about ownership. Plan it before Phase 1 starts or you'll be renting your contracts in year three."
 author: "matt-milford"
 publishDate: 2026-10-20
-updatedDate: 2026-11-03
+updatedDate: 2026-11-07
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
@@ -59,6 +59,8 @@ Going 50-state before you know where your patients are. Putting insurance after 
 For the cash-pay switch, follow the [virtual care](/solutions/virtual-care) plan, then [own your payer contracts](/own-your-contracts) so they sit in your entity.
 
 Phase 1 enrollment and Phase 2 contracting run on the [insurance operations platform for care companies](/platform).
+
+The move sits on [Insurance billing infrastructure for virtual care](/). Compare vendors on the [Bridge alternative for telehealth insurance billing](/compare/bridge). Psychiatry and therapy groups start as [Behavioral health payer contracting for telehealth](/solutions/behavioral-health). The booking check is the [Real-time insurance eligibility API at booking](/platform/eligibility).
 
 ## Next step
 

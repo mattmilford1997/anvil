@@ -55,8 +55,8 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     excerpt: 'Roster-add for speed, then full credentialing under your own PC.',
   },
   '/platform/compliance': {
-    title: 'Corporate practice of medicine (CPOM) for telehealth',
-    excerpt: 'MSO-PC structure, AKS safe harbor, and state corporate practice of medicine.',
+    title: 'Credentialing and contract compliance for telehealth',
+    excerpt: 'Credentialing files, contract terms set in advance, HIPAA in place, SOC 2 Type II in progress.',
   },
   '/own-your-contracts': {
     title: 'Own your payer contracts vs network rental',

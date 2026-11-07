@@ -13,6 +13,7 @@ const faqs = [
   { q: 'Can we show the patient their copay before they book?', a: 'Yes. The copay estimate API response includes an estimate based on the plan\'s benefit for the service type. Show it as an estimate; the final amount depends on deductible status at the date of service.' },
   { q: 'Does this work while we are on the rented PC?', a: 'Yes. Eligibility is entity-independent. The same integration keeps working as volume moves to your own PC.' },
   { q: 'What is the best real-time insurance eligibility API for a telehealth booking flow?', a: eligibilityApiAnswer },
+  { q: 'How does eligibility verification fit into insurance billing infrastructure for virtual care?', a: 'It is one of the five workstreams on the platform. A soft check at booking uses name, date of birth, and payer and returns coverage, plan, and an estimated copay. When a payer endpoint fails, the API returns a distinct outage status so booking can continue and the check can run again before the visit.' },
 ];
 const sample = `POST /v1/eligibility/soft-check
 {
@@ -54,6 +55,7 @@ const sample = `POST /v1/eligibility/soft-check
 >
   <Section eyebrow="At booking" title="Eligibility verification at booking" intro="A real-time insurance eligibility API runs eligibility verification at booking from name, date of birth, and payer. The copay estimate API returns an estimated copay in the same response so the patient can book without uploading a card.">
     <p class="lede">Eligibility verification at booking is one of five workstreams on Anvil's <a href="/platform">insurance operations platform</a>.</p>
+    <p class="lede" style="margin-top:16px">Eligibility is part of <a href="/">insurance billing infrastructure for virtual care</a>. After the visit, <a href="/platform/rcm">Telehealth revenue cycle management (RCM)</a> submits the claim. Psychiatry, therapy, and ABA groups reach those payers through <a href="/solutions/behavioral-health">Behavioral health payer contracting for telehealth</a>. A vendor comparison is the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>
     <FeatureRow eyebrow="Developer-first" title="Designed to sit inside your booking flow" bullets={[
       'Soft check from name, DOB, and payer. Member ID optional.',
       'Estimated copay and deductible status in the response.',
