@@ -10,7 +10,7 @@ summary:
   - "The question that separates vendors: when you leave, which contracts come with you?"
 author: "matt-milford"
 publishDate: 2026-10-27
-updatedDate: 2026-11-03
+updatedDate: 2026-11-07
 category: "Blog"
 icp: ["A", "B", "C"]
 pillar: "ownership"
@@ -67,6 +67,8 @@ Launch on an existing contracted entity's roster so you are billing in weeks. In
 That parallel path is the single biggest difference between vendors in this category. Ask for it by name. That path is laid out in [own your payer contracts vs network rental](/own-your-contracts).
 
 That parallel path runs on the [insurance operations platform for care companies](/platform).
+
+Anvil describes that path as [Insurance billing infrastructure for virtual care](/). The side by side with a rental vendor is the [Bridge alternative for telehealth insurance billing](/compare/bridge). Claims on either entity run through [Telehealth revenue cycle management (RCM)](/platform/rcm). Behavioral health groups do this as [Behavioral health payer contracting for telehealth](/solutions/behavioral-health).
 
 ## The question to ask
 "When we leave, which payer contracts come with us?" If the answer is a list, you are building an asset. If the answer is "none, but you'd stay on our platform," you are renting one.

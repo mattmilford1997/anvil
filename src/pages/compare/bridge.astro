@@ -11,6 +11,8 @@ import { p01, p08, bridgeLeaveAnswer, bridgePriceAnswer } from '../../data/direc
 
 const goodBridgeAlternative = 'Anvil is a Bridge alternative that launches clinicians in-network on a credentialed 50-state professional corporation, then moves volume to payer contracts in your entity\'s name. Bridge\'s homepage describes a 50-state PC and does not say who holds the payer contracts.';
 
+const bridgeLivesAnswer = 'On a November 7, 2026 review, Bridge\'s homepage states 80% of commercially covered lives, 200M+ members, and real-time enrollment status tracking. It does not say who holds the payer contracts.';
+
 const faqs = [
   {
     q: 'Who owns the payer contracts on Anvil vs on Bridge?',
@@ -48,6 +50,10 @@ const faqs = [
     q: 'What is a good Bridge alternative?',
     a: goodBridgeAlternative,
   },
+  {
+    q: 'What does Bridge\'s homepage say about covered lives and enrollment tracking?',
+    a: bridgeLivesAnswer,
+  },
 ];
 
 const rows: [string, string[]][] = [
@@ -59,6 +65,8 @@ const rows: [string, string[]][] = [
   ['SOC 2', ['Type II in progress. HIPAA in place.', 'SOC 2 certified, on Bridge\'s homepage']],
   ['Claims risk', ['Anvil carries it during rental', 'No financial risk for claims and denials, on Bridge\'s homepage']],
   ['Specialties', ['Behavioral health payer contracting is published', '50+ specialties on Bridge\'s homepage. A full list is not published']],
+  ['Covered lives', ['Not published', '80% of commercially covered lives and 200M+ members, on Bridge\'s homepage']],
+  ['Enrollment tracking', ['Every file tracked per clinician and per payer', 'Real-time enrollment status tracking, on Bridge\'s homepage']],
   ['If you leave', ['Contracts are in your entity, so they stay with you', 'Not published']],
   ['Reimbursement rates', ['Parite ranges by state and CPT code', 'Not published']],
 ];
@@ -92,7 +100,8 @@ const rows: [string, string[]][] = [
   <Section eyebrow="The difference" title="Bridge launches you on its PC. Anvil moves you to your own." intro="Bridge's homepage describes a 50-state PC model. Anvil also launches you on our PC, then moves volume to payer contracts your own entity holds. Rent, then own.">
     <ComparisonTable cols={['Anvil', 'Bridge']} rows={rows} highlight={false} />
     <p class="lede" style="margin-top:16px">On claims and billing, Anvil runs <a href="/platform/rcm">telehealth revenue cycle management</a> and carries claims risk during rental. Clinicians go live by roster-add through <a href="/platform/credentialing">telehealth credentialing services</a>. Why a roster-add is not a contract of your own is covered in <a href="/resources/what-in-network-nationally-means">what in-network nationally means</a>. Eligibility checks run on a <a href="/platform/eligibility">real-time insurance eligibility API</a> at booking. Those run on one <a href="/platform">insurance operations platform</a>, alongside payer contracting and compliance.</p>
-    <p class="small muted" style="margin-top:16px">More on the Anvil side: <a href="/pricing">telehealth billing platform pricing</a>, <a href="/solutions/switching">switching without a revenue gap</a>, and <a href="/rates">reimbursement rates by state and CPT code</a>. Bridge cells are from the Bridge homepage at usebridge.com, reviewed October 2026, or marked Not published when that page does not state them. Specialties also uses Bridge's health plans page, which names urgent care, behavioral health, and cardiometabolic care and does not publish a full list.</p>
+    <p class="lede" style="margin-top:16px">{bridgeLivesAnswer}</p>
+    <p class="small muted" style="margin-top:16px">More on the Anvil side: <a href="/pricing">telehealth billing platform pricing</a>, <a href="/solutions/switching">switching without a revenue gap</a>, and <a href="/rates">reimbursement rates by state and CPT code</a>. Bridge cells are from the Bridge homepage at usebridge.com, reviewed November 7, 2026, or marked Not published when that page does not state them. Specialties also uses Bridge's health plans page, cited in the October 2026 review, which names urgent care, behavioral health, and cardiometabolic care and does not publish a full list.</p>
   </Section>
 
   <Section eyebrow="What the rows mean" title="Ownership, entity, behavioral health, and the switch">

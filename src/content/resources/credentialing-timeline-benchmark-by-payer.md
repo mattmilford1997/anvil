@@ -9,6 +9,7 @@ summary:
   - "Three things move the number: clean data at intake, automated submission where payers allow it, and a follow-up cadence that is measured in days, not weeks."
 author: "matt-milford"
 publishDate: 2026-11-03
+updatedDate: 2026-11-07
 category: "Blog"
 icp: ["A", "B"]
 pillar: "speed"
@@ -80,6 +81,8 @@ Say you have 20 clinicians and 6 payers. That is 120 applications. If each one l
 Most credentialing trackers are spreadsheets with a "submitted" date and a "status" column that says "pending." That tells you nothing. A useful tracker shows, per application: the segment it is in, days in that segment, last contact date, next action, and owner. That is how Anvil tracks every application, to the day, and it is the difference between finding a stalled application at day 8 and finding it at day 60.
 
 ## Next step
+
+Credentialing is one job inside [Insurance billing infrastructure for virtual care](/). The vendor comparison is the [Bridge alternative for telehealth insurance billing](/compare/bridge). Once clinicians can bill, claims run through [Telehealth revenue cycle management (RCM)](/platform/rcm), and psychiatry, therapy, and ABA groups plan panels as [Behavioral health payer contracting for telehealth](/solutions/behavioral-health).
 
 The fastest path is a roster add under an entity that already holds the contract. How rosters hang off a payer contract is covered in [What Does In-Network Nationally Mean?](/resources/what-in-network-nationally-means) To make that entity yours, see how to [own your payer contracts](/own-your-contracts), or start with [switching from a network rental vendor](/solutions/switching) if you rent today.
 

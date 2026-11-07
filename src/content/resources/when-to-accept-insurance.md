@@ -10,7 +10,7 @@ summary:
   - "The switch does not have to be a cliff. A two-phase plan keeps cash-pay running while in-network volume ramps."
 author: "matt-milford"
 publishDate: 2026-10-06
-updatedDate: 2026-11-02
+updatedDate: 2026-11-07
 category: "Blog"
 icp: ["A"]
 pillar: "speed"
@@ -69,6 +69,8 @@ Phase 1: go in-network where the lives are, fast. Pick the states and payers tha
 Phase 2: expand coverage and move toward owning your payer relationships. More states, more payers, your own entity contracted so the relationships are yours. This phase is where most companies stall, because they built Phase 1 on a vendor's contracts and never planned for the second step. Plan both phases on day one. If Phase 1 is already a vendor's network, leaving it is [switching from a network rental vendor](/solutions/switching). Weigh vendors on the [Bridge insurance billing alternative](/compare/bridge).
 
 Phase 1 and Phase 2 run on the [insurance operations platform for care companies](/platform).
+
+That stack is [Insurance billing infrastructure for virtual care](/). Claims after you are in-network run through [Telehealth revenue cycle management (RCM)](/platform/rcm).
 
 ## Next step
 

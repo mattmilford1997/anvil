@@ -4,14 +4,20 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Tiles from '../components/Tiles.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
 import { team } from '../data/team';
 import { breadcrumbJsonLd } from '../lib/seo';
+const faqs = [
+  { q: 'Who operates Anvil?', a: 'Anvil is operated by Arche Studios, the team behind Homefront.' },
+  { q: 'What does Anvil do for a virtual care company?', a: 'Anvil is insurance infrastructure for care companies. Rent a network to start. Own the contracts to finish.' },
+];
 ---
 <BaseLayout title="Insurance infrastructure for care companies" description="Anvil is insurance infrastructure for care companies. Built by Arche Studios, the team behind Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
   <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is insurance infrastructure for care companies: the platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
   <Section eyebrow="Mission" tight>
     <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
     <p class="lede">The operating path is to <a href="/own-your-contracts">own your payer contracts</a>, or start from <a href="/solutions/switching">switching from a network rental vendor</a> if a vendor already holds them.</p>
+    <p class="lede">Anvil is <a href="/">insurance billing infrastructure for virtual care</a>. Claims run through <a href="/platform/rcm">Telehealth revenue cycle management (RCM)</a>. Psychiatry, therapy, and ABA groups start with <a href="/solutions/behavioral-health">Behavioral health payer contracting for telehealth</a>. The vendor comparison is the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>
   </Section>
   <Section eyebrow="Why we built this" title="Operators first, vendors second">
     <div class="grid grid-2">
@@ -39,6 +45,7 @@ import { breadcrumbJsonLd } from '../lib/seo';
       <div class="card"><h3>Parite</h3><p class="muted">Reimbursement data by state, payer, and code. The source for the rate lookup and for rate proposals in your name.</p></div>
     </div>
   </Section>
+  <Section id="who-operates" tight><Faq items={faqs} /></Section>
   <CtaBand title="Talk to an operator, not a rep." body="Every first conversation is with someone who has launched an insurance-billing care company." primary={{ label: 'Get started', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
 </BaseLayout>
 <style>

@@ -5,8 +5,17 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { breadcrumbJsonLd, showHeld, fmtDate } from '../../lib/seo';
-import { getPosts, getUpcomingOctoberPosts, getLivePost } from '../../lib/content';
+import Faq from '../../components/Faq.astro';
+import { getPosts, getUpcomingOctoberPosts, getLivePost, holdReason } from '../../lib/content';
 const posts = await getPosts();
+const liveGuides = posts.filter((p) => !holdReason(p)).sort((a, b) => a.data.publishDate.valueOf() - b.data.publishDate.valueOf());
+const liveTitles = liveGuides.map((p) => p.data.title);
+const liveList = liveTitles.length < 2 ? liveTitles.join('') : `${liveTitles.slice(0, -1).join('; ')}; and ${liveTitles[liveTitles.length - 1]}`;
+const publishedGuides = `Guides live on the production site: ${liveList}. Later guides stay off the production site until their publish date.`;
+const resourceFaqs = [
+  { q: 'Which insurance ops guides are published?', a: publishedGuides },
+  { q: 'Where do I read about insurance billing infrastructure for virtual care?', a: 'Start on the homepage, then the live guides. The Bridge alternative comparison, telehealth revenue cycle management, and behavioral health payer contracting each have their own page.' },
+];
 const auditPost = await getLivePost('health-plan-audits-virtual-care');
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
@@ -17,7 +26,11 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
 <BaseLayout title="Resources: insurance ops guides for care companies" description="Insurance ops guides for care companies: accepting insurance, credentialing, and payer contracting, with frameworks and cost tables for founders." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }])]}>
   <section class="res-hero"><div class="container"><div class="eyebrow">Resources</div><h1>Insurance ops guides for care companies</h1><p class="lede">Accepting insurance, credentialing, and payer contracting, with frameworks and cost tables.{posts.length > 0 && <> Live articles end with a tool, not a pitch.</>}</p></div></section>
   <Section id="answers" eyebrow="Answers" title="Insurance ops questions, answered" tight>
+    <p class="lede">Anvil, the company behind these guides, is <a href="/company">Insurance infrastructure for care companies</a>.</p>
     <ul class="check-list">
+      <li><a href="/">What is insurance billing infrastructure for virtual care?</a></li>
+      <li><a href="/platform/rcm#what-is-telehealth-rcm">What is telehealth revenue cycle management?</a></li>
+      <li><a href="/solutions/behavioral-health#what-is-bh-payer-contracting">What is behavioral health payer contracting?</a></li>
       <li><a href="/#in-network-50-states">How do I get my telehealth company in-network with insurance in all 50 states?</a></li>
       <li><a href="/solutions/virtual-care#when-to-accept">When should a virtual care company start accepting insurance?</a></li>
       <li><a href="/solutions/virtual-care#how-long">How long does it take a telehealth company to start accepting insurance?</a></li>
@@ -42,6 +55,9 @@ const cats = ['All', 'Blog', 'Report', 'Guide', 'News'];
       <li><a href="/rates/oh#psychotherapy-rates">Ohio psychotherapy reimbursement rates</a></li>
       <li><a href="/rates/oh/90837">Medicaid reimbursement rate for 90837 in Ohio</a></li>
     </ul>
+  </Section>
+  <Section id="published-guides" tight>
+    <Faq items={resourceFaqs} />
   </Section>
   <Section tight>
     {posts.length > 0 && (

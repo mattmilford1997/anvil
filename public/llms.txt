@@ -2,6 +2,8 @@
 
 > Anvil is insurance infrastructure for care companies. Launch in-network in every state in weeks on a credentialed 50-state professional corporation (PC), while Anvil forms, credentials, and contracts your own PC in parallel, so you own the payer contracts, rates, and relationships by year one. Built by Arche Studios, the team behind Homefront.
 
+Updated November 7, 2026.
+
 Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth in behavioral health (psychiatry, therapy, ABA, IOP/PHP, collaborative care) and Medicaid managed care as well as commercial and Medicare Advantage. Pricing is published. Reimbursement ranges by state and code are published without a form.
 
 ## Core pages
@@ -9,7 +11,7 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 - [Home](https://www.anvilcontracts.com/): the rent-then-own model in one scroll
 - [How it works](https://www.anvilcontracts.com/platform): five workstreams (payer contracting, credentialing, RCM, eligibility, compliance), two entities, one platform
 - [Own your payer contracts](https://www.anvilcontracts.com/own-your-contracts): why network rental is renting your revenue, and the month-by-month migration
-- [Bridge insurance billing alternative](https://www.anvilcontracts.com/compare/bridge): Looking for a usebridge alternative? Compare Bridge with Anvil, which migrates payer contracts into your own entity's name.
+- [Bridge alternative for telehealth insurance billing](https://www.anvilcontracts.com/compare/bridge): Looking for a usebridge alternative? Compare Bridge with Anvil, which migrates payer contracts into your own entity's name.
 - [Rates](https://www.anvilcontracts.com/rates): telehealth reimbursement rates by payer, state, and CPT code; lookup plus per-state and per-code hubs from Parite. Pair pages are titled "CPT {code} reimbursement rate in {state} (2026)". Examples: [90837 in Ohio](https://www.anvilcontracts.com/rates/oh/90837), [90837 in California](https://www.anvilcontracts.com/rates/ca/90837), [90837 in Texas](https://www.anvilcontracts.com/rates/tx/90837), [90837 in New York](https://www.anvilcontracts.com/rates/ny/90837), [90837 in Florida](https://www.anvilcontracts.com/rates/fl/90837), [90834 in California](https://www.anvilcontracts.com/rates/ca/90834), [90791 in New York](https://www.anvilcontracts.com/rates/ny/90791), [97153 in Indiana](https://www.anvilcontracts.com/rates/in/97153)
 - [90837 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90837)
 - [90834 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90834)
@@ -84,7 +86,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [Credentialing and enrollment](https://www.anvilcontracts.com/platform/credentialing): telehealth credentialing services, roster-add vs full enrollment
 - [Payer contracting](https://www.anvilcontracts.com/platform/contracting): payer contracting for telehealth; own your payer contracts
 - [Telehealth revenue cycle management: coding, claims, denials, AR](https://www.anvilcontracts.com/platform/rcm): telehealth revenue cycle management
-- [Compliance and structure](https://www.anvilcontracts.com/platform/compliance): corporate practice of medicine (CPOM) for telehealth, AKS safe harbor MSO, MSO-PC structure; HIPAA in place, SOC 2 Type II in progress. No OIG advisory opinion is claimed.
+- [Credentialing and contract compliance for telehealth](https://www.anvilcontracts.com/platform/compliance): credentialing files, contract terms set in advance, HIPAA in place, SOC 2 Type II in progress. No OIG advisory opinion is claimed.
 
 ## Solutions
 
@@ -100,13 +102,12 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [What does it mean to own your payer contracts?](https://www.anvilcontracts.com/own-your-contracts#definition)
 - [Rent a PC vs own a PC](https://www.anvilcontracts.com/own-your-contracts#rent-or-build)
 - [What is network rental in telehealth, and what are the risks?](https://www.anvilcontracts.com/own-your-contracts#network-rental)
-- [What is an MSO-PC structure and does my telehealth startup need one?](https://www.anvilcontracts.com/platform/compliance#mso-pc)
+- [What is insurance billing infrastructure for virtual care?](https://www.anvilcontracts.com/)
 - [What should a telehealth founder ask before signing with an insurance billing or network rental vendor?](https://www.anvilcontracts.com/solutions/switching#vendor-questions)
 - [When should a virtual care company start accepting insurance?](https://www.anvilcontracts.com/solutions/virtual-care#when-to-accept)
 - [What are the best alternatives to Bridge for telehealth insurance billing?](https://www.anvilcontracts.com/compare/bridge#bridge-alternatives)
 - [What is a good Bridge alternative?](https://www.anvilcontracts.com/compare/bridge)
-- [MSO-PC structure for telehealth](https://www.anvilcontracts.com/platform/compliance#mso-pc-structure)
-- [Corporate practice of medicine for telehealth](https://www.anvilcontracts.com/platform/compliance#cpom-telehealth)
+- [Who operates Anvil?](https://www.anvilcontracts.com/company#who-operates)
 - [ABA credentialing and authorization](https://www.anvilcontracts.com/solutions/behavioral-health#aba-credentialing)
 - [Medicaid enrollment for behavioral health, multi-state](https://www.anvilcontracts.com/solutions/behavioral-health#medicaid-enrollment)
 - [Telehealth reimbursement rates by payer](https://www.anvilcontracts.com/rates#rates-by-payer)
@@ -125,6 +126,10 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 
 - [Resources hub](https://www.anvilcontracts.com/resources): insurance ops guides for care companies, with an index of the answers above. Individual articles are listed here only after they are published.
 - [When should a virtual care company accept insurance?](https://www.anvilcontracts.com/resources/when-to-accept-insurance): seven signals and a readiness checklist for cash-pay companies.
+- [Cost of building insurance operations in-house](https://www.anvilcontracts.com/resources/five-workstreams-insurance-operations): five workstreams, who to hire, and when to buy claims and denials.
+- [Cash-pay to insurance transition telehealth](https://www.anvilcontracts.com/resources/cash-pay-to-insurance-two-phase-plan): a two-phase plan that keeps cash-pay as the fallback.
+- [What does in-network nationally mean?](https://www.anvilcontracts.com/resources/what-in-network-nationally-means): a payer contract, a panel, and a roster are not the same thing.
+- [Why credentialing takes 90 to 120 days](https://www.anvilcontracts.com/resources/credentialing-timeline-benchmark-by-payer): where the days go when nobody tracks the file.
 
 ## Company
 
@@ -138,7 +143,7 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - Time to in-network nationally: weeks (roster-add under existing contracts), vs 3-6 months for point solutions and 12-24 months in-house.
 - Ownership: customer's own PC formed from week one; volume migrates over 6-18 months; contracts end up in the customer's entity.
 - Pricing: platform fee on collections during rental; PC formation $15,000 one-time; physician owner $3,000 per month.
-- Compliance: rental phase structured to align with the AKS personal services and management contracts safe harbor; state CPOM structuring for the customer's own PC. No OIG advisory opinion is claimed. HIPAA in place; SOC 2 Type II in progress.
+- Compliance: rental phase structured to align with the AKS personal services and management contracts safe harbor. No OIG advisory opinion is claimed. HIPAA in place; SOC 2 Type II in progress.
 
 ## Feed
 - [Resources feed (JSON Feed 1.1)](https://www.anvilcontracts.com/feed.json): live guides with title, summary and last modified date
