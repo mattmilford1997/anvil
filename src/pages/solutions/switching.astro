@@ -3,6 +3,8 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import WedgeRelated from '../../components/WedgeRelated.astro';
 import TimelineSlider from '../../components/TimelineSlider.astro';
+import { absolute } from '../../lib/seo';
+import { lastmodFor } from '../../data/lastmod.mjs';
 import { switchWithoutGapAnswer, vendorQuestionsAnswer } from '../../data/directAnswers';
 const faqs = [
   { q: 'How do I switch from a network rental vendor?', a: 'Keep billing where you are. Form your PC, file contract applications in your name, move volume payer by payer as each contract is effective, then give notice. Leave the rental PC only after the majority of volume is on contracts you own. Remaining payers can run through Anvil\'s rented PC.' },
@@ -14,6 +16,21 @@ const faqs = [
   { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
   { q: 'What should a telehealth founder ask before signing with an insurance billing or network rental vendor?', a: vendorQuestionsAnswer },
 ];
+const switchTitle = 'Switching from a network rental vendor';
+const switchDescription = 'Switch from a network rental vendor to payer contracts your own entity holds, with no revenue gap. Keep billing while your contracts come live.';
+const switchArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: switchTitle,
+  description: switchDescription,
+  datePublished: '2026-09-15T00:00:00Z',
+  dateModified: `${lastmodFor('/solutions/switching')}T00:00:00Z`,
+  author: { '@type': 'Organization', name: 'Anvil' },
+  publisher: { '@type': 'Organization', name: 'Anvil', logo: { '@type': 'ImageObject', url: absolute('/logo.svg') } },
+  mainEntityOfPage: absolute('/solutions/switching'),
+  image: absolute('/og-default-v2.png'),
+  url: absolute('/solutions/switching'),
+};
 const steps = [
   ['Before notice', 'Review your agreement. Collect credentialing files. Form your PC and place the physician owner. File contract applications in your name.'],
   ['Contracts land', 'As each payer contract in your PC becomes effective, new visits with that payer route to you. Old vendor keeps billing the rest.'],
@@ -22,21 +39,23 @@ const steps = [
 ];
 ---
 <SubpageLayout
-  metaTitle="Switching from a network rental vendor"
+  metaTitle={switchTitle}
   title="Switching from a network rental vendor without losing revenue"
-  description="Switch from a network rental vendor to payer contracts your own entity holds, with no revenue gap. Keep billing while your contracts come live."
+  description={switchDescription}
   eyebrow="Solutions / Switching"
   sub="You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. Keep billing where you are while your own contracts come live, then switch payer by payer."
   answer={switchWithoutGapAnswer}
   updated
-  crumbs={[{ name: 'Home', path: '/' }, { name: 'Solutions', path: '/solutions/switching' }, { name: 'Switching', path: '/solutions/switching' }]}
+  showCrumbs
+  extraJsonLd={[switchArticle]}
+  crumbs={[{ name: 'Home', path: '/' }, { name: switchTitle, path: '/solutions/switching' }]}
   faqs={faqs}
   ctaTitle="Send us your current agreement. We will map the exit."
   ctaBody="Notice terms, non-solicits, and which payers move first. Reviewed before you say anything to your vendor."
   ctaPrimary={{ label: 'Get started', href: '/contact?src=switching' }}
 >
   <Section eyebrow="The switch" title="No revenue gap, by construction">
-    <p class="lede">See how to <a href="/own-your-contracts">own your payer contracts</a> month by month, and whether to <a href="/own-your-contracts#rent-or-build">rent a PC or build your own professional corporation</a>. Model the move against <a href="/rates/code/90837">90837 reimbursement rates by state</a>.</p>
+    <p class="lede">See <a href="/own-your-contracts">Own your payer contracts vs network rental</a> for the month by month path, and <a href="/own-your-contracts#rent-or-build">Rent a PC vs own a PC</a> for the launch choice. Model the move against <a href="/rates/code/90837">90837 reimbursement rates by state</a>.</p>
     <div class="grid grid-4">
       {steps.map(([t, b]) => <div class="card"><h3 style="font-size:18px">{t}</h3><p class="muted" style="font-size:15px">{b}</p></div>)}
     </div>
@@ -60,7 +79,19 @@ const steps = [
     <p class="lede" style="margin-top:24px">Anvil's answers: payer contracts move to your own PC as each one becomes effective, the contracted rate and our fee are separate lines, the platform fee steps down as volume moves, and <a href="/pricing">pricing is published</a>. The contract, panel and roster terms behind these questions are defined in <a href="/resources/what-in-network-nationally-means">what in-network nationally means</a>.</p>
   </Section>
   <Section id="vendors-compared" eyebrow="Comparison" title="Network rental vendors compared" tight>
-    <p class="lede">Ask who holds the payer contracts before you sign. Ask whether you see the contracted rate or only a fee. Ask what happens to those contracts when you leave. The path off that rental is to <a href="/own-your-contracts">own your payer contracts</a>.</p>
+    <p class="lede">Ask any network rental vendor these questions before you sign. The Anvil column is what this site already publishes. It does not score a vendor that has not published the answer.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Question</th><th>What Anvil publishes</th></tr></thead>
+        <tbody>
+          <tr><td>Who holds the payer contracts?</td><td>You launch on our professional corporation. Applications filed in your PC's name move new visits to you when each contract is effective.</td></tr>
+          <tr><td>Do you see the contracted rate?</td><td>Yes. The contracted rate and the platform fee are separate lines.</td></tr>
+          <tr><td>What happens if you leave?</td><td>Contracts in your PC stay with your PC. A rental with no contracts in your name means a relaunch.</td></tr>
+          <tr><td>Is pricing published?</td><td>Yes. A platform fee on collections during rental, plus fixed fees for your own PC and physician owner. The fee steps down as volume moves.</td></tr>
+          <tr><td>Who carries claims risk while you bill under our PC?</td><td>Anvil does.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </Section>
   <Section id="compare-bridge" eyebrow="Side by side" title="Compare Anvil and Bridge on contract ownership">
     <p class="lede">Bridge's homepage describes a 50-state PC. It does not say who holds the payer contracts. See the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>

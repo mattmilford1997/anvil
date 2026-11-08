@@ -12,11 +12,14 @@ const faqs = [
   { q: 'What does Anvil do for a virtual care company?', a: 'Anvil is insurance infrastructure for care companies. Rent a network to start. Own the contracts to finish.' },
 ];
 ---
-<BaseLayout title="Insurance infrastructure for care companies" description="Anvil is insurance infrastructure for care companies. Built by Arche Studios, the team behind Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
-  <Hero compact eyebrow="Company" title="We got tired of solving insurance from scratch every time." sub="Anvil is insurance infrastructure for care companies: the platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
+<BaseLayout title="Insurance infrastructure for care companies" description="Insurance infrastructure for care companies. Rent a network to start, then own the payer contracts. Built by Arche Studios, the team behind Homefront." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Company', path: '/company' }])]}>
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> Company</div>
+  </nav>
+  <Hero compact eyebrow="Company" title="Insurance infrastructure for care companies." sub="The platform we wished existed each time we launched one. Rent a network to start. Own the contracts to finish. Built by the team behind Homefront." primary={{ label: 'Work with us', href: '/contact?src=company' }} secondary={{ label: 'Careers', href: '/careers' }} />
   <Section eyebrow="Mission" tight>
     <p class="lede" style="font-size:24px;max-width:36ch;color:var(--ink)">Every care company should be able to accept insurance in every state in weeks, and own the payer relationships it builds.</p>
-    <p class="lede">The operating path is to <a href="/own-your-contracts">own your payer contracts</a>, or start from <a href="/solutions/switching">switching from a network rental vendor</a> if a vendor already holds them.</p>
+    <p class="lede">The operating path is to <a href="/own-your-contracts">own your payer contracts</a>, or start from <a href="/solutions/switching">switching from a network rental vendor</a> if a vendor already holds them. The launch choice is <a href="/own-your-contracts#rent-or-build">Rent a PC vs own a PC</a>.</p>
     <p class="lede">Anvil is <a href="/">insurance billing infrastructure for virtual care</a>. Claims run through <a href="/platform/rcm">Telehealth revenue cycle management (RCM)</a>. Psychiatry, therapy, and ABA groups start with <a href="/solutions/behavioral-health">Behavioral health payer contracting for telehealth</a>. The vendor comparison is the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>
   </Section>
   <Section eyebrow="Why we built this" title="Operators first, vendors second">

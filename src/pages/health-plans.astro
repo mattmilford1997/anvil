@@ -17,13 +17,17 @@ const faqs = [
 ];
 ---
 <BaseLayout title="Network adequacy behavioral health for health plans" description="Network adequacy behavioral health for health plans. A quality-governed telehealth provider network, including rural coverage, under fee-for-service." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Health plans', path: '/health-plans' }])]}>
-  <Hero compact eyebrow="Health plans" title="Network adequacy in behavioral health and specialty care, under fee-for-service." prompt="What is a telehealth provider network for health plans?" promptId="hp-provider-network-q" answer={providerNetwork} updated sub="Network adequacy behavioral health coverage from one contracted, credentialed group: many care companies, one set of charting standards. Rural and specialty gaps, under fee-for-service. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> Health plans</div>
+  </nav>
+  <Hero compact eyebrow="Health plans" title="Network adequacy behavioral health for health plans." prompt="What is a telehealth provider network for health plans?" promptId="hp-provider-network-q" answer={providerNetwork} updated sub="Coverage from one contracted, credentialed group: many care companies, one set of charting standards. Rural and specialty gaps, under fee-for-service. Not a PEPM. Not a black box." primary={{ label: 'Talk to network development', href: '/contact?src=health-plans' }} />
   <Section tight class="hp-answers">
     <div class="hp-block" id="provider-network">
       <h2>Telehealth provider network for health plans</h2>
       <p class="lede">{providerNetwork} Behavioral health groups on that network join through <a href="/solutions/behavioral-health">behavioral health payer contracting</a>. Read how a care company can <a href="/own-your-contracts">own your payer contracts</a>. A care company leaving a vendor starts with <a href="/solutions/switching">switching from a network rental vendor</a>.</p>
       <p class="lede">Care companies on that network use the <a href="/platform">insurance operations platform for care companies</a>, including <a href="/platform/rcm">telehealth revenue cycle management</a>.</p>
       <p class="lede">Care companies comparing infrastructure start at <a href="/">insurance billing infrastructure for virtual care</a> and the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>
+      <p class="lede">The launch choice for a care company is <a href="/own-your-contracts#rent-or-build">Rent a PC vs own a PC</a>.</p>
     </div>
     <div class="hp-block" id="rural-adequacy">
       <h2>Rural network adequacy</h2>

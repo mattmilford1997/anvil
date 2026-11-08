@@ -16,10 +16,11 @@ interface Props {
   answer?: string;
   updated?: boolean;
   showCrumbs?: boolean;
+  extraJsonLd?: object[];
 }
-const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary, prompt, promptId, answer, updated = false, showCrumbs = false } = Astro.props;
+const { title, metaTitle, description, eyebrow, sub, crumbs, faqs = [], ctaTitle, ctaBody, ctaPrimary, ctaSecondary, prompt, promptId, answer, updated = false, showCrumbs = false, extraJsonLd = [] } = Astro.props;
 ---
-<BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs)]}>
+<BaseLayout title={metaTitle} description={description} jsonLd={[breadcrumbJsonLd(crumbs), ...extraJsonLd]}>
   {showCrumbs && (
     <nav class="bridge-crumbs" aria-label="Breadcrumb">
       <div class="container">

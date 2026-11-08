@@ -9,11 +9,27 @@ import WedgeRelated from '../components/WedgeRelated.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { ownFaqs } from '../data/faqs';
 import { p02, p04, p14 } from '../data/directAnswers';
-import { breadcrumbJsonLd } from '../lib/seo';
+import { absolute, breadcrumbJsonLd } from '../lib/seo';
+import { lastmodFor } from '../data/lastmod.mjs';
 import { getLivePost } from '../lib/content';
 const rentOwn = await getLivePost('renting-vs-owning-professional-corporation');
 const ownMeaning = ownFaqs.find((f) => f.q === 'What does it mean to own your payer contracts?');
 const ownDefinition = ownMeaning ? `${ownMeaning.a.split('. ')[0]}.` : '';
+const ownTitle = 'Own your payer contracts vs network rental';
+const ownDescription = 'Own your payer contracts instead of network rental. Launch on our PC, then move to portable payer contracts your entity holds, with no revenue gap.';
+const ownArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: ownTitle,
+  description: ownDescription,
+  datePublished: '2026-09-15T00:00:00Z',
+  dateModified: `${lastmodFor('/own-your-contracts')}T00:00:00Z`,
+  author: { '@type': 'Organization', name: 'Anvil' },
+  publisher: { '@type': 'Organization', name: 'Anvil', logo: { '@type': 'ImageObject', url: absolute('/logo.svg') } },
+  mainEntityOfPage: absolute('/own-your-contracts'),
+  image: absolute('/og-default-v2.png'),
+  url: absolute('/own-your-contracts'),
+};
 const months = [
   ['Month 1', 'Your PC is formed in launch states. Physician owner matched. Clinicians roster-added under Anvil\'s contracts. You are billing.'],
   ['Months 1-4', 'Credentialing files built under your entity. Contract applications filed in your PC\'s name with your top payers.'],
@@ -22,7 +38,10 @@ const months = [
   ['Months 12-18', 'Steady state. Anvil runs RCM and renewals on contracts you own. Rental PC stays available for new states and closed panels.'],
 ];
 ---
-<BaseLayout title="Own your payer contracts vs network rental" description="Own your payer contracts instead of network rental. Launch on our PC, then move to portable payer contracts your entity holds, with no revenue gap." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Own your contracts', path: '/own-your-contracts' }])]}>
+<BaseLayout title={ownTitle} description={ownDescription} type="article" jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: ownTitle, path: '/own-your-contracts' }]), ownArticle]}>
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">{ownTitle}</span></div>
+  </nav>
   <Hero compact eyebrow="Own your contracts" title="Own your payer contracts. If your vendor owns them, you don't have insurance revenue. You have a lease." prompt="How do I own my payer contracts instead of renting a network?" promptId="own-payer-contracts" answer={p02} updated sub="Own your payer contracts instead of staying on network rental. Forward this to your board: what network rental vs owning contracts actually means, why rental is the right way to launch, and why it is the wrong place to stay." secondary={{ label: 'See pricing', href: '/pricing' }} />
 
   <Section id="definition" eyebrow="Definition" title="What does it mean to own your payer contracts?">
@@ -31,7 +50,11 @@ const months = [
 
   <Section id="rent-or-build" eyebrow="Rent, then build" title="Rent a PC vs own a PC">
     <p class="lede">{p04}</p>
-    <p>Already on a vendor? Start with <a href="/solutions/switching">switching from a network rental vendor</a>. Filing applications in that entity's name is <a href="/platform/contracting">payer contracting for telehealth</a>. Going from cash pay to those contracts is laid out in <a href="/resources/cash-pay-to-insurance-two-phase-plan">the cash-pay to insurance two-phase plan</a>.</p>
+    <div class="grid grid-2">
+      <div class="card"><h3>What renting is for</h3><p class="muted">Clinicians bill in weeks because the payer contracts already exist. The step is a roster-add, not a new contract negotiation.</p></div>
+      <div class="card"><h3>What owning is for</h3><p class="muted">The participation agreements sit in your professional corporation. If you change vendors later, those contracts stay with your PC.</p></div>
+    </div>
+    <p>The roster-add does not wait on the new applications, so building does not delay the first insured visits. Already on a vendor? Read <a href="/solutions/switching">Switching from a network rental vendor</a>. Filing applications in that entity's name is <a href="/platform/contracting">payer contracting for telehealth</a>. Going from cash pay to those contracts is laid out in <a href="/resources/cash-pay-to-insurance-two-phase-plan">the cash-pay to insurance two-phase plan</a>.</p>
     <p>Published ranges for the codes you would contract are on <a href="/rates/code/90837">90837 reimbursement rates by state</a>.</p>
   </Section>
 
@@ -46,7 +69,7 @@ const months = [
       <div class="card"><h3>You never see the rate</h3><p class="muted">You are paid a lease fee, not the contracted rate. You cannot negotiate with a payer. You cannot see the ladder. You cannot tell whether the fee is fair.</p></div>
       <div class="card"><h3>One vendor, one point of failure</h3><p class="muted">A payer terminating the vendor's group contract terminates every customer's coverage with that payer at once. That is concentration risk your investors will ask about.</p></div>
     </div>
-    <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. Read <a href="#rent-or-build">whether to rent a PC or build your own professional corporation</a>. If you are already on a vendor, start with <a href="/solutions/switching">switching from a network rental vendor</a>. Compare that path on the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
+    <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. Read <a href="#rent-or-build">whether to rent a PC or build your own professional corporation</a>. If you are already on a vendor, start with <a href="/solutions/switching">Switching from a network rental vendor</a>. Compare that path on the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
   </Section>
 
   <Section id="how-to-own" eyebrow="The steps" title="How to own your payer contracts">

@@ -52,9 +52,13 @@ const articleLd = {
   datePublished: d.publishDate.toISOString(), dateModified: `${lastmodFor(`/resources/${entry.id}`)}T00:00:00Z`,
   author: { '@type': 'Person', name: author?.name, jobTitle: author?.title }, publisher: { '@type': 'Organization', name: 'Anvil', logo: { '@type': 'ImageObject', url: absolute('/logo.svg') } },
   mainEntityOfPage: absolute(`/resources/${entry.id}`), image: absolute(d.ogImage ?? '/og-default-v2.png'),
+  url: absolute(`/resources/${entry.id}`),
 };
 ---
 <BaseLayout title={d.metaTitle ?? d.title} description={d.excerpt} type="article" noindex={!!hold} ogImage={d.ogImage} jsonLd={[articleLd, breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: d.title, path: `/resources/${entry.id}` }])]}>
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/resources">Resources</a> <span aria-hidden="true">/</span> <span aria-current="page">{d.metaTitle ?? d.title}</span></div>
+  </nav>
   <article>
     <header class="art-head">
       <div class="container">
