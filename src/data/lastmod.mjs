@@ -1,17 +1,19 @@
 // Last significant content change per path (YYYY-MM-DD). Update a path's date in the same PR that changes its rendered content.
 // Every sitemap URL gets a date. Unlisted paths use the fallback.
 export const PAGE_LASTMOD = {
-  '/': '2026-11-04',
+  '/': '2026-11-08',
   '/platform': '2026-11-07',
   '/platform/rcm': '2026-11-05',
   '/platform/compliance': '2026-11-07',
   '/platform/contracting': '2026-11-03',
   '/platform/credentialing': '2026-11-06',
   '/platform/eligibility': '2026-11-07',
-  '/own-your-contracts': '2026-11-04',
+  '/own-your-contracts': '2026-11-08',
   '/pricing': '2026-11-06',
-  '/contact': '2026-11-06',
-  '/company': '2026-11-07',
+  '/contact': '2026-11-08',
+  '/company': '2026-11-08',
+  '/careers': '2026-11-08',
+  '/trust': '2026-11-08',
   '/rates': '2026-11-06',
   '/rates/payer/medicare': '2026-11-06',
   '/rates/payer/uhc': '2026-11-06',
@@ -21,18 +23,18 @@ export const PAGE_LASTMOD = {
   '/rates/code/90837': '2026-11-06',
   '/rates/code/97153': '2026-11-06',
   '/solutions/behavioral-health': '2026-11-07',
-  '/solutions/switching': '2026-11-06',
+  '/solutions/switching': '2026-11-08',
   '/solutions/virtual-care': '2026-11-06',
   '/solutions/hybrid-care': '2026-11-07',
   '/compare/bridge': '2026-11-07',
-  '/health-plans': '2026-11-07',
+  '/health-plans': '2026-11-08',
   '/resources': '2026-11-07',
-  '/resources/cash-pay-to-insurance-two-phase-plan': '2026-11-07',
-  '/resources/what-in-network-nationally-means': '2026-11-07',
-  '/resources/five-workstreams-insurance-operations': '2026-11-07',
+  '/resources/cash-pay-to-insurance-two-phase-plan': '2026-11-08',
+  '/resources/what-in-network-nationally-means': '2026-11-08',
+  '/resources/five-workstreams-insurance-operations': '2026-11-08',
   '/resources/six-months-of-data': '2026-10-18',
-  '/resources/when-to-accept-insurance': '2026-11-07',
-  '/resources/credentialing-timeline-benchmark-by-payer': '2026-11-07',
+  '/resources/when-to-accept-insurance': '2026-11-08',
+  '/resources/credentialing-timeline-benchmark-by-payer': '2026-11-08',
   // State hubs whose 90837 section compares Medicaid FFS and Medicare. Other state hubs stay on STATE_HUB_LASTMOD.
   '/rates/ak': '2026-10-28',
   '/rates/az': '2026-10-28',
@@ -68,7 +70,14 @@ const PSYCH_LEAF_LASTMOD = '2026-10-29';
 const FALLBACK_LASTMOD = '2026-10-17';
 // State hubs and leaves: related list changed (MSO-PC item removed).
 const RATE_RELATED_LASTMOD = '2026-11-06';
+// A few leaf pages with hand-written notes. Checked before the blanket state/leaf date so the rest of the tree stays on RATE_RELATED_LASTMOD.
+const RATE_LEAF_NOTE_LASTMOD = {
+  '/rates/in/97153': '2026-11-08',
+  '/rates/nd/97153': '2026-11-08',
+  '/rates/pr/90837': '2026-11-08',
+};
 export function lastmodFor(path) {
+  if (RATE_LEAF_NOTE_LASTMOD[path]) return RATE_LEAF_NOTE_LASTMOD[path];
   if (/^\/rates\/[a-z]{2}(\/\d+)?$/.test(path)) return RATE_RELATED_LASTMOD;
   if (PAGE_LASTMOD[path]) return PAGE_LASTMOD[path];
   if (/^\/rates\/[a-z]{2}$/.test(path)) return STATE_HUB_LASTMOD;

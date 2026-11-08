@@ -1,7 +1,7 @@
 ---
-title: "Credentialing Takes 90 to 120 Days Because Nobody Is Watching It"
-metaTitle: "Why credentialing takes 90 to 120 days"
-excerpt: "Credentialing runs 90 to 120 days per clinician per payer when unmanaged. Most of that is waiting nobody tracks. Here is where the days go."
+title: "Credentialing timeline by payer: where the 90 to 120 days go"
+metaTitle: "Credentialing timeline by payer"
+excerpt: "Credentialing timeline by payer: end to end is commonly 90 to 120 days when unmanaged. Here is where those days go."
 lede: "Credentialing is commonly cited at 90 to 120 days per clinician per payer when nobody manages it, and most of that time is waiting that nobody is tracking. Here's where the days go, how the main payer types differ, and the three interventions that cut the parts you control."
 summary:
   - "The average credentialing timeline is not a payer processing time. It is payer processing time plus application prep, plus bounce-backs, plus follow-up latency. The last two are yours to control."
@@ -84,7 +84,7 @@ Most credentialing trackers are spreadsheets with a "submitted" date and a "stat
 
 Credentialing is one job inside [Insurance billing infrastructure for virtual care](/). The vendor comparison is the [Bridge alternative for telehealth insurance billing](/compare/bridge). Once clinicians can bill, claims run through [Telehealth revenue cycle management (RCM)](/platform/rcm), and psychiatry, therapy, and ABA groups plan panels as [Behavioral health payer contracting for telehealth](/solutions/behavioral-health).
 
-The fastest path is a roster add under an entity that already holds the contract. How rosters hang off a payer contract is covered in [What Does In-Network Nationally Mean?](/resources/what-in-network-nationally-means) To make that entity yours, see how to [own your payer contracts](/own-your-contracts), or start with [switching from a network rental vendor](/solutions/switching) if you rent today.
+The fastest path is a roster add under an entity that already holds the contract. How rosters hang off a payer contract is covered in [What Does In-Network Nationally Mean?](/resources/what-in-network-nationally-means). To make that entity yours, see [Own your payer contracts vs network rental](/own-your-contracts). The launch choice is [Rent a PC vs own a PC](/own-your-contracts#rent-or-build). If you rent today, start with [Switching from a network rental vendor](/solutions/switching).
 
 Get the enrollment stage checklist: the five stages, the fields that cause most bounces, and the follow-up cadence, on one page. Then see how [Anvil runs credentialing](/platform/credentialing) or [talk to us](/contact) about your rollout order.
 

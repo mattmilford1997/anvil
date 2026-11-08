@@ -3,12 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { breadcrumbJsonLd } from '../lib/seo';
 import { SITE } from '../../site.config.mjs';
 ---
-<BaseLayout title="Careers in insurance ops for care companies" description="Join Anvil building insurance infrastructure for care companies. Remote, US. Payer contracting, credentialing, and engineering.">
-  <Hero compact eyebrow="Careers" title="Do the work that makes care companies possible." sub="Small team, operator culture, regulated business. We publish our pricing and our playbook. We expect the same directness inside." primary={{ label: 'Introduce yourself', href: '/contact?src=careers' }} />
+<BaseLayout title="Careers in insurance ops for care companies" description="Careers in insurance ops for care companies. Remote, US. Payer contracting, credentialing, and engineering." jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Careers', path: '/careers' }])]}>
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> Careers</div>
+  </nav>
+  <Hero compact eyebrow="Careers" title="Careers in insurance ops for care companies." sub="Do the work that makes care companies possible. Small team, operator culture, regulated business. We publish our pricing and our playbook. We expect the same directness inside." primary={{ label: 'Introduce yourself', href: '/contact?src=careers' }} />
   <Section eyebrow="Open roles" tight>
     <p class="lede">Open roles publish here as we hire. If you do not see a fit, <a href="/contact?src=careers">introduce yourself</a> or email <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</p>
+    <p class="lede">The product pages to read first are <a href="/own-your-contracts">Own your payer contracts vs network rental</a>, <a href="/own-your-contracts#rent-or-build">Rent a PC vs own a PC</a>, and <a href="/solutions/switching">Switching from a network rental vendor</a>.</p>
   </Section>
   <CtaBand title="Don't see your role?" body="Tell us what you would build or run here." primary={{ label: 'Introduce yourself', href: '/contact?src=careers' }} secondary={undefined} />
 </BaseLayout>

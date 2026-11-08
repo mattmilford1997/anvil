@@ -5,13 +5,16 @@ import { breadcrumbJsonLd } from '../lib/seo';
 ---
 <BaseLayout
   title="Trust center"
-  description="The Anvil trust center publishes with SOC 2. See compliance, BAA, and privacy until then."
+  description="Trust center for Anvil. SOC 2 Type II is in progress. Until the report publishes, see compliance, the BAA, and the privacy policy."
   path="/trust"
-  jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Trust', path: '/trust' }])]}
+  jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Trust center', path: '/trust' }])]}
 >
+  <nav class="bridge-crumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Home</a> <span aria-hidden="true">/</span> Trust center</div>
+  </nav>
   <Section>
     <div class="eyebrow">Trust</div>
-    <h1>The trust center publishes with SOC 2.</h1>
+    <h1>Trust center</h1>
     <p class="lede">SOC 2 Type II is in progress. The report and sub-processor list will publish when it completes. Until then, current controls, the BAA request, and the privacy policy are linked below.</p>
     <div class="btn-group">
       <a href="/platform/compliance" class="btn btn-primary">Compliance</a>
