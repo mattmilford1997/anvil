@@ -54,6 +54,10 @@ export const relatedPages: Record<string, { title: string; excerpt: string }> = 
     title: 'Telehealth credentialing in weeks, tracked to the day',
     excerpt: 'Roster-add for speed, then full credentialing under your own PC.',
   },
+  '/platform/rcm': {
+    title: 'Telehealth revenue cycle management (RCM)',
+    excerpt: 'Coding, claims, denial management, and AR. Clean-claim rate reported monthly.',
+  },
   '/platform/compliance': {
     title: 'Credentialing and contract compliance for telehealth',
     excerpt: 'Credentialing files, contract terms set in advance, HIPAA in place, SOC 2 Type II in progress.',

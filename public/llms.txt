@@ -2,7 +2,7 @@
 
 > Anvil is insurance infrastructure for care companies. Launch in-network in every state in weeks on a credentialed 50-state professional corporation (PC), while Anvil forms, credentials, and contracts your own PC in parallel, so you own the payer contracts, rates, and relationships by year one. Built by Arche Studios, the team behind Homefront.
 
-Updated November 7, 2026.
+Updated November 9, 2026.
 
 Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth in behavioral health (psychiatry, therapy, ABA, IOP/PHP, collaborative care) and Medicaid managed care as well as commercial and Medicare Advantage. Pricing is published. Reimbursement ranges by state and code are published without a form.
 
@@ -17,6 +17,7 @@ Anvil serves virtual, hybrid, in-home, and in-person care companies, with depth 
 - [90834 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90834)
 - [90791 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/90791)
 - [97153 reimbursement rates by state](https://www.anvilcontracts.com/rates/code/97153)
+- Parite notes on single-row leaves: [97153 in Missouri](https://www.anvilcontracts.com/rates/mo/97153), [97153 in Mississippi](https://www.anvilcontracts.com/rates/ms/97153), [97153 in Oklahoma](https://www.anvilcontracts.com/rates/ok/97153), [90791 in the U.S. Virgin Islands](https://www.anvilcontracts.com/rates/vi/90791). Each note cites Parite and names the payers that file does not include.
 - [Medicare psychotherapy rates by state (2026)](https://www.anvilcontracts.com/rates/payer/medicare)
 - [UnitedHealthcare therapy rates by state (2026)](https://www.anvilcontracts.com/rates/payer/uhc)
 - [Medicaid psychotherapy rates by state (2026)](https://www.anvilcontracts.com/rates/payer/medicaid)
@@ -102,6 +103,12 @@ Each URL is a state index of the CPT codes Parite has for that state. Pair pages
 - [What does it mean to own your payer contracts?](https://www.anvilcontracts.com/own-your-contracts#definition)
 - [Rent a PC vs own a PC](https://www.anvilcontracts.com/own-your-contracts#rent-or-build)
 - [What is network rental in telehealth, and what are the risks?](https://www.anvilcontracts.com/own-your-contracts#network-rental)
+- [What owning your payer contracts involves](https://www.anvilcontracts.com/own-your-contracts#how-to-own)
+- [Practical switching checklist](https://www.anvilcontracts.com/solutions/switching#switch-checklist)
+- [What is payer contracting for telehealth?](https://www.anvilcontracts.com/platform/contracting#what-is-payer-contracting)
+- [Bridge homepage and health plans facts, sourced](https://www.anvilcontracts.com/compare/bridge#bridge-sourced)
+- [What to gather for behavioral health payer contracting](https://www.anvilcontracts.com/solutions/behavioral-health#prepare)
+- [What telehealth revenue cycle management reports each month](https://www.anvilcontracts.com/platform/rcm#rcm-report)
 - [What is insurance billing infrastructure for virtual care?](https://www.anvilcontracts.com/)
 - [What should a telehealth founder ask before signing with an insurance billing or network rental vendor?](https://www.anvilcontracts.com/solutions/switching#vendor-questions)
 - [When should a virtual care company start accepting insurance?](https://www.anvilcontracts.com/solutions/virtual-care#when-to-accept)

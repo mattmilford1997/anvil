@@ -5,7 +5,7 @@ import WedgeRelated from '../../components/WedgeRelated.astro';
 import TimelineSlider from '../../components/TimelineSlider.astro';
 import { absolute } from '../../lib/seo';
 import { lastmodFor } from '../../data/lastmod.mjs';
-import { switchWithoutGapAnswer, vendorQuestionsAnswer } from '../../data/directAnswers';
+import { switchWithoutGapAnswer, vendorQuestionsAnswer, switchingBridgeAnswer, switchingBridgeCompareAnswer } from '../../data/directAnswers';
 const faqs = [
   { q: 'How do I switch from a network rental vendor?', a: 'Keep billing where you are. Form your PC, file contract applications in your name, move volume payer by payer as each contract is effective, then give notice. Leave the rental PC only after the majority of volume is on contracts you own. Remaining payers can run through Anvil\'s rented PC.' },
   { q: 'Will there be a revenue gap?', a: 'No. You keep billing through your current vendor until each of your own contracts is effective. Only then does that payer\'s new volume move. If your current agreement allows, we can also run new states on our PC during the switch.' },
@@ -15,6 +15,8 @@ const faqs = [
   { q: 'What if a payer panel is closed for a new entity?', a: 'That payer\'s volume runs through our rented PC until the panel opens. You are never stuck on your old vendor for one payer.' },
   { q: 'How do I switch from a network rental vendor to my own payer contracts without losing revenue?', a: switchWithoutGapAnswer },
   { q: 'What should a telehealth founder ask before signing with an insurance billing or network rental vendor?', a: vendorQuestionsAnswer },
+  { q: 'Is there a Bridge alternative that lets me keep billing while I switch?', a: switchingBridgeAnswer },
+  { q: 'What should I compare before I pick a Bridge alternative?', a: switchingBridgeCompareAnswer },
 ];
 const switchTitle = 'Switching from a network rental vendor';
 const switchDescription = 'Switch from a network rental vendor to payer contracts your own entity holds, with no revenue gap. Keep billing while your contracts come live.';
@@ -60,11 +62,24 @@ const steps = [
       {steps.map(([t, b]) => <div class="card"><h3 style="font-size:18px">{t}</h3><p class="muted" style="font-size:15px">{b}</p></div>)}
     </div>
     <p class="lede" style="margin-top:24px">As each payer moves, its claims run through <a href="/platform/rcm">telehealth revenue cycle management</a>. Psychiatry, therapy, and ABA groups plan that move as <a href="/solutions/behavioral-health">behavioral health payer contracting</a>.</p>
-    <p class="lede" style="margin-top:16px">When the switch is done, RCM and renewals run on Anvil's <a href="/platform">insurance operations platform</a>.</p>
+    <p class="lede" style="margin-top:16px">Applications filed in your name are <a href="/platform/contracting">Payer contracting for telehealth, in your name</a>. When the switch is done, RCM and renewals run on Anvil's <a href="/platform">insurance operations platform</a>.</p>
     <p class="lede" style="margin-top:16px">Weighing an in-house team instead? Read <a href="/resources/five-workstreams-insurance-operations">Cost of Building Insurance Operations In-House: Build vs Buy</a>.</p>
     <div style="margin-top:32px"><TimelineSlider /></div>
   </Section>
-  <Section id="vendor-questions" eyebrow="Switching checklist" title="What should a telehealth founder ask before signing with an insurance billing or network rental vendor?">
+  <Section id="switch-checklist" eyebrow="Before you give notice" title="Practical switching checklist">
+    <p class="lede">Work this list in order. Give notice after the majority of volume is on contracts you own, not before. The month by month version is <a href="/own-your-contracts">Own your payer contracts vs network rental</a>.</p>
+    <ol class="switch-steps">
+      <li>Read the current agreement for notice, term, and non-solicitation. Do this before you tell the vendor.</li>
+      <li>Collect credentialing documents for every clinician who will move.</li>
+      <li>Form your professional corporation and place the physician owner.</li>
+      <li>File contract applications in your PC's name. Keep billing through the current vendor the whole time.</li>
+      <li>When a contract is effective, route that payer's new visits to your PC. Leave claims already in flight with the entity that billed them.</li>
+      <li>Give notice only after the majority of volume is on contracts you own.</li>
+      <li>Keep remaining payers, closed panels, and new states on a rented PC so one closed panel does not trap you on the old vendor.</li>
+      <li>Move eligibility to the Anvil API in the sandbox before any volume moves.</li>
+    </ol>
+  </Section>
+  <Section id="vendor-questions" eyebrow="Questions to ask" title="What should a telehealth founder ask before signing with an insurance billing or network rental vendor?">
     <p class="lede">{vendorQuestionsAnswer}</p>
     <ul class="check-list">
       <li>Who holds the payer contracts: you, or the vendor's professional corporation (PC)?</li>
@@ -94,7 +109,7 @@ const steps = [
     </div>
   </Section>
   <Section id="compare-bridge" eyebrow="Side by side" title="Compare Anvil and Bridge on contract ownership">
-    <p class="lede">Bridge's homepage describes a 50-state PC. It does not say who holds the payer contracts. See the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>.</p>
+    <p class="lede">{switchingBridgeAnswer} See the <a href="/compare/bridge">Bridge alternative for telehealth insurance billing</a>. {switchingBridgeCompareAnswer}</p>
     <div class="btn-group" style="margin-top:8px">
       <a href="/compare/bridge" class="btn btn-primary">Open the fact table</a>
       <a href="/own-your-contracts" class="btn btn-ghost">Own your payer contracts</a>
@@ -102,3 +117,7 @@ const steps = [
   </Section>
   <WedgeRelated current="/solutions/switching" />
 </SubpageLayout>
+<style>
+  .switch-steps { margin: 0; padding-left: 1.25em; display: grid; gap: 10px; max-width: 720px; }
+  .switch-steps li { padding-left: 0.35em; }
+</style>
