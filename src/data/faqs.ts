@@ -1,4 +1,4 @@
-import { p04, p06, p09, p14, vendorOwnsAnswer, buildInHouseAnswer } from './directAnswers';
+import { p04, p06, p09, p14, vendorOwnsAnswer, buildInHouseAnswer, ownInvolvesAnswer, ownSomeStatesAnswer, ownApproveAnswer } from './directAnswers';
 
 export type Faq = { q: string; a: string };
 
@@ -27,6 +27,9 @@ export const ownFaqs: Faq[] = [
   { q: 'Should I rent a PC or build my own professional corporation?', a: p04 },
   { q: 'Who owns the payer contracts when you use a telehealth insurance billing vendor?', a: vendorOwnsAnswer },
   { q: 'What is network rental in telehealth, and what are the risks?', a: p14 },
+  { q: 'What does owning your payer contracts involve?', a: ownInvolvesAnswer },
+  { q: 'Can I own payer contracts in some states and keep renting in others?', a: ownSomeStatesAnswer },
+  { q: 'What do I approve when Anvil files payer contracts in my name?', a: ownApproveAnswer },
 ];
 
 export const pricingFaqs: Faq[] = [

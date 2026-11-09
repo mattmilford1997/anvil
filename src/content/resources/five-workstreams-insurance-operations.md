@@ -10,7 +10,7 @@ summary:
   - "Two of the five (contracting and the entity that holds contracts) are strategic assets you should own eventually, even if someone else does the work."
 author: "matt-milford"
 publishDate: 2026-10-13
-updatedDate: 2026-11-07
+updatedDate: 2026-11-09
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"
@@ -23,7 +23,7 @@ faq:
     a: "Yes, and for a company going national quickly, that is usually the right first move. The question to ask any single vendor is which entity holds the payer contracts and what happens to them if you leave."
   - q: "What's the first hire if I do build?"
     a: "A contracting lead, because everything else waits on a contract. It is also the hardest hire, which is why most companies start with a partner."
-related: ["/platform", "/pricing", "when-to-accept-insurance", "/own-your-contracts"]
+related: ["/platform", "/platform/rcm", "/pricing", "when-to-accept-insurance", "/own-your-contracts"]
 sourceFile: "01_October_When_and_How.md"
 calendarWeek: 2
 dataReview: "cleared"
@@ -66,7 +66,7 @@ Talent: AR specialists with payer-specific experience.
 | Eligibility technology | Never build | It's an API problem someone has already solved. Build the UX around it. |
 | Claims and denials | Not early | Buy it until you have the volume to justify a team, and keep the data so you can move later. |
 
-Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management.
+Buy claims and denials until the volume justifies a team, and [telehealth revenue cycle management](/platform/rcm) covers coding, claim submission, and denial management. Filing the contracting workstream in your entity is [Payer contracting for telehealth, in your name](/platform/contracting).
 
 The pattern: outsource the labor, own the asset. Most vendors get you the first half. Few are set up to hand you the second. Owning the asset starts with the entity: compare [rent a PC vs own a PC](/own-your-contracts#rent-or-build). If you launched on a rental vendor, read the [Bridge insurance billing alternative](/compare/bridge).
 

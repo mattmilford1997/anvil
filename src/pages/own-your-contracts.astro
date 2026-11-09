@@ -8,7 +8,7 @@ import Faq from '../components/Faq.astro';
 import WedgeRelated from '../components/WedgeRelated.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { ownFaqs } from '../data/faqs';
-import { p02, p04, p14 } from '../data/directAnswers';
+import { p02, p04, p14, ownInvolvesAnswer } from '../data/directAnswers';
 import { absolute, breadcrumbJsonLd } from '../lib/seo';
 import { lastmodFor } from '../data/lastmod.mjs';
 import { getLivePost } from '../lib/content';
@@ -72,13 +72,16 @@ const months = [
     <p class="lede" style="margin-top:32px">Renting is still the fastest way to launch. The mistake is treating it as the destination. Read <a href="#rent-or-build">whether to rent a PC or build your own professional corporation</a>. If you are already on a vendor, start with <a href="/solutions/switching">Switching from a network rental vendor</a>. Compare that path on the <a href="/compare/bridge">Bridge alternative fact table</a>.</p>
   </Section>
 
-  <Section id="how-to-own" eyebrow="The steps" title="How to own your payer contracts">
+  <Section id="how-to-own" eyebrow="The steps" title="What owning your payer contracts involves">
+    <p class="lede">{ownInvolvesAnswer}</p>
     <ol class="own-steps">
-      <li>Launch on our PC so clinicians are billing while your entity is formed.</li>
-      <li>Form your PC and place a physician owner.</li>
-      <li>Contract and credential that PC. File applications in your PC's name.</li>
-      <li>Move volume as each contract goes effective. Claims in flight are unaffected.</li>
+      <li><strong>Bill on contracts that already exist.</strong> Roster-add clinicians to Anvil's PC so insured visits start in weeks. A roster-add is not a contract in your name. <a href="/resources/what-in-network-nationally-means">What in-network nationally means</a> separates a roster from a contract.</li>
+      <li><strong>Form your professional corporation and place a physician owner.</strong> The PC is formed in the states you launch. A licensed physician owns it under a friendly-PC structure. This runs while you are already billing, so it does not delay the first insured visit.</li>
+      <li><strong>File applications in that PC's name.</strong> Anvil prepares commercial and Medicaid applications, rate proposals, and redlines. You approve the terms. You see the published range before you sign and the executed rate after. Commercial contracts for a new PC commonly land in 4 to 8 months. Medicaid managed care varies by state. That filing is <a href="/platform/contracting">Payer contracting for telehealth, in your name</a>.</li>
+      <li><strong>Move one payer at a time when its contract is effective.</strong> New visits with that payer bill under your PC. Claims already in flight stay with the entity that billed them. The platform fee steps down on the volume that moves, because Anvil is no longer carrying claims risk on it.</li>
+      <li><strong>Keep the rented PC for what your contracts do not cover yet.</strong> Closed panels, new states, and payers still in process can stay on Anvil's PC. At steady state Anvil runs coding, claims, denials, and renewals on the contracts your PC holds. If you leave, those contracts stay with your PC.</li>
     </ol>
+    <p>Clinicians are enrolled through <a href="/platform/credentialing">telehealth credentialing services</a>. The same sequence, when you are already on a vendor, is the <a href="/solutions/switching#switch-checklist">practical switching checklist</a>.</p>
   </Section>
 
   <Section eyebrow="The migration" title="How volume moves from our PC to yours" intro="Both tracks start on day one. Nothing about the migration gates your launch or interrupts billing.">

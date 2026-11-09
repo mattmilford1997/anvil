@@ -93,3 +93,33 @@ export const hybridBillingAnswer =
 
 export const bhPayerContractingAnswer =
   "Behavioral health payer contracting is the work of getting psychiatry, therapy, and ABA groups in-network across states. That means Medicaid MCO panels, ABA credentialing, psychiatry credentialing, and collaborative care billing.";
+
+export const ownInvolvesAnswer =
+  "Owning your payer contracts means the participation agreements sit in a professional corporation you control. You bill first by roster-add on contracts that already exist, form your PC and place a physician owner in parallel, then file applications in that PC's name. New visits move to your PC when each contract is effective. If you leave later, those contracts stay with your PC.";
+
+export const ownSomeStatesAnswer =
+  "Yes. Closed panels, new states, and payers still in process can stay on the rented PC. New visits move to your PC only when that payer's contract is effective. Claims already in flight stay with the entity that billed them.";
+
+export const ownApproveAnswer =
+  "You approve the terms. Anvil prepares the applications, rate proposals, and redlines in your professional corporation's name. You see the published range before you sign and the executed rate after.";
+
+export const contractingWhatIsAnswer =
+  "Payer contracting for telehealth is commercial and Medicaid payer enrollment so you can bill in-network from the states you serve. Anvil runs that work for your entity so you own your payer contracts, with the rate visible before you sign.";
+
+export const contractingVsRosterAnswer =
+  "A roster-add puts a clinician on a payer contract that already exists, which is why it takes weeks. Payer contracting for telehealth files a participation agreement in your professional corporation's name. Commercial contracts for a new PC commonly land in 4 to 8 months. Anvil runs the roster-add now and the applications in parallel, so contracting does not delay the first insured visit.";
+
+export const contractingSeeBeforeSignAnswer =
+  "Before you sign, the rate lookup shows published ranges by state and code. During contracting you see the proposed rate and the executed rate for your entity. Under rental, statements show the contracted rate and the platform fee as separate lines.";
+
+export const switchingBridgeAnswer =
+  "Keep billing where you are until each of your own contracts is effective. Form your professional corporation, file applications in your name, and move volume payer by payer, then give notice. Anvil is a Bridge alternative that runs that migration. Bridge's homepage describes a 50-state PC and does not say who holds the payer contracts.";
+
+export const switchingBridgeCompareAnswer =
+  "Compare who holds the payer contracts, whether you see the contracted rate or only a fee, the notice and non-solicitation terms, and whether you can keep billing until your own contracts are effective. Anvil publishes pricing and separates the contracted rate from the platform fee. Bridge does not publish pricing on its site that we could verify.";
+
+export const bridgeEmrApiAnswer =
+  "On a November 9, 2026 review, Bridge's homepage says it is compatible with any EMR system, and that its APIs are developer friendly and easy to integrate. The same page describes contract-level logic verification on its eligibility engine. It does not say who holds the payer contracts.";
+
+export const bridgeHealthPlansFactsAnswer =
+  "On a November 9, 2026 review, Bridge's health plans page says it has a favorable OIG opinion on the operating structure (No. 25-03), and that the average time to appointment is 5 days. Anvil does not claim an OIG advisory opinion. Anvil does not publish an average time to appointment.";
