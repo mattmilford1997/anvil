@@ -38,7 +38,7 @@ export function orgJsonLd() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    description: 'Anvil is insurance billing infrastructure for virtual care.',
+    description: SITE.description,
     logo: absolute('/logo.svg'),
     ...(SITE.linkedin ? { sameAs: [SITE.linkedin] } : {}),
     contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: SITE.contactEmail }],
@@ -46,7 +46,7 @@ export function orgJsonLd() {
 }
 
 export function websiteJsonLd() {
-  return { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url };
+  return { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, description: SITE.description };
 }
 
 /** Only the Anvil Contracts company page. linkedin.com/company/anvil is a different company. */

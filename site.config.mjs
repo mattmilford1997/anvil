@@ -5,6 +5,8 @@ export const SITE = {
   name: 'Anvil',
   legalName: 'Catalyze Care LLC d/b/a Anvil', // TODO(launch): confirm entity name with counsel
   tagline: 'Insurance infrastructure for care companies',
+  // Sitewide identity for Organization and WebSite JSON-LD. Not a page title.
+  description: 'Anvil is insurance billing infrastructure for virtual and hybrid care.',
   // Production domain: anvilcontracts.com (DNS at Netlify). Override with SITE_URL if needed.
   url: siteUrl,
   // First-party stubs (path-only so Header/Footer stay on the current host).

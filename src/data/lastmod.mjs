@@ -1,7 +1,7 @@
 // Last significant content change per path (YYYY-MM-DD). Update a path's date in the same PR that changes its rendered content.
 // Every sitemap URL gets a date. Unlisted paths use the fallback.
 export const PAGE_LASTMOD = {
-  '/': '2026-11-08',
+  '/': '2026-11-11',
   '/platform': '2026-11-09',
   '/platform/rcm': '2026-11-09',
   '/platform/compliance': '2026-11-07',
