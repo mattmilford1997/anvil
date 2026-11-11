@@ -99,15 +99,29 @@ const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
         }, { rootMargin: '0px 0px -8% 0px' });
         els.forEach((e) => io.observe(e));
       }
-      // Persist attribution (UTM, referrer, /go/ slug) for the contact form.
+      // Persist attribution in sessionStorage key anvil_attr.
+      // utm_*, referrer, landing, and src keep their existing update rules for GA4 generate_lead.
+      // first_landing, first_referrer, and first_utm_* freeze the first page view for the contact form.
       try {
         const p = new URLSearchParams(location.search);
+        const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src'];
         const store = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
         let changed = false;
+        const priorLanding = typeof store.landing === 'string' ? store.landing : '';
+        const priorReferrer = typeof store.referrer === 'string' ? store.referrer : '';
+        const priorUtm: Record<string, string> = {};
+        for (const k of utmKeys) priorUtm[k] = typeof store[k] === 'string' ? store[k] : '';
         for (const k of keys) if (p.get(k)) { store[k] = p.get(k); changed = true; }
         if (!store.referrer && document.referrer && !document.referrer.includes(location.host)) { store.referrer = document.referrer; changed = true; }
         if (!store.landing) { store.landing = location.pathname; changed = true; }
+        if (!Object.prototype.hasOwnProperty.call(store, 'first_landing')) {
+          const alreadyBrowsing = priorLanding !== '' && priorLanding !== location.pathname;
+          store.first_landing = priorLanding || location.pathname;
+          store.first_referrer = alreadyBrowsing ? priorReferrer : (document.referrer || '');
+          for (const k of utmKeys) store['first_' + k] = alreadyBrowsing ? priorUtm[k] : (p.get(k) || '');
+          changed = true;
+        }
         if (changed) sessionStorage.setItem('anvil_attr', JSON.stringify(store));
       } catch {}
       // Remember a Netlify form submit so /contact/success can fire generate_lead.
@@ -151,7 +165,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4 || SITE.ga4 || '';
             debug_mode: debugMode,
             at: Date.now(),
           };
-          // Inquiry form: send UTM/referrer/landing/go_slug to GA4 only, not as Netlify fields.
+          // Inquiry form: send UTM/referrer/landing/go_slug on the GA4 generate_lead event.
           if (netlifyName === 'anvil-leads') {
             try {
               const a = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
