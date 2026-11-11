@@ -1,18 +1,21 @@
 ---
 // Illustrative enrollment tracker UI with a "Rented PC / Your PC" toggle. Pure HTML/CSS, no images.
+// Sample rows only. Status strings stay the ones this widget already used.
 const rows = [
-  { name: 'A. Rivera, LCSW', state: 'TX', payer: 'Blue Cross', rented: 'Live', own: 'Contract effective 03/01' },
-  { name: 'J. Okafor, PMHNP', state: 'FL', payer: 'Aetna', rented: 'Live', own: 'Roster pending' },
-  { name: 'M. Chen, PhD', state: 'CA', payer: 'Medicaid MCO', rented: 'Live', own: 'Application filed' },
-  { name: 'S. Patel, LPC', state: 'NY', payer: 'UnitedHealthcare', rented: 'Roster add, day 9', own: 'Not started' },
-  { name: 'D. Nguyen, MD', state: 'IL', payer: 'Cigna', rented: 'Live', own: 'Contract effective 02/15' },
+  { name: 'A. Rivera, MD, primary care', state: 'TX', payer: 'Blue Cross', rented: 'Live', own: 'Contract effective 03/01' },
+  { name: 'J. Okafor, NP', state: 'FL', payer: 'Aetna', rented: 'Live', own: 'Roster pending' },
+  { name: 'M. Chen, RD', state: 'CA', payer: 'Medicaid MCO', rented: 'Live', own: 'Application filed' },
+  { name: 'S. Patel, PT', state: 'NY', payer: 'UnitedHealthcare', rented: 'Roster add, day 9', own: 'Not started' },
+  { name: 'D. Nguyen, MD, specialist', state: 'IL', payer: 'Cigna', rented: 'Live', own: 'Contract effective 02/15' },
+  { name: 'L. Brooks, LCSW, behavioral health', state: 'OH', payer: 'Aetna', rented: 'Live', own: 'Roster pending' },
 ];
 ---
-<div class="mock" aria-label="Illustration of the Anvil enrollment tracker">
+<div class="mock" aria-label="Sample illustration of the Anvil enrollment tracker. Not a customer roster.">
   <div class="mock-bar">
     <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    <span class="mock-title">Enrollment tracker</span>
+    <span class="mock-title">Sample enrollment tracker</span>
   </div>
+  <p class="mock-note">Illustrative sample. Not a customer roster.</p>
   <div class="mock-head">
     <div>
       <div class="mock-kpi"><strong>48</strong><span>clinicians live</span></div>
@@ -41,6 +44,7 @@ const rows = [
   .mock-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
   .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
   .mock-title { margin-left: 8px; font-weight: 600; color: var(--muted); font-size: 12px; }
+  .mock-note { margin: 0; padding: 8px 16px 0; color: var(--muted); font-size: 12px; }
   .mock-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 8px; }
   .mock-kpi strong { font-size: 24px; color: var(--ink); margin-right: 6px; letter-spacing: -0.02em; }
   .mock-kpi span { color: var(--muted); }
@@ -50,6 +54,7 @@ const rows = [
   .mock-table { width: 100%; border-collapse: collapse; }
   .mock-table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 8px 16px; border-bottom: 1px solid var(--border); background: none; }
   .mock-table td { padding: 9px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .mock-table th:first-child, .mock-table td:first-child { white-space: normal; max-width: 11em; }
   .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; background: #e3f1ea; color: var(--ok); font-weight: 600; font-size: 12px; }
   .pill.warn { background: var(--accent-soft); color: var(--accent); }
   .pill.off { background: var(--surface-2); color: var(--muted); }
