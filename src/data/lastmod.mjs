@@ -10,7 +10,7 @@ export const PAGE_LASTMOD = {
   '/platform/eligibility': '2026-11-07',
   '/own-your-contracts': '2026-11-09',
   '/pricing': '2026-11-06',
-  '/contact': '2026-11-08',
+  '/contact': '2026-11-11',
   '/company': '2026-11-08',
   '/careers': '2026-11-08',
   '/trust': '2026-11-08',

@@ -1,11 +1,20 @@
 ---
 // Inquiry form v2. Netlify Form "anvil-leads". Netlify detects it from built HTML at deploy time.
-// Attribution (UTM, referrer, landing, go slug) stays in sessionStorage and is sent to GA4 on
-// /contact/success, not as named Netlify fields, so those values do not appear in lead emails.
+// Hidden attribution fields below are part of that static markup so Netlify accepts them.
+// Values come from sessionStorage key anvil_attr, captured on the first page view.
+// The referrer input is named first_referrer: Netlify overwrites a field named referrer
+// with the POST Referer header.
 ---
 <form name="anvil-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/success" class="cf card" id="contact-form" aria-describedby="cf-privacy">
   <input type="hidden" name="form-name" value="anvil-leads" />
   <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+  <input type="hidden" name="first_landing" value="" />
+  <input type="hidden" name="first_referrer" value="" />
+  <input type="hidden" name="utm_source" value="" />
+  <input type="hidden" name="utm_medium" value="" />
+  <input type="hidden" name="utm_campaign" value="" />
+  <input type="hidden" name="utm_term" value="" />
+  <input type="hidden" name="utm_content" value="" />
 
   <div class="field-row">
     <div class="field">
@@ -74,11 +83,41 @@
 <script>
   const f = document.getElementById('contact-form') as HTMLFormElement | null;
   if (f) {
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const;
+    const fillAttribution = () => {
+      let store: Record<string, unknown> = {};
+      try {
+        const parsed = JSON.parse(sessionStorage.getItem('anvil_attr') || '{}');
+        if (parsed && typeof parsed === 'object') store = parsed as Record<string, unknown>;
+      } catch {}
+      const has = (key: string) => Object.prototype.hasOwnProperty.call(store, key);
+      const text = (value: unknown) => (value == null ? '' : String(value));
+      const set = (name: string, value: string) => {
+        const input = f.querySelector<HTMLInputElement>(`input[type="hidden"][name="${name}"]`);
+        if (input) input.value = value;
+      };
+      const params = new URLSearchParams(location.search);
+      if (has('first_landing')) set('first_landing', text(store.first_landing));
+      else set('first_landing', text(store.landing) || location.pathname);
+      if (has('first_referrer')) set('first_referrer', text(store.first_referrer));
+      else if (typeof store.landing === 'string' && store.landing) set('first_referrer', text(store.referrer));
+      else set('first_referrer', document.referrer || '');
+      for (const key of utmKeys) {
+        const snap = `first_${key}`;
+        if (has(snap)) set(key, text(store[snap]));
+        else if (typeof store[key] === 'string') set(key, text(store[key]));
+        else set(key, params.get(key) || '');
+      }
+    };
+    fillAttribution();
+    document.addEventListener('DOMContentLoaded', fillAttribution);
+    window.addEventListener('load', fillAttribution);
     const started = Date.now();
     const status = document.getElementById('cf-status');
     // Light client-side guard: block submits under 2s from load, then one submit per 10s. Tell the person why.
     let last = 0;
     f.addEventListener('submit', (e) => {
+      fillAttribution();
       const now = Date.now();
       if (now - started < 2000) { e.preventDefault(); if (status) status.textContent = 'One moment, then press Send inquiry again.'; return; }
       if (now - last < 10000) { e.preventDefault(); if (status) status.textContent = 'Sending. Please wait a few seconds.'; return; }
