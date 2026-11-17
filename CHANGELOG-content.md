@@ -2,6 +2,14 @@
 
 ## 2026-11-17
 
+Held 3 contracting articles (publishDate set to 2099-01-01), held pending named legal/regulatory reviewer per CoS Nov 17 (G1a).
+
+- `renting-vs-owning-professional-corporation.md`, original publishDate 2026-12-15, held pending named legal/regulatory reviewer per CoS Nov 17 (G1a)
+- `investor-diligence-payer-contracts.md`, original publishDate 2026-12-22, held pending named legal/regulatory reviewer per CoS Nov 17 (G1a)
+- `migrating-from-rented-pc-to-own-contracts.md`, original publishDate 2026-12-29, held pending named legal/regulatory reviewer per CoS Nov 17 (G1a)
+
+## 2026-11-17
+
 Held 13 queued non-contracting articles (publishDate set to 2099-01-01), held pending reviewer / URL freeze per CoS Nov 17.
 
 Restore by setting each file's `publishDate` back to the original date. No other field was changed.

@@ -8,7 +8,7 @@ summary:
   - "\"Our billing partner holds the contracts\" is a survivable answer at seed and a risk-section answer at Series B."
   - "The strongest answer is a list: your entity, your contracts by payer and state, your rates, and a migration timeline for anything still on a shared entity."
 author: "matt-milford"
-publishDate: 2026-12-22
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A", "C"]
 pillar: "ownership"
