@@ -8,7 +8,7 @@ summary:
   - "Most companies detect outages by noticing that insured bookings dropped. That is days late and the patients are gone."
   - "Detection is a monitoring problem: error rate and latency per payer, compared to that payer's baseline, with alerts and an automatic fallback."
 author: "matt-milford"
-publishDate: 2027-02-16
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A"]
 pillar: "developer"

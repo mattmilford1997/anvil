@@ -8,7 +8,7 @@ summary:
   - "Eligibility for ABA is not \"plan active.\" It is plan active, ABA benefit present, diagnosis on file, authorization status, and provider type in network."
   - "The intake flow that works runs these checks in parallel from the first call and tracks each family by gate, not by \"status.\""
 author: "matt-milford"
-publishDate: 2027-02-23
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["B"]
 pillar: "depth"

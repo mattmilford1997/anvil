@@ -8,7 +8,7 @@ summary:
   - "Running an eligibility check before the price screen and showing the real copay is commonly cited to lift insured-path conversion 2 to 5x. Your number depends on your starting funnel, so measure it."
   - "Four metrics tell you if it is working: insurance entry rate, verified-eligible rate, post-copay booking rate, and eligibility-related denials. A clean cohort design keeps them honest."
 author: "matt-milford"
-publishDate: 2027-02-02
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A"]
 pillar: "speed"

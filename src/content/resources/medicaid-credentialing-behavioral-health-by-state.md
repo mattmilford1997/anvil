@@ -8,7 +8,7 @@ summary:
   - "Behavioral health provider types, supervision rules, and telehealth allowances vary by state and change often. Enrollment sequencing matters more than in commercial."
   - "Six state programs, how each structures Medicaid managed care for behavioral health, and the sequencing lesson in each are below. The full map is on the coverage page."
 author: "matt-milford"
-publishDate: 2026-12-01
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["B"]
 pillar: "depth"

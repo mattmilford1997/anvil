@@ -8,7 +8,7 @@ summary:
   - "Run the soft check as early as possible, ideally on payer and state alone, before the patient types a member ID. Run the hard check once you have the ID, before the price screen."
   - "Handle three edge cases explicitly: payer system outages, plans that are active but do not cover the service, and multiple clinician types with different network status."
 author: "matt-milford"
-publishDate: 2027-02-09
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A"]
 pillar: "developer"

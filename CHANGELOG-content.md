@@ -1,5 +1,25 @@
 # Content changelog
 
+## 2026-11-17
+
+Held 13 queued non-contracting articles (publishDate set to 2099-01-01), held pending reviewer / URL freeze per CoS Nov 17.
+
+Restore by setting each file's `publishDate` back to the original date. No other field was changed.
+
+- `credentialing-automation-what-works.md` — 2026-11-24
+- `medicaid-credentialing-behavioral-health-by-state.md` — 2026-12-01
+- `cost-of-in-house-insurance-operations.md` — 2026-12-08
+- `behavioral-health-reimbursement-rates-by-state-q1-2027.md` — 2027-01-05
+- `eligibility-at-booking-conversion-lift.md` — 2027-02-02
+- `soft-check-hard-check-eligibility-api.md` — 2027-02-09
+- `payer-eligibility-outage-detection.md` — 2027-02-16
+- `aba-authorization-intake-flow.md` — 2027-02-23
+- `oig-advisory-opinion-25-03-and-state-cpom.md` — 2027-03-02
+- `state-cpom-telehealth-billing-map-2027.md` — 2027-03-09
+- `health-plan-audits-virtual-care.md` — 2027-03-16
+- `hybrid-in-person-care-insurance-billing.md` — 2027-03-23
+- `six-months-of-data.md` — 2027-03-30
+
 ## 2026-11-11
 
 The contact form (`anvil-leads` on `/contact`) again posts attribution as hidden fields: `first_landing`, `first_referrer`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, and `utm_content`. Those values are captured on the first page view of the browser session and stored only in `sessionStorage` (`anvil_attr`). The referrer field is named `first_referrer` because Netlify Forms overwrites a field named `referrer` with the POST Referer header. Visible inquiry fields are unchanged.

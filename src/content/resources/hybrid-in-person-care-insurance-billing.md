@@ -8,7 +8,7 @@ summary:
   - "Hybrid billing adds: site-of-service credentialing, facility or location enrollment, procedure and drug billing, program-level authorizations, and in-state entity and licensure requirements."
   - "Companies that run hybrid models successfully own their own entity in each state and use a partner for the labor. We know because several of them bill through Anvil."
 author: "matt-milford"
-publishDate: 2027-03-23
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["D"]
 pillar: "depth"

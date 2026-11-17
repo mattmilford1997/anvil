@@ -7,7 +7,7 @@ summary:
   - "Management fee treatment, physician owner requirements, and telehealth-specific billing rules vary independently of CPOM strictness. A state can be permissive on ownership and strict on telehealth modality."
   - "The map below summarizes each state on six dimensions. It is built from the states Anvil bills in and from public sources for the rest, and it is dated. Refresh before relying on it."
 author: "matt-milford"
-publishDate: 2027-03-09
+publishDate: 2099-01-01
 category: "Report"
 icp: ["A", "B", "D"]
 pillar: "depth"
