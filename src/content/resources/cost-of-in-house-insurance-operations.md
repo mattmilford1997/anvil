@@ -8,7 +8,7 @@ summary:
   - "The bigger cost is time: one to three years to national contract density, and idle clinician revenue for every month of it."
   - "Build makes sense in a narrow set of cases. For everyone else, the right answer is to buy the labor and own the asset, which is a third option most build-vs-buy analyses leave out."
 author: "matt-milford"
-publishDate: 2026-12-08
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A"]
 pillar: "ownership"

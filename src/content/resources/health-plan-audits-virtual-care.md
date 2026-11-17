@@ -8,7 +8,7 @@ summary:
   - "Three patterns trigger most reviews: code distribution that differs from peers, visit frequency or duration outliers, and modifier or place-of-service inconsistencies."
   - "The defense is not a lawyer. It is a chart that documents medical necessity, time, and modality the same way every time, audited internally before any payer asks."
 author: "matt-milford"
-publishDate: 2027-03-16
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A", "B"]
 pillar: "depth"

@@ -8,7 +8,7 @@ summary:
   - "The opinion is federal, fact-specific, and binds only the requestor. It does not address state corporate practice of medicine, fee-splitting, or licensure rules, which apply on top and vary by state."
   - "A compliant structure needs both layers: the federal safe-harbor discipline (fees set in advance, fair market value, not tied to referral volume) and state-by-state entity, ownership, and fee structuring."
 author: "matt-milford"
-publishDate: 2027-03-02
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A", "C"]
 pillar: "depth"

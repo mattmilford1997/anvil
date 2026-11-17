@@ -8,7 +8,7 @@ summary:
   - "Ownership is the whole point. Form your own entity at signature, migrate volume to your own contracts, and make sure every claim shows the contracted rate and the platform fee as separate lines."
   - "The cheapest mistakes to avoid are the ones you can see coming: state rollout order, Medicaid variance, CPOM structure, and eligibility checks that are not specific enough."
 author: "matt-milford"
-publishDate: 2027-03-30
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A", "B", "C", "D", "E"]
 pillar: "depth"

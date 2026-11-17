@@ -8,7 +8,7 @@ summary:
   - "Four drivers explain most of the spread: Medicare fee schedule geography, Medicaid fee schedules and MCO rate floors, plan mix, and network adequacy pressure."
   - "Rate should be an input to your state rollout order and your contract asks, not something you discover on the first remit. The rate lookup publishes ranges by state and code so you can plan before you sign."
 author: "matt-milford"
-publishDate: 2027-01-05
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["B"]
 pillar: "transparency"

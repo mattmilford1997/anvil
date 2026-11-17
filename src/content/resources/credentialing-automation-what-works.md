@@ -8,7 +8,7 @@ summary:
   - "Automation removes transcription errors, the leading cause of bounce-backs, and cuts prep time from days to minutes. It does not change payer processing time."
   - "We left three categories manual on purpose: payers with unstable portals, Medicaid MCOs with state-specific attachments, and any application that touches an exception in the clinician's history."
 author: "matt-milford"
-publishDate: 2026-11-24
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["B"]
 pillar: "depth"
