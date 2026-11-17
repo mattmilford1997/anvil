@@ -8,7 +8,7 @@ summary:
   - "The three traps: terminating the shared entity relationship before your contracts are live, mis-sequencing payers so your highest-volume plans migrate last, and losing claims data you need for rate negotiation."
   - "Done right, the shared entity becomes a shrinking backstop and revenue never pauses."
 author: "matt-milford"
-publishDate: 2026-12-29
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["C"]
 pillar: "ownership"

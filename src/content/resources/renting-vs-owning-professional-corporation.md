@@ -8,7 +8,7 @@ summary:
   - "You can rent that structure (bill through a vendor's PC) or own it (form your own PC with a physician owner and management agreement). Renting is faster. Owning is an asset."
   - "The sequence that gets both: rent on day one, form your own in the same week, migrate volume over 6 to 18 months."
 author: "matt-milford"
-publishDate: 2026-12-15
+publishDate: 2099-01-01
 category: "Blog"
 icp: ["A", "C"]
 pillar: "ownership"
