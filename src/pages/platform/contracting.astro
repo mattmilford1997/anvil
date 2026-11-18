@@ -87,7 +87,7 @@ const faqs = [
   </Section>
   <Section id="in-network-timeline" eyebrow="Timeline" title="How long does it take to get in-network?">
     <p class="lede">These rows are published processing standards, not Anvil averages. Medicaid enrollment is set state by state. An MCO panel is a separate step after state enrollment. This table does not list an Anvil months-to-contract figure.</p>
-    <div class="table-wrap">
+    <div class="table-wrap tl-table">
       <table>
         <thead>
           <tr><th>Payer type</th><th>What the clock measures</th><th>Published timeframe</th><th>Source</th></tr>
@@ -132,6 +132,44 @@ const faqs = [
         </tbody>
       </table>
     </div>
+    <div class="tl-cards">
+      <div class="card">
+        <h3>Medicare, internet PECOS</h3>
+        <p><span>What the clock measures</span> First Coast Service Options publishes the CMS processing standard for internet-based PECOS initial enrollment and change of information. The clock starts at receipt. It is not an effective date for any one application.</p>
+        <p><span>Published timeframe</span> No site visit, development, or fingerprinting: 95% within 15 calendar days of receipt, and 100% within 50 calendar days. With a site visit, development, or fingerprinting: 95% within 50 calendar days, and 100% within 85.</p>
+        <p><span>Source</span> <a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Medicare, paper CMS-855</h3>
+        <p><span>What the clock measures</span> The same page, for paper initial enrollments, change of information, and opt-out affidavits. Receipt to contractor completion. Not an effective date.</p>
+        <p><span>Published timeframe</span> No site visit, development, or fingerprinting: 95% within 30 calendar days of receipt, and 100% within 65. With a site visit, development, or fingerprinting: 95% within 65 calendar days, and 100% within 100.</p>
+        <p><span>Source</span> <a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>State Medicaid enrollment, North Carolina example</h3>
+        <p><span>What the clock measures</span> NCTracks enrollment and re-enrollment turnaround for clean, complete electronic applications. Not a national Medicaid average.</p>
+        <p><span>Published timeframe</span> The page showed 15.9 days (July), 16.94 days (August), and 22.06 days (September).</p>
+        <p><span>Source</span> <a href="https://medicaid.ncdhhs.gov/providers/provider-enrollment" rel="noopener" target="_blank">NC Medicaid provider enrollment</a>, page last modified October 1, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Commercial, multi-state contracts</h3>
+        <p><span>What the clock measures</span> What Bridge published about time to secure multi-state contracts. Not an Anvil figure, and not a national standard. No official national processing standard is cited here.</p>
+        <p><span>Published timeframe</span> 6 to 12 months, and longer if starting from scratch, as that page states it.</p>
+        <p><span>Source</span> <a href="https://www.usebridge.com/resources/build-vs-partner" rel="noopener" target="_blank">usebridge.com, build vs partner</a>, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Arizona insurer credentialing</h3>
+        <p><span>What the clock measures</span> Arizona Revised Statutes 20-3453, a state credentialing clock for a health insurer after a complete application. Not a national average, and not a filing instruction.</p>
+        <p><span>Published timeframe</span> Conclude credentialing within 60 calendar days, and load the applicant into the billing system within 30 calendar days. If a licensed facility has a delegated credentialing agreement, the 60-day and 30-day clocks in subsection A do not apply, and loading is within 10 calendar days after the insurer receives a roster of demographic changes.</p>
+        <p><span>Source</span> <a href="https://www.azleg.gov/ars/20/03453.htm" rel="noopener" target="_blank">Arizona Revised Statutes 20-3453</a>, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Virginia carrier credentialing</h3>
+        <p><span>What the clock measures</span> Virginia Code 38.2-3407.10:1, a state clock for a carrier to approve or deny a new provider applicant. Not a national average, and not a filing instruction.</p>
+        <p><span>Published timeframe</span> Approve or deny within 60 days of a completed application. Beginning January 1, 2024, the application is deemed complete within 30 days of receipt unless the carrier notices that it is not complete.</p>
+        <p><span>Source</span> <a href="https://law.lis.virginia.gov/vacode/title38.2/chapter34/section38.2-3407.10:1/" rel="noopener" target="_blank">Virginia Code 38.2-3407.10:1</a>, checked November 17, 2026.</p>
+      </div>
+    </div>
     <p style="margin-top:16px">The FCSO page lists situations that stop the Medicare processing clock. When fingerprints are required, the clock stops when the request is issued and resumes when the results are received. The page attributes the timeframes to CMS and does not name a Program Integrity Manual section, so this table does not add one.</p>
     <p>NCQA's public blog, dated November 19, 2024, says NCQA requires recredentialing every three years and that it shortened the verification time frame. It does not state a 120-day clock, so this table does not list one. <a href="https://www.ncqa.org/blog/ncqas-credentialing-standards-ensure-safety-and-integrity-of-practitioner-networks/" rel="noopener" target="_blank">NCQA credentialing standards blog</a>, checked November 17, 2026.</p>
     <p>For intake, application bounces, and follow-up, see <a href="/resources/credentialing-timeline-benchmark-by-payer">the credentialing timeline guide</a>. The day counts in that guide are not a source for this table.</p>
@@ -149,3 +187,14 @@ const faqs = [
     <RateLookup compact id="rl-contracting" />
   </Section>
 </SubpageLayout>
+<style>
+  .tl-cards { display: none; }
+  @media (max-width: 640px) {
+    .tl-table { display: none; }
+    .tl-cards { display: grid; gap: 12px; }
+    .tl-cards h3 { font-size: 16px; margin-bottom: 10px; }
+    .tl-cards p { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; overflow-wrap: anywhere; }
+    .tl-cards p:last-child { border-bottom: 0; }
+    .tl-cards span { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+  }
+</style>

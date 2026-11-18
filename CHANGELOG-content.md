@@ -1,6 +1,6 @@
 # Content changelog
 
-## 2026-11-23
+## 2026-11-17
 
 Package-page upgrades on existing URLs. Titles, H1s, and metas were not changed. No new URLs. Homepage, `/rates`, and RateRelated were not edited, and rate `lastmod` values were not stamped.
 
