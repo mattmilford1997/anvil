@@ -35,6 +35,7 @@ export const PAGE_LASTMOD = {
   '/resources/six-months-of-data': '2026-10-18',
   '/resources/when-to-accept-insurance': '2026-11-08',
   '/resources/credentialing-timeline-benchmark-by-payer': '2026-11-08',
+  '/resources/entity-structure-before-payer-contracts': '2026-11-18',
   // State hubs whose 90837 section compares Medicaid FFS and Medicare. Other state hubs stay on STATE_HUB_LASTMOD.
   '/rates/ak': '2026-10-28',
   '/rates/az': '2026-10-28',
