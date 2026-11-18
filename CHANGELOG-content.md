@@ -1,5 +1,9 @@
 # Content changelog
 
+## 2026-11-18
+
+Scheduled guest post entity-structure-before-payer-contracts (publishDate 2026-11-30), Foundry PC guest post, one-off cross-brand exception approved by Matt via CoS Nov 18; reviewer: Chief of Staff (exact-head review). Listing cards use cardExcerpt instead of the meta description.
+
 ## 2026-11-17
 
 Package-page upgrades on existing URLs. Titles, H1s, and metas were not changed. No new URLs. Homepage, `/rates`, and RateRelated were not edited, and rate `lastmod` values were not stamped.

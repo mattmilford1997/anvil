@@ -12,4 +12,10 @@ export const team: Person[] = [
 
 export const authors: Record<string, Person> = {
   'matt-milford': team[0],
+  // Guest byline only. Not on the company page, and not used by other articles.
+  'matthew-milford': {
+    name: 'Matthew Milford',
+    title: 'Founder, Foundry PC',
+    bio: 'Guest author.',
+  },
 };

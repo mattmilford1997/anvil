@@ -147,6 +147,8 @@ tr:last-child td { border-bottom: 0; }
 .prose li { margin-bottom: 0.4em; }
 .prose table { font-size: 15px; margin: 1.2em 0; }
 .prose blockquote { margin: 1.5em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
+.prose .note { margin: 0 0 1.5em; padding: 12px 16px; background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: var(--radius); }
+.prose .note p { margin: 0; }
 .prose img { border-radius: var(--radius); }
 .prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
 .prose code { font-family: var(--mono); font-size: 0.9em; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
