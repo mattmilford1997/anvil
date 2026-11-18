@@ -3,7 +3,24 @@ import SubpageLayout from '../../layouts/SubpageLayout.astro';
 import Section from '../../components/Section.astro';
 import Tiles from '../../components/Tiles.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
+import { absolute } from '../../lib/seo';
+import { lastmodFor } from '../../data/lastmod.mjs';
 import { p13, psychiatryCredentialingAnswer, bhPayerContractingAnswer } from '../../data/directAnswers';
+const bhTitle = 'Behavioral health payer contracting for telehealth';
+const bhDescription = 'Behavioral health payer contracting and credentialing for psychiatry, therapy, ABA, and IOP. Medicaid MCO panels and collaborative care billing.';
+const bhArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: bhTitle,
+  description: bhDescription,
+  datePublished: '2026-09-15T00:00:00Z',
+  dateModified: `${lastmodFor('/solutions/behavioral-health')}T00:00:00Z`,
+  author: { '@type': 'Organization', name: 'Anvil' },
+  publisher: { '@type': 'Organization', name: 'Anvil', logo: { '@type': 'ImageObject', url: absolute('/logo.svg') } },
+  mainEntityOfPage: absolute('/solutions/behavioral-health'),
+  image: absolute('/og-default-v2.png'),
+  url: absolute('/solutions/behavioral-health'),
+};
 const faqs = [
   { q: 'What is behavioral health payer contracting?', a: bhPayerContractingAnswer },
   { q: 'How does behavioral health payer contracting work?', a: 'Start with the states, the license mix, and the panels you want. Medicaid MCO enrollment is filed plan by plan. Closed panels stay on the rented PC until they open. ABA authorization, supervision billing, and collaborative care codes ride in the same file.' },
@@ -17,9 +34,10 @@ const faqs = [
 ];
 ---
 <SubpageLayout
-  metaTitle="Behavioral health payer contracting for telehealth"
+  metaTitle={bhTitle}
   title="Behavioral health payer contracting, built for the way behavioral health actually bills."
-  description="Behavioral health payer contracting and credentialing for psychiatry, therapy, ABA, and IOP. Medicaid MCO panels and collaborative care billing."
+  description={bhDescription}
+  extraJsonLd={[bhArticle]}
   eyebrow="Solutions / Behavioral health"
   prompt="What is behavioral health payer contracting?"
   promptId="what-is-bh-payer-contracting"
@@ -38,7 +56,33 @@ const faqs = [
     <p class="lede" style="margin-top:16px">Behavioral health payer contracting is one of five workstreams on Anvil's <a href="/platform">insurance operations platform</a>.</p>
   </Section>
   <Section eyebrow="The sequence" title="How behavioral health payer contracting works">
-    <p class="lede">Name the states, the licenses on the roster, and the panels you are going after. File each Medicaid MCO on its own. A closed panel stays on the rented PC until that plan opens. ABA authorization, supervision billing, and collaborative care codes travel with that enrollment.</p>
+    <p class="lede">Name the states, the licenses on the roster, and the panels you are going after. State Medicaid enrollment and each Medicaid MCO panel are separate filings. A closed panel stays on the rented PC until that plan opens. ABA authorization, supervision billing, and collaborative care codes travel with that enrollment.</p>
+  </Section>
+  <Section id="sourced-process" eyebrow="Sourced process" title="Psychiatry, therapy, ABA, and Medicaid panels">
+    <p class="lede">Written by Anvil. Sources checked November 17, 2026. This is the panel process already on this page, with a source on each path. It does not add a coverage count.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Path</th><th>What the work is</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Psychiatry and therapy</td>
+            <td>Roster-add onto contracts that already exist, then full enrollment under your own professional corporation. This table does not add a day count.</td>
+            <td><a href="/platform/credentialing">Anvil credentialing</a></td>
+          </tr>
+          <tr>
+            <td>ABA</td>
+            <td>Authorization runs as intake: assessment codes, treatment plan submission, units authorized, and re-authorization before it lapses. Published Medicaid FFS ranges for 97153 are on the rates page.</td>
+            <td><a href="/solutions/behavioral-health#aba-credentialing">ABA section on this page</a>. <a href="/rates/code/97153">97153 rates</a></td>
+          </tr>
+          <tr>
+            <td>Medicaid MCO panels</td>
+            <td>State Medicaid enrollment is its own step. Each MCO panel is a later filing. A closed panel stays on the rented PC until it opens. North Carolina publishes a turnaround for clean electronic applications. Other states are not averaged here.</td>
+            <td><a href="https://medicaid.ncdhhs.gov/providers/provider-enrollment" rel="noopener" target="_blank">NC Medicaid provider enrollment</a>, checked November 17, 2026. The published figures are on the <a href="/platform/contracting#in-network-timeline">in-network timeline</a>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede" style="margin-top:16px">Published Medicare processing standards are on that same timeline. This page does not restate them.</p>
   </Section>
   <Section id="prepare" eyebrow="Before the first filing" title="What to gather for behavioral health payer contracting">
     <p class="lede">Behavioral health payer contracting starts from a list, not a blank application. Bring these, and we will tell you which panels are a roster-add and which are a new contract.</p>

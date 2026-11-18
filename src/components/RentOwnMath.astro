@@ -1,0 +1,113 @@
+---
+import { tiers, pricingNotes, expansionPerState } from '../data/pricing';
+
+const launch = tiers.find((t) => t.key === 'launch')!;
+const build = tiers.find((t) => t.key === 'build')!;
+const scale = tiers.find((t) => t.key === 'scale')!;
+const published = [launch, build, scale];
+---
+<div
+  class="math card"
+  id="per-claim-math-tool"
+  data-state-fee={expansionPerState}
+  data-tiers={JSON.stringify(published.map((t) => ({ key: t.key, name: t.name, pct: t.platformFeePct, monthly: t.monthly, oneTime: t.oneTime })))}
+>
+  <p class="lede">Worked example, not a prediction. The fees are the ones published on <a href="/pricing">the pricing page</a>. You supply the allowed amount and the monthly claim count. This example treats the allowed amount you enter as the collection the percent applies to. The published platform fee is a percent of collections during the rental phase.</p>
+  <ul class="check-list">
+    {published.map((t) => (
+      <li>{t.name}: {t.platformFeePct}% of collections during rental, {t.monthly === 0 ? '$0 per month' : `$${t.monthly.toLocaleString('en-US')} per month for the PC and physician owner`}, ${t.oneTime.toLocaleString('en-US')} one-time.</li>
+    ))}
+  </ul>
+  <ul class="notes">
+    {pricingNotes.map((note) => <li>{note}</li>)}
+  </ul>
+  <p>The pricing page says the platform fee steps down as volume moves to your own contracts. It does not publish the post-migration percentage. This example leaves that fee out.</p>
+  <form class="math-in" onsubmit="return false">
+    <div class="field">
+      <label for="rom-tier">Published tier to apply</label>
+      <select id="rom-tier" name="tier">
+        {published.map((t) => <option value={t.key}>{t.name}: {t.platformFeePct}% during rental</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="rom-allowed">Your input: allowed amount for one claim, in dollars</label>
+      <input id="rom-allowed" name="allowed" type="number" min="0" step="0.01" inputmode="decimal" />
+      <p class="small muted">Use a published range on <a href="/rates">the rates pages</a> for your code and state, and record the date you checked. This is your input, not an Anvil rate.</p>
+    </div>
+    <div class="field">
+      <label for="rom-claims">Your input: monthly claim count</label>
+      <input id="rom-claims" name="claims" type="number" min="1" step="1" inputmode="numeric" />
+      <p class="small muted">Your input, not a typical volume.</p>
+    </div>
+    <div class="field">
+      <label for="rom-months">Your input: months to spread the one-time fee</label>
+      <input id="rom-months" name="months" type="number" min="1" step="1" inputmode="numeric" />
+      <p class="small muted">Monthly components have a published 12-month minimum. This field is only how you choose to spread the one-time fee, and any state fee you enter, across this example.</p>
+    </div>
+    <div class="field">
+      <label for="rom-states">Your input: states to add to your PC</label>
+      <input id="rom-states" name="states" type="number" min="0" step="1" inputmode="numeric" />
+      <p class="small muted">Optional. Uses the published ${expansionPerState} per state. Leave blank to leave it out. Filing fees are passed through at cost and are not a published dollar amount, so they are left out.</p>
+    </div>
+  </form>
+  <p class="math-empty small muted" data-out="empty">Enter an allowed amount, a monthly claim count, and months to spread the one-time fee. The example stays blank until you do.</p>
+  <div class="math-out" data-out="results" hidden>
+    <p class="small muted" data-out="using"></p>
+    <div class="res"><span>Rental-phase fee for this claim</span><strong data-out="pct">$0</strong></div>
+    <div class="res"><span>Published monthly fee, per claim</span><strong data-out="monthly">$0</strong></div>
+    <div class="res"><span>Published one-time fee, per claim</span><strong data-out="once">$0</strong></div>
+    <div class="res"><span>Published per-state fee, per claim</span><strong data-out="state">$0</strong></div>
+    <div class="res us"><span>Rental-phase total per claim, using your inputs</span><strong data-out="total">$0</strong></div>
+    <p class="small muted">Post-migration platform fee: not published on the pricing page. Left out. The monthly, one-time, and per-state lines are the published fixed fees only. They are not an owned per-claim price.</p>
+  </div>
+</div>
+<style>
+  .math { padding: 32px; display: grid; gap: 16px; }
+  .math .lede, .math p { margin: 0; }
+  .notes { margin: 0; padding-left: 1.2em; color: var(--muted); font-size: 14px; }
+  .math-in { display: grid; gap: 14px; }
+  .math-in label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .math-in input, .math-in select { width: 100%; max-width: 420px; font: inherit; font-size: 15px; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--ink); }
+  .math-out { display: grid; gap: 10px; }
+  .res { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; padding: 12px 16px; border-radius: 10px; background: var(--surface-2); }
+  .res span { font-size: 14px; color: var(--muted); }
+  .res strong { font-size: 22px; color: var(--ink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .res.us { background: var(--ink); }
+  .res.us span { color: #b7c7c2; }
+  .res.us strong { color: #fff; }
+</style>
+<script>
+  const root = document.getElementById('per-claim-math-tool');
+  if (root) {
+    const tiers = JSON.parse(root.dataset.tiers || '[]') as { key: string; name: string; pct: number; monthly: number; oneTime: number }[];
+    const stateFee = Number(root.dataset.stateFee);
+    const q = (id: string) => root.querySelector<HTMLInputElement>(id)!;
+    const out = (k: string) => root.querySelector<HTMLElement>(`[data-out=${k}]`)!;
+    const money = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const run = () => {
+      const tier = tiers.find((t) => t.key === q('#rom-tier').value) ?? tiers[0];
+      const allowed = Number(q('#rom-allowed').value);
+      const claims = Number(q('#rom-claims').value);
+      const months = Number(q('#rom-months').value);
+      const statesRaw = q('#rom-states').value.trim();
+      const states = statesRaw === '' ? 0 : Number(statesRaw);
+      const ready = Number.isFinite(allowed) && allowed > 0 && Number.isFinite(claims) && claims >= 1 && Number.isFinite(months) && months >= 1 && Number.isFinite(states) && states >= 0;
+      out('empty').hidden = ready;
+      out('results').hidden = !ready;
+      if (!ready || !tier) return;
+      const pctFee = allowed * tier.pct / 100;
+      const monthly = tier.monthly / claims;
+      const once = tier.oneTime / (months * claims);
+      const state = (states * stateFee) / (months * claims);
+      const total = pctFee + monthly + once + state;
+      out('using').textContent = `${tier.name}, your inputs: allowed amount ${money(allowed)}, ${claims} claims in the month, one-time fee spread over ${months} months${states ? `, ${states} states at $${stateFee} each` : ''}.`;
+      out('pct').textContent = money(pctFee);
+      out('monthly').textContent = money(monthly);
+      out('once').textContent = money(once);
+      out('state').textContent = money(state);
+      out('total').textContent = money(total);
+    };
+    root.querySelectorAll('input, select').forEach((el) => el.addEventListener('input', run));
+    run();
+  }
+</script>

@@ -119,7 +119,7 @@ export const switchingBridgeCompareAnswer =
   "Compare who holds the payer contracts, whether you see the contracted rate or only a fee, the notice and non-solicitation terms, and whether you can keep billing until your own contracts are effective. Anvil publishes pricing and separates the contracted rate from the platform fee. Bridge does not publish pricing on its site that we could verify.";
 
 export const bridgeEmrApiAnswer =
-  "On a November 9, 2026 review, Bridge's homepage says it is compatible with any EMR system, and that its APIs are developer friendly and easy to integrate. The same page describes contract-level logic verification on its eligibility engine. It does not say who holds the payer contracts.";
+  "On a November 17, 2026 review, Bridge's homepage says it is compatible with any EMR system, and that its APIs are developer friendly and easy to integrate. The same page describes contract-level logic verification on its eligibility engine. It does not say who holds the payer contracts.";
 
 export const bridgeHealthPlansFactsAnswer =
-  "On a November 9, 2026 review, Bridge's health plans page says it has a favorable OIG opinion on the operating structure (No. 25-03), and that the average time to appointment is 5 days. Anvil does not claim an OIG advisory opinion. Anvil does not publish an average time to appointment.";
+  "On a November 17, 2026 review, Bridge's health plans page says it has a favorable OIG opinion on the operating structure (No. 25-03), and that the average time to appointment is 5 days. Anvil does not claim an OIG advisory opinion. Anvil does not publish an average time to appointment.";

@@ -4,7 +4,27 @@ import Section from '../../components/Section.astro';
 import FeatureRow from '../../components/FeatureRow.astro';
 import CoverageMap from '../../components/CoverageMap.astro';
 import RateLookup from '../../components/RateLookup.astro';
+import { absolute } from '../../lib/seo';
+import { lastmodFor } from '../../data/lastmod.mjs';
+import { getLivePost } from '../../lib/content';
 import { p11, contractingWhatIsAnswer, contractingVsRosterAnswer, contractingSeeBeforeSignAnswer } from '../../data/directAnswers';
+const roster = await getLivePost('roster-add-vs-full-enrollment');
+const contractingTitle = 'Payer contracting for telehealth, in your name';
+const contractingDescription = 'Payer contracting for telehealth: commercial and Medicaid payer enrollment in your name. Own your payer contracts, with published rates.';
+const contractingGuideAnswer = 'Payer contracting for telehealth is getting participation agreements in the care company\'s own entity, for commercial, Medicare, and Medicaid, so the company can bill in-network and keep those contracts if it changes vendors. How long it takes depends on the payer type. The timeline below quotes published standards and does not give one months-to-contract number.';
+const contractingArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: contractingTitle,
+  description: contractingDescription,
+  datePublished: '2026-09-15T00:00:00Z',
+  dateModified: `${lastmodFor('/platform/contracting')}T00:00:00Z`,
+  author: { '@type': 'Organization', name: 'Anvil' },
+  publisher: { '@type': 'Organization', name: 'Anvil', logo: { '@type': 'ImageObject', url: absolute('/logo.svg') } },
+  mainEntityOfPage: absolute('/platform/contracting'),
+  image: absolute('/og-default-v2.png'),
+  url: absolute('/platform/contracting'),
+};
 const faqs = [
   { q: 'What is payer contracting for telehealth?', a: contractingWhatIsAnswer },
   { q: 'How do we own our payer contracts?', a: 'We file applications in your PC\'s name. You approve the terms. When a contract is effective, new visits with that payer bill under your entity. The contracts stay with your PC if you ever switch vendors.' },
@@ -19,13 +39,14 @@ const faqs = [
 ];
 ---
 <SubpageLayout
-  metaTitle="Payer contracting for telehealth, in your name"
+  metaTitle={contractingTitle}
   title="Payer contracting for telehealth, in your name, at rates you can see."
-  description="Payer contracting for telehealth: commercial and Medicaid payer enrollment in your name. Own your payer contracts, with published rates."
+  description={contractingDescription}
+  extraJsonLd={[contractingArticle]}
   eyebrow="Platform / Contracting"
-  prompt="What are the best payer contracting companies for virtual care startups?"
-  promptId="payer-contracting-companies"
-  answer={p11}
+  prompt="What is payer contracting for telehealth, and how long does it take to get in-network?"
+  promptId="payer-contracting-timeline"
+  answer={contractingGuideAnswer}
   updated
   sub="Payer contracting for telehealth puts commercial and Medicaid enrollment in your name. You should never bill under a contract whose rate you cannot see. We show the range before you sign, the executed rate after, and our fee as a separate line."
   crumbs={[{ name: 'Home', path: '/' }, { name: 'Platform', path: '/platform' }, { name: 'Contracting', path: '/platform/contracting' }]}
@@ -53,8 +74,105 @@ const faqs = [
     <p class="lede" style="margin-top:16px">For <a href="/solutions/behavioral-health">behavioral health payer contracting</a>, closed panels stay on our PC until they open. After a contract is effective, <a href="/platform/rcm">telehealth revenue cycle management</a> runs the claims under the entity that holds it. Our guide to <a href="/resources/what-in-network-nationally-means">what in-network nationally means</a> defines a closed panel and how it differs from a contract.</p>
     <p class="lede" style="margin-top:16px">The month by month path for those contracts is <a href="/own-your-contracts">Own your payer contracts vs network rental</a>.</p>
   </Section>
-  <Section id="what-is-payer-contracting" eyebrow="Direct answer" title="What is payer contracting for telehealth?">
+  <Section id="what-is-payer-contracting" eyebrow="Guide" title="What is payer contracting for telehealth?">
     <p class="lede">{contractingWhatIsAnswer}</p>
+    <p class="small muted">Written by Anvil. Sources checked November 17, 2026.</p>
+    <p class="lede" style="margin-top:16px">Payer contracting for telehealth is the work of getting participation agreements in the care company's own entity, for commercial, Medicare, and Medicaid, so the company can bill in-network and keep those contracts if it changes vendors.</p>
+    <h3>What a participation agreement is</h3>
+    <p>A participation agreement is the contract a payer signs with the entity that will bill it. The agreement stays with that entity.</p>
+    <h3>How the work is ordered</h3>
+    <p>Commercial participation agreements, then Medicare enrollment, then state Medicaid enrollment, then Medicaid MCO panels. State enrollment comes before an MCO panel. That is a sequence of applications, not a count of months.</p>
+    <p>A roster-add is the other path: a clinician is added to a contract that already exists. <a href="#roster-vs-contract">How that differs</a> is below. <a href="#rate-before-you-sign">What you can see before you sign</a> is the published range, then the proposed rate, then the executed rate.</p>
+    <p>A contract, a panel, and a roster are defined in <a href="/resources/what-in-network-nationally-means">what in-network nationally means</a>.{roster && <> <a href={`/resources/${roster.id}`}>Roster-add versus full enrollment</a> separates those two steps.</>}</p>
+  </Section>
+  <Section id="in-network-timeline" eyebrow="Timeline" title="How long does it take to get in-network?">
+    <p class="lede">These rows are published processing standards, not Anvil averages. Medicaid enrollment is set state by state. An MCO panel is a separate step after state enrollment. This table does not list an Anvil months-to-contract figure.</p>
+    <div class="table-wrap tl-table">
+      <table>
+        <thead>
+          <tr><th>Payer type</th><th>What the clock measures</th><th>Published timeframe</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Medicare, internet PECOS</td>
+            <td>First Coast Service Options publishes the CMS processing standard for internet-based PECOS initial enrollment and change of information. The clock starts at receipt. It is not an effective date for any one application.</td>
+            <td>No site visit, development, or fingerprinting: 95% within 15 calendar days of receipt, and 100% within 50 calendar days. With a site visit, development, or fingerprinting: 95% within 50 calendar days, and 100% within 85.</td>
+            <td><a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</td>
+          </tr>
+          <tr>
+            <td>Medicare, paper CMS-855</td>
+            <td>The same page, for paper initial enrollments, change of information, and opt-out affidavits. Receipt to contractor completion. Not an effective date.</td>
+            <td>No site visit, development, or fingerprinting: 95% within 30 calendar days of receipt, and 100% within 65. With a site visit, development, or fingerprinting: 95% within 65 calendar days, and 100% within 100.</td>
+            <td><a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</td>
+          </tr>
+          <tr>
+            <td>State Medicaid enrollment, North Carolina example</td>
+            <td>NCTracks enrollment and re-enrollment turnaround for clean, complete electronic applications. Not a national Medicaid average.</td>
+            <td>The page showed 15.9 days (July), 16.94 days (August), and 22.06 days (September).</td>
+            <td><a href="https://medicaid.ncdhhs.gov/providers/provider-enrollment" rel="noopener" target="_blank">NC Medicaid provider enrollment</a>, page last modified October 1, 2026, checked November 17, 2026.</td>
+          </tr>
+          <tr>
+            <td>Commercial, multi-state contracts</td>
+            <td>What Bridge published about time to secure multi-state contracts. Not an Anvil figure, and not a national standard. No official national processing standard is cited here.</td>
+            <td>6 to 12 months, and longer if starting from scratch, as that page states it.</td>
+            <td><a href="https://www.usebridge.com/resources/build-vs-partner" rel="noopener" target="_blank">usebridge.com, build vs partner</a>, checked November 17, 2026.</td>
+          </tr>
+          <tr>
+            <td>Arizona insurer credentialing</td>
+            <td>Arizona Revised Statutes 20-3453, a state credentialing clock for a health insurer after a complete application. Not a national average, and not a filing instruction.</td>
+            <td>Conclude credentialing within 60 calendar days, and load the applicant into the billing system within 30 calendar days. If a licensed facility has a delegated credentialing agreement, the 60-day and 30-day clocks in subsection A do not apply, and loading is within 10 calendar days after the insurer receives a roster of demographic changes.</td>
+            <td><a href="https://www.azleg.gov/ars/20/03453.htm" rel="noopener" target="_blank">Arizona Revised Statutes 20-3453</a>, checked November 17, 2026.</td>
+          </tr>
+          <tr>
+            <td>Virginia carrier credentialing</td>
+            <td>Virginia Code 38.2-3407.10:1, a state clock for a carrier to approve or deny a new provider applicant. Not a national average, and not a filing instruction.</td>
+            <td>Approve or deny within 60 days of a completed application. Beginning January 1, 2024, the application is deemed complete within 30 days of receipt unless the carrier notices that it is not complete.</td>
+            <td><a href="https://law.lis.virginia.gov/vacode/title38.2/chapter34/section38.2-3407.10:1/" rel="noopener" target="_blank">Virginia Code 38.2-3407.10:1</a>, checked November 17, 2026.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tl-cards">
+      <div class="card">
+        <h3>Medicare, internet PECOS</h3>
+        <p><span>What the clock measures</span> First Coast Service Options publishes the CMS processing standard for internet-based PECOS initial enrollment and change of information. The clock starts at receipt. It is not an effective date for any one application.</p>
+        <p><span>Published timeframe</span> No site visit, development, or fingerprinting: 95% within 15 calendar days of receipt, and 100% within 50 calendar days. With a site visit, development, or fingerprinting: 95% within 50 calendar days, and 100% within 85.</p>
+        <p><span>Source</span> <a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Medicare, paper CMS-855</h3>
+        <p><span>What the clock measures</span> The same page, for paper initial enrollments, change of information, and opt-out affidavits. Receipt to contractor completion. Not an effective date.</p>
+        <p><span>Published timeframe</span> No site visit, development, or fingerprinting: 95% within 30 calendar days of receipt, and 100% within 65. With a site visit, development, or fingerprinting: 95% within 65 calendar days, and 100% within 100.</p>
+        <p><span>Source</span> <a href="https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes" rel="noopener" target="_blank">FCSO CMS-855 timeframes</a>, page dated February 18, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>State Medicaid enrollment, North Carolina example</h3>
+        <p><span>What the clock measures</span> NCTracks enrollment and re-enrollment turnaround for clean, complete electronic applications. Not a national Medicaid average.</p>
+        <p><span>Published timeframe</span> The page showed 15.9 days (July), 16.94 days (August), and 22.06 days (September).</p>
+        <p><span>Source</span> <a href="https://medicaid.ncdhhs.gov/providers/provider-enrollment" rel="noopener" target="_blank">NC Medicaid provider enrollment</a>, page last modified October 1, 2026, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Commercial, multi-state contracts</h3>
+        <p><span>What the clock measures</span> What Bridge published about time to secure multi-state contracts. Not an Anvil figure, and not a national standard. No official national processing standard is cited here.</p>
+        <p><span>Published timeframe</span> 6 to 12 months, and longer if starting from scratch, as that page states it.</p>
+        <p><span>Source</span> <a href="https://www.usebridge.com/resources/build-vs-partner" rel="noopener" target="_blank">usebridge.com, build vs partner</a>, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Arizona insurer credentialing</h3>
+        <p><span>What the clock measures</span> Arizona Revised Statutes 20-3453, a state credentialing clock for a health insurer after a complete application. Not a national average, and not a filing instruction.</p>
+        <p><span>Published timeframe</span> Conclude credentialing within 60 calendar days, and load the applicant into the billing system within 30 calendar days. If a licensed facility has a delegated credentialing agreement, the 60-day and 30-day clocks in subsection A do not apply, and loading is within 10 calendar days after the insurer receives a roster of demographic changes.</p>
+        <p><span>Source</span> <a href="https://www.azleg.gov/ars/20/03453.htm" rel="noopener" target="_blank">Arizona Revised Statutes 20-3453</a>, checked November 17, 2026.</p>
+      </div>
+      <div class="card">
+        <h3>Virginia carrier credentialing</h3>
+        <p><span>What the clock measures</span> Virginia Code 38.2-3407.10:1, a state clock for a carrier to approve or deny a new provider applicant. Not a national average, and not a filing instruction.</p>
+        <p><span>Published timeframe</span> Approve or deny within 60 days of a completed application. Beginning January 1, 2024, the application is deemed complete within 30 days of receipt unless the carrier notices that it is not complete.</p>
+        <p><span>Source</span> <a href="https://law.lis.virginia.gov/vacode/title38.2/chapter34/section38.2-3407.10:1/" rel="noopener" target="_blank">Virginia Code 38.2-3407.10:1</a>, checked November 17, 2026.</p>
+      </div>
+    </div>
+    <p style="margin-top:16px">The FCSO page lists situations that stop the Medicare processing clock. When fingerprints are required, the clock stops when the request is issued and resumes when the results are received. The page attributes the timeframes to CMS and does not name a Program Integrity Manual section, so this table does not add one.</p>
+    <p>NCQA's public blog, dated November 19, 2024, says NCQA requires recredentialing every three years and that it shortened the verification time frame. It does not state a 120-day clock, so this table does not list one. <a href="https://www.ncqa.org/blog/ncqas-credentialing-standards-ensure-safety-and-integrity-of-practitioner-networks/" rel="noopener" target="_blank">NCQA credentialing standards blog</a>, checked November 17, 2026.</p>
+    <p>For intake, application bounces, and follow-up, see <a href="/resources/credentialing-timeline-benchmark-by-payer">the credentialing timeline guide</a>. The day counts in that guide are not a source for this table.</p>
   </Section>
   <Section id="roster-vs-contract" eyebrow="Roster-add vs a contract" title="How is payer contracting for telehealth different from a roster-add?">
     <p class="lede">{contractingVsRosterAnswer}</p>
@@ -69,3 +187,14 @@ const faqs = [
     <RateLookup compact id="rl-contracting" />
   </Section>
 </SubpageLayout>
+<style>
+  .tl-cards { display: none; }
+  @media (max-width: 640px) {
+    .tl-table { display: none; }
+    .tl-cards { display: grid; gap: 12px; }
+    .tl-cards h3 { font-size: 16px; margin-bottom: 10px; }
+    .tl-cards p { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; overflow-wrap: anywhere; }
+    .tl-cards p:last-child { border-bottom: 0; }
+    .tl-cards span { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+  }
+</style>

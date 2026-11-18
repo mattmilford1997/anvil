@@ -1,0 +1,75 @@
+---
+import { isExternalHref } from '../lib/seo';
+
+export type CellSource = { href: string; label: string };
+export type SourcedCell = { text: string; sources: CellSource[] };
+
+interface Props {
+  cols: string[];
+  rows: { label: string; cells: SourcedCell[] }[];
+}
+const { cols, rows } = Astro.props;
+---
+<div class="cmp-wrap reveal">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th></th>
+        {cols.map((c, i) => <th class:list={{ us: i === 0 }}>{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <th scope="row">{row.label}</th>
+          {row.cells.map((cell, i) => (
+            <td class:list={{ us: i === 0 }} data-label={cols[i]}>
+              {cell.text}
+              {cell.sources.map((source) => (
+                <a class="cell-src" href={source.href} rel={isExternalHref(source.href) ? 'noopener' : undefined} target={isExternalHref(source.href) ? '_blank' : undefined}>{source.label}</a>
+              ))}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<div class="cmp-cards">
+  {rows.map((row) => (
+    <div class="card">
+      <h3>{row.label}</h3>
+      <ul>
+        {row.cells.map((cell, i) => (
+          <li>
+            <span>{cols[i]}</span>
+            <strong>{cell.text}{cell.sources.map((source) => (
+              <a class="cell-src" href={source.href} rel={isExternalHref(source.href) ? 'noopener' : undefined} target={isExternalHref(source.href) ? '_blank' : undefined}>{source.label}</a>
+            ))}</strong>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
+<style>
+  .cmp-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .cmp { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .cmp th, .cmp td { padding: 14px 16px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  .cmp thead th { background: var(--surface-2); font-weight: 600; }
+  .cmp tbody th { font-weight: 500; color: var(--text); }
+  .cmp .us { background: #f2f7f5; font-weight: 600; color: var(--ink); }
+  .cmp thead .us { background: var(--ink); color: #fff; }
+  .cell-src { display: block; margin-top: 6px; font-size: 12px; font-weight: 500; line-height: 1.35; }
+  .cmp-cards { display: none; }
+  @media (max-width: 760px) {
+    .cmp-wrap { display: none; }
+    .cmp-cards { display: grid; gap: 12px; }
+    .cmp-cards h3 { font-size: 16px; margin-bottom: 10px; }
+    .cmp-cards ul { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+    .cmp-cards li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .cmp-cards li:first-child strong { color: var(--ink); }
+    .cmp-cards li:last-child { border-bottom: 0; }
+    .cmp-cards strong { text-align: right; font-weight: 600; }
+  }
+</style>
