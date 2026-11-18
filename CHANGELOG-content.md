@@ -2,7 +2,7 @@
 
 ## 2026-11-18
 
-Scheduled guest post entity-structure-before-payer-contracts (publishDate 2026-11-30), Foundry PC guest post, one-off cross-brand exception approved by Matt via CoS Nov 18; awaiting reviewer.
+Scheduled guest post entity-structure-before-payer-contracts (publishDate 2026-11-30), Foundry PC guest post, one-off cross-brand exception approved by Matt via CoS Nov 18; reviewer: Chief of Staff (exact-head review). Listing cards use cardExcerpt instead of the meta description.
 
 ## 2026-11-17
 

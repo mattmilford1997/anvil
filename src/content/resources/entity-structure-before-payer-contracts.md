@@ -2,6 +2,7 @@
 title: "Before you own your payer contracts, you need an entity that can hold them"
 metaTitle: "Need an entity before owning payer contracts?"
 excerpt: "Payer contracts sit with a practice entity. Here is how the MSO-PC structure works and when to start forming your own PC."
+cardExcerpt: "Payer contracts sit with a practice entity. Here is when to start forming your own PC."
 author: "matthew-milford"
 publishDate: 2026-11-30
 category: "Blog"
