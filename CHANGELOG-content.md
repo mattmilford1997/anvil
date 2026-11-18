@@ -1,5 +1,42 @@
 # Content changelog
 
+## 2026-11-23
+
+Package-page upgrades on existing URLs. Titles, H1s, and metas were not changed. No new URLs. Homepage, `/rates`, and RateRelated were not edited, and rate `lastmod` values were not stamped.
+
+### `/solutions/switching`
+
+- Hero prompt is now "Is there a Bridge alternative that lets me keep billing while I switch?" The switch-without-a-gap FAQ stays.
+- Added "What is a Bridge alternative when you are already on a vendor?" It points at the sourced fact table, pricing, and own-your-contracts. It does not copy the fact table or add a switch-duration claim.
+- The ownership timeline no longer renders the unpublished post-migration platform fee.
+
+### `/platform/contracting`
+
+- Hero prompt is now "What is payer contracting for telehealth, and how long does it take to get in-network?" The existing "best payer contracting companies" answer stays in the FAQ.
+- Added an ungated guide: participation agreement, roster-add versus a contract, what you can see before you sign, and the order of work. Written by Anvil. Sources checked November 17, 2026. Links the live in-network definition, and the roster-add guide when that post is live.
+- Added an in-network timeline by payer type. Medicare rows cite the First Coast Service Options CMS-855 page (February 18, 2026). North Carolina Medicaid cites the NC Medicaid provider enrollment page. A commercial row cites only what Bridge published (6 to 12 months) and is labeled as Bridge's statement. Arizona Revised Statutes 20-3453 and Virginia Code 38.2-3407.10:1 are quoted as state credentialing clocks, not a national average. New York was left out because the official page did not open. No Program Integrity Manual section number is added. The NCQA blog is cited only to say it does not state a 120-day clock.
+
+### `/own-your-contracts`
+
+- Added "Rent or own: per-claim math." It uses the published Launch, Build, and Scale fees, the published $360 per state, and the published 12-month minimum. Allowed amount, claim count, spread months, and state count are reader inputs. The post-migration platform fee is not published, so the example leaves it out.
+- The ownership timeline no longer renders the unpublished post-migration platform fee.
+
+### `/compare/bridge`
+
+- Added a Written by Anvil method line. Every cell has a source link to a usebridge.com page or an Anvil page, re-checked November 17, 2026. Existing cell text stays.
+- Added two sourced rows: Bridge's published 6 to 12 months to secure multi-state contracts, and Bridge's published 20 to 25% of gross revenue for in-house operations. The Anvil cell on each is Not published.
+- Article authorship is Anvil.
+
+### `/solutions/behavioral-health`
+
+- Tightened the panel sequence so state Medicaid enrollment and each MCO panel are separate filings.
+- Added a sourced process table for psychiatry and therapy, ABA, and Medicaid MCO panels. Written by Anvil. Sources checked November 17, 2026. No coverage count was added.
+
+### Not a page change
+
+- `/`, `/rates`, RateRelated, `/pricing` body copy, and held articles were not edited.
+- The TimelineSlider no longer outputs the hardcoded post-migration fee on the two pages that render it.
+
 ## 2026-11-17
 
 Held 3 contracting articles (publishDate set to 2099-01-01), held pending named legal/regulatory reviewer per CoS Nov 17 (G1a).

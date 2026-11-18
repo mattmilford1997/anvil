@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import TimelineSlider from '../components/TimelineSlider.astro';
+import RentOwnMath from '../components/RentOwnMath.astro';
 import GatedDownload from '../components/GatedDownload.astro';
 import Faq from '../components/Faq.astro';
 import WedgeRelated from '../components/WedgeRelated.astro';
@@ -125,6 +126,10 @@ const months = [
   <Section eyebrow="Cost" title="Renting forever vs owning by year one" tight>
     <p class="lede">Rental fees do not step down. Ownership fees do. Run both on your numbers in the <a href="/pricing#calculator">calculator</a>{rentOwn && <>, or read the <a href={`/resources/${rentOwn.id}`}>full comparison</a></>}. See the <a href="/resources/five-workstreams-insurance-operations">cost of building insurance operations in-house</a>.</p>
     <p class="lede" style="margin-top:16px">Those five workstreams run on one <a href="/platform">insurance operations platform for care companies</a>.</p>
+  </Section>
+
+  <Section id="per-claim-math" eyebrow="Per claim" title="Rent or own: per-claim math">
+    <RentOwnMath />
   </Section>
 
   <WedgeRelated current="/own-your-contracts" />

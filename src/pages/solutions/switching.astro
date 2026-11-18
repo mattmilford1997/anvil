@@ -18,6 +18,7 @@ const faqs = [
   { q: 'Is there a Bridge alternative that lets me keep billing while I switch?', a: switchingBridgeAnswer },
   { q: 'What should I compare before I pick a Bridge alternative?', a: switchingBridgeCompareAnswer },
 ];
+const switchingBridgeHeroAnswer = 'Keep billing on your current vendor while payer contracts are filed in your own entity, then move volume payer by payer. That is the Bridge alternative this page means. The sourced comparison is the fact table. This page does not copy it.';
 const switchTitle = 'Switching from a network rental vendor';
 const switchDescription = 'Switch from a network rental vendor to payer contracts your own entity holds, with no revenue gap. Keep billing while your contracts come live.';
 const switchArticle = {
@@ -45,8 +46,10 @@ const steps = [
   title="Switching from a network rental vendor without losing revenue"
   description={switchDescription}
   eyebrow="Solutions / Switching"
+  prompt="Is there a Bridge alternative that lets me keep billing while I switch?"
+  promptId="bridge-alternative-hero"
   sub="You are at renewal, or an investor asked who owns your payer contracts, or the lease fee stopped making sense. Keep billing where you are while your own contracts come live, then switch payer by payer."
-  answer={switchWithoutGapAnswer}
+  answer={switchingBridgeHeroAnswer}
   updated
   showCrumbs
   extraJsonLd={[switchArticle]}
@@ -56,6 +59,9 @@ const steps = [
   ctaBody="Notice terms, non-solicits, and which payers move first. Reviewed before you say anything to your vendor."
   ctaPrimary={{ label: 'Get started', href: '/contact?src=switching' }}
 >
+  <Section id="bridge-alternative" eyebrow="Bridge alternative" title="What is a Bridge alternative when you are already on a vendor?">
+    <p class="lede">A Bridge alternative, in this context, is a way to keep billing while payer contracts are filed in your own entity, then move volume payer by payer. You stay on the current vendor until each of your own contracts is effective. The cell-by-cell comparison is the <a href="/compare/bridge">sourced fact table</a>. Fees Anvil publishes are on <a href="/pricing">the pricing page</a>. The ownership path is on <a href="/own-your-contracts">own your payer contracts</a>.</p>
+  </Section>
   <Section eyebrow="The switch" title="No revenue gap, by construction">
     <p class="lede">See <a href="/own-your-contracts">Own your payer contracts vs network rental</a> for the month by month path, and <a href="/own-your-contracts#rent-or-build">Rent a PC vs own a PC</a> for the launch choice. Model the move against <a href="/rates/code/90837">90837 reimbursement rates by state</a>.</p>
     <div class="grid grid-4">
