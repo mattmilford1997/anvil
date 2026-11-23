@@ -1,5 +1,25 @@
 # Content changelog
 
+## 2026-12-01
+
+Question-style title and H1 batch (one change type), approved by Chief of Staff on November 23, 2026. Each page's SEO title (which also feeds og:title and the Article JSON-LD headline) and visible H1 changed. Meta descriptions, hero prompts, body copy, FAQs, links, figures, and breadcrumbs were not changed. No new URLs. None of these pages was known to be AI-cited; Bing AI Performance was not available, so citation status is unknown. Ship gate: a page ships only if Google URL Inspection shows a crawl after the November 17 package upgrade (merged 4:22 PM PT).
+
+Sitemap lastmod and the visible "Updated" date were deliberately left at 2026-11-17 on these pages, per Chief of Staff, November 23. A title-only edit is not a content re-check, so restamping the date would be a date bump.
+
+Controls left untouched: `/own-your-contracts`, `/solutions/switching`, `/platform/rcm`, `/platform/credentialing`. `/platform/contracting` was also left alone, per Chief of Staff.
+
+### `/solutions/behavioral-health`
+
+- Title: "Behavioral health payer contracting for telehealth" to "How does behavioral health payer contracting work?"
+- H1: "Behavioral health payer contracting, built for the way behavioral health actually bills." to "How does behavioral health payer contracting work for therapy, psychiatry, and ABA?"
+- Why: phrase the title the way buyers ask. GSC 28-day position 39.92 on 37 impressions (October 24 to November 20, 2026). Last Google crawl before this change: November 21, 2026, 6:26 AM PT.
+
+### `/compare/bridge`
+
+- Title: "Bridge alternative for telehealth insurance billing" to "Bridge alternative: who owns your payer contracts?"
+- H1: "Bridge alternative: launch fast, then own your payer contracts" to "Is there a Bridge alternative where you own your payer contracts?"
+- Why: phrase the title the way buyers ask. GSC 28-day position 6.51 on 51 impressions (October 24 to November 20, 2026). Ships only if Google has recrawled the page after November 17; otherwise this commit is dropped and the change moves to the December 15 batch.
+
 ## 2026-11-18
 
 Scheduled guest post entity-structure-before-payer-contracts (publishDate 2026-11-30), Foundry PC guest post, one-off cross-brand exception approved by Matt via CoS Nov 18; reviewer: Chief of Staff (exact-head review). Listing cards use cardExcerpt instead of the meta description.
